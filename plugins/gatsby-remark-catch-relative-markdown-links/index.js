@@ -25,11 +25,9 @@ module.exports = ({ markdownAST }) => {
       //   //node.url = `/${_.kebabCase(data['title'])}`;
       // }
 
+      node.url = _.replace(node.url, '../', '/');
       node.url = _.replace(node.url, '.md', '');
-      node.url = _.replace(node.url, '../', '');
       node.url = _.replace(node.url, './', '');
-
-      //console.log(`Node url ${node.url}`);
 
     }
   });
