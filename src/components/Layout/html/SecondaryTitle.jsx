@@ -12,6 +12,9 @@ class SecondaryTitle extends Component {
       case 'em':
         h2Text = this.props.children[1].props.children[0].props.children[0]
         break
+      case 'a':
+        h2Text = this.props.children[2]
+        break
       default:
         h2Text = this.props.children[1]
     }
