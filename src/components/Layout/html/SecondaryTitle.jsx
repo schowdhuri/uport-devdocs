@@ -4,7 +4,17 @@ import { cleanDoubleByteChars } from '../../../helpers/cleanDoubleByteChars'
 
 class SecondaryTitle extends Component {
   render () {
-    const h2Text = this.props.children[1]
+    let h2Text = ''
+    switch (this.props.children[1].type) {
+      case 'strong':
+        h2Text = this.props.children[1].props.children[0]
+        break
+      case 'em':
+        h2Text = this.props.children[1].props.children[0].props.children[0]
+        break
+      default:
+        h2Text = this.props.children[1]
+    }
     const svgAnchor = this.props.children[0].props.children[0]
     return (
       <h2 id={cleanDoubleByteChars(_.kebabCase(h2Text))}>
