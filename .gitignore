@@ -66,3 +66,5 @@ repos
 *.DS_Store
 .DS_Store
 **/*.DS_Store
+
+yarn.lock
