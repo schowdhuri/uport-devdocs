@@ -23,5 +23,14 @@
   "uport-connect": {
     "githubURL": "git@github.com:uport-project/uport-connect.git",
     "branch": "develop"
+  },
+  "uport-identity": {
+    "githubURL": "git@github.com:uport-project/uport-identity.git",
+    "branch": "develop"
+  },
+  "muport-core-js": {
+    "githubURL": "git@github.com:uport-project/muport-core-js.git",
+    "branch": "master"
   }
+
 }
