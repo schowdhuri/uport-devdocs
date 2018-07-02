@@ -1,6 +1,8 @@
 uPort Developer Portal
 ============
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/uport-project/uport-project.github.io.svg)](https://greenkeeper.io/)
+
   This is our documentation site generator, built with [GatsbyJS](https://www.gatsbyjs.org) and a heavily modified fork of [gatsby-starter-docs](https://github.com/ericwindmill/gatsby-starter-docs).
 
 
