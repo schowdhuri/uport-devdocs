@@ -32,6 +32,10 @@ gulp.task('copy-markdown', (done) => {
   gulp.src(['./repos/lambda-olorun/README.md'])
     .pipe(gulp.dest('./content/public/lambda-olorun'));
 
+  // Add muport-core-js
+  gulp.src(['./repos/muport-core-js/docs/**/*'])
+    .pipe(gulp.dest('./content/public/muport-core-js'));
+
   done();
 
 
