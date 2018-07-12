@@ -49,9 +49,9 @@ Periodically it will be necessary to apply updates to the documentation markdown
 
 #### `npm run watch:repos`
 
-This command watches the `/repos` folder for updates.  Any time an update happens it will run `copy:markdown`.  This enables live updates of markdown in development mode when compbined with `npm run dev`.
+This command watches the `/repos` folder for updates.  Any time an update happens it will run `copy:markdown`.  This enables live updates of markdown in development mode when combined with `npm run dev`.
 
-#### `npm run update:docs:remote`
+#### `npm run update:remote:docs`
 
 To pull in documentation updates from the remote repositories, run this command.  It does the following:
 
@@ -65,7 +65,9 @@ Run this command to build and run a local instance of the developer docs at `htt
 
 ### Configuration
 
-  There are a few main points of configuration.
+  - The git configuration for the project should use SSH vs. HTTPS to avoid having to type passwords when checking out the individual markdown repositories.
+
+  Project configuration(s):
 
   1. Site `/data/SiteConfig.js`
   1. Styling `/src/layouts/theme.js`
