@@ -65,7 +65,7 @@ export default class TableOfContents extends React.Component {
       )
     })
     return (
-      <TableOfContentsContainer>
+      <TableOfContentsContainer id="toc">
         <ul>
           {listItems}
         </ul>
