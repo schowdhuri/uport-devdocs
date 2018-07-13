@@ -36,6 +36,10 @@ gulp.task('copy-markdown', (done) => {
   gulp.src(['./repos/muport-core-js/docs/**/*'])
     .pipe(gulp.dest('./content/public/muport-core-js'));
 
+  // Add Ethr-did
+  gulp.src(['./repos/ethr-did/**/*'])
+    .pipe(gulp.dest('./content/public/ethr-did'));
+
   done();
 
 

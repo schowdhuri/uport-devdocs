@@ -8,6 +8,7 @@ import SiteHeader from '../components/Layout/Header'
 import config from '../../data/SiteConfig'
 import TableOfContents from '../components/Layout/TableOfContents'
 import SecondaryTitle from '../components/Layout/html/SecondaryTitle'
+import CtaButton from '../components/CtaButton'
 
 export default class ContentTemplate extends React.Component {
   render () {
@@ -60,6 +61,9 @@ export default class ContentTemplate extends React.Component {
             />
           </ToCContainer>
           <BodyContainer>
+            <CtaButton to={`${post.source}`}>
+              Edit
+            </CtaButton>
             <div className={`docSearch-content`}>
               { renderAst(postNode.htmlAst) }
             </div>
@@ -192,6 +196,7 @@ export const pageQuery = graphql`
         title
         category
         type
+        source
       }
       fields {
         slug
@@ -217,6 +222,7 @@ export const pageQuery = graphql`
             category
             index
             type
+            source
           }
         }
       }

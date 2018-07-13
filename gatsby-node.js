@@ -72,6 +72,7 @@ exports.createPages = ({graphql, boundActionCreators}) => {
                 frontmatter {
                   category
                   type
+                  source
                 }
                 fields {
                   slug

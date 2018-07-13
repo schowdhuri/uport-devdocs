@@ -1,32 +1,35 @@
 {
   "docs" : {
     "githubURL": "git@github.com:uport-project/docs.git",
-    "branch": "master"
+    "branch": "feature/add-url-source-to-frontmatter"
   },
   "specs" : {
     "githubURL": "git@github.com:uport-project/specs.git",
     "projectTitle": "uPort Specs",
-    "branch": "master"
+    "branch": "feature/add-source-url-to-frontmatter"
   },
   "did-jwt": {
     "githubURL": "git@github.com:uport-project/did-jwt.git",
-    "branch": "develop"
+    "branch": "feature/add-source-url-to-frontmatter"
   },
   "uport-js": {
     "githubURL": "git@github.com:uport-project/uport-js.git",
-    "branch": "develop"
+    "branch": "feature/add-source-url-to-frontmatter"
   },
   "lambda-olorun": {
     "githubURL": "git@github.com:uport-project/lambda-olorun.git",
-    "branch": "master"
+    "branch": "feature/add-source-url-to-frontmatter"
   },
   "uport-connect": {
     "githubURL": "git@github.com:uport-project/uport-connect.git",
-    "branch": "develop"
+    "branch": "feature/add-source-url-to-frontmatter"
   },
   "muport-core-js": {
     "githubURL": "git@github.com:uport-project/muport-core-js.git",
-    "branch": "master"
+    "branch": "feature/add-source-url-to-frontmatter"
+  },
+  "ethr-did": {
+    "githubURL": "git@github.com:uport-project/ethr-did.git",
+    "branch": "update-etr-did-readme"
   }
-
 }
