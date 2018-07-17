@@ -35,7 +35,7 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-plugin-transform-react-pug": "^6.0.0",
     "babel-preset-env": "^1.6.1",
-    "base64url": "^3.0.0",
+    "base64url": "2.0.0",
     "cli-glob": "^0.1.0",
     "es-collections": "^0.0.2",
     "eslint": "^5.0.0",
