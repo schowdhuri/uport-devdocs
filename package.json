@@ -1,7 +1,7 @@
 {
   "name": "uport-site-generator",
   "description": "Uport documentation generator",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "author": "team@uport.me",
   "dependencies": {
     "babel-register": "^6.26.0",
@@ -55,7 +55,6 @@
     "gatsby-plugin-nprogress": "^1.0.13",
     "gatsby-plugin-offline": "^1.0.15",
     "gatsby-plugin-react-helmet": "^2.0.11",
-    "gatsby-plugin-segment-js": "^2.0.1",
     "gatsby-plugin-sharp": "^1.6.39",
     "gatsby-plugin-sitemap": "^1.2.14",
     "gatsby-plugin-styled-components": "^2.0.9",
@@ -105,7 +104,7 @@
     "watch:repos": "gulp watch:repos",
     "fetch": "gulp git:clone",
     "copy:markdown": "gulp copy-markdown",
-    "install:plugins": "cd ./plugins/gatsby-remark-copy-linked-files && npm install && cd ../gatsby-remark-catch-relative-markdown-links && npm install && cd ../../",
+    "install:plugins": "cd ./plugins/gatsby-remark-copy-linked-files && npm install; npm run build && cd ../gatsby-remark-catch-relative-markdown-links && npm install && cd ../gatsby-plugin-segment-js && npm install; npm run build && cd ../../",
     "update:remote:docs": "npm run clean:repos; npm run fetch; npm run copy:markdown",
     "setup": "npm run install:plugins; npm run clean; npm run update:remote:docs",
     "develop": "gatsby develop",
