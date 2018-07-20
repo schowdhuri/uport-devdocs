@@ -2,9 +2,10 @@ import React from 'react'
 import { Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import createStore from './src/state/createStore'
+import configureStore from './src/state/configureStore'
 
-const store = createStore()
+const store = configureStore().store
+console.log(store)
 
 export const replaceRouterComponent = ({ history }) => {
   const ConnectedRouterWrapper = ({ children }) => (
