@@ -11,7 +11,7 @@ import config from '../../data/SiteConfig'
  * import registerApp from '../images/register-app.svg'
  * import installSDK from '../images/install-sdk.svg'*/
 import heroImg from '../images/hero-img.svg'
-import Linkify from 'react-linkify';
+import AutoLinkText from 'react-autolink-text'
 
 class Index extends React.Component {
   render () {
@@ -23,7 +23,7 @@ class Index extends React.Component {
       this.props.data.announcement.edges.forEach(announcement => {
         messages.push(
           <h4>
-            <Linkify>{`${announcement.node.frontmatter.announcement}`}</Linkify>
+            <AutoLinkText text={`${announcement.node.frontmatter.announcement}`} />
           </h4>
         )
       })

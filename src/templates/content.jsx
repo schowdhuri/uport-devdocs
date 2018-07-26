@@ -9,7 +9,8 @@ import config from '../../data/SiteConfig'
 import TableOfContents from '../components/Layout/TableOfContents'
 import SecondaryTitle from '../components/Layout/html/SecondaryTitle'
 import CtaButton from '../components/CtaButton'
-import Linkify from 'react-linkify';
+import AutoLinkText from 'react-autolink-text'
+
 
 export default class ContentTemplate extends React.Component {
   render () {
@@ -31,7 +32,7 @@ export default class ContentTemplate extends React.Component {
       this.props.data.announcement.edges.forEach(announcement => {
         messages.push(
           <h3>
-            <Linkify>{`${announcement.node.frontmatter.announcement}`}</Linkify>
+            <AutoLinkText text={`${announcement.node.frontmatter.announcement}`} />
           </h3>
         )
       })
