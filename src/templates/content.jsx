@@ -9,6 +9,7 @@ import config from '../../data/SiteConfig'
 import TableOfContents from '../components/Layout/TableOfContents'
 import SecondaryTitle from '../components/Layout/html/SecondaryTitle'
 import CtaButton from '../components/CtaButton'
+import Linkify from 'react-linkify';
 
 export default class ContentTemplate extends React.Component {
   render () {
@@ -23,11 +24,25 @@ export default class ContentTemplate extends React.Component {
     const post = postNode.frontmatter
     const category = post.category
     const categories = []
+    const messages = []
+
+    /* If there is an announcement, broadcast it at the top of each page */
+    if (this.props.data.announcement) {
+      this.props.data.announcement.edges.forEach(announcement => {
+        messages.push(
+          <h3>
+            <Linkify>{`${announcement.node.frontmatter.announcement}`}</Linkify>
+          </h3>
+        )
+      })
+    }
+
     this.props.data.postByCategory.edges.forEach(cat => {
       if (cat.node.frontmatter.category === category) {
         categories.push(cat)
       }
     })
+
     const chapterTitles = []
     categories.forEach(cat => {
       chapterTitles.push(cat.node.frontmatter.title)
@@ -61,6 +76,9 @@ export default class ContentTemplate extends React.Component {
             />
           </ToCContainer>
           <BodyContainer>
+            <AnnouncementContainer>
+              {messages}
+            </AnnouncementContainer>
             <CtaButton to={`${post.source}`}>
               Edit
             </CtaButton>
@@ -81,9 +99,9 @@ const BodyGrid = styled.div`
   grid-template-columns: 300px 1fr;
 
   @media screen and (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
-    height: inherit;
+  display: flex;
+  flex-direction: column;
+  height: inherit;
   }
 `
 
@@ -95,19 +113,19 @@ const BodyContainer = styled.div`
   width: 100%;
   padding: ${props => props.theme.sitePadding};
   @media screen and (max-width: 600px) {
-    order: 2;
+  order: 2;
   }
 
   & > div {
-    max-width: ${props => props.theme.contentWidthLaptop};
-    margin-left: ${props => props.theme.bobbysLeftMarginPreference};
-    margin-top: auto;
-    margin-right: auto;
-    margin-bottom: auto;
+  max-width: ${props => props.theme.contentWidthLaptop};
+  margin-left: ${props => props.theme.bobbysLeftMarginPreference};
+  margin-top: auto;
+  margin-right: auto;
+  margin-bottom: auto;
   }
 
   & > h1 {
-    color: ${props => props.theme.accentDark};
+  color: ${props => props.theme.accentDark};
   }
 `
 
@@ -115,8 +133,8 @@ const HeaderContainer = styled.div`
   grid-column: 1 / 3;
   grid-row: 1 / 2;
   z-index: 2;
-   @media screen and (max-width: 600px) {
-    order: 1;
+  @media screen and (max-width: 600px) {
+  order: 1;
   }
 `
 
@@ -127,30 +145,35 @@ const ToCContainer = styled.div`
 
   ::-webkit-scrollbar-track
   {
-    background: ${props => props.theme.lightGrey};
+  background: ${props => props.theme.lightGrey};
   }
 
   ::-webkit-scrollbar
   {
-    width: 2px;
+  width: 2px;
   }
 
   ::-webkit-scrollbar-thumb
   {
-    background: ${props => props.theme.tocAccent};
+  background: ${props => props.theme.tocAccent};
   }
 
-   @media screen and (max-width: 600px) {
-    order: 3;
-    overflow: inherit;
+  @media screen and (max-width: 600px) {
+  order: 3;
+  overflow: inherit;
   }
+`
+
+const AnnouncementContainer = styled.div`
+  margin: auto;
+  color: #cc0066;
 `
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
-  query ContentBySlug($slug: String!) {
-    allPostTitles: allMarkdownRemark(
-      filter: { frontmatter: { index: { ne: null } } }
+query ContentBySlug($slug: String!) {
+  allPostTitles: allMarkdownRemark(
+    filter: { frontmatter: { index: { ne: null } } }
     ){
       edges {
         node {
@@ -223,6 +246,17 @@ export const pageQuery = graphql`
             index
             type
             source
+          }
+        }
+      }
+    }
+    announcement: allMarkdownRemark(
+      filter: { frontmatter: { announcement: { ne: null } } }) {
+      totalCount
+      edges {
+        node {
+          frontmatter {
+            announcement
           }
         }
       }
