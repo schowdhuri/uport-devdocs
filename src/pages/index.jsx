@@ -11,10 +11,24 @@ import config from '../../data/SiteConfig'
  * import registerApp from '../images/register-app.svg'
  * import installSDK from '../images/install-sdk.svg'*/
 import heroImg from '../images/hero-img.svg'
+import Linkify from 'react-linkify';
 
 class Index extends React.Component {
   render () {
     const postEdges = this.props.data.allMarkdownRemark.edges
+    const messages = []
+
+    /* If there is an announcement, broadcast it at the top of each page */
+    if (this.props.data.announcement) {
+      this.props.data.announcement.edges.forEach(announcement => {
+        messages.push(
+          <h4>
+            <Linkify>{`${announcement.node.frontmatter.announcement}`}</Linkify>
+          </h4>
+        )
+      })
+    }
+
     return (
       <div className='index-container'>
         <Helmet title={config.siteTitle} />
@@ -46,7 +60,7 @@ class Index extends React.Component {
                         <p>Issue, request, and verify reusable identity credentials to your users.</p>
                         <div className={`hero-button`}>
                           <a href='/gettingstarted' className={`banner-link`}>
-                           Start Using Credentials
+                            Start Using Credentials
                           </a>
                         </div>
                       </div>
@@ -59,6 +73,7 @@ class Index extends React.Component {
                   </div>
                 </div>
               </div>
+              <AnnouncementContainer>{messages}</AnnouncementContainer>
             </Hero>
           </IndexHeadContainer>
           <BodyContainer className={`body-container`}>
@@ -76,6 +91,12 @@ class Index extends React.Component {
 
 export default Index
 
+const AnnouncementContainer = styled.div`
+  text-align: center;
+  align-self: center;
+  margin: auto;
+  color: #cc0066;
+`
 const IndexHeadContainer = styled.div`
   background: ${props => props.theme.brand};
 `
@@ -83,13 +104,13 @@ const IndexHeadContainer = styled.div`
 const Hero = styled.div`
   background-color: #fff;
   .hero-wrapper {
-    width: 90vw;
-    margin: 0 auto;
-    padding: 60px 0;
+  width: 90vw;
+  margin: 0 auto;
+  padding: 60px 0;
   }
   .hero-img-wrap {
-    flex: 0 0 42%;
-    align-self: center;
+  flex: 0 0 42%;
+  align-self: center;
   }
 `
 
@@ -106,7 +127,7 @@ const FooterContainer = styled.footer`
 
 /* eslint no-undef: "off"*/
 export const pageQuery = graphql`
-query IndexQuery {
+  query IndexQuery {
     allMarkdownRemark(
       limit: 2000
       filter: { frontmatter: { type: { eq: "content" }}}
@@ -144,5 +165,16 @@ query IndexQuery {
         }
       }
     }
+    announcement: allMarkdownRemark(
+      filter: { frontmatter: { announcement: { ne: null } } }) {
+        totalCount
+        edges {
+          node {
+            frontmatter {
+              announcement
+            }
+          }
+        }
+      }
   }
 `;
