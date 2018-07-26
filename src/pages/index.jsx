@@ -51,7 +51,7 @@ class Index extends React.Component {
                         <h2>Privacy Preserving Single Sign-On</h2>
                         <p>Enable your ethereum or server app to securely authenticate users.</p>
                         <div className={`hero-button`}>
-                          <a href='/platform' className={`banner-link`}>
+                          <a href='/requestcredentials' className={`banner-link`}>
                             Enable Single Sign-On
                           </a>
                         </div>
@@ -60,8 +60,8 @@ class Index extends React.Component {
                         <h2>Exchange Verifiable Credentials</h2>
                         <p>Issue, request, and verify reusable identity credentials to your users.</p>
                         <div className={`hero-button`}>
-                          <a href='/gettingstarted' className={`banner-link`}>
-                            Start Using Credentials
+                          <a href='/attestcredentials' className={`banner-link`}>
+                           Start Using Credentials
                           </a>
                         </div>
                       </div>
