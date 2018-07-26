@@ -34,6 +34,10 @@ const Container = styled.section`
       font-family: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
       color: #3db77d;
       white-space: nowrap;
+      a {
+       color: #3db77d;
+       text-decoration: none;
+      }
     }
     h4.alpha {
       position:relative;
@@ -74,14 +78,14 @@ class BuildingBlocks extends Component {
                   <h4><a href='https://github.com/uport-project/uport-connect'>uPort Connect</a></h4>
                   <p>Single sign-on and transaction signing for your client-side app</p>
                   <div className={'code-block'}>
-                    <p>npm -i uport-connect</p>
+                    <p><a href='https://www.npmjs.com/package/uport-connect'>npm -i uport-connect</a></p>
                   </div>
                 </div>
                 <div>
                   <h4><a href='https://github.com/uport-project/uport-js'>uPort JS</a></h4>
-                  <p>Rquest, sign, and issue credentials from your app server</p>
+                  <p>Request, sign, and issue credentials from your app server</p>
                   <div className={'code-block'}>
-                    <p>npm -i uport-js</p>
+                    <p><a href='https://www.npmjs.com/package/uport'>npm -i uport-js</a></p>
                   </div>
                 </div>
               </div>
@@ -90,17 +94,17 @@ class BuildingBlocks extends Component {
               <div>
                 <h3>Tools</h3>
                 <div className='block-item'>
-                  <h4><a href='https://github.com/uport-project/uport-js-client'>uPort JavaScript Client</a></h4>
-                  <p>Single sign-on and transaction signing for your client-side app</p>
+                  <h4 className={'alpha'}><a href='https://github.com/uport-project/ethr-did'>EthrDID</a></h4>
+                  <p>Create Decentralized Identifiers and manage their interactions in your app.</p>
                   <div className={'code-block'}>
-                    <p>npm -i uport-js-client</p>
+                    <p><a href='https://www.npmjs.com/package/ethr-did'>npm -i ethr-did</a></p>
                   </div>
                 </div>
                 <div>
-                  <h4 className={'alpha'}><a href='https://github.com/uport-project/uport-cli-client'>uPort Identity CLI</a></h4>
-                  <p>Create and manage uPort identities from the command line</p>
+                  <h4 className={'alpha'}><a href='https://github.com/uport-project/ethr-did-registry'>EthrDID Registry</a></h4>
+                  <p>A smart contract that enables the resolution and management of decentralized identifiers (DIDs)</p>
                   <div className={'code-block'}>
-                    <p>npm -i uport-cli-client</p>
+                    <p><a href='https://www.npmjs.com/package/ethr-did-registry'> EthrDID Registry Information</a></p>
                   </div>
                 </div>
               </div>
