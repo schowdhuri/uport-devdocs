@@ -32,7 +32,8 @@ export default class ContentTemplate extends React.Component {
       this.props.data.announcement.edges.forEach(announcement => {
         messages.push(
           <h3>
-            <AutoLinkText text={`${announcement.node.frontmatter.announcement}`} />
+            <AutoLinkText text={`${announcement.node.frontmatter.announcement}`}
+              linkProps={{target: '_blank'}} />
           </h3>
         )
       })

@@ -24,7 +24,7 @@ class Index extends React.Component {
         messages.push(
           <h4>
             <AutoLinkText text={`${announcement.node.frontmatter.announcement}`}
-                          linkProps={{target: '_blank'}} />
+              linkProps={{target: '_blank'}} />
           </h4>
         )
       })
