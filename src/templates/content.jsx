@@ -9,7 +9,7 @@ import config from '../../data/SiteConfig'
 import TableOfContents from '../components/Layout/TableOfContents'
 import SecondaryTitle from '../components/Layout/html/SecondaryTitle'
 import CtaButton from '../components/CtaButton'
-import AutoLinkText from 'react-autolink-text'
+import AutoLinkText from 'react-autolink-text2'
 
 
 export default class ContentTemplate extends React.Component {

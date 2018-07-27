@@ -14,7 +14,7 @@
     "prism-themes": "^1.0.0",
     "qrcode.react": "^0.8.0",
     "react": "^15.6.1",
-    "react-autolink-text": "^2.0.0",
+    "react-autolink-text2": "^3.2.0",
     "react-burger-menu": "^2.4.2",
     "react-disqus-comments": "^1.0.3",
     "react-dom": "^15.6.1",

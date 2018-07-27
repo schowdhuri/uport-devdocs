@@ -11,7 +11,7 @@ import config from '../../data/SiteConfig'
  * import registerApp from '../images/register-app.svg'
  * import installSDK from '../images/install-sdk.svg'*/
 import heroImg from '../images/hero-img.svg'
-import AutoLinkText from 'react-autolink-text'
+import AutoLinkText from 'react-autolink-text2'
 
 class Index extends React.Component {
   render () {
@@ -23,7 +23,8 @@ class Index extends React.Component {
       this.props.data.announcement.edges.forEach(announcement => {
         messages.push(
           <h4>
-            <AutoLinkText text={`${announcement.node.frontmatter.announcement}`} />
+            <AutoLinkText text={`${announcement.node.frontmatter.announcement}`}
+                          linkProps={{target: '_blank'}} />
           </h4>
         )
       })
