@@ -1,136 +1,136 @@
 {
   "assetsByChunkName": {
     "path---pki-diddocument": [
-      "path---pki-diddocument-ce309959a3053b2634d7.js",
-      "path---pki-diddocument-ce309959a3053b2634d7.js.map"
+      "path---pki-diddocument-642b654c793853728423.js",
+      "path---pki-diddocument-642b654c793853728423.js.map"
     ],
     "path---messages-verificationreq": [
-      "path---messages-verificationreq-bb46555085cb07332aa2.js",
-      "path---messages-verificationreq-bb46555085cb07332aa2.js.map"
+      "path---messages-verificationreq-a3d2d49511b8ab42fb17.js",
+      "path---messages-verificationreq-a3d2d49511b8ab42fb17.js.map"
     ],
     "path---flows-selectivedisclosure": [
-      "path---flows-selectivedisclosure-22b4375b70c721625ef2.js",
-      "path---flows-selectivedisclosure-22b4375b70c721625ef2.js.map"
+      "path---flows-selectivedisclosure-92a82d8c2a2ee06e795e.js",
+      "path---flows-selectivedisclosure-92a82d8c2a2ee06e795e.js.map"
     ],
     "path---did-jwt-reference-index": [
-      "path---did-jwt-reference-index-c468639c9db5febe9831.js",
-      "path---did-jwt-reference-index-c468639c9db5febe9831.js.map"
+      "path---did-jwt-reference-index-63ee6f8fe3bcacde2129.js",
+      "path---did-jwt-reference-index-63ee6f8fe3bcacde2129.js.map"
     ],
     "path---messages-verification": [
-      "path---messages-verification-9f636d199b25858d9377.js",
-      "path---messages-verification-9f636d199b25858d9377.js.map"
+      "path---messages-verification-fb9f9ef9a80587e481c2.js",
+      "path---messages-verification-fb9f9ef9a80587e481c2.js.map"
     ],
     "path---ethr-did-registry-readme": [
-      "path---ethr-did-registry-readme-2c5c0bc7c5a0bb548744.js",
-      "path---ethr-did-registry-readme-2c5c0bc7c5a0bb548744.js.map"
+      "path---ethr-did-registry-readme-b8dedb8b98fedde56c06.js",
+      "path---ethr-did-registry-readme-b8dedb8b98fedde56c06.js.map"
     ],
     "path---flows-privatechain": [
-      "path---flows-privatechain-b6fc6c2fd9ae06455233.js",
-      "path---flows-privatechain-b6fc6c2fd9ae06455233.js.map"
+      "path---flows-privatechain-d3a806a3b78a923aa616.js",
+      "path---flows-privatechain-d3a806a3b78a923aa616.js.map"
     ],
     "path---glossary": [
-      "path---glossary-b927a1fd14dfe03e55ba.js",
-      "path---glossary-b927a1fd14dfe03e55ba.js.map"
+      "path---glossary-f5adfca7067e2a93dcb7.js",
+      "path---glossary-f5adfca7067e2a93dcb7.js.map"
     ],
     "path---messages-sharereq": [
-      "path---messages-sharereq-fd16bcc196d6cc1d4c3c.js",
-      "path---messages-sharereq-fd16bcc196d6cc1d4c3c.js.map"
+      "path---messages-sharereq-63890e00b84468efeec6.js",
+      "path---messages-sharereq-63890e00b84468efeec6.js.map"
     ],
     "path---messages-tx": [
-      "path---messages-tx-b7d9b10ed82468e30ce0.js",
-      "path---messages-tx-b7d9b10ed82468e30ce0.js.map"
+      "path---messages-tx-f40ff06c1b25f23fe998.js",
+      "path---messages-tx-f40ff06c1b25f23fe998.js.map"
     ],
     "path---uport-js-reference-index": [
-      "path---uport-js-reference-index-c8ccd20e2bd63ab4498d.js",
-      "path---uport-js-reference-index-c8ccd20e2bd63ab4498d.js.map"
+      "path---uport-js-reference-index-2ad8c0f374d6c3041463.js",
+      "path---uport-js-reference-index-2ad8c0f374d6c3041463.js.map"
     ],
     "path---": [
       "path----557518bd178906f8d58a.js",
       "path----557518bd178906f8d58a.js.map"
     ],
     "path---flows-index": [
-      "path---flows-index-3b2eeeb844c49e36a313.js",
-      "path---flows-index-3b2eeeb844c49e36a313.js.map"
+      "path---flows-index-a844c7970e75b61b18af.js",
+      "path---flows-index-a844c7970e75b61b18af.js.map"
     ],
     "path---transports-index": [
-      "path---transports-index-7c50ffa9c404560f759c.js",
-      "path---transports-index-7c50ffa9c404560f759c.js.map"
+      "path---transports-index-e309307130d60d4b906a.js",
+      "path---transports-index-e309307130d60d4b906a.js.map"
     ],
     "path---rest-apis-relay-server": [
-      "path---rest-apis-relay-server-d921d16a09c99132593d.js",
-      "path---rest-apis-relay-server-d921d16a09c99132593d.js.map"
+      "path---rest-apis-relay-server-978b919a38312207a867.js",
+      "path---rest-apis-relay-server-978b919a38312207a867.js.map"
     ],
     "path---ethr-did-resolver-readme": [
-      "path---ethr-did-resolver-readme-7a184e28a50c04e2c7c2.js",
-      "path---ethr-did-resolver-readme-7a184e28a50c04e2c7c2.js.map"
+      "path---ethr-did-resolver-readme-33699d5f8add31c5c25e.js",
+      "path---ethr-did-resolver-readme-33699d5f8add31c5c25e.js.map"
     ],
     "path---uport-js-guides-server-side-credentials-example": [
-      "path---uport-js-guides-server-side-credentials-example-7ce62e56d08fff88a945.js",
-      "path---uport-js-guides-server-side-credentials-example-7ce62e56d08fff88a945.js.map"
+      "path---uport-js-guides-server-side-credentials-example-a78939e7c8189ab9cb5b.js",
+      "path---uport-js-guides-server-side-credentials-example-a78939e7c8189ab9cb5b.js.map"
     ],
     "path---did-jwt-guides-index": [
-      "path---did-jwt-guides-index-79c57720a433cc4768a7.js",
-      "path---did-jwt-guides-index-79c57720a433cc4768a7.js.map"
+      "path---did-jwt-guides-index-d4a4d2ca4f06059e6ce6.js",
+      "path---did-jwt-guides-index-d4a4d2ca4f06059e6ce6.js.map"
     ],
     "component---src-layouts-index-jsx": [
       "component---src-layouts-index-jsx-a59429baee415529a703.js",
       "component---src-layouts-index-jsx-a59429baee415529a703.js.map"
     ],
     "path---clients": [
-      "path---clients-050ba5e18eafacff2ebc.js",
-      "path---clients-050ba5e18eafacff2ebc.js.map"
+      "path---clients-9d70227ff8561b7e98b4.js",
+      "path---clients-9d70227ff8561b7e98b4.js.map"
     ],
     "path---reactuporttruffle": [
-      "path---reactuporttruffle-df750f13832fcd21a71a.js",
-      "path---reactuporttruffle-df750f13832fcd21a71a.js.map"
+      "path---reactuporttruffle-b604adf813b6dd2e22a8.js",
+      "path---reactuporttruffle-b604adf813b6dd2e22a8.js.map"
     ],
     "path---pki-identitydocument": [
-      "path---pki-identitydocument-bcaeeaf6e10f605ac8eb.js",
-      "path---pki-identitydocument-bcaeeaf6e10f605ac8eb.js.map"
+      "path---pki-identitydocument-8286506cb3fca46bd1ab.js",
+      "path---pki-identitydocument-8286506cb3fca46bd1ab.js.map"
     ],
     "component---node-modules-gatsby-plugin-offline-app-shell-js": [
       "component---node-modules-gatsby-plugin-offline-app-shell-js-5c4c5a0f7af9dc69d6d7.js",
       "component---node-modules-gatsby-plugin-offline-app-shell-js-5c4c5a0f7af9dc69d6d7.js.map"
     ],
     "path---platform": [
-      "path---platform-800056e9980aa37806f9.js",
-      "path---platform-800056e9980aa37806f9.js.map"
+      "path---platform-89c850870c6896294f66.js",
+      "path---platform-89c850870c6896294f66.js.map"
     ],
     "path---readme": [
-      "path---readme-4959b47ba71185e6a58c.js",
-      "path---readme-4959b47ba71185e6a58c.js.map"
+      "path---readme-c56a28d648586a71e936.js",
+      "path---readme-c56a28d648586a71e936.js.map"
     ],
     "component---src-templates-category-jsx": [
       "component---src-templates-category-jsx-e241e6647070050167c1.js",
       "component---src-templates-category-jsx-e241e6647070050167c1.js.map"
     ],
     "path---index": [
-      "path---index-f76f6f0ca1c18074f92c.js",
-      "path---index-f76f6f0ca1c18074f92c.js.map"
+      "path---index-acc63bae2a3d96db0fb5.js",
+      "path---index-acc63bae2a3d96db0fb5.js.map"
     ],
     "path---protocol": [
-      "path---protocol-5d3d030d18f5ea432e7f.js",
-      "path---protocol-5d3d030d18f5ea432e7f.js.map"
+      "path---protocol-a1c1d5f3d732530e9f51.js",
+      "path---protocol-a1c1d5f3d732530e9f51.js.map"
     ],
     "component---src-pages-about-jsx": [
       "component---src-pages-about-jsx-10af56b470f75af8f748.js",
       "component---src-pages-about-jsx-10af56b470f75af8f748.js.map"
     ],
     "path---ethr-did-readme": [
-      "path---ethr-did-readme-7a045f44d23829f4498b.js",
-      "path---ethr-did-readme-7a045f44d23829f4498b.js.map"
+      "path---ethr-did-readme-80146da8d008e0f31fa2.js",
+      "path---ethr-did-readme-80146da8d008e0f31fa2.js.map"
     ],
     "path---flows-tx": [
-      "path---flows-tx-d1e3ecfaa0ba0a155275.js",
-      "path---flows-tx-d1e3ecfaa0ba0a155275.js.map"
+      "path---flows-tx-43ebe9a715c3bc738489.js",
+      "path---flows-tx-43ebe9a715c3bc738489.js.map"
     ],
     "path---rest-apis-fuel-server": [
-      "path---rest-apis-fuel-server-e1a97466361610db48f3.js",
-      "path---rest-apis-fuel-server-e1a97466361610db48f3.js.map"
+      "path---rest-apis-fuel-server-d0aba8f6cc653e5c0540.js",
+      "path---rest-apis-fuel-server-d0aba8f6cc653e5c0540.js.map"
     ],
     "path---categories-tutorials": [
-      "path---categories-tutorials-72ad499fbc17f4cfaa70.js",
-      "path---categories-tutorials-72ad499fbc17f4cfaa70.js.map"
+      "path---categories-tutorials-5028606d6123db96bcde.js",
+      "path---categories-tutorials-5028606d6123db96bcde.js.map"
     ],
     "commons": [
       "commons-97b628ee1ab1a2c306f5.js",
@@ -143,40 +143,40 @@
       "path---categories-overview-76ee33397a43555e964e.js.map"
     ],
     "path---messages-index": [
-      "path---messages-index-7e2a9f0514ec5c2a9f2e.js",
-      "path---messages-index-7e2a9f0514ec5c2a9f2e.js.map"
+      "path---messages-index-1e18effadec39a5a460f.js",
+      "path---messages-index-1e18effadec39a5a460f.js.map"
     ],
     "path---releases": [
-      "path---releases-46cf4cce43d55e46b6b6.js",
-      "path---releases-46cf4cce43d55e46b6b6.js.map"
+      "path---releases-ef8fed96a4d7377936a3.js",
+      "path---releases-ef8fed96a4d7377936a3.js.map"
     ],
     "path---requestcredentials": [
-      "path---requestcredentials-a02c4b7800abdabc1e2b.js",
-      "path---requestcredentials-a02c4b7800abdabc1e2b.js.map"
+      "path---requestcredentials-306de0134549e5bf8ffb.js",
+      "path---requestcredentials-306de0134549e5bf8ffb.js.map"
     ],
     "path---overview": [
-      "path---overview-952aed14def8ef5af90b.js",
-      "path---overview-952aed14def8ef5af90b.js.map"
+      "path---overview-0409172f5e43ac36dc1b.js",
+      "path---overview-0409172f5e43ac36dc1b.js.map"
     ],
     "path---uport-connect-reference-index": [
-      "path---uport-connect-reference-index-fb898067b47aea64d8a4.js",
-      "path---uport-connect-reference-index-fb898067b47aea64d8a4.js.map"
+      "path---uport-connect-reference-index-624b2d2549003ae949d1.js",
+      "path---uport-connect-reference-index-624b2d2549003ae949d1.js.map"
     ],
     "path---flows-verificationreq": [
-      "path---flows-verificationreq-3182c8f096d9d8acdd0f.js",
-      "path---flows-verificationreq-3182c8f096d9d8acdd0f.js.map"
+      "path---flows-verificationreq-c8b43cc76b7a489c6449.js",
+      "path---flows-verificationreq-c8b43cc76b7a489c6449.js.map"
     ],
     "path---categories-guides": [
       "path---categories-guides-9563a906dfd31e94ede2.js",
       "path---categories-guides-9563a906dfd31e94ede2.js.map"
     ],
     "path---flows-verification": [
-      "path---flows-verification-ef82ed0dbd4a5fd5ce59.js",
-      "path---flows-verification-ef82ed0dbd4a5fd5ce59.js.map"
+      "path---flows-verification-67a8a9f9694e17fb9afc.js",
+      "path---flows-verification-67a8a9f9694e17fb9afc.js.map"
     ],
     "path---transports-push": [
-      "path---transports-push-a8aea2f4544a6041b451.js",
-      "path---transports-push-a8aea2f4544a6041b451.js.map"
+      "path---transports-push-dd2874151555d571aa29.js",
+      "path---transports-push-dd2874151555d571aa29.js.map"
     ],
     "path---offline-plugin-app-shell-fallback": [
       "path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js",
@@ -187,54 +187,54 @@
       "component---src-pages-index-jsx-2e2564da10ae2be45506.js.map"
     ],
     "path---messages-encryption": [
-      "path---messages-encryption-8cb1ef1bff0a8928a1da.js",
-      "path---messages-encryption-8cb1ef1bff0a8928a1da.js.map"
+      "path---messages-encryption-eba2191ee2d6adb2ec81.js",
+      "path---messages-encryption-eba2191ee2d6adb2ec81.js.map"
     ],
     "app": [
-      "app-10cd54826163186a55af.js",
+      "app-a5cccaef77eace42e11d.js",
       "build-js-styles.css",
-      "app-10cd54826163186a55af.js.map",
+      "app-a5cccaef77eace42e11d.js.map",
       "build-js-styles.css.map"
     ],
     "path---uport-connect-guides-tutorial": [
-      "path---uport-connect-guides-tutorial-b4aaec4b790b3defb962.js",
-      "path---uport-connect-guides-tutorial-b4aaec4b790b3defb962.js.map"
+      "path---uport-connect-guides-tutorial-4c3047614708258473ff.js",
+      "path---uport-connect-guides-tutorial-4c3047614708258473ff.js.map"
     ],
     "path---pki-index": [
-      "path---pki-index-f1f4914b3f92e80b555d.js",
-      "path---pki-index-f1f4914b3f92e80b555d.js.map"
+      "path---pki-index-007cf5e7a9a2bb15a84a.js",
+      "path---pki-index-007cf5e7a9a2bb15a84a.js.map"
     ],
     "path---uport-connect-guides-usage": [
-      "path---uport-connect-guides-usage-ce9c69be35049fb8dc41.js",
-      "path---uport-connect-guides-usage-ce9c69be35049fb8dc41.js.map"
+      "path---uport-connect-guides-usage-ae4fde3c7d095f2cad64.js",
+      "path---uport-connect-guides-usage-ae4fde3c7d095f2cad64.js.map"
     ],
     "path---messages-privatechain": [
-      "path---messages-privatechain-3a14fe0f2fda812a9c4c.js",
-      "path---messages-privatechain-3a14fe0f2fda812a9c4c.js.map"
+      "path---messages-privatechain-e925eeac75e11a98d755.js",
+      "path---messages-privatechain-e925eeac75e11a98d755.js.map"
     ],
     "component---src-templates-content-jsx": [
       "component---src-templates-content-jsx-2a8ea37980a936cf4bb7.js",
       "component---src-templates-content-jsx-2a8ea37980a936cf4bb7.js.map"
     ],
     "path---attestcredentials": [
-      "path---attestcredentials-48349efa664ccb3a36b3.js",
-      "path---attestcredentials-48349efa664ccb3a36b3.js.map"
+      "path---attestcredentials-6dfa32dde53dd050206b.js",
+      "path---attestcredentials-6dfa32dde53dd050206b.js.map"
     ],
     "path---messages-shareresp": [
-      "path---messages-shareresp-6bd26c6d77c91a6fb1bb.js",
-      "path---messages-shareresp-6bd26c6d77c91a6fb1bb.js.map"
+      "path---messages-shareresp-b0901185fa01e462a557.js",
+      "path---messages-shareresp-b0901185fa01e462a557.js.map"
     ],
     "path---signtransactions": [
-      "path---signtransactions-4f4232ac8ccd480816ec.js",
-      "path---signtransactions-4f4232ac8ccd480816ec.js.map"
+      "path---signtransactions-02614092f5935cdbcd32.js",
+      "path---signtransactions-02614092f5935cdbcd32.js.map"
     ],
     "path---categories-reference": [
-      "path---categories-reference-cabff6b691aad4b20398.js",
-      "path---categories-reference-cabff6b691aad4b20398.js.map"
+      "path---categories-reference-b4e3bee07c7c6dd46046.js",
+      "path---categories-reference-b4e3bee07c7c6dd46046.js.map"
     ],
     "path---gettingstarted": [
-      "path---gettingstarted-90de18d48e30590b2d26.js",
-      "path---gettingstarted-90de18d48e30590b2d26.js.map"
+      "path---gettingstarted-d97118d958de1c857071.js",
+      "path---gettingstarted-d97118d958de1c857071.js.map"
     ],
     "path---about": [
       "path---about-a0e39f21c11f6a62c5ab.js",
