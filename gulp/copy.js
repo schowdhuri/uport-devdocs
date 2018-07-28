@@ -32,15 +32,16 @@ gulp.task('copy-markdown', (done) => {
   gulp.src(['./repos/lambda-olorun/README.md'])
     .pipe(gulp.dest('./content/public/lambda-olorun'));
 
-  // Add muport-core-js
-  gulp.src(['./repos/muport-core-js/docs/**/*'])
-    .pipe(gulp.dest('./content/public/muport-core-js'));
-
   // Add Ethr-did
   gulp.src(['./repos/ethr-did/**/*'])
     .pipe(gulp.dest('./content/public/ethr-did'));
 
-  done();
+  gulp.src(['./repos/ethr-did-resolver/**/*'])
+    .pipe(gulp.dest('./content/public/ethr-did-resolver'));
 
+  gulp.src(['./repos/ethr-did-registry/**/*'])
+    .pipe(gulp.dest('./content/public/ethr-did-registry'));
+
+  done();
 
 });
