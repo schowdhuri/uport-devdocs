@@ -103,6 +103,9 @@ class Navigation extends React.Component {
               case "reference":
                 navItems[2] = link;
                 break;
+              case "tutorials":
+                navItems[3] = link;
+                break;
               default:
                 // keep adding links at index 3 (the first available)
                 const idx = navItems.length - 1;
@@ -116,6 +119,7 @@ class Navigation extends React.Component {
         })
       }
     })
+    console.log(navItems)
     return navItems
   }
 
