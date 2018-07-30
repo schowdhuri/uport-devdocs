@@ -10,7 +10,7 @@ const styles = {
   bmBurgerButton: {
     position: 'absolute',
     width: '20px',
-    height: '16px',
+    height: '15px',
     right: '36px',
     top: '22px'
   },
