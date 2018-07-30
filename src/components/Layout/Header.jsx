@@ -43,20 +43,9 @@ class MainHeader extends React.Component {
 }
 
 const SiteContainer = styled.header`
-  background: ${props => props.theme.brand};
-  height: auto;
-  width: 90vw;
-  margin: 0 auto;
-
-  .Grid {
-    max-width: 90vw;
-    margin: 0 auto;
-  }
-
   .Grid--gutters {
     margin: 0;
   }
-
   .nav-wrap #topNav {
     text-align: right;
     white-space: nowrap;
@@ -64,7 +53,6 @@ const SiteContainer = styled.header`
   .Grid-cell {
     padding: 0;
   }
-
   img {
     padding-bottom: 20px;
   }

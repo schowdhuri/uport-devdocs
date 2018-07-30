@@ -132,11 +132,12 @@ const BodyContainer = styled.div`
 `
 
 const HeaderContainer = styled.div`
-  grid-column: 1 / 3;
-  grid-row: 1 / 2;
-  z-index: 2;
-  @media screen and (max-width: 600px) {
-  order: 1;
+  background: ${props => props.theme.brand};
+  width: 100vw;
+  height: 84%;
+  .Grid {
+    width: 90vw;
+    margin: 0 auto;
   }
 `
 
