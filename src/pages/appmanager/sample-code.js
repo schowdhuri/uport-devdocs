@@ -115,14 +115,6 @@ uport.onResponse('disclosureReq').then(payload => {
                         </code></pre>
                         </div>
                       </li>
-                      <li>
-                        <h3>Attest Credentials</h3>
-                        <div className='sampleCode'>
-                          <span>npm init</span>
-                          <span>npm install --save uport-connect</span>
-                          <span>npm install --save qrcode-terminal</span>
-                        </div>
-                      </li>
                     </ul>
                   </div>
                 </div>
