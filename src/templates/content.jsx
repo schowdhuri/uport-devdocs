@@ -129,6 +129,22 @@ const BodyContainer = styled.div`
   & > h1 {
   color: ${props => props.theme.accentDark};
   }
+  @media screen and (max-width: 1068px) {
+    & > div {
+      max-width: ${props => props.theme.contentWidthTablet};
+      margin-left: ${props => props.theme.gregsLeftMarginPreference};
+    }
+  }
+  @media screen and (max-width: 768px) {
+    & > div {
+      max-width: ${props => props.theme.contentWidthLargePhone};
+    }
+  }
+  @media screen and (max-width: 520px) {
+    & > div {
+      max-width: ${props => props.theme.contentWidthLaptop};
+    }
+  }
 `
 
 const HeaderContainer = styled.div`
