@@ -8,11 +8,11 @@ const styles = {
     width: '280px'
   },
   bmBurgerButton: {
-    position: 'fixed',
-    width: '16px',
-    height: '12px',
+    position: 'absolute',
+    width: '20px',
+    height: '16px',
     right: '36px',
-    top: '26px'
+    top: '22px'
   },
   bmBurgerBars: {
     background: '#fff',
@@ -62,7 +62,7 @@ const NavContainer = styled.nav`
     text-transform: none;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 1068px) {
     display: flex;
     flex-direction: column;
 
@@ -70,7 +70,7 @@ const NavContainer = styled.nav`
       display: none;
     }
   }
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 1068px) {
     #responsiveNavContainer {
       display: none;
     }
