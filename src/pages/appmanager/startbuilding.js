@@ -84,16 +84,6 @@ class AppManagerStartBuildingPage extends React.Component {
                   <h1>App Details</h1>
                   <label htmlFor='appName'>App Name</label>
                   <input type='text' id='appName' placeholder='Give your app a name' value={this.state.appName} onChange={(e) => { this.handleAppNameChange(e) }} />
-                  <label htmlFor='network'>Select a network</label>
-                  <Select
-                    className='networkDropdown'
-                    classNamePrefix='networkDropdown'
-                    value={selectedNetwork}
-                    onChange={this.handleNetworkChange}
-                    options={networkOptions}
-                    isSearchable={false}
-                    blurInputOnSelect
-                  />
                   <label htmlFor='appName'>Select an account type</label>
                   <span className='note'><strong>Note: </strong>This option can be changed in the future</span>
                   <div className='radioContainer'>
@@ -116,6 +106,17 @@ class AppManagerStartBuildingPage extends React.Component {
                     <span className='note'><strong>Funding: </strong>N/A</span>
                     <span className='note'><strong>Network: </strong>N/A</span>
                   </div>
+                  <label htmlFor='network'>Select a network</label>
+                  <Select
+                    className='networkDropdown'
+                    classNamePrefix='networkDropdown'
+                    value={selectedNetwork}
+                    onChange={this.handleNetworkChange}
+                    options={networkOptions}
+                    isSearchable={false}
+                    blurInputOnSelect
+                    isDisabled={this.state.accountType === 'none'}
+                  />
                 </div>
               </div>
               <footer>

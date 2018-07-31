@@ -105,7 +105,7 @@ class AppManagerSampleCodePage extends React.Component {
                         <div className='sampleCode'>
                         <pre><code style={{backgroundColor: '#f4f4f7'}} className={`language-javascript`}>
                         {`uport.requestDisclosure({
-  requested: ['name', 'phone', 'country'],
+  requested: ['name','country'],
   notifications: true
 })
 uport.onResponse('disclosureReq').then(payload => {

@@ -2,8 +2,8 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import ReactModal from 'react-modal';
-import {Connect, SimpleSigner} from 'uport-connect'
+import ReactModal from 'react-modal'
+import Connect from 'uport-connect'
 import { connect } from 'react-redux'
 
 import SEO from '../../components/SEO/SEO'
@@ -15,7 +15,6 @@ import googlePlayBadge from '../../images/google-play-badge.svg'
 import appStoreBadge from '../../images/app-store-badge.svg'
 import '../../layouts/css/appmanager.css'
 
-const QRCode = require('qrcode.react')
 const BodyContainer = styled.div`
   padding: 0;
   overflow: hidden;
@@ -25,11 +24,7 @@ const BodyContainer = styled.div`
   }
 `
 
-const uPortConnect = new Connect('uPort Demo', {
-  clientId: '2osnfJ4Wy7LBAm2nPBXire1WfQn75RrV6Ts',
-  signer: SimpleSigner('fa09a3ff0d486be2eb69545c393e2cf47cb53feb44a3550199346bdfa6f53245'),
-  network: 'rinkeby'
-})
+const uPortConnect = new Connect('AppManager')
 
 class AppManagerPage extends React.Component {
   constructor (props) {
@@ -49,7 +44,7 @@ class AppManagerPage extends React.Component {
   }
   handleOpenModal (e) {
     e.preventDefault()
-    this.loginRequest(e)
+    // this.loginRequest(e)
     this.setState({ showModal: true })
   }
   handleCloseModal (e) {
@@ -57,19 +52,17 @@ class AppManagerPage extends React.Component {
     this.setState({ showModal: false })
   }
   loginRequest (e) {
+    e.preventDefault()
     const history = this.props.history
-    uPortConnect.requestCredentials({
-      requested: ['name', 'avatar', 'phone', 'country'] },
-      (uri) => {
-        this.setState({ uri: uri, showImage: true, showResult: false})
-      }).then((userProfile) => {
-        this.setState({showImage: false, showResult: true, profile: userProfile})
-        this.props.saveProfile(userProfile)
-        this.handleCloseModal(e)
-        history.push('/appmanager/getstarted')
-        console.log(userProfile)
-      }
-    )
+    uPortConnect.requestDisclosure({notifications: true})
+    uPortConnect.onResponse('disclosureReq').then(payload => {
+      const address = payload.res.address
+      console.log('=== Address: ' + address + ' ===')
+      // this.setState({showImage: false, showResult: true, profile: address})
+      this.props.saveProfile(this.state.profile)
+      // this.handleCloseModal(e)
+      history.push('/appmanager/getstarted')
+    })
   }
   render () {
     const postEdges = this.props.data.allMarkdownRemark.edges
@@ -90,7 +83,7 @@ class AppManagerPage extends React.Component {
                   <h1 className='title'>Decentralized Identity for Decentralized Applications</h1>
                   <p>Seamless login. Ethereum transaction signing. User credential issuance and consumption.</p>
                   <div className={`appmgr-button`}>
-                    <a href='/appmanager/getstarted' onClick={(e) => { this.handleOpenModal(e) }}>
+                    <a href='/' onClick={(e) => { this.loginRequest(e) }}>
                       Login with uPort
                     </a>
                   </div>
