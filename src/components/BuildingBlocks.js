@@ -104,7 +104,7 @@ class BuildingBlocks extends Component {
                   <h4 className={'alpha'}><a href='https://github.com/uport-project/ethr-did-registry'>EthrDID Registry</a></h4>
                   <p>A smart contract that enables the resolution and management of decentralized identifiers (DIDs)</p>
                   <div className={'code-block'}>
-                    <p><a href='https://www.npmjs.com/package/ethr-did-registry'> EthrDID Registry Information</a></p>
+                    <p><a href='https://www.npmjs.com/package/ethr-did-registry'>npm -i ethr-did-registry</a></p>
                   </div>
                 </div>
               </div>
