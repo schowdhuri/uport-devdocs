@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
-import {Connect, SimpleSigner} from 'uport-connect'
+import Connect from 'uport-connect'
 import "../layouts/css/demo.css"
-
-const QRCode = require('qrcode.react');
 
 const Container = styled.section`
     position: relative;
@@ -33,12 +31,7 @@ const Container = styled.section`
    }
 
 `
-
-const connect = new Connect('uPort Demo', {
-  clientId: '2osnfJ4Wy7LBAm2nPBXire1WfQn75RrV6Ts',
-  signer: SimpleSigner('fa09a3ff0d486be2eb69545c393e2cf47cb53feb44a3550199346bdfa6f53245'),
-  network: 'rinkeby'
-})
+const uPortConnect = new Connect('uPort Demo')
 
 class Demo extends Component {
 
