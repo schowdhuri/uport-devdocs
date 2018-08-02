@@ -42,7 +42,7 @@ const Container = styled.section`
     h4.alpha {
       position:relative;
       &::after {
-        content: "ALPHA";
+        content: "NEW";
         margin-left: 10px;
         font-family: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
         font-size: 12px;
@@ -104,7 +104,7 @@ class BuildingBlocks extends Component {
                   <h4 className={'alpha'}><a href='https://github.com/uport-project/ethr-did-registry'>EthrDID Registry</a></h4>
                   <p>A smart contract that enables the resolution and management of decentralized identifiers (DIDs)</p>
                   <div className={'code-block'}>
-                    <p><a href='https://www.npmjs.com/package/ethr-did-registry'> EthrDID Registry Information</a></p>
+                    <p><a href='https://www.npmjs.com/package/ethr-did-registry'>npm -i ethr-did-registry</a></p>
                   </div>
                 </div>
               </div>
