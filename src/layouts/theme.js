@@ -16,8 +16,11 @@ const theme = {
   themedWhite: '#FFF',
   // content width:
   contentWidthLaptop: '95ch',
+  contentWidthTablet: '65ch',
+  contentWidthLargePhone: '50vw',
   sitePadding: "25px",
-  bobbysLeftMarginPreference: "15%"
+  bobbysLeftMarginPreference: "15%",
+  gregsLeftMarginPreference: "5%"
 }
 
 export default theme;

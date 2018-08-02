@@ -100,6 +100,10 @@ const AnnouncementContainer = styled.div`
 `
 const IndexHeadContainer = styled.div`
   background: ${props => props.theme.brand};
+  header {
+    width: 90vw;
+    margin: 0 auto;
+  }
 `
 
 const Hero = styled.div`
