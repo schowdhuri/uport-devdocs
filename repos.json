@@ -6,31 +6,31 @@
   "specs" : {
     "githubURL": "git@github.com:uport-project/specs.git",
     "projectTitle": "uPort Specs",
-    "branch": "feature/reorder-documentation"
+    "branch": "develop"
   },
   "did-jwt": {
     "githubURL": "git@github.com:uport-project/did-jwt.git",
-    "branch": "feature/reorder-documentation"
+    "branch": "develop"
   },
   "uport-js": {
     "githubURL": "git@github.com:uport-project/uport-js.git",
-    "branch": "feature/reorder-documentation"
+    "branch": "develop"
   },
   "uport-connect": {
     "githubURL": "git@github.com:uport-project/uport-connect.git",
-    "branch": "feature/reorder-documentation"
+    "branch": "develop"
   },
   "ethr-did": {
     "githubURL": "git@github.com:uport-project/ethr-did.git",
-    "branch": "feature/reorder-documentation"
+    "branch": "develop"
   },
   "ethr-did-registry": {
     "githubURL": "git@github.com:uport-project/ethr-did-registry.git",
-    "branch": "feature/reorder-documentation"
+    "branch": "develop"
   },
   "ethr-did-resolver": {
     "githubURL": "git@github.com:uport-project/ethr-did-resolver.git",
-    "branch": "feature/reorder-documentation"
+    "branch": "develop"
   },
   "muport-core-js": {
     "githubURL": "git@github.com:uport-project/muport-core-js.git",
