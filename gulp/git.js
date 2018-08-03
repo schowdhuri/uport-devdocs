@@ -13,11 +13,16 @@ gulp.task("git:clone", done => {
     if (fs.existsSync(dest)) {
       console.log(`info: ${dest} already cloned`);
     } else {
-      console.log(`cloning....${data.githubURL}`);
-      if (!data.branch){
-        exec(`git clone ${data.githubURL} ${dest}`);
-      } else {
-        exec(`git clone -b ${data.branch} ${data.githubURL} ${dest}`);
+      console.log(`cloning....${data.source}`);
+      if (!data.commit && !data.branch){
+        exec(`git clone ${data.source} ${dest}`);
+      }
+      else if (data.commit !== ""){
+        exec(`git clone ${data.source} ${dest}`);
+        exec(`git fetch origin ${data.commit}`);
+      }
+      else {
+        exec(`git clone -b ${data.branch} ${data.source} ${dest}`);
       }
     }
   });

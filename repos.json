@@ -1,39 +1,65 @@
 {
-  "docs" : {
-    "githubURL": "git@github.com:uport-project/docs.git",
-    "branch": "develop"
-  },
-  "specs" : {
-    "githubURL": "git@github.com:uport-project/specs.git",
-    "projectTitle": "uPort Specs",
-    "branch": "develop"
-  },
-  "did-jwt": {
-    "githubURL": "git@github.com:uport-project/did-jwt.git",
-    "branch": "develop"
-  },
-  "uport-js": {
-    "githubURL": "git@github.com:uport-project/uport-js.git",
-    "branch": "develop"
-  },
-  "uport-connect": {
-    "githubURL": "git@github.com:uport-project/uport-connect.git",
-    "branch": "develop"
-  },
-  "ethr-did": {
-    "githubURL": "git@github.com:uport-project/ethr-did.git",
-    "branch": "develop"
-  },
-  "ethr-did-registry": {
-    "githubURL": "git@github.com:uport-project/ethr-did-registry.git",
-    "branch": "develop"
+  "muport-core-js": {
+    "title": "Simple ID",
+    "url": "https://github.com/uport-project/muport-core-js",
+    "commit": "",
+    "branch": "feature/add-source-url-to-frontmatter",
+    "source": "git@github.com:uport-project/muport-core-js.git"
   },
   "ethr-did-resolver": {
-    "githubURL": "git@github.com:uport-project/ethr-did-resolver.git",
-    "branch": "develop"
+    "title": "Ethr DID Resolver",
+    "url": "https://github.com/uport-project/ethr-did-resolver",
+    "commit": "e46f4b0978edeb1bb81a92e2e70bdbde8a8e242d",
+    "branch": "develop",
+    "source": "git@github.com:uport-project/ethr-did-resolver.git"
   },
-  "muport-core-js": {
-    "githubURL": "git@github.com:uport-project/muport-core-js.git",
-    "branch": "feature/add-source-url-to-frontmatter"
+  "ethr-did-registry": {
+    "title": "Ethereum DID Registry",
+    "url": "https://github.com/uport-project/ethr-did-registry",
+    "commit": "d5a4ea072cd21d0fbb7eef162fc10199587fa4a7",
+    "branch": "develop",
+    "source": "git@github.com:uport-project/ethr-did-registry.git"
+  },
+  "ethr-did": {
+    "title": "Ethr DID Library",
+    "url": "https://github.com/uport-project/ethr-did",
+    "commit": "27ced502b76827961558a89175f8044ef69d2ab7",
+    "branch": "develop",
+    "source": "git@github.com:uport-project/ethr-did.git"
+  },
+  "uport-connect": {
+    "title": "uPort Connect",
+    "url": "https://github.com/uport-project/uport-connect",
+    "commit": "87af8dd98d1c88367ca908ee28157678f61cc3e4",
+    "branch": "develop",
+    "source": "git@github.com:uport-project/uport-connect.git"
+  },
+  "uport-js": {
+    "title": "uPort Credentials",
+    "url": "https://github.com/uport-project/uport-js",
+    "commit": "79ccbff9acddc23cbbbe81833b225b6841f6fc7b",
+    "branch": "develop",
+    "source": "git@github.com:uport-project/uport-js.git"
+  },
+  "did-jwt": {
+    "title": "JWT",
+    "url": "https://github.com/uport-project/did-jwt",
+    "commit": "34732fa0f26696f65df099a2c18cc63e77c4e7f8",
+    "branch": "develop",
+    "source": "git@github.com:uport-project/did-jwt.git"
+  },
+  "specs": {
+    "title": "uPort Specs",
+    "url": "https://github.com/uport-project/specs",
+    "commit": "eab1657d2d933a68e2082377356536011f7c2a48",
+    "branch": "develop",
+    "source": "git@github.com:uport-project/specs.git"
+  },
+  "docs": {
+    "title": "uPort Docs",
+    "url": "https://github.com/uport-project/docs",
+    "commit": "32c1e34e5d8e78893f52083a5ac04ffbbf722995",
+    "branch": "develop",
+    "source": "git@github.com:uport-project/docs.git"
   }
 }
