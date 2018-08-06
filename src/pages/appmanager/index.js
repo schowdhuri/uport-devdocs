@@ -13,6 +13,7 @@ import appMgrBg from '../../images/appmgr-bg.svg'
 import uportLogo from '../../images/Horizontal-Logo-purple.svg'
 import googlePlayBadge from '../../images/google-play-badge.svg'
 import appStoreBadge from '../../images/app-store-badge.svg'
+import '../../layouts/css/appmanager.css'
 
 const QRCode = require('qrcode.react')
 const BodyContainer = styled.div`
@@ -21,110 +22,6 @@ const BodyContainer = styled.div`
   .appmgr-start-right {
     height: 100vh;
     background-image: url(${appMgrBg})
-  }
-  .title {
-    font-family: "Nunito Sans";
-    font-size: 42px;
-    font-weight: 700;
-    line-height: 54px;
-    margin-bottom: 25px;
-    color: #5c54c7;
-  }
-  .banner-link {
-    color: #fff;
-    text-decoration: none;
-  }
-  .appmgr-start-left-wrap {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 25px;
-  }
-  p {
-    color: #89879f;
-    font-weight: 200;
-    font-size: 28px;
-    line-height: 32px;
-    margin-bottom: 40px
-  }
-  .appmgr-button {
-    margin-top: 50px;
-  }
-  .appmgr-button a {
-    background-color: #715ad1;
-    border-radius: 3px;
-    color: #fff;
-    padding: 16px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 22px;
-  }
-  .connectModal {
-    position: absolute;
-    background-color: #fff;
-    text-align: center;
-    width: 50%;
-    max-width: 540px;
-    min-width: 320px;
-    margin: 0 auto;
-    border: none;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 5px;
-    padding-top: 0;
-  }
-  .connectModal h4 {
-    color: #89879f;
-  }
-  .connectModal p {
-    font-size: 16px;
-    line-height: 60px;
-    clear: both;
-  }
-  .ReactModal__Overlay {
-    background-color: rgba(90, 82, 197, 0.55) !important;
-  }
-  .modal-header {
-    margin: 0 auto;
-    display: block;
-    width: 53%;
-    clear: both;
-  }
-  .modal-header h4 {
-    float: left;
-    margin: 9px 0 0 0;
-    font-size: 24px;
-    padding-left: 8px;
-  }
-  .modal-header img {
-    float: left
-  }
-  .modal-footer {
-    background-color: #e0dfe6;
-    border-bottom-left-radius: 5px; 
-    border-bottom-right-radius: 5px;  
-    padding: 20px 0;
-  }
-  .modal-footer p {
-    font-size: 18px;
-    line-height: 22px;
-    margin-bottom: 20px;
-  }
-  .modal-footer a {
-    padding: 0 5px;
-  }
-  .demo-qr-container {
-    margin-top: -40px;
-    margin-bottom: 20px;
-  }
-  a.closeConnectModal {
-    float: right;
-    font-size: 18px;
-    font-weight: 800;
-    padding: 20px 25px 0 0;
-    color: #dfe1e3;
-    text-decoration: none;
   }
 `
 
