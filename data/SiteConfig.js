@@ -20,4 +20,5 @@ module.exports = {
   copyright: "Copyright © 2018", // Copyright string for the footer of the website and RSS feed.
   themeColor: "#5c50ca", // Used for setting manifest and progress theme colors.
   backgroundColor: "#e0e0e0", // Used for setting manifest background color.
+  releaseRepos: ["MDEwOlJlcG9zaXRvcnk4MDU1NzkxOQ==", "MDEwOlJlcG9zaXRvcnk3ODEzNzA3Nw=="]
 };

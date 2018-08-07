@@ -2,6 +2,36 @@ const config = require("./data/SiteConfig");
 
 const pathPrefix = config.pathPrefix === "/" ? "" : config.pathPrefix;
 
+let releaseQueries = [];
+
+console.log(config.releaseRepos);
+
+config.releaseRepos.forEach(repoId => {
+  console.log(repoId);
+  releaseQueries.push(`{
+   node(id: "${repoId}"){
+    id
+    ... on Repository {
+      url
+      name
+      releases(first: 2) {
+        edges {
+          node {
+            name
+            description
+            url
+            tag {
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}`)});
+
+console.log(releaseQueries);
+
 module.exports = {
   pathPrefix: config.pathPrefix,
   siteMetadata: {
@@ -52,6 +82,15 @@ module.exports = {
         // if false, then don't forget to manually add it to your codebase manually!
         trackPage: true
       }
+    },
+    {
+      resolve: 'gatsby-source-github',
+      options: {
+        headers: {
+          Authorization: `Bearer 84b80b97ce30e437fd9b5760507efd1221b7f8f9`,
+        },
+        queries: releaseQueries,
+      },
     },
     {
       resolve: "gatsby-transformer-remark",
