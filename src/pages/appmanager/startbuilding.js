@@ -3,7 +3,7 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Select from 'react-select';
+import Select from 'react-select'
 import SEO from '../../components/SEO/SEO'
 import SiteHeader from '../../components/Layout/Header'
 import config from '../../../data/SiteConfig'
@@ -37,6 +37,10 @@ class AppManagerStartBuildingPage extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   componentWillMount () {
+    if (Object.keys(this.props.profile).length === 0) {
+      const history = this.props.history
+      history.push('/appmanager/')
+    }
     document.addEventListener('mousedown', this.handleOutsideClick, false)
   }
   componentWillUnMount () {

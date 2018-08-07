@@ -20,6 +20,12 @@ img {
 `
 
 class AppManagerGetStartedPage extends React.Component {
+  componentDidMount () {
+    if (Object.keys(this.props.profile).length === 0) {
+      const history = this.props.history
+      history.push('/appmanager/')
+    }
+  }
   render () {
     const postEdges = this.props.data.allMarkdownRemark.edges
     return (

@@ -59,8 +59,13 @@ min-height: 100vh;
 `
 
 class AppManagerSampleCodePage extends React.Component {
+  componentDidMount () {
+    if (Object.keys(this.props.profile).length === 0) {
+      const history = this.props.history
+      history.push('/appmanager/')
+    }
+  }
   render () {
-    console.log(this.props.currentApp)
     const postEdges = this.props.data.allMarkdownRemark.edges
     return (
       <div className='index-container'>
@@ -177,11 +182,12 @@ query AppManagerSnippetQuery {
 `
 
 AppManagerSampleCodePage.propTypes = {
-  currentApp: PropTypes.object.isRequired
+  currentApp: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
 }
 
-const mapStateToProps = ({ currentApp }) => {
-  return { currentApp }
+const mapStateToProps = ({ profile, currentApp }) => {
+  return { profile, currentApp }
 }
 
 export default connect(mapStateToProps)(AppManagerSampleCodePage)
