@@ -2,17 +2,30 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import {Connect, SimpleSigner} from 'uport-connect'
 import { connect } from 'react-redux'
-
 import SEO from '../../components/SEO/SEO'
 import SiteHeader from '../../components/Layout/Header'
 import config from '../../../data/SiteConfig'
+import startBuilding from '../../images/start-building.svg'
+import '../../layouts/css/appmanager.css'
 
 const BodyContainer = styled.div`
+padding: 60px;
+height: 100vh;
+background-color: #f9f9fa;
+img {
+  max-width: 240px;
+  margin-top: 30px;
+}
 `
 
 class AppManagerGetStartedPage extends React.Component {
+  componentDidMount () {
+    if (Object.keys(this.props.profile).length === 0) {
+      const history = this.props.history
+      history.push('/appmanager/')
+    }
+  }
   render () {
     const postEdges = this.props.data.allMarkdownRemark.edges
     return (
@@ -27,13 +40,16 @@ class AppManagerGetStartedPage extends React.Component {
           </AppManagerHeadContainer>
           <BodyContainer className='appMgrBody'>
             <div className={'Grid Grid--gutters'}>
+              <div className='Grid-cell startBuildingLeft'>
+                <img src={startBuilding} />
+              </div>
               <div className='Grid-cell'>
-              <h1>Get started building.</h1>
-                {(this.props.profile) && (
-                  <p>
-                    {JSON.stringify(this.props.profile)}
-                  </p>
-                )}
+                <h1>Get started building.</h1>
+                <p>Register your first app in less than 5 minutes.</p>
+                <a href='/appmanager/startbuilding' className='register-button'>
+                  <span><strong>+</strong></span>
+                  Register an App
+                </a>
               </div>
             </div>
           </BodyContainer>

@@ -7,11 +7,20 @@ const persistConfig = {
   storage
 }
 
-const initialState = { profile: {} }
+const initialState = {
+  profile: {},
+  currentApp: {}
+}
+
 const reducer = (state = initialState, action) => {
   if (action.type === `SAVE_PROFILE`) {
     return Object.assign({}, state, {
       profile: action.profile
+    })
+  }
+  if (action.type === `SAVE_APP`) {
+    return Object.assign({}, state, {
+      currentApp: action.app
     })
   }
   return state

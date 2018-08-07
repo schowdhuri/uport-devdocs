@@ -2,8 +2,8 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import ReactModal from 'react-modal';
-import {Connect, SimpleSigner} from 'uport-connect'
+import ReactModal from 'react-modal'
+import Connect from 'uport-connect'
 import { connect } from 'react-redux'
 
 import SEO from '../../components/SEO/SEO'
@@ -13,8 +13,8 @@ import appMgrBg from '../../images/appmgr-bg.svg'
 import uportLogo from '../../images/Horizontal-Logo-purple.svg'
 import googlePlayBadge from '../../images/google-play-badge.svg'
 import appStoreBadge from '../../images/app-store-badge.svg'
+import '../../layouts/css/appmanager.css'
 
-const QRCode = require('qrcode.react')
 const BodyContainer = styled.div`
   padding: 0;
   overflow: hidden;
@@ -22,117 +22,9 @@ const BodyContainer = styled.div`
     height: 100vh;
     background-image: url(${appMgrBg})
   }
-  .title {
-    font-family: "Nunito Sans";
-    font-size: 42px;
-    font-weight: 700;
-    line-height: 54px;
-    margin-bottom: 25px;
-    color: #5c54c7;
-  }
-  .banner-link {
-    color: #fff;
-    text-decoration: none;
-  }
-  .appmgr-start-left-wrap {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 25px;
-  }
-  p {
-    color: #89879f;
-    font-weight: 200;
-    font-size: 28px;
-    line-height: 32px;
-    margin-bottom: 40px
-  }
-  .appmgr-button {
-    margin-top: 50px;
-  }
-  .appmgr-button a {
-    background-color: #715ad1;
-    border-radius: 3px;
-    color: #fff;
-    padding: 16px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 22px;
-  }
-  .connectModal {
-    position: absolute;
-    background-color: #fff;
-    text-align: center;
-    width: 50%;
-    max-width: 540px;
-    min-width: 320px;
-    margin: 0 auto;
-    border: none;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 5px;
-    padding-top: 0;
-  }
-  .connectModal h4 {
-    color: #89879f;
-  }
-  .connectModal p {
-    font-size: 16px;
-    line-height: 60px;
-    clear: both;
-  }
-  .ReactModal__Overlay {
-    background-color: rgba(90, 82, 197, 0.55) !important;
-  }
-  .modal-header {
-    margin: 0 auto;
-    display: block;
-    width: 53%;
-    clear: both;
-  }
-  .modal-header h4 {
-    float: left;
-    margin: 9px 0 0 0;
-    font-size: 24px;
-    padding-left: 8px;
-  }
-  .modal-header img {
-    float: left
-  }
-  .modal-footer {
-    background-color: #e0dfe6;
-    border-bottom-left-radius: 5px; 
-    border-bottom-right-radius: 5px;  
-    padding: 20px 0;
-  }
-  .modal-footer p {
-    font-size: 18px;
-    line-height: 22px;
-    margin-bottom: 20px;
-  }
-  .modal-footer a {
-    padding: 0 5px;
-  }
-  .demo-qr-container {
-    margin-top: -40px;
-    margin-bottom: 20px;
-  }
-  a.closeConnectModal {
-    float: right;
-    font-size: 18px;
-    font-weight: 800;
-    padding: 20px 25px 0 0;
-    color: #dfe1e3;
-    text-decoration: none;
-  }
 `
 
-const uPortConnect = new Connect('uPort Demo', {
-  clientId: '2osnfJ4Wy7LBAm2nPBXire1WfQn75RrV6Ts',
-  signer: SimpleSigner('fa09a3ff0d486be2eb69545c393e2cf47cb53feb44a3550199346bdfa6f53245'),
-  network: 'rinkeby'
-})
+const uPortConnect = new Connect('AppManager')
 
 class AppManagerPage extends React.Component {
   constructor (props) {
@@ -152,7 +44,7 @@ class AppManagerPage extends React.Component {
   }
   handleOpenModal (e) {
     e.preventDefault()
-    this.loginRequest(e)
+    // this.loginRequest(e)
     this.setState({ showModal: true })
   }
   handleCloseModal (e) {
@@ -160,19 +52,17 @@ class AppManagerPage extends React.Component {
     this.setState({ showModal: false })
   }
   loginRequest (e) {
+    e.preventDefault()
     const history = this.props.history
-    uPortConnect.requestCredentials({
-      requested: ['name', 'avatar', 'phone', 'country'] },
-      (uri) => {
-        this.setState({ uri: uri, showImage: true, showResult: false})
-      }).then((userProfile) => {
-        this.setState({showImage: false, showResult: true, profile: userProfile})
-        this.props.saveProfile(userProfile)
-        this.handleCloseModal(e)
-        history.push('/appmanager/getstarted')
-        console.log(userProfile)
-      }
-    )
+    uPortConnect.requestDisclosure({notifications: true})
+    uPortConnect.onResponse('disclosureReq').then(payload => {
+      const address = payload.res.address
+      console.log('=== Address: ' + address + ' ===')
+      // this.setState({showImage: false, showResult: true, profile: address})
+      this.props.saveProfile(this.state.profile)
+      // this.handleCloseModal(e)
+      history.push('/appmanager/getstarted')
+    })
   }
   render () {
     const postEdges = this.props.data.allMarkdownRemark.edges
@@ -193,7 +83,7 @@ class AppManagerPage extends React.Component {
                   <h1 className='title'>Decentralized Identity for Decentralized Applications</h1>
                   <p>Seamless login. Ethereum transaction signing. User credential issuance and consumption.</p>
                   <div className={`appmgr-button`}>
-                    <a href='/appmanager/getstarted' onClick={(e) => { this.handleOpenModal(e) }}>
+                    <a href='/' onClick={(e) => { this.loginRequest(e) }}>
                       Login with uPort
                     </a>
                   </div>
