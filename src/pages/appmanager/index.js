@@ -24,8 +24,6 @@ const BodyContainer = styled.div`
   }
 `
 
-const uPortConnect = new Connect('AppManager')
-
 class AppManagerPage extends React.Component {
   constructor (props) {
     super(props)
@@ -54,15 +52,21 @@ class AppManagerPage extends React.Component {
   loginRequest (e) {
     e.preventDefault()
     const history = this.props.history
-    uPortConnect.requestDisclosure({notifications: true})
-    uPortConnect.onResponse('disclosureReq').then(payload => {
-      const address = payload.res.address
-      console.log('=== Address: ' + address + ' ===')
-      // this.setState({showImage: false, showResult: true, profile: address})
-      this.props.saveProfile(this.state.profile)
-      // this.handleCloseModal(e)
-      history.push('/appmanager/getstarted')
-    })
+    try {
+      const uPortConnect = new Connect('AppManager')
+      uPortConnect.requestDisclosure({notifications: true})
+      uPortConnect.onResponse('disclosureReq').then(payload => {
+        console.log(payload)
+        const did = payload.res.did
+        console.log('=== Address: ' + did + ' ===')
+        this.setState({showImage: false, showResult: true, profile: did})
+        this.props.saveProfile(this.state.profile)
+        // this.handleCloseModal(e)
+        history.push('/appmanager/getstarted')
+      })
+    } catch (e) {
+      console.log(e)
+    }
   }
   render () {
     const postEdges = this.props.data.allMarkdownRemark.edges

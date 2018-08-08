@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
-import Connect from 'uport-connect'
+// import Connect from 'uport-connect'
 import "../layouts/css/demo.css"
 
 const Container = styled.section`
@@ -31,7 +31,7 @@ const Container = styled.section`
    }
 
 `
-const uPortConnect = new Connect('uPort Demo')
+// const uPortConnect = new Connect('uPort Demo')
 
 class Demo extends Component {
 
@@ -52,6 +52,7 @@ class Demo extends Component {
   }
 
   loginRequest(e) {
+    /*
     connect.requestCredentials({ requested: ['name', 'avatar', 'phone', 'country'],
                                  notifications: true },
                                (uri) => { this.setState({ uri: uri, showImage: true, showResult: false});}
@@ -60,6 +61,7 @@ class Demo extends Component {
       console.log(JSON.stringify(userProfile))
     })
     e.preventDefault();
+    */
   };
 
   showSample(e) {
