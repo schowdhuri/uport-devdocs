@@ -78,7 +78,7 @@ class Index extends React.Component {
             </Hero>
           </IndexHeadContainer>
           <BodyContainer className={`body-container`}>
-            <Demo />
+            {/* <Demo /> */}
             <BuildingBlocks />
           </BodyContainer>
           <FooterContainer>
