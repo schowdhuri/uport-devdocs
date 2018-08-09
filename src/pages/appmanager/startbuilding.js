@@ -65,7 +65,7 @@ class AppManagerStartBuildingPage extends React.Component {
     const postEdges = this.props.data.allMarkdownRemark.edges
     let selectedNetwork = this.state.selectedNetworkObj
     return (
-      <div className='index-container'>
+      <div className='index-container appmgr'>
         <Helmet title={config.siteTitle} />
         <main>
           <AppManagerHeadContainer>
