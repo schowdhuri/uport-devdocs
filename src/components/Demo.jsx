@@ -34,12 +34,6 @@ const Container = styled.section`
 
 `
 
-const connect = new Connect('uPort Demo', {
-  clientId: '2osnfJ4Wy7LBAm2nPBXire1WfQn75RrV6Ts',
-  signer: SimpleSigner('fa09a3ff0d486be2eb69545c393e2cf47cb53feb44a3550199346bdfa6f53245'),
-  network: 'rinkeby'
-})
-
 class Demo extends Component {
 
   constructor(props) {
