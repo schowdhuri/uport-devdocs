@@ -102,7 +102,10 @@ class AppManagerSampleCodePage extends React.Component {
                         <h3>Initialize uPort Connect</h3>
                         <div className='sampleCode'>
                           <span>import Connect from 'uport-connect'</span>
-                          <span>const uport = new Connect('{this.props.currentApp.appName}', {'{'}network: '{this.props.currentApp.network}'{'}'})</span>
+                          {this.props.currentApp.accountType === 'none'
+                            ? <span>const uport = new Connect('{this.props.currentApp.appName}')</span>
+                            : <span>const uport = new Connect('{this.props.currentApp.appName}', {'{'}network: '{this.props.currentApp.network}'{'}'})</span>
+                          }
                         </div>
                       </li>
                       <li>
