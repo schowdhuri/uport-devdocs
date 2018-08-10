@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="27px" height="24px" viewBox="0 0 27 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 3</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="App-Manager" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="App-Detials-1-Copy-2" transform="translate(-509.000000, -401.000000)">
+            <g id="Group-3" transform="translate(509.000000, 401.000000)">
+                <path d="M14.1227419,0.496291759 L26.3817049,21.5116569 C26.6599852,21.9887088 26.4988489,22.6010265 26.021797,22.8793068 C25.868861,22.9685195 25.6949806,23.0155279 25.517926,23.0155279 L1,23.0155279 C0.44771525,23.0155279 -3.88911126e-13,22.5678127 -3.89022148e-13,22.0155279 C-3.89022148e-13,21.8384733 0.0470083978,21.664593 0.136221099,21.5116569 L12.3951841,0.496291759 C12.6734644,0.0192398444 13.2857821,-0.1418964 13.762834,0.136383883 C13.9118377,0.22330267 14.0358231,0.347288124 14.1227419,0.496291759 Z" id="Triangle-2" fill="#D63A59"></path>
+                <path d="M12.546,15.916 L12,9 L14.156,9.014 L13.61,15.916 L12.546,15.916 Z M12.098,16.952 L14.058,16.952 L14.058,18.884 L12.098,18.884 L12.098,16.952 Z" id="!" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -7,11 +7,37 @@ import Select from 'react-select'
 import SEO from '../../components/SEO/SEO'
 import SiteHeader from '../../components/Layout/Header'
 import config from '../../../data/SiteConfig'
+import errorIcon from '../../images/error-icon.svg'
 import '../../layouts/css/appmanager.css'
 
 const BodyContainer = styled.div`
 background-color: #f9f9fa;
 height: 100%;
+.fieldError {
+  width: 80%;
+  max-width: 450px;
+  border: 1px solid #c6475b;
+  margin-bottom: 20px;
+  border-radius: 3px;
+}
+form .fieldError input[type="text"] {
+  width: 99.5%;
+  box-shadow: none;
+  margin-left: 1px;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+.fieldError span {
+  display: block;
+  border-top: 1px solid #c6475b;
+  padding: 14px 16px 10px;
+  background-color: #f9eef0;
+}
+.fieldError img {
+  max-width: 24px;
+  margin-right: 15px;
+  margin-top: -5px;
+}
 `
 
 const networkOptions = [
@@ -28,8 +54,9 @@ class AppManagerStartBuildingPage extends React.Component {
       appName: '',
       network: 'mainnet',
       accountType: 'keypair',
-      selectedNetworkObj: networkOptions[0]
-
+      selectedNetworkObj: networkOptions[0],
+      appNameValid: false,
+      formSubmitted: false
     }
     this.handleAppNameChange = this.handleAppNameChange.bind(this)
     this.handleNetworkChange = this.handleNetworkChange.bind(this)
@@ -57,9 +84,13 @@ class AppManagerStartBuildingPage extends React.Component {
   }
   handleSubmit (e) {
     e.preventDefault()
-    const history = this.props.history
-    this.props.saveApp({appName: this.state.appName, network: this.state.network, accountType: this.state.accountType})
-    history.push('/appmanager/sample-code')
+    this.setState({formSubmitted: true})
+    this.state.appName === '' ? this.setState({appNameValid: false}) : this.setState({appNameValid: true})
+    if (this.state.appNameValid) {
+      const history = this.props.history
+      this.props.saveApp({appName: this.state.appName, network: this.state.network, accountType: this.state.accountType})
+      history.push('/appmanager/sample-code')
+    }
   }
   render () {
     const postEdges = this.props.data.allMarkdownRemark.edges
@@ -87,7 +118,15 @@ class AppManagerStartBuildingPage extends React.Component {
                 <div className='Grid-cell'>
                   <h1>App Details</h1>
                   <label htmlFor='appName'>App Name</label>
-                  <input type='text' id='appName' placeholder='Give your app a name' value={this.state.appName} onChange={(e) => { this.handleAppNameChange(e) }} />
+                  <div className={(!this.state.appNameValid && this.state.formSubmitted) ? 'fieldError' : ''}>
+                    <input type='text' id='appName' placeholder='Give your app a name' value={this.state.appName} onChange={(e) => { this.handleAppNameChange(e) }} />
+                    {(!this.state.appNameValid && this.state.formSubmitted) && 
+                      <span className='error'>
+                        <img src={errorIcon} />
+                        AppName is required
+                      </span>
+                    }
+                  </div>
                   <label htmlFor='appName'>Select an account type</label>
                   <span className='note'><strong>Note: </strong>This option can be changed in the future</span>
                   <div className='radioContainer'>
