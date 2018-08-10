@@ -8,6 +8,7 @@ import SEO from '../../components/SEO/SEO'
 import SiteHeader from '../../components/Layout/Header'
 import config from '../../../data/SiteConfig'
 import '../../layouts/css/appmanager.css'
+import Connect from 'uport-connect'
 
 const BodyContainer = styled.div`
 background-color: #f9f9fa;
@@ -58,7 +59,29 @@ class AppManagerStartBuildingPage extends React.Component {
   handleSubmit (e) {
     e.preventDefault()
     const history = this.props.history
+
+    const claim = {
+      'uport-apps': [{
+        name: this.state.appName,
+        configuration: {
+          networkId: this.state.network,
+          accountType: this.state.accountType }}]}
+    try {
+      //TODO put this in a global
+      const uPortConnect = new Connect('AppManager')
+      debugger
+      uPortConnect.attest({sub: this.state.profile.did.id, claim: claim}, 'CREATE-APP')
+      uPortConnect.onResponse('CREATE-APP').then(payload => {
+        console.log(payload)
+
+        /* history.push('/appmanager/getstarted') */
+      })
+    } catch (e) {
+      console.log(e)
+    }
+
     this.props.saveApp({appName: this.state.appName, network: this.state.network, accountType: this.state.accountType})
+
     history.push('/appmanager/sample-code')
   }
   render () {
