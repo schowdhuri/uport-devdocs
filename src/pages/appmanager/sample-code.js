@@ -83,8 +83,8 @@ class AppManagerSampleCodePage extends React.Component {
               <div className='Grid-cell sidebar'>
                 <h4>Register an app</h4>
                 <ul>
-                  <li><a href='/'>App Details</a></li>
-                  <li className='active'><a href='/'>App Code</a></li>
+                  <li><a href='/appmanager/startbuilding'>App Details</a></li>
+                  <li className='active'><a href='#'>App Code</a></li>
                 </ul>
               </div>
               <div className='Grid-cell'>

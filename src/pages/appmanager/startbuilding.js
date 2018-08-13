@@ -50,11 +50,12 @@ const networkOptions = [
 class AppManagerStartBuildingPage extends React.Component {
   constructor (props) {
     super(props)
+    console.log(this.props.currentApp)
     this.state = {
-      appName: '',
-      network: 'mainnet',
-      accountType: 'keypair',
-      selectedNetworkObj: networkOptions[0],
+      appName: this.props.currentApp.appName || '',
+      network: this.props.currentApp.network || 'mainnet',
+      accountType: this.props.currentApp.accountType || 'keypair',
+      selectedNetworkObj: networkOptions.filter(obj => { return obj.value === this.props.currentApp.network }) || networkOptions[0],
       appNameValid: false,
       formSubmitted: false
     }
@@ -111,8 +112,8 @@ class AppManagerStartBuildingPage extends React.Component {
                 <div className='Grid-cell sidebar'>
                   <h4>Register an app</h4>
                   <ul>
-                    <li className='active'><a href='/'>App Details</a></li>
-                    <li><a href='/'>Sample Code</a></li>
+                    <li className='active'><a href='#'>App Details</a></li>
+                    <li><a>Sample Code</a></li>
                   </ul>
                 </div>
                 <div className='Grid-cell'>
@@ -225,8 +226,8 @@ AppManagerStartBuildingPage.propTypes = {
   saveApp: PropTypes.func.isRequired
 }
 
-const mapStateToProps = ({ profile }) => {
-  return { profile }
+const mapStateToProps = ({ profile, currentApp }) => {
+  return { profile, currentApp }
 }
 
 const mapDispatchToProps = dispatch => {
