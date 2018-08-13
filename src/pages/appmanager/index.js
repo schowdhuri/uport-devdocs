@@ -60,12 +60,9 @@ class AppManagerPage extends React.Component {
     const history = this.props.history
     try {
       const uPortConnect = new Connect('AppManager')
-      uPortConnect.requestDisclosure({notifications: true})
+      uPortConnect.requestDisclosure({requested: ['name'], notifications: true})
       uPortConnect.onResponse('disclosureReq').then(payload => {
-        console.log(payload)
-        const did = payload.res.did
-        console.log('=== Address: ' + did + ' ===')
-        this.setState({showImage: false, showResult: true, profile: did})
+        this.setState({showImage: false, showResult: true, profile: {name: payload.res.name, did: payload.res.did}})
         this.props.saveProfile(this.state.profile)
         // this.handleCloseModal(e)
         history.push('/appmanager/getstarted')
@@ -93,7 +90,7 @@ class AppManagerPage extends React.Component {
                   <h1 className='title'>Decentralized Identity for Decentralized Applications</h1>
                   <p>Seamless login. Ethereum transaction signing. User credential issuance and consumption.</p>
                   <div className={`appmgr-button`}>
-                    <a href='/' onClick={(e) => { this.loginRequest(e) }}>
+                    <a href='#' onClick={(e) => { this.loginRequest(e) }}>
                       Login with uPort
                     </a>
                   </div>
