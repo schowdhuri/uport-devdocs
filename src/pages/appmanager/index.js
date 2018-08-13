@@ -29,7 +29,7 @@ class AppManagerPage extends React.Component {
     super(props)
     this.state = {
       uri: {},
-      profile: {},
+      profile: this.props.profile || {},
       showImage: false,
       showResult: false,
       showExample: false,
@@ -39,6 +39,12 @@ class AppManagerPage extends React.Component {
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.loginRequest = this.loginRequest.bind(this)
+  }
+  componentDidMount () {
+    if (this.state.profile) {
+      console.log(this.state.profile.did)
+      this.state.profile.did ? this.props.history.push('/appmanager/getstarted') : null
+    }
   }
   handleOpenModal (e) {
     e.preventDefault()
