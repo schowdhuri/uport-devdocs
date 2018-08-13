@@ -54,12 +54,10 @@ class AppManagerPage extends React.Component {
     const history = this.props.history
     try {
       const uPortConnect = new Connect('AppManager')
-      uPortConnect.requestDisclosure({notifications: true})
+      uPortConnect.requestDisclosure({requested: ['name'], accountType: 'keypair'})
       uPortConnect.onResponse('disclosureReq').then(payload => {
         console.log(payload)
-        const did = payload.res.did
-        console.log('=== Address: ' + did + ' ===')
-        this.setState({showImage: false, showResult: true, profile: did})
+        this.setState({showImage: false, showResult: true, profile: {name: payload.res.name, did: payload.res.did}})
         this.props.saveProfile(this.state.profile)
         // this.handleCloseModal(e)
         history.push('/appmanager/getstarted')

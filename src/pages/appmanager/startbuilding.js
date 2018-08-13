@@ -61,19 +61,20 @@ class AppManagerStartBuildingPage extends React.Component {
     const history = this.props.history
 
     const claim = {
-      'uport-apps': [{
+      'uport-app': {
         name: this.state.appName,
-        configuration: {
-          networkId: this.state.network,
-          accountType: this.state.accountType }}]}
+        network: this.state.network,
+        accountType: this.state.accountType
+      }
+    }
     try {
-      //TODO put this in a global
+      // TODO put this in a global
       const uPortConnect = new Connect('AppManager')
-      debugger
-      uPortConnect.attest({sub: this.state.profile.did.id, claim: claim}, 'CREATE-APP')
+      // debugger
+      uPortConnect.attest({sub: this.props.profile.did, claim: claim}, 'CREATE-APP')
       uPortConnect.onResponse('CREATE-APP').then(payload => {
+        console.log('=== CREATEAPP RESPONSE ===')
         console.log(payload)
-
         /* history.push('/appmanager/getstarted') */
       })
     } catch (e) {
