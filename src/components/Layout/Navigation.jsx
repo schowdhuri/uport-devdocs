@@ -129,14 +129,14 @@ class Navigation extends React.Component {
         <section id='topNav'>
           {this.navListItems()}
           <a href='https://appmanager.uport.me' className={`nav-link w-nav-link`} target='_blank'> App Manager </a>
-          <a href='https://gitter.im/uport-project/Lobby' className={`nav-link w-nav-link`} target='_blank'> Help </a>
+          <a href='https://chat.uport.me' className={`nav-link w-nav-link`} target='_blank'> Help </a>
           <a href='https://medium.com/uport' className={`nav-link w-nav-link`} target='_blank'> Blog </a>
         </section>
         <div id='responsiveNavContainer'>
           <Menu right isOpen={false} styles={styles}>
             {this.navListItems()}
             <a href='https://appmanager.uport.me' className={`menu-item`} target='_blank'> App Manager </a>
-            <a href='https://gitter.im/uport-project/Lobby' className={`menu-item`} target='_blank'> Help </a>
+            <a href='https://chat.uport.me' className={`menu-item`} target='_blank'> Help </a>
             <a href='https://medium.com/uport' className={`menu-item`} target='_blank'> Blog </a>
           </Menu>
         </div>
