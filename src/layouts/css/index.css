@@ -14,6 +14,19 @@ pre[class*="language-"] {
     color: #5c50ca;
 }
 
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+    text-shadow: none;
+    background: #F4F2FF;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+    text-shadow: none;
+    background: #F4F2FF;
+}
+
+
 .token.comment,
 .token.prolog,
 .token.doctype,
@@ -427,7 +440,7 @@ footer .footer-menu-wrap a {
 
 /* Media queries for index page */
   @media (max-width: 767px) {
-      section.demo, 
+      section.demo,
       .hero-img {
           visibility: hidden;
           display: none;
@@ -539,8 +552,8 @@ footer .footer-menu-wrap a {
 
 
 
-/* 
-Media query breakpoints adapted from Twitter Bootstrap 
+/*
+Media query breakpoints adapted from Twitter Bootstrap
 https://getbootstrap.com/docs/4.1/layout/overview/#responsive-breakpoints
 */
 
