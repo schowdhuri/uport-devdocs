@@ -12,6 +12,7 @@ uPort Developer Portal
 |[Ethr DID Library](https://github.com/uport-project/ethr-did)|[develop ](https://github.com/uport-project/ethr-did)|
 |[uPort Connect](https://github.com/uport-project/uport-connect)|[develop ](https://github.com/uport-project/uport-connect)|
 |[uPort Credentials](https://github.com/uport-project/uport-js)|[develop ](https://github.com/uport-project/uport-js)|
+|[uPort Transports](https://github.com/uport-project/uport-transports)|[feature/add-transports-to-docs-site ](https://github.com/uport-project/uport-transports)|
 |[JWT](https://github.com/uport-project/did-jwt)|[develop ](https://github.com/uport-project/did-jwt)|
 |[uPort Specs](https://github.com/uport-project/specs)|[develop ](https://github.com/uport-project/specs)|
 |[uPort Docs](https://github.com/uport-project/docs)|[develop ](https://github.com/uport-project/docs)|

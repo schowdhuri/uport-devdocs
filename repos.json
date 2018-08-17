@@ -41,6 +41,13 @@
     "branch": "develop",
     "source": "git@github.com:uport-project/uport-js.git"
   },
+  "uport-transports": {
+    "title": "uPort Transports",
+    "url": "https://github.com/uport-project/uport-transports",
+    "commit": "",
+    "branch": "feature/add-transports-to-docs-site",
+    "source": "git@github.com:uport-project/uport-transports.git"
+  },
   "did-jwt": {
     "title": "JWT",
     "url": "https://github.com/uport-project/did-jwt",
