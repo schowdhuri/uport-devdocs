@@ -51,7 +51,6 @@ const networkOptions = [
 class AppManagerStartBuildingPage extends React.Component {
   constructor (props) {
     super(props)
-    console.log(this.props.currentApp)
     this.state = {
       appName: this.props.currentApp.name || '',
       network: this.props.currentApp.configuration.network || 'mainnet',
@@ -91,8 +90,9 @@ class AppManagerStartBuildingPage extends React.Component {
       if (this.state.appNameValid) {
       // Check for existing apps
         let claim = {}
+        let uportApps = []
         if (this.props.profile.uportApps) {
-          let uportApps = this.props.profile.uportApps
+          uportApps = this.props.profile.uportApps
           uportApps.push({name: this.state.appName,
             configuration: {
               network: this.state.network,
@@ -109,6 +109,7 @@ class AppManagerStartBuildingPage extends React.Component {
             }
           }]}
         }
+
         try {
           // TODO put this in a global
           const uPortConnect = new Connect('AppManager')
@@ -116,11 +117,12 @@ class AppManagerStartBuildingPage extends React.Component {
           uPortConnect.attest({sub: this.props.profile.did, claim: claim}, 'ADD-APP')
           uPortConnect.onResponse('ADD-APP').then(payload => {
             this.props.history.push('/appmanager/sample-code')
+            this.props.setCurrentApp({name: this.state.appName, configuration: {network: this.state.network, accountType: this.state.accountType}})
+            this.props.saveApps(uportApps)
           })
         } catch (e) {
           console.log(e)
         }
-        this.props.setCurrentApp({name: this.state.appName, configuration: {network: this.state.network, accountType: this.state.accountType}})
       }
     })
   }
@@ -254,7 +256,8 @@ query AppManagerStartBuildingQuery {
 
 AppManagerStartBuildingPage.propTypes = {
   profile: PropTypes.object.isRequired,
-  setCurrentApp: PropTypes.func.isRequired
+  setCurrentApp: PropTypes.func.isRequired,
+  saveApps: PropTypes.func.isRequired
 }
 
 const mapStateToProps = ({ profile, currentApp }) => {
@@ -262,7 +265,10 @@ const mapStateToProps = ({ profile, currentApp }) => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return { setCurrentApp: (app) => dispatch({ type: `SET_CURRENT_APP`, app: app }) }
+  return {
+    setCurrentApp: (app) => dispatch({ type: `SET_CURRENT_APP`, app: app }),
+    saveApps: (uportApps) => dispatch({ type: `SAVE_APPS`, uportApps: uportApps })
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppManagerStartBuildingPage)

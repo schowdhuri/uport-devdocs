@@ -28,6 +28,11 @@ const reducer = (state = initialState, action) => {
       currentApp: initialState.currentApp
     })
   }
+  if (action.type === `SAVE_APPS`) {
+    return Object.assign({}, state, {
+      profile: {...state.profile, uportApps: action.uportApps}
+    })
+  }
   return state
 }
 const persistedReducer = persistReducer(persistConfig, reducer)
