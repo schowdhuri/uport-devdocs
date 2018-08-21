@@ -85,41 +85,44 @@ class AppManagerStartBuildingPage extends React.Component {
   handleSubmit (e) {
     e.preventDefault()
     this.setState({formSubmitted: true})
-    this.state.appName === '' ? this.setState({appNameValid: false}) : this.setState({appNameValid: true})
-    if (this.state.appNameValid) {
+    this.state.appName === ''
+    ? this.setState({appNameValid: false})
+    : this.setState({appNameValid: true}, () => {
+      if (this.state.appNameValid) {
       // Check for existing apps
-      let claim = {}
-      if (this.props.profile.uportApps) {
-        let uportApps = this.props.profile.uportApps
-        uportApps.push({name: this.state.appName,
-          configuration: {
-            network: this.state.network,
-            accountType: this.state.accountType
-          }
-        })
-        claim = {'uport-apps': uportApps}
-      } else {
-        claim = {'uport-apps': [{
-          name: this.state.appName,
-          configuration: {
-            network: this.state.network,
-            accountType: this.state.accountType
-          }
-        }]}
+        let claim = {}
+        if (this.props.profile.uportApps) {
+          let uportApps = this.props.profile.uportApps
+          uportApps.push({name: this.state.appName,
+            configuration: {
+              network: this.state.network,
+              accountType: this.state.accountType
+            }
+          })
+          claim = {'uport-apps': uportApps}
+        } else {
+          claim = {'uport-apps': [{
+            name: this.state.appName,
+            configuration: {
+              network: this.state.network,
+              accountType: this.state.accountType
+            }
+          }]}
+        }
+        try {
+          // TODO put this in a global
+          const uPortConnect = new Connect('AppManager')
+          // debugger
+          uPortConnect.attest({sub: this.props.profile.did, claim: claim}, 'ADD-APP')
+          uPortConnect.onResponse('ADD-APP').then(payload => {
+            this.props.history.push('/appmanager/sample-code')
+          })
+        } catch (e) {
+          console.log(e)
+        }
+        this.props.setCurrentApp({name: this.state.appName, configuration: {network: this.state.network, accountType: this.state.accountType}})
       }
-      try {
-        // TODO put this in a global
-        const uPortConnect = new Connect('AppManager')
-        // debugger
-        uPortConnect.attest({sub: this.props.profile.did, claim: claim}, 'ADD-APP')
-        uPortConnect.onResponse('ADD-APP').then(payload => {
-          this.props.history.push('/appmanager/sample-code')
-        })
-      } catch (e) {
-        console.log(e)
-      }
-      this.props.setCurrentApp({name: this.state.appName, configuration: {network: this.state.network, accountType: this.state.accountType}})
-    }
+    })
   }
   render () {
     const postEdges = this.props.data.allMarkdownRemark.edges
