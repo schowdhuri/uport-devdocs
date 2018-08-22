@@ -2,17 +2,17 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import RehypeReact from 'rehype-react'
-
+import AutoLinkText from 'react-autolink-text2'
 import SEO from '../components/SEO/SEO'
 import SiteHeader from '../components/Layout/Header'
+import DevSurvey from '../components/Survey.jsx'
 import config from '../../data/SiteConfig'
 import TableOfContents from '../components/Layout/TableOfContents'
 import SecondaryTitle from '../components/Layout/html/SecondaryTitle'
 import CtaButton from '../components/CtaButton'
-import AutoLinkText from 'react-autolink-text2'
-
 
 export default class ContentTemplate extends React.Component {
+
   render () {
     const renderAst = new RehypeReact({
       createElement: React.createElement,
@@ -27,9 +27,9 @@ export default class ContentTemplate extends React.Component {
     const categories = []
     const messages = []
 
-    /* If there is an announcement, broadcast it at the top of each page */
-    if (this.props.data.announcement) {
-      this.props.data.announcement.edges.forEach(announcement => {
+      /* If there is an announcement, broadcast it at the top of each page */
+   if (this.props.data.announcement) {
+     this.props.data.announcement.edges.forEach(announcement => {
         messages.push(
           <h3>
             <AutoLinkText text={`${announcement.node.frontmatter.announcement}`}
@@ -55,6 +55,7 @@ export default class ContentTemplate extends React.Component {
     if (!post.id) {
       post.category_id = config.postDefaultCategoryID
     }
+
     return (
       <div>
         <Helmet>
@@ -64,17 +65,17 @@ export default class ContentTemplate extends React.Component {
         <BodyGrid>
           <HeaderContainer>
             <SiteHeader
-              activeCategory={category}
-              location={this.props.location}
-              categories={this.props.data.navCategories}
+            activeCategory={category}
+            location={this.props.location}
+            categories={this.props.data.navCategories}
             />
           </HeaderContainer>
           <ToCContainer>
             <TableOfContents
-              contentsType={post.type}
-              chapterTitles={chapterTitles}
-              categories={categories}
-              category={category}
+            contentsType={post.type}
+            chapterTitles={chapterTitles}
+            categories={categories}
+            category={category}
             />
           </ToCContainer>
           <BodyContainer>
@@ -87,6 +88,7 @@ export default class ContentTemplate extends React.Component {
             <div className={`docSearch-content`}>
               { renderAst(postNode.htmlAst) }
             </div>
+            <DevSurvey />
           </BodyContainer>
         </BodyGrid>
       </div>
@@ -130,20 +132,20 @@ const BodyContainer = styled.div`
   color: ${props => props.theme.accentDark};
   }
   @media screen and (max-width: 1068px) {
-    & > div {
-      max-width: ${props => props.theme.contentWidthTablet};
-      margin-left: ${props => props.theme.gregsLeftMarginPreference};
-    }
+  & > div {
+  max-width: ${props => props.theme.contentWidthTablet};
+  margin-left: ${props => props.theme.gregsLeftMarginPreference};
+  }
   }
   @media screen and (max-width: 768px) {
-    & > div {
-      max-width: ${props => props.theme.contentWidthLargePhone};
-    }
+  & > div {
+  max-width: ${props => props.theme.contentWidthLargePhone};
+  }
   }
   @media screen and (max-width: 520px) {
-    & > div {
-      max-width: ${props => props.theme.contentWidthLaptop};
-    }
+  & > div {
+  max-width: ${props => props.theme.contentWidthLaptop};
+  }
   }
 `
 
@@ -152,8 +154,8 @@ const HeaderContainer = styled.div`
   width: 100vw;
   height: 84%;
   .Grid {
-    width: 90vw;
-    margin: 0 auto;
+  width: 90vw;
+  margin: 0 auto;
   }
 `
 
@@ -182,17 +184,15 @@ const ToCContainer = styled.div`
   overflow: inherit;
   }
 `
-
 const AnnouncementContainer = styled.div`
   margin: auto;
   color: #cc0066;
 `
-
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
-query ContentBySlug($slug: String!) {
-  allPostTitles: allMarkdownRemark(
-    filter: { frontmatter: { index: { ne: null } } }
+  query ContentBySlug($slug: String!) {
+    allPostTitles: allMarkdownRemark(
+      filter: { frontmatter: { index: { ne: null } } }
     ){
       edges {
         node {
@@ -271,14 +271,14 @@ query ContentBySlug($slug: String!) {
     }
     announcement: allMarkdownRemark(
       filter: { frontmatter: { announcement: { ne: null } } }) {
-      totalCount
-      edges {
-        node {
-          frontmatter {
-            announcement
+        totalCount
+        edges {
+          node {
+            frontmatter {
+              announcement
+            }
           }
         }
       }
-    }
   }
 `;

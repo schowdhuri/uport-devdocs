@@ -381,6 +381,8 @@ footer .footer-menu-wrap a {
   }
 
   hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
     border: 0;
     height: 0;
     color: rgba(230, 224, 248);
