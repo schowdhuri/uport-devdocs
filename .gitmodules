@@ -1,0 +1,32 @@
+[submodule "markdown/uport-js"]
+	branch = develop
+	path = markdown/uport-js
+	url = git@github.com:uport-project/uport-js.git
+[submodule "markdown/uport-connect"]
+	branch = develop
+	path = markdown/uport-connect
+	url = git@github.com:uport-project/uport-connect.git
+[submodule "markdown/specs"]
+	branch = develop
+	path = markdown/specs
+	url = git@github.com:uport-project/specs.git
+[submodule "markdown/muport-core-js"]
+	branch = master
+	path = markdown/muport-core-js
+	url = git@github.com:uport-project/muport-core-js.git
+[submodule "markdown/ethr-did"]
+	branch = develop
+	path = markdown/ethr-did
+	url = git@github.com:uport-project/ethr-did.git
+[submodule "markdown/ethr-did-resolver"]
+	branch = develop
+	path = markdown/ethr-did-resolver
+	url = git@github.com:uport-project/ethr-did-resolver.git
+[submodule "markdown/ethr-did-registry"]
+	branch = develop
+	path = markdown/ethr-did-registry
+	url = git@github.com:uport-project/ethr-did-registry.git
+[submodule "markdown/did-jwt"]
+	branch = develop
+	path = markdown/did-jwt
+	url = git@github.com:uport-project/did-jwt.git

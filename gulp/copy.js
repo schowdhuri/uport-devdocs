@@ -10,46 +10,43 @@ gulp.task('copy-markdown', (done) => {
   // safeSymlink("./src/images", "./static/images");
 
   // Copy files.
-  gulp.src(['./repos/docs/reference/*',
-            './repos/docs/guides/*',
-            './repos/docs/overview/*',
-            './repos/specs/**/*'])
+  gulp.src(['./markdown/docs/reference/*',
+            './markdown/docs/guides/*',
+            './markdown/docs/overview/*',
+            './markdown/specs/**/*'])
     .pipe(gulp.dest('./content/public/'));
 
   // Add DID-JWT work
-  gulp.src(['./repos/did-jwt/docs/**/*'])
+  gulp.src(['./markdown/did-jwt/docs/**/*'])
     .pipe(gulp.dest('./content/public/did-jwt'));
 
   // Add Uport Connect
-  gulp.src(['./repos/uport-connect/docs/**/*'])
+  gulp.src(['./markdown/uport-connect/docs/**/*'])
     .pipe(gulp.dest('./content/public/uport-connect'));
 
   // Add Uport JS
-  gulp.src(['./repos/uport-js/docs/**/*'])
+  gulp.src(['./markdown/uport-js/docs/**/*'])
     .pipe(gulp.dest('./content/public/uport-js'));
 
   // Add lambda-oloron (private chain support)
-  gulp.src(['./repos/lambda-olorun/README.md'])
+  gulp.src(['./markdown/lambda-olorun/README.md'])
     .pipe(gulp.dest('./content/public/lambda-olorun'));
 
   // Add Ethr-did
-  gulp.src(['./repos/ethr-did/**/*'])
+  gulp.src(['./markdown/ethr-did/**/*'])
     .pipe(gulp.dest('./content/public/ethr-did'));
 
   //Add Ethr-did-resolver
-  gulp.src(['./repos/ethr-did-resolver/**/*'])
+  gulp.src(['./markdown/ethr-did-resolver/**/*'])
     .pipe(gulp.dest('./content/public/ethr-did-resolver'));
 
   //Add Ethr-did-registry
-  gulp.src(['./repos/ethr-did-registry/**/*'])
+  gulp.src(['./markdown/ethr-did-registry/**/*'])
     .pipe(gulp.dest('./content/public/ethr-did-registry'));
 
   // Add muport-core-js
-  gulp.src(['./repos/muport-core-js/docs/**/*'])
+  gulp.src(['./markdown/muport-core-js/docs/**/*'])
     .pipe(gulp.dest('./content/public/muport-core-js'));
-
-  //copy repos.json
-  gulp.src(['repos.json']).pipe(gulp.dest('./public/'));
 
   done();
 

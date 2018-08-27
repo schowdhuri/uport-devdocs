@@ -3,8 +3,8 @@ import gulp from 'gulp';
 
 let watch = require('gulp-watch');
 
-gulp.task('watch:repos', function() {
-  return watch(["./repos/**/*.*"], function() {
+gulp.task('watch:markdown', function() {
+  return watch(["./markdown/**/*.*"], function() {
     gulp.start('copy-markdown');
   });
 });

@@ -61,8 +61,6 @@ bundle-stats.json
 .idea/*
 .idea
 
-repos
-
 *.DS_Store
 .DS_Store
 **/*.DS_Store
