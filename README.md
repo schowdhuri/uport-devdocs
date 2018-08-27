@@ -1,28 +1,26 @@
-
 uPort Developer Portal
 ============
 
 ## Deployed Markdown
 
-|Name|Source|
+|Name|Branch|
 | --|--|
-|[Simple ID](https://github.com/uport-project/muport-core-js)|[feature/add-source-url-to-frontmatter ](https://github.com/uport-project/muport-core-js)|
-|[Ethr DID Resolver](https://github.com/uport-project/ethr-did-resolver)|[develop ](https://github.com/uport-project/ethr-did-resolver)|
-|[Ethereum DID Registry](https://github.com/uport-project/ethr-did-registry)|[develop ](https://github.com/uport-project/ethr-did-registry)|
-|[Ethr DID Library](https://github.com/uport-project/ethr-did)|[develop ](https://github.com/uport-project/ethr-did)|
-|[uPort Connect](https://github.com/uport-project/uport-connect)|[develop ](https://github.com/uport-project/uport-connect)|
-|[uPort Credentials](https://github.com/uport-project/uport-js)|[develop ](https://github.com/uport-project/uport-js)|
-|[JWT](https://github.com/uport-project/did-jwt)|[develop ](https://github.com/uport-project/did-jwt)|
-|[uPort Specs](https://github.com/uport-project/specs)|[develop ](https://github.com/uport-project/specs)|
-|[uPort Docs](https://github.com/uport-project/docs)|[develop ](https://github.com/uport-project/docs)|
+|[markdown/uport-js](git@github.com:uport-project/uport-js.git)|develop|
+|[markdown/uport-connect](git@github.com:uport-project/uport-connect.git)|develop|
+|[markdown/specs](git@github.com:uport-project/specs.git)|develop|
+|[markdown/muport-core-js](git@github.com:uport-project/muport-core-js.git)|master|
+|[markdown/ethr-did](git@github.com:uport-project/ethr-did.git)|develop|
+|[markdown/ethr-did-resolver](git@github.com:uport-project/ethr-did-resolver.git)|develop|
+|[markdown/ethr-did-registry](git@github.com:uport-project/ethr-did-registry.git)|develop|
+|[markdown/did-jwt](git@github.com:uport-project/did-jwt.git)|develop|
 
 ## Get started
 
 Check out the repository and from the root of the project:
 
-1. `npm install`
-1. Edit `repos.json` to list markdown sources
-1. Edit `gulp/copy.js` to copy the desired folders from your remote repo to the `/content/public` folder
+1. `npm install`.
+1. Edit `.gitmodules` or add new markdown sources with `git submodule add`.
+1. Edit `gulp/copy.js` to copy the desired folders to the `/content/public` folder
 1. `npm run setup`
 1. `npm run dev`
 
@@ -55,29 +53,28 @@ Run this command if you need to reset your workspace or have just cloned the rep
 Running this command will do the following:
 
 1. Installs custom plugins contained in the `/plugins` folder.
-1. Cleans the `/repos` folder.
-1. Fetches markdown from remotes configured in `repos.json`.
+1. Fetches markdown from remotes configured in `.gitmodules`.
 1. Cleans the `/public` folder.
-1. Copies cloned content from `/repos` to `/content/public`
+1. Copies cloned content from `/markdown` to `/content/public`
 
 #### `npm run copy:markdown`
 
 Periodically it will be necessary to apply updates to the documentation markdown contained within the `/repos` folder.  When a local development instance of the site is running, this changes can be applied by running this command to copy the files from `/repos` to `/content/public`.
 
-#### `npm run watch:repos`
+#### `npm run watch:markdown`
 
-This command watches the `/repos` folder for updates.  Any time an update happens it will run `copy:markdown`.  This enables live updates of markdown in development mode when combined with `npm run dev`.
+This command watches the `/markdown` folder for updates.  Any time an update happens it will run `copy:markdown`.  This enables live updates of markdown in development mode when combined with `npm run dev`.
 
-#### `npm run update:remote:docs`
+#### `npm run update:markdown`
 
 To pull in documentation updates from the remote repositories, run this command.  It does the following:
 
-1. Fetches markdown from remotes configured in `repos.json`.
-1. Copies cloned content from `/repos` to `/content/public`
+1. Fetches markdown from remotes configured in `.gitmodules`.
+1. Copies cloned content from `/markdown` to `/content/public`
 
 #### `npm run dev`
 
-Run this command to build and run a local instance of the developer docs at `http://localhost:8000`.  GraphQL queries can be inspected at `http://localhost:8000/___graphql`.  `npm run update:docs:local` and `update:docs:remote` can both be run while the site is running locally to apply apply updates from local or remote markdown sources.
+Run this command to build and run a local instance of the developer docs at `http://localhost:8000`.  GraphQL queries can be inspected at `http://localhost:8000/___graphql`.  `npm run update:markdown` can be run while the site is running locally to apply apply updates from local or remote markdown sources.
 
 #### `npm run serve`
 
@@ -179,25 +176,83 @@ export default theme;
 
 #### 3. Content configuration
 
-Our content is stored in remote repositories which are configured in a file called `repos.json`.   In this file any repository that is configured will be cloned into the `/repos` folder.  For convenience this folder has been added to `.gitingore`.
+Our content is stored in remote repositories which are configured in a file called `.gitmodules`.  We use git submodules to keep content in sync.
 
-Each repository listed can optionally pull from a specific branch.  Use this property to test out the documentation changes before they are  merged to develop/master.
+The uPort site generator assumes convention over configuration.  For the submodule markdown to be included into the documentation site, consider the following:
 
-Example repos.json:
+##### Header guidelines
 
-```json
-{
-  "docs" : {
-    "githubURL": "https://github.com/uport-project/docs.git",
-    "branch": "move-docs-to-reference"
-  },
-  "specs" : {
-    "githubURL": "https://github.com/uport-project/specs.git",
-    "projectTitle": "uPort Specs",
-    "branch": "update-specs-for-docs-site"
-  }
-}
+1. Be consistent with header hierarchy.  Don't skip sizes.
+1. Only use H1 headers for something intended to be a title (keep it short)
+1. Both H1 and H2 headers are used for site navigation and category indexing.  Keep them shorter and contextual.
+1. Always leave 1 space after a hash tag.
+1. Avoid periods, special characters and punctuation in any H1 or H2 headlines.
+1. For topics that are nested use a smaller-header hierarchy to represent a deeper nesting.
+1. Avoid too-many H2 headers in a single document.  Use better information architecture.
+
+##### Front matter conventions
+
+The front matter is the way to inform the site generator how to handle each file.  Each markdown document intended to be a source for the developer site should have a minimum set of front matter attributes, written in YAML.
+
+Place a modified version of the following directly at the top of each markdown file with no preceding spaces.
+
 ```
+---
+title: "Attesting Credentials"
+index: 1
+category: "guides"
+type: "content"
+---
+
+```
+
+**The following keys are required:**
+1. title
+1. category
+1. type
+
+**The following are optional:**
+1. index
+1. announcement
+
+###### Front matter (title)
+
+  Used for the page title as well as navigation links.  They should be kept short and be the same as H1 headings in most cases.  There may be times when these should differ, for example, having a link to display by a different name than represented by the heading.
+
+###### Front matter (index)
+
+  Think of this as the display order for the content; it is used to sort each category and control the ordering of navigation links.  *Note:* if the frontmatter does not contain an index, the site-generator will assume it is sub-content that does not belong in table of contents or navigation menu.
+
+###### Front matter (category)
+
+  Categories are used to aggregate markdown for header menus and contextual relevancy.  The main categories are `guides`, `overview`, and `reference` but new categories may be added at any time.  When a new category is added that follows the proper conventions it will be included in the header navigation menu.  The previously mentioned categories default to the first three navigation sections in the header. New categories will added onto the end and displayed last.
+
+###### Front matter (type)
+
+  The type is important for publishing.  If the type is not "content" it will not be published or displayed.
+
+###### Front matter (announcement)
+
+  This is used to broadcast a message across all pages on the site.  Use sparingly.
+
+##### Repository guidelines
+
+Please use this general guidance:
+1. Keep the readme short and sweet and detail how to contribute / support.
+2. Put detailed content, like implementation details in the /docs folder.
+3. Docs folders can have:  guides, tutorials, sdk/api reference documentation.
+4. Follow the documentation guidelines on the docs repo.
+
+One suggestion I have is to use a similar nomenclature as this repo for the /docs folder.
+
+Suggested:
+
+* /docs
+  * /guides
+  * /reference
+  * /overview
+  * index.md (can use this if you want Oloron to have it’s own index. page, otherwise we default to the markdown-frontmatter’s first “guide” at index 0)
+* readme.md (add install information, support and contribution information, NPM release badges, etc. )
 
 
 #### 4. GatsbyJS Configuration
