@@ -122,7 +122,6 @@ class AppManagerMyAppsPage extends React.Component {
   }
   handleAppItemClick (event, index) {
     this.props.clearCurrentApp()
-    console.log('=== handleAppItemClick: ' + index)
     this.props.setCurrentApp(this.props.profile.uportApps[index])
     this.props.history.push('/appmanager/startbuilding')
   }

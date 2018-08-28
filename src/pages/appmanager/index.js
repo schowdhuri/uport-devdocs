@@ -67,7 +67,6 @@ class AppManagerPage extends React.Component {
       const uPortConnect = new Connect('AppManager')
       uPortConnect.requestDisclosure({requested: ['name'], verified: ['uport-apps'], notifications: true})
       uPortConnect.onResponse('disclosureReq').then(payload => {
-        console.log(payload)
         this.setState({showImage: false, showResult: true, profile: {name: payload.res.name, did: payload.res.did, uportApps: payload.res['uport-apps']}})
         this.props.saveProfile(this.state.profile)
 
