@@ -66,23 +66,6 @@ uport.onResponse('disclosureReq').then(payload => {
 })
 ```
 
-## Verifying credentials
-
-To verify the signature on a credential you have received, pass the JWT given in the response to the uPort JS `credentials.receive()` function, which will look up the user's public key in the [uPort Registry](https://developer.uport.me/pki/index) and confirm it matches the credential's signature.
-
-```js
-const JWT = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NksifQ.eyJyZXF1Z....'
-
-credentials.receive(jwt).then((creds) => {
-  if (creds.address == creds.verified[0].sub)
-  {
-    console.log('Credential verified.');
-  } else {
-    console.log('Verification failed.');
-  }
-})
- ```
-
 ## Enabling Push Notifications
 
 When a transaction is going to be signed, if the `notifications` flag is set to `true` **it will allow any future transaction signing to fire a prompt in the uPort mobile app.** For UX considerations, we encourage developers to use this, otherwise your users will have to scan a QR code per each interaction.
