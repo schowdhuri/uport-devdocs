@@ -37,13 +37,32 @@ uport.onResponse('disclosureReq').then(payload => {
 
 ## Requesting specific credentials
 
-You can request specific credentials by submitting an array of values in an array of the `requested` key of a passed object.
+You can request specific credentials by submitting an array of values in an array of the `requested` key of a passed object. 
 
 ```js
-uport.requestCredentials({
-  requested: ['name', 'avatar', 'phone', 'country'],
-  }).then((userProfile) => {
-    // Do something after they have disclosed credentials
+uport.requestDisclosure({
+    requested: ['name', 'avatar', 'phone', 'country'],
+})
+```
+
+This allows your app to use data about the user without having to store or control it. However, this means that your app also has to make some judgement about the veracity of that data. The only information that is guaranteed at this point is that the data has not been modified, and was created by the issuer identity about the user.
+
+```js
+uport.onResponse('disclosureReq').then(payload => {
+  console.log(payload)
+  // {
+  //   "data": undefined
+  //   "id": "disclosureReq",
+  //   "res": {
+  //     "avatar": "https://ipfs.infura.io/ipfs/QmaqGAeHmwAi44T6ZrSuu3yxwiyHPxoE1rHGmKxeCuZbS7DBX",
+  //     "name": "Agent Smith",
+  //     "phone": "+1-231-452-3857",
+  //     "country": "US",
+  //     "boxPub": "dgH1devHn5MhAcph+np8MI4ZLB2kJWqRc4NTwtAj6Fs=",
+  //     "publicEncKey": "dgH1devHn5MhAcph+np8MI4ZLB2kJWqRc4NTwtAj6Fs=",
+  //     "did": "did:uport:23fga3r2hh87ddhq98dhas8dz101j9f449w0",
+  //   }
+  // }
 })
 ```
 
