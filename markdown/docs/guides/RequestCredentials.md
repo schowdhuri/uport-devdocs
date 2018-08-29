@@ -8,36 +8,7 @@ source: "https://github.com/uport-project/uport-project.github.io/blob/develop/m
 
 # Requesting Credentials
 
-The first and most basic step you should take is to allow your user to connect their uPort to your app. Uport-connect's `requestCredentials` method is how you accomplish this, similar in concept to logging in , except there is no server session for you to manage. All you need to do to "connect" is to disclose the requested credentials you have in your uPort identity.
-
-![small-diag](diag1a.svg)
-
-### Desktop web
-
-<div class="overview-list" markdown=1>
-
-1. Browser displays QR code with URI
-1. Browser starts polling Chasqui using the sessionId to check if Mobile has posted the address & any other info required by the 3rd party app.
-1. Mobile scans QR code, displays card asking the user to share their address (and, optionally, other relevant data)
-1. If user consents: Mobile grabs sessionId from URI, posts address & data to the Chasqui API using the sessionId
-1. Browser grabs the address & data from Chasqui, removes QR code from UI
-
-</div>
-
-![small-diag](diag1b.svg)
-
-### Mobile web
-
-<div class="overview-list" markdown=1>
-
-1. Browser opens URL from the QR
-1. An alert is shown to the user asking if they want to open in the uPort app
-1. If user agrees, uPort app opens and displays card asking the user to share their address or other data (e.g., push token, attestation)
-1. If user agrees, uPort app creates a JWT that includes the requested data and signs it with the device key.
-1. Mobile browser is opened and an access_token field is appended to the URL. The access_token field contains the signed JWT.
-1. Mobile browser grabs the access_token JWT from the URL and extracts the iss (issuer) field which contains the uPort identity (address) & other requested data
-
-</div>
+Credentials are cryptographically signed messages containing information about a subject identity. They can be used by a decentralized system to authenticate users and enable interactions with data they control. uPort connect provides convenient functions that allow your application to request credentials from a user's uPort mobile app and handle the response.
 
 ## Calling the request method
 
