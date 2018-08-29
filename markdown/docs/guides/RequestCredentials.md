@@ -10,38 +10,29 @@ source: "https://github.com/uport-project/uport-project.github.io/blob/develop/m
 
 Credentials are cryptographically signed messages containing information about a subject identity. They can be used by a decentralized system to authenticate users and enable interactions with data they control. uPort connect provides convenient functions that allow your application to request credentials from a user's uPort mobile app and handle the response.
 
-## Calling the request method
+## Authenticating a user
 
-**By default** the `uport-connect` library will fire a QR image inside of an injected global modal to help you get up and running quickly.
-
-**This can be disabled** by intercepting the URI so you may use another library to customize the look and feel of the QR image.
-
-Once the user has scanned the displayed QR image, and has submitted their credentials, the promise should resolve with a Schema.org person JSON data payload. You can then handle this data however you desire in the then function.
+A user can be authenticated by issuing a request for their identity calling the `requestDisclosure` method of a `uport-connect` instance. By default, this request will be displayed as a link that attempts to open the uPort app if your application is accessed through a mobile client. On non-mobile clients, the request will be displayed as a QR code that can be scanned by a uPort mobile app. To learn more about how messages are passed between your app and a uPort client, check out [uport-transports](https://github.com/uport-project/uport-transports)
 
 ```js
-// Basic usage with modal injection
-uport.requestCredentials()
-     .then((userProfile) => {
-       // Do something after they have disclosed credentials
-})
+// calling with no args requests the user's identity by default
+uport.requestDisclosure()
 ```
 
-The expected payload should look like:
+Once the user approves the disclosure, their identity can be received as a promise returned by calling `onResponse`. It comes in the form of a [did](https://w3c-ccg.github.io/did-spec/#decentralized-identifiers-dids) that can be found in the `res.did` attribute of the response payload. `uport-connect` guarentees that the user your app is communicating with controls the identifier that they disclosed. To learn more about this process, check out our guide on [verifying JWTs](TODO: FIND LINK FOR THIS)
 
 ```js
-{
-  "@context":"http://schema.org",
-  "@type":"Person",
-  "name":"Agent Smith",
-  "address":"23fga3r2hh87ddhq98dhas8dz101j9f449w0",
-  "avatar": {
-    "uri": "https://ipfs.infura.io/ipfs/QmaqGAeHmwAi44T6ZrSuu3yxwiyHPxoE1rHGmKxeCuZbS7DBX"
-  },
-  "country": "US"
-  "network":"rinkeby",
-  "publicEncKey": "dgH1devHn5MhAcph+np8MI4ZLB2kJWqRc4NTwtAj6Fs="
-  "publicKey":"0x04016751595cf2f1429367d6c83a826526g613b4f7574af55ded0364f0fb34600bceba9211e5864ae616d7e83b5e3c79f1c913b40c8d38c64952fef383fd3ad637",
-}
+uport.onResponse('disclosureReq').then(payload => {
+  console.log(payload)
+  // {
+  //   "data": undefined
+  //   "id": "disclosureReq",
+  //   "res": {
+  //     "boxPub": undefined,
+  //     "did": "did:uport:23fga3r2hh87ddhq98dhas8dz101j9f449w0",
+  //   }
+  // }
+})
 ```
 
 ## Requesting specific credentials
