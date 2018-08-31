@@ -36,9 +36,9 @@ class Index extends React.Component {
         <main>
           <IndexHeadContainer>
             <SiteHeader
-              activeCategory={''}
+              activeSection={''}
               location={this.props.location}
-              categories={this.props.data.navCategories} />
+              types={this.props.data.navTypes} />
             <Hero className={`home-hero`}>
               <div className={`hero-wrapper`}>
                 <div className={'Grid Grid--gutters'}>
@@ -148,7 +148,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    navCategories:
+    navTypes:
     allMarkdownRemark(
       filter: { frontmatter: { category: { ne: null }, index: { ne: null }}}
     ) {
@@ -163,6 +163,7 @@ export const pageQuery = graphql`
           }
           frontmatter {
             category
+            type
             index
           }
         }

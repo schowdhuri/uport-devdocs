@@ -87,33 +87,18 @@ const StyledLink = styled(Link)`
 class Navigation extends React.Component {
   navListItems() {
     const navItems = []
-
+debugger
     this.props.sections.forEach(section => {
       if(this.props.data){
         this.props.data.forEach(page => {
-          if((page.node.frontmatter.index === 0) && (page.node.frontmatter.category === section)) {
-            const link = (<StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory === section ? 'active' : ''}`} to={`${page.node.fields.slug}`} activeClassName={'active'} key={`${section}${page.node.frontmatter.index}`}> {section.charAt(0).toUpperCase() + section.slice(1)} </StyledLink>);
+          if((page.node.frontmatter.category === "overview") && (page.node.frontmatter.type === section)) {
             switch(section){
               case "overview":
-                navItems[0] = link;
-                break;
-              case "guides":
-                navItems[1] = link;
-                break;
-              case "reference":
-                navItems[2] = link;
-                break;
-              case "tutorials":
-                navItems[3] = link;
+                navItems[0] = (<StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory === section ? 'active' : ''}`} to={`${page.node.fields.slug}`} activeClassName={'active'} key={`${section}${page.node.frontmatter.index}`}>About</StyledLink>);
                 break;
               default:
-                // keep adding links at index 3 (the first available)
-                const idx = navItems.length - 1;
-                if(idx >= 2){
-                  navItems[navItems.length] = link;  // push at will if the first 3 index's are filled
-                } else {
-                  navItems.splice(3, 0, link);  // shift entries already assigned to index 3 to the right.
-                };
+                navItems[1] = (<StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory === section ? 'active' : ''}`} to={`${page.node.fields.slug}`} activeClassName={'active'} key={`${section}${page.node.frontmatter.index}`}>Platform </StyledLink>);
+                break;
             }
           }
         })
