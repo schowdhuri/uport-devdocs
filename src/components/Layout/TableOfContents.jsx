@@ -12,12 +12,13 @@ export default class TableOfContents extends React.Component {
       urlHash = window.location.hash.replace('#', '')
       pathName = window.location.pathname
     }
-    const {category} = this.props
-    const {categories} = this.props
-    const type = this.props.contentsType
+    const {type} = this.props
+    const {types} = this.props
+    /* const type = this.props.contentsType */
     const postNodes = []
-    categories.forEach(post => {
-      if (((post.node.frontmatter.category === category) && (post.node.frontmatter.type === type))) {
+
+    types.forEach(post => {
+      if (post.node.frontmatter.type === type) {
         const postNode = {
           title: post.node.frontmatter.title,
           path: post.node.fields.slug,

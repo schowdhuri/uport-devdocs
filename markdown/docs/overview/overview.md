@@ -2,7 +2,7 @@
 title: "About"
 index: 0
 category: "overview"
-type: "content"
+type: "overview"
 source: "https://github.com/uport-project/uport-project.github.io/blob/develop/markdown/docs/overview/overview.md"
 ---
 

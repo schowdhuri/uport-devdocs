@@ -1,8 +1,8 @@
 ---
 title: "Getting Started"
 index: 0
-category: "guides"
-type: "content"
+category: "overview"
+type: "guide"
 source: "https://github.com/uport-project/uport-project.github.io/blob/develop/markdown/docs/guides/GettingStarted.md"
 ---
 
