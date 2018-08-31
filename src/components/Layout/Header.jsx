@@ -8,9 +8,9 @@ import bannerImg from '../../images/Horizontal-Logo.svg'
 class MainHeader extends React.Component {
   navHeadings () {
     const navHeadings = []
-    this.props.categories.edges.forEach(cat => {
-      if (!navHeadings.includes(cat.node.frontmatter.category)) {
-        navHeadings.push(cat.node.frontmatter.category)
+    this.props.types.edges.forEach(type => {
+      if (!navHeadings.includes(type.node.frontmatter.type)) {
+        navHeadings.push(type.node.frontmatter.type)
       }
     })
     return navHeadings
@@ -33,8 +33,8 @@ class MainHeader extends React.Component {
             <Navigation
               className={`w-nav`}
               sections={this.navHeadings()}
-              data={this.props.categories.edges}
-              activeCategory={this.props.activeCategory} />
+              data={this.props.types.edges}
+              activeSection={this.props.activeSection} />
           </div>
         </div>
       </SiteContainer>

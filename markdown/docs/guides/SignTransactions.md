@@ -1,8 +1,8 @@
 ---
 title: "Signing Transactions"
 index: 4
-category: "guides"
-type: "content"
+category: "uport-credentials"
+type: "guide"
 source: "https://github.com/uport-project/uport-project.github.io/blob/develop/markdown/docs/guides/SignTransactions.md"
 ---
 

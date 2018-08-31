@@ -23,31 +23,31 @@ export default class ContentTemplate extends React.Component {
     const { slug } = this.props.pathContext
     const postNode = this.props.data.postBySlug
     const post = postNode.frontmatter
-    const category = post.category
-    const categories = []
+    const type = post.type
+    const types = []
     const messages = []
 
-      /* If there is an announcement, broadcast it at the top of each page */
-   if (this.props.data.announcement) {
-     this.props.data.announcement.edges.forEach(announcement => {
+    /* If there is an announcement, broadcast it at the top of each page */
+    if (this.props.data.announcement) {
+      this.props.data.announcement.edges.forEach(announcement => {
         messages.push(
           <h3>
             <AutoLinkText text={`${announcement.node.frontmatter.announcement}`}
-              linkProps={{target: '_blank'}} />
+            linkProps={{target: '_blank'}} />
           </h3>
         )
       })
     }
 
-    this.props.data.postByCategory.edges.forEach(cat => {
-      if (cat.node.frontmatter.category === category) {
-        categories.push(cat)
+    this.props.data.postByCategory.edges.forEach(_type => {
+      if (_type.node.frontmatter.type === type) {
+        types.push(_type)
       }
     })
 
     const chapterTitles = []
-    categories.forEach(cat => {
-      chapterTitles.push(cat.node.frontmatter.title)
+    types.forEach(_type => {
+      chapterTitles.push(_type.node.frontmatter.title)
     })
     if (!post.id) {
       post.id = slug
@@ -65,17 +65,17 @@ export default class ContentTemplate extends React.Component {
         <BodyGrid>
           <HeaderContainer>
             <SiteHeader
-            activeCategory={category}
+            activeType={type}
             location={this.props.location}
-            categories={this.props.data.navCategories}
+            types={this.props.data.navTypes}
             />
           </HeaderContainer>
           <ToCContainer>
             <TableOfContents
             contentsType={post.type}
             chapterTitles={chapterTitles}
-            categories={categories}
-            category={category}
+            types={types}
+            type={type}
             />
           </ToCContainer>
           <BodyContainer>
@@ -207,7 +207,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    navCategories: allMarkdownRemark (
+    navTypes: allMarkdownRemark (
       filter: { frontmatter: { category: { ne: null } } }
     ) {
       edges {
@@ -221,6 +221,7 @@ export const pageQuery = graphql`
           }
           frontmatter {
             category
+            type
             index
           }
         }

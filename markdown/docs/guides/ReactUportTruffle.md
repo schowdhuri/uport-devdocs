@@ -1,8 +1,8 @@
 ---
 title: "React-Uport Truffle Box"
 index: 0
-category: "tutorials"
-type: "content"
+category: "truffle"
+type: "tutorial"
 source: "https://github.com/uport-project/uport-project.github.io/blob/develop/markdown/docs/guides/ReactUportTruffle.md"
 ---
 

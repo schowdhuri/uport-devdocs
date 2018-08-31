@@ -1,8 +1,8 @@
 ---
 title: "Requesting Credentials"
 index: 2
-category: "guides"
-type: "content"
+category: "uport-connect"
+type: "guide"
 source: "https://github.com/uport-project/uport-project.github.io/blob/develop/markdown/docs/guides/RequestCredentials.md"
 ---
 
