@@ -39,7 +39,7 @@ exports.onCreateNode = ({node, boundActionCreators, getNode}) => {
     let dir = `${_.replace(parsedFilePath.dir, 'public', '')}`;
     let name = `${_.trim(_.toLower(parsedFilePath.name))}`;
     slug = `${dir}/${name}`;
-    //console.log(slug)
+
     // console.log(parsedFilePath);
 
     //console.log(slug);
@@ -104,7 +104,7 @@ exports.createPages = ({graphql, boundActionCreators}) => {
             categorySet.add(edge.node.frontmatter.category);
           }
          //console.log(JSON.stringify(edge.node.frontmatter))
-          if (edge.node.frontmatter.type === 'content') {
+          if (['guide', 'content', 'tutorial', 'reference', 'overview'].includes(edge.node.frontmatter.type)) {
             //console.log(JSON.stringify(edge.node.frontmatter));
             //console.log(edge.node.fields.slug);
             createPage({

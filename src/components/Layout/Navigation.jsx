@@ -98,7 +98,6 @@ debugger
                 break;
               default:
                 navItems[1] = (<StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory === section ? 'active' : ''}`} to={`${page.node.fields.slug}`} activeClassName={'active'} key={`${section}${page.node.frontmatter.index}`}>Platform </StyledLink>);
-                break;
             }
           }
         })

@@ -1,8 +1,8 @@
 ---
 title: "Releases"
 index: 1
-category: "overview"
-type: "content"
+category: "releases"
+type: "overview"
 source: "https://github.com/uport-project/uport-project.github.io/blob/develop/markdown/docs/overview/releases.md"
 announcement: ""
 ---
