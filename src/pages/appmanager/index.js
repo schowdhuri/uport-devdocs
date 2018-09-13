@@ -42,8 +42,13 @@ class AppManagerPage extends React.Component {
   }
   componentDidMount () {
     if (this.state.profile) {
-      console.log(this.state.profile.did)
-      this.state.profile.did ? this.props.history.push('/appmanager/getstarted') : null
+      if (this.state.profile.uportApps) {
+        this.props.history.push('/appmanager/myapps')
+      } else if (this.state.profile.did) {
+        this.props.history.push('/appmanager/getstarted')
+      } else {
+        return
+      }
     }
   }
   handleOpenModal (e) {
@@ -60,12 +65,17 @@ class AppManagerPage extends React.Component {
     const history = this.props.history
     try {
       const uPortConnect = new Connect('AppManager')
-      uPortConnect.requestDisclosure({requested: ['name'], notifications: true})
+      uPortConnect.requestDisclosure({requested: ['name'], verified: ['uport-apps'], notifications: true})
       uPortConnect.onResponse('disclosureReq').then(payload => {
-        this.setState({showImage: false, showResult: true, profile: {name: payload.res.name, did: payload.res.did}})
+        this.setState({showImage: false, showResult: true, profile: {name: payload.res.name, did: payload.res.did, uportApps: payload.res['uport-apps']}})
         this.props.saveProfile(this.state.profile)
+
+        if (this.state.profile.uportApps) {
+          history.push('/appmanager/myapps')
+        } else {
+          history.push('/appmanager/getstarted')
+        }
         // this.handleCloseModal(e)
-        history.push('/appmanager/getstarted')
       })
     } catch (e) {
       console.log(e)

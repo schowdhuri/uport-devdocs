@@ -9,6 +9,7 @@ import SiteHeader from '../../components/Layout/Header'
 import config from '../../../data/SiteConfig'
 import errorIcon from '../../images/error-icon.svg'
 import '../../layouts/css/appmanager.css'
+import Connect from 'uport-connect'
 
 const BodyContainer = styled.div`
 background-color: #f9f9fa;
@@ -50,12 +51,11 @@ const networkOptions = [
 class AppManagerStartBuildingPage extends React.Component {
   constructor (props) {
     super(props)
-    console.log(this.props.currentApp)
     this.state = {
-      appName: this.props.currentApp.appName || '',
-      network: this.props.currentApp.network || 'mainnet',
-      accountType: this.props.currentApp.accountType || 'keypair',
-      selectedNetworkObj: networkOptions.filter(obj => { return obj.value === this.props.currentApp.network }) || networkOptions[0],
+      appName: this.props.currentApp.name || '',
+      network: this.props.currentApp.configuration.network || 'mainnet',
+      accountType: this.props.currentApp.configuration.accountType || 'keypair',
+      selectedNetworkObj: networkOptions.filter(obj => { return obj.value === this.props.currentApp.configuration.network }) || networkOptions[0],
       appNameValid: false,
       formSubmitted: false
     }
@@ -69,10 +69,6 @@ class AppManagerStartBuildingPage extends React.Component {
       const history = this.props.history
       history.push('/appmanager/')
     }
-    document.addEventListener('mousedown', this.handleOutsideClick, false)
-  }
-  componentWillUnMount () {
-    document.removeEventListener('mousedown', this.handleOutsideClick, false)
   }
   handleAppNameChange (e) {
     this.setState({appName: e.target.value})
@@ -81,17 +77,54 @@ class AppManagerStartBuildingPage extends React.Component {
     this.setState({ network: selectedOption.value, selectedNetworkObj: selectedOption })
   }
   handleAccountTypeChange (e) {
-    this.setState({accountType: e.target.value})
+    e.target.value === 'none'
+      ? this.setState({accountType: e.target.value, network: ''})
+      : this.setState({accountType: e.target.value})
   }
   handleSubmit (e) {
     e.preventDefault()
     this.setState({formSubmitted: true})
-    this.state.appName === '' ? this.setState({appNameValid: false}) : this.setState({appNameValid: true})
-    if (this.state.appNameValid) {
-      const history = this.props.history
-      this.props.saveApp({appName: this.state.appName, network: this.state.network, accountType: this.state.accountType})
-      history.push('/appmanager/sample-code')
-    }
+    this.state.appName === ''
+    ? this.setState({appNameValid: false})
+    : this.setState({appNameValid: true}, () => {
+      if (this.state.appNameValid) {
+      // Check for existing apps
+        let claim = {}
+        let uportApps = []
+        if (this.props.profile.uportApps) {
+          uportApps = this.props.profile.uportApps
+          uportApps.push({name: this.state.appName,
+            configuration: {
+              network: this.state.network,
+              accountType: this.state.accountType
+            }
+          })
+          claim = {'uport-apps': uportApps}
+        } else {
+          claim = {'uport-apps': [{
+            name: this.state.appName,
+            configuration: {
+              network: this.state.network,
+              accountType: this.state.accountType
+            }
+          }]}
+        }
+
+        try {
+          // TODO put this in a global
+          const uPortConnect = new Connect('AppManager')
+          // debugger
+          uPortConnect.attest({sub: this.props.profile.did, claim: claim}, 'ADD-APP')
+          uPortConnect.onResponse('ADD-APP').then(payload => {
+            this.props.history.push('/appmanager/sample-code')
+            this.props.setCurrentApp({name: this.state.appName, configuration: {network: this.state.network, accountType: this.state.accountType}})
+            this.props.saveApps(uportApps)
+          })
+        } catch (e) {
+          console.log(e)
+        }
+      }
+    })
   }
   render () {
     const postEdges = this.props.data.allMarkdownRemark.edges
@@ -223,7 +256,8 @@ query AppManagerStartBuildingQuery {
 
 AppManagerStartBuildingPage.propTypes = {
   profile: PropTypes.object.isRequired,
-  saveApp: PropTypes.func.isRequired
+  setCurrentApp: PropTypes.func.isRequired,
+  saveApps: PropTypes.func.isRequired
 }
 
 const mapStateToProps = ({ profile, currentApp }) => {
@@ -231,7 +265,10 @@ const mapStateToProps = ({ profile, currentApp }) => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return { saveApp: (app) => dispatch({ type: `SAVE_APP`, app: app }) }
+  return {
+    setCurrentApp: (app) => dispatch({ type: `SET_CURRENT_APP`, app: app }),
+    saveApps: (uportApps) => dispatch({ type: `SAVE_APPS`, uportApps: uportApps })
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppManagerStartBuildingPage)
