@@ -8,7 +8,7 @@ source: "https://github.com/uport-project/uport-project.github.io/blob/develop/m
 
 ## Helping you build User Centric Apps on Blockchains
 
-uPort is a collection of tools and protocols for building **decentralized user-centric applications**. It is built on **open standards** and open source libraries enabling you to build User Centric Apps on Blockchains.
+uPort is a collection of tools and protocols for building **decentralized user-centric applications**. It is built on **open standards** and open source libraries.
 
 ### Onboarding a user to your dApp
 
@@ -50,19 +50,21 @@ Maybe this is true strictly from a smart contract point of view; however, from y
 
 Users want a reason to use your app, not just once but also to come back and feel safe that they are interacting with the same App.
 
-Having a user sign in builds a connection between them and you, where being able to show their previous activity helps build trust that encourages them to continue interacting with it.
+A user&#39;s identity is not just based on what others say about them, but also on the things they do. Their interactions with other people, businesses, and blockchains all form part of who they are and how they chose to represent themselves for future interactions.
+
+Having a user sign in builds a connection between them and you. Being able to show their previous activity, helps build trust in your App and encourages them to continue interacting with it.
 
 ### Asking the user to do something
 
-The core concept of uPort is asking for data about individuals or for them to do something, such as:
+The core concept of uPort is asking for data about them or for them to do something, such as:
 
 - Asking for their name
-- Asking for a verification by a third party of their name
+- Asking for a verification, by a third party, of their name
 - Asking them to sign a verification on behalf of someone they know
-- Asking their Ethereum Account
+- Asking for their Ethereum Account
 - Asking the user to sign an Ethereum transaction
 
-This whole process is performed by the private exchange of signed messages. As a developer, you sign and encrypt requests for a user and they in turn sign and encrypt responses to you.
+This whole process is performed by the private exchange of signed messages. As a developer, you sign and encrypt requests for a user. They sign and encrypt responses to you.
 
 ### Reasons for asking for Identity Data
 
@@ -80,13 +82,13 @@ Signing up users in a traditional web or financial app means requesting data fro
 
 Each third-party effectively runs a silo providing exactly one view of the user&#39;s identity. To get a full picture you would have to request data from each one and figure out how to merge them together.
 
-Obviously, for those of us building decentralized technologies, the whole idea that all of this data is controlled by third parties and not by the end user itself is also extremely problematic.
+Obviously, for those of us building decentralized technologies, the whole idea that all this data is controlled by third-parties and not by the end user itself is also extremely problematic.
 
 ## Signing Ethereum Transactions
 
 The real value of Ethereum apps, of course, isn&#39;t just in asking them for identity data. You want them to do something. Interact with your smart contracts and/or send funds.
 
-uPort provides a full web3 compatible provider and allows you to call Ethereum smart contract functions from your code, automatically sending the generated function to your user&#39;s uPort mobile app for approval and signing. This without changing any of your existing code, besides the initial setup.
+uPort provides a full web 3.0 compatible provider and allows you to call Ethereum smart contract functions from your code, automatically sending the generated function to your user&#39;s uPort mobile app for approval and signing. This occurs without any changes to your existing code, besides the initial setup.
 
 ## Off-chain Data
 
