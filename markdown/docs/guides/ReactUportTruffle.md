@@ -6,6 +6,8 @@ type: "content"
 source: "https://github.com/uport-project/uport-project.github.io/blob/develop/markdown/docs/guides/ReactUportTruffle.md"
 ---
 
+# TODO - Warning: React Truffle Box out of date! 
+
 # React-uport Truffle box
 
 This a short tutorial to requesting credentials and signing attestations with uPort.  We will be leveraging the [react-uport truffle box](http://truffleframework.com/boxes/react-uport) which provides a powerful framework and tools for getting started.

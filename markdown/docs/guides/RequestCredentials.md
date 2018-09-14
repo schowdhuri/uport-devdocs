@@ -19,16 +19,15 @@ A user can be authenticated by issuing a request for their identity calling the 
 uport.requestDisclosure()
 ```
 
-Once the user approves the disclosure, their identity can be received as a promise returned by calling `onResponse`. It comes in the form of a [did](https://w3c-ccg.github.io/did-spec/#decentralized-identifiers-dids) that can be found in the `res.did` attribute of the response payload. `uport-connect` guarentees that the user your app is communicating with controls the identifier that they disclosed. To learn more about this process, check out our documentation on [verifying JWTs](/did-jwt/guides/index.md#verifying-a-jwt)
+Once the user approves the disclosure, their identity can be received as a promise returned by calling `onResponse`. It comes in the form of a [did](https://w3c-ccg.github.io/did-spec/#decentralized-identifiers-dids) that can be found in the `did` attribute of the response payload. `uport-connect` guarantees that the user your app is communicating with controls the identifier that they disclosed. To learn more about this process, check out our documentation on [verifying JWTs](/did-jwt/guides/index.md#verifying-a-jwt)
 
 ```js
-uport.onResponse('disclosureReq').then(payload => {
-  console.log(payload)
+uport.onResponse('disclosureReq').then(res => {
+  console.log(res)
   // {
   //   "data": undefined
   //   "id": "disclosureReq",
-  //   "res": {
-  //     "boxPub": undefined,
+  //   "payload": {
   //     "did": "did:uport:23fga3r2hh87ddhq98dhas8dz101j9f449w0",
   //   }
   // }
@@ -48,12 +47,12 @@ uport.requestDisclosure({
 This allows your app to use data about the user without having to store or control it. However, this means that your app also has to make some judgement about the veracity of that data. The only information that is guaranteed at this point is that the data has not been modified, and was created by the issuer identity about the user.
 
 ```js
-uport.onResponse('disclosureReq').then(payload => {
-  console.log(payload)
+uport.onResponse('disclosureReq').then(res => {
+  console.log(res)
   // {
   //   "data": undefined
   //   "id": "disclosureReq",
-  //   "res": {
+  //   "payload": {
   //     "avatar": "https://ipfs.infura.io/ipfs/QmaqGAeHmwAi44T6ZrSuu3yxwiyHPxoE1rHGmKxeCuZbS7DBX",
   //     "name": "Agent Smith",
   //     "phone": "+1-231-452-3857",
@@ -73,7 +72,7 @@ Passing the option `notifications: true` will request the ability and permission
 ```js
 uport.requestDisclosure({ notifications: true })
 
-uport.onResponse('disclosureReq').then(payload => {
+uport.onResponse('disclosureReq').then(res => {
   // future requests will automatically be sent via push instead of QR for non-mobile app clients
 })
 ```

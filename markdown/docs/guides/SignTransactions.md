@@ -15,11 +15,10 @@ source: "https://github.com/uport-project/uport-project.github.io/blob/develop/m
 Get the address of a uPort Id:
 
 ```javascript
-connect.requestAddress()
+connect.requestDisclosure()
 
-connect.onResponse('addressReq').then(payload => {
-  const address = connect.address
-  const did = connect.did
+connect.onResponse('disclosureReq').then(res => {
+  const address = res.payload.address
 })
 ```
 
@@ -31,8 +30,8 @@ const txObj = {
   value: 1 * 1.0e18
 }
 connect.sendTransaction(txObj, 'ethSendReq')
-connect.onResponse('ethSendReq').then(payload => {
-  const txId = payload.res
+connect.onResponse('ethSendReq').then(res => {
+  const txId = res.payload
 })
 ```
 
@@ -60,8 +59,8 @@ Using this object over the provider examples below gives you more flexibility an
   const reqId = 'updateStatus'
   statusContract.updateStatus('hello', reqId)
 
-  connect.onResponse(reqId).then(payload => {
-    const txId = payload.res
+  connect.onResponse(reqId).then(res => {
+    const txId = res.payload
   })
 ```
 

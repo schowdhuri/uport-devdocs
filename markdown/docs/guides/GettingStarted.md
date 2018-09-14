@@ -6,6 +6,8 @@ type: "content"
 source: "https://github.com/uport-project/uport-project.github.io/blob/develop/markdown/docs/guides/GettingStarted.md"
 ---
 
+# TODO - Warning: Tutorial out of date! 
+
 
 # Getting Started
 
