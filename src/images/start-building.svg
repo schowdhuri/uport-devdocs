@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 247 173" style="enable-background:new 0 0 247 173;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#6C54CD;}
+	.st1{filter:url(#Adobe_OpacityMaskFilter);}
+	.st2{fill:#FFFFFF;}
+	.st3{mask:url(#mask-2_1_);fill:#5C50CA;}
+	.st4{fill:#AAA5E3;}
+	.st5{fill:#5C50CA;}
+</style>
+<title>Group 2</title>
+<desc>Created with Sketch.</desc>
+<g id="App-Manager">
+	<g id="App-Manager---Empty" transform="translate(-301.000000, -294.000000)">
+		<g id="Group-2" transform="translate(301.000000, 294.000000)">
+			<ellipse id="Oval" class="st0" cx="20.7" cy="17.9" rx="4.7" ry="4.7"/>
+			<ellipse id="Oval-Copy" class="st0" cx="33.9" cy="17.9" rx="4.7" ry="4.7"/>
+			<ellipse id="Oval-Copy-2" class="st0" cx="47" cy="17.9" rx="4.7" ry="4.7"/>
+			<polygon id="Line" class="st0" points="4.9,33.8 4.9,28.2 246.9,28.2 246.9,33.8 			"/>
+			<g id="Group-14" transform="translate(137.000000, 67.000000)">
+				<g id="Fill-12-Clipped">
+					<g id="path-3">
+					</g>
+					<defs>
+						<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="0" y="0.4" width="80.3" height="76.1">
+							<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+						</filter>
+					</defs>
+					<mask maskUnits="userSpaceOnUse" x="0" y="0.4" width="80.3" height="76.1" id="mask-2_1_">
+						<g class="st1">
+							<polygon id="path-1_1_" class="st2" points="0,0.4 80.3,0.4 80.3,76.5 0,76.5 							"/>
+						</g>
+					</mask>
+					<path id="Fill-12" class="st3" d="M40.1,63.9c-12.4,0-25.6-3.6-25.6-10.2c0-4,4.8-6.9,11.3-8.5c0.4,0.9,0.9,1.8,1.6,2.7
+						c-6.4,1.5-10,3.9-10,5.8c0,0.9,0.7,1.8,2.1,2.8c0.1-0.3,0.2-0.5,0.4-0.7c1.4-1.8,5.6-3.2,11.6-4c5.3,3.5,12.2,3.5,17.4,0
+						c5.9,0.7,10.1,2.2,11.5,3.9c0.2,0.2,0.3,0.5,0.4,0.7c1.4-0.9,2.1-1.9,2.1-2.8c0-1.9-3.6-4.4-10-5.9c0.6-0.8,1.1-1.7,1.6-2.7
+						c6.5,1.7,11.3,4.5,11.3,8.5C65.8,60.3,52.6,63.9,40.1,63.9z M40.1,26.4c6.9,0,12.5,5.5,12.5,12.4c0,6.8-5.6,12.4-12.5,12.4
+						c-6.9,0-12.5-5.5-12.5-12.4C27.7,31.9,33.3,26.4,40.1,26.4z M79.8,57.8l-37-56c-1.2-1.8-4.1-1.8-5.3,0l-37,56
+						c-1,1.4-0.6,3.4,0.9,4.3c0.3,0.2,0.6,0.3,0.9,0.4l37,13.8c0.5,0.1,1.1,0.1,1.6,0l37-13.8c1.7-0.4,2.7-2.1,2.3-3.8
+						C80.1,58.4,80,58.1,79.8,57.8L79.8,57.8z"/>
+				</g>
+			</g>
+			<g id="Group-6" transform="translate(30.000000, 56.000000)">
+				<path class="st4" d="M35,6H1.1c-1.7,0-3-1.3-3-3s1.3-3,3-3H35c1.7,0,3,1.3,3,3S36.7,6,35,6z"/>
+				<path class="st4" d="M85,24H35.1c-1.7,0-3-1.3-3-3s1.3-3,3-3H85c1.7,0,3,1.3,3,3S86.7,24,85,24z"/>
+				<path class="st4" d="M121,6H53.1c-1.7,0-3-1.3-3-3s1.3-3,3-3H121c1.7,0,3,1.3,3,3S122.7,6,121,6z"/>
+				<path class="st4" d="M41.2,42H1.1c-1.7,0-3-1.3-3-3s1.3-3,3-3h40.1c1.7,0,3,1.3,3,3S42.9,42,41.2,42z"/>
+				<path class="st4" d="M71,60H1.1c-1.7,0-3-1.3-3-3s1.3-3,3-3H71c1.7,0,3,1.3,3,3S72.7,60,71,60z"/>
+				<path class="st4" d="M17,24H1.1c-1.7,0-3-1.3-3-3s1.3-3,3-3H17c1.7,0,3,1.3,3,3S18.7,24,17,24z"/>
+			</g>
+			<path class="st5" d="M238.5,173H8.5c-4.7,0-8.5-3.8-8.5-8.5V8.5C0,3.8,3.8,0,8.5,0h230c4.7,0,8.5,3.8,8.5,8.5v156
+				C247,169.2,243.2,173,238.5,173z M8.5,5C6.6,5,5,6.6,5,8.5v156c0,1.9,1.6,3.5,3.5,3.5h230c1.9,0,3.5-1.6,3.5-3.5V8.5
+				c0-1.9-1.6-3.5-3.5-3.5H8.5z"/>
+		</g>
+	</g>
+</g>
+</svg>

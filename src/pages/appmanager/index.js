@@ -9,6 +9,7 @@ import SiteHeader from '../../components/Layout/Header'
 import config from '../../../data/SiteConfig'
 import appMgrBg from '../../images/appmgr-bg.svg'
 import uportLogo from '../../images/Horizontal-Logo-purple.svg'
+import '../../layouts/css/appmanager.css'
 
 const BodyContainer = styled.div`
   padding: 0;
@@ -16,43 +17,6 @@ const BodyContainer = styled.div`
   .appmgr-start-right {
     height: 100vh;
     background-image: url(${appMgrBg})
-  }
-  .title {
-    font-family: "Nunito Sans";
-    font-size: 42px;
-    font-weight: 700;
-    line-height: 54px;
-    margin-bottom: 25px;
-    color: #5c54c7;
-  }
-  .banner-link {
-    color: #fff;
-    text-decoration: none;
-  }
-  .appmgr-start-left-wrap {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 25px;
-  }
-  p {
-    color: #89879f;
-    font-weight: 200;
-    font-size: 28px;
-    line-height: 32px;
-    margin-bottom: 40px
-  }
-  .appmgr-button {
-    margin-top: 50px;
-  }
-  .appmgr-button a {
-    background-color: #715ad1;
-    border-radius: 3px;
-    color: #fff;
-    padding: 16px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 22px;
   }
 `
 
