@@ -6,21 +6,17 @@ import { connect } from 'react-redux'
 import SEO from '../../components/SEO/SEO'
 import SiteHeader from '../../components/Layout/Header'
 import config from '../../../data/SiteConfig'
-import startBuilding from '../../images/start-building.svg'
 import '../../layouts/css/appmanager.css'
 
 const BodyContainer = styled.div`
-padding: 60px;
-height: 100vh;
 background-color: #f9f9fa;
-img {
-  max-width: 240px;
-  margin-top: 30px;
-}
+height: 100%;
+min-height: 100vh;
 `
 
-class AppManagerGetStartedPage extends React.Component {
+class AppManagerSampleCodePage extends React.Component {
   render () {
+    console.log(this.props.currentApp)
     const postEdges = this.props.data.allMarkdownRemark.edges
     return (
       <div className='index-container'>
@@ -34,18 +30,21 @@ class AppManagerGetStartedPage extends React.Component {
           </AppManagerHeadContainer>
           <BodyContainer className='appMgrBody'>
             <div className={'Grid Grid--gutters'}>
-              <div className='Grid-cell startBuildingLeft'>
-                <img src={startBuilding} />
+              <div className='Grid-cell sidebar'>
+                <h4>Register an app</h4>
+                <ul>
+                  <li><a href='/'>App Details</a></li>
+                  <li className='active'><a href='/'>Sample Code</a></li>
+                </ul>
               </div>
               <div className='Grid-cell'>
-                <h1>Get started building.</h1>
-                <p>Register your first app in less than 5 minutes.</p>
-                <a href='/appmanager/startbuilding' className='register-button'>
-                  <span><strong>+</strong></span>
-                  Register an App
-                </a>
+                <h1>Sample Code</h1>
+                <p>{JSON.stringify(this.props.currentApp)}</p>
               </div>
             </div>
+            <footer>
+              <a href='/'>Having trouble getting your app set up? Get in touch with us.</a>
+            </footer>
           </BodyContainer>
         </main>
       </div>
@@ -58,7 +57,7 @@ const AppManagerHeadContainer = styled.div`
 `
 
 export const pageQuery = graphql`
-query AppManagerGetStartedQuery {
+query AppManagerSnippetQuery {
     allMarkdownRemark(
       limit: 2000
       filter: { frontmatter: { type: { eq: "content" }}}
@@ -99,16 +98,12 @@ query AppManagerGetStartedQuery {
   }
 `
 
-const IndexHeadContainer = styled.div`
-  background: ${props => props.theme.brand};
-`
-
-AppManagerGetStartedPage.propTypes = {
-  profile: PropTypes.object.isRequired
+AppManagerSampleCodePage.propTypes = {
+  currentApp: PropTypes.object.isRequired
 }
 
-const mapStateToProps = ({ profile }) => {
-  return { profile }
+const mapStateToProps = ({ currentApp }) => {
+  return { currentApp }
 }
 
-export default connect(mapStateToProps)(AppManagerGetStartedPage)
+export default connect(mapStateToProps)(AppManagerSampleCodePage)

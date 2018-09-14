@@ -1,0 +1,337 @@
+/* index */
+.title {
+  font-family: "Nunito Sans";
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 54px;
+  margin-bottom: 25px;
+  color: #5c54c7;
+}
+.banner-link {
+  color: #fff;
+  text-decoration: none;
+}
+.appmgr-start-left-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 25px !important;
+}
+p {
+  color: #89879f;
+  font-weight: 200;
+  font-size: 28px;
+  line-height: 32px;
+  margin-bottom: 40px
+}
+.appmgr-button {
+  margin-top: 50px;
+}
+.appmgr-button a {
+  background-color: #715ad1;
+  border-radius: 3px;
+  color: #fff;
+  padding: 16px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 22px;
+}
+.connectModal {
+  position: absolute;
+  background-color: #fff;
+  text-align: center;
+  width: 50%;
+  max-width: 540px;
+  min-width: 320px;
+  margin: 0 auto;
+  border: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  padding-top: 0;
+}
+.connectModal h4 {
+  color: #89879f;
+}
+.connectModal p {
+  font-size: 16px;
+  line-height: 60px;
+  clear: both;
+}
+.ReactModal__Overlay {
+  background-color: rgba(90, 82, 197, 0.55) !important;
+}
+.modal-header {
+  margin: 0 auto;
+  display: block;
+  width: 53%;
+  clear: both;
+}
+.modal-header h4 {
+  float: left;
+  margin: 9px 0 0 0;
+  font-size: 24px;
+  padding-left: 8px;
+}
+.modal-header img {
+  float: left
+}
+.modal-footer {
+  background-color: #e0dfe6;
+  border-bottom-left-radius: 5px; 
+  border-bottom-right-radius: 5px;  
+  padding: 20px 0;
+}
+.modal-footer p {
+  font-size: 18px;
+  line-height: 22px;
+  margin-bottom: 20px;
+}
+.modal-footer a {
+  padding: 0 5px;
+}
+.demo-qr-container {
+  margin-top: -40px;
+  margin-bottom: 20px;
+}
+a.closeConnectModal {
+  float: right;
+  font-size: 18px;
+  font-weight: 800;
+  padding: 20px 25px 0 0;
+  color: #dfe1e3;
+  text-decoration: none;
+}
+/* Get started */
+h1 {
+  font-family: "Nunito Sans";
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 40px;
+  margin-bottom: 10px;
+  color: #5c54c7;
+  margin-top: 30px;
+}
+.startBuildingLeft {
+  max-width: 40%;
+  text-align: center;
+}
+p {
+  color: #89879f;
+  font-weight: 200;
+  font-size: 28px;
+  line-height: 32px;
+  margin-bottom: 40px
+}
+.register-button {
+  position: relative;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 14px 14px 14px 64px;
+  text-decoration: none;
+  color: #000;
+  font-weight: 700;
+  font-size: 22px;
+  box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
+}
+
+.register-button span {
+  position: absolute;
+  background-color: #8380fc;
+  border-radius: 5px;
+  width: 36px;
+  height: 36px;
+  left: 12px;
+  top: 12px;
+  text-align: center;
+}
+.register-button span strong {
+  color: #fff;
+  text-align: center;
+  font-size: 38px;
+  line-height: 32px;
+  margin-top: 5px;
+}
+
+
+/* startbuilding */
+.Grid {
+  margin-top: 0;
+}
+.sidebar {
+  max-width: 30%;
+  padding: 60px !important;
+}
+.sidebar h4 {
+  text-transform: uppercase;
+  font-size: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e0dfe6;
+  display: table-cell;
+}
+.sidebar ul {
+  counter-reset: section;
+  padding-left: 0;
+}
+.sidebar ul li {
+  position: relative;
+  list-style-type: none;
+  margin: 40px 0;
+}
+.sidebar ul li a {
+  display: block;
+  padding: 4px 0 0 40px;
+  color: #9d9cb0;
+  font-weight: 700;
+  text-decoration: none;
+}
+.sidebar ul li:before {
+  counter-increment: section;
+  content: counter(section);
+  position: absolute;
+  border: 2px solid #9d9cb0;
+  color: #aaa6e1;
+  font-weight: 700;
+  border-radius: 5px;
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  padding-top: 2px;
+}
+.sidebar ul li.active a {
+  color: #5c54c7;
+}
+.sidebar ul li.active:before {
+  background-color: #5c54c7;
+  border: 2px solid #5c54c7;
+  color: #fff;
+}
+h1 {
+  margin-top: 40px;
+}
+label {
+  color: #89879f;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+}
+form input[type=text] {
+  width: 80%;
+  max-width: 450px;
+  padding: 12px 16px;
+  border: none;
+  box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
+  border-radius: 3px;
+  font-size: 16px;
+  margin-left: -2px;
+  margin-bottom: 20px;
+}
+span.note {
+  color: #89879f;
+}
+.radioContainer {
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
+  width: 80%;
+  max-width: 450px;
+  padding: 20px;
+  margin: 20px 0;
+}
+.radioContainer span.note {
+  display: block;
+  margin-left: 32px;
+  padding: 0 0 5px;
+}
+.radioContainer input {
+  position: absolute;
+  opacity: 0;
+}
+.radioContainer label {
+  padding-bottom: 0;
+  cursor: pointer;
+}
+.radioContainer span.checkmark {
+  position: absolute;
+  top: 19px;
+  left: 12px;
+  height: 25px;
+  width: 25px;
+  background-color: #f9f9fa;
+  border-radius: 50%;
+  border: 2px solid #e0dfe6;
+}
+.radioContainer .checkmark:after {
+  top: 2px;
+  left: 2px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: #5c54c7;
+}
+.radioContainer input:checked ~ .checkmark {
+    background-color: #fff;
+}
+.radioContainer p {
+  display: block;
+  text-transform: none;
+  font-size: 18px;
+  font-weight: 200;
+  margin: -5px 0 0 32px;
+  padding: 0;
+}
+.radioContainer input:checked ~ p {
+    font-weight: 700;
+    color: #5c54c7;
+}
+.radioContainer .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.radioContainer input:checked ~ .checkmark:after {
+    display: block;
+}
+.networkDropdown {
+  width: 80%;
+  max-width: 450px;
+  border: none;
+  box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
+  border-radius: 3px;
+  font-size: 16px;
+  margin-left: -2px;
+  margin-bottom: 20px;
+  cursor: none !important;
+}
+.networkDropdown__control {
+  border: none;
+  line-height: 18px;
+  padding: 5px 16px;
+  box-shadow: none;
+}
+.networkDropdown__control-is-focused {
+  box-shadow: none;
+  border: none;
+}
+.networkDropdown__value-container {
+  padding: 0;
+}
+.networkDropdown__indicator-separator {
+  display: none;
+}
+.networkDropdown__input {
+} 
+footer {
+  border-top: 2px solid #e0dfe6; 
+  width: 80%;
+  padding: 20px 20px 100px;
+  margin: 20px auto 0;
+}
+button.continue {
+  background-color: #735ad2;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-decoration: none;
+  float: right;
+}
