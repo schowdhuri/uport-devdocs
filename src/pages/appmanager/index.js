@@ -1,13 +1,15 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
+import { Connect } from 'uport-connect'
+import { connect } from 'react-redux'
 
-import SEO from '../../components/SEO/SEO'
 import SiteHeader from '../../components/Layout/Header'
 import config from '../../../data/SiteConfig'
 import appMgrBg from '../../images/appmgr-bg.svg'
+import uportLogo from '../../images/Horizontal-Logo-purple.svg'
 
-const QRCode = require('qrcode.react')
 const BodyContainer = styled.div`
   padding: 0;
   overflow: hidden;
@@ -55,6 +57,33 @@ const BodyContainer = styled.div`
 `
 
 class AppManagerPage extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      uri: {},
+      profile: {},
+      showImage: false,
+      showResult: false,
+      showExample: false,
+      showProfile: false
+    }
+    this.loginRequest = this.loginRequest.bind(this)
+  }
+  loginRequest (e) {
+    e.preventDefault()
+    const history = this.props.history
+    try {
+      const uPortConnect = new Connect('AppManager')
+      uPortConnect.requestDisclosure({requested: ['name'], notifications: true})
+      uPortConnect.onResponse('disclosureReq').then(payload => {
+        this.setState({showImage: false, showResult: true, profile: {name: payload.res.name, did: payload.res.did}})
+        this.props.saveProfile(this.state.profile)
+        history.push('/appmanager/getstarted')
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
   render () {
     const postEdges = this.props.data.allMarkdownRemark.edges
     return (
@@ -74,7 +103,7 @@ class AppManagerPage extends React.Component {
                   <h1 className='title'>Decentralized Identity for Decentralized Applications</h1>
                   <p>Seamless login. Ethereum transaction signing. User credential issuance and consumption.</p>
                   <div className={`appmgr-button`}>
-                    <a href='/appmanager'>
+                    <a href='#' onClick={(e) => { this.loginRequest(e) }}>
                       Login with uPort
                     </a>
                   </div>
@@ -138,4 +167,18 @@ query AppManagerQuery {
 const IndexHeadContainer = styled.div`
   background: ${props => props.theme.brand};
 `
-export default AppManagerPage
+
+AppManagerPage.propTypes = {
+  profile: PropTypes.object.isRequired,
+  saveProfile: PropTypes.func.isRequired
+}
+
+const mapStateToProps = ({ profile }) => {
+  return { profile }
+}
+
+const mapDispatchToProps = dispatch => {
+  return { saveProfile: (profile) => dispatch({ type: `SAVE_PROFILE`, profile: profile }) }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppManagerPage)
