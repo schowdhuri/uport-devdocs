@@ -27,8 +27,8 @@
     "rehype-react": "^3.0.3",
     "styled-components": "^3.4.2",
     "sugarss": "^1.0.1",
-    "uport": "^0.6.3",
-    "uport-connect": "^0.7.5",
+    "uport": "next",
+    "uport-connect": "next",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
