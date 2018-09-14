@@ -1,12 +1,12 @@
 ---
-title: "Overview"
+title: "About"
 index: 0
 category: "overview"
-type: "overview"
+type: "content"
 source: "https://github.com/uport-project/uport-project.github.io/blob/develop/markdown/docs/overview/overview.md"
 ---
 
-## What is uPort?
+## Helping you build User Centric Apps on Blockchains
 
 uPort is a collection of tools and protocols for building **decentralized user-centric applications**. It is built on **open standards** and open source libraries enabling you to build User Centric Apps on Blockchains.
 
@@ -15,12 +15,14 @@ uPort is a collection of tools and protocols for building **decentralized user-c
 Typically, on boarding new users to dApps is a challenging process. Before they sign up to your app they must first:
 
 - Download a wallet
-- Understand what a seed is and back it up
+- Understand what a seed is and store it somewhere safe
 - Buy Ethereum on an exchange
 - Understand numerous new concepts
 - Now finally remember to come back to your dApp to sign up
 
 Developing Decentralized Apps is already difficult. Convincing users to try your dApp, create a transaction, and return again and again is even harder.  As a developer you want Users that are active and come back to your Application.  To be successful developers need to build a long-term relationship with them and their data.
+
+##### As a developer you want Users that are active and come back to your App.
 
  uPort enables developers to on board their users in a simple and frictionless manner, allowing users to take control over their identities and Ethereum transactions.  Most Ethereum development libraries don&#39;t have the concept of a user.
 
@@ -30,7 +32,9 @@ As a developer, you can implement uPort to help users build their sovereign iden
 
 Users are represented as Ethereum addresses but behind those addresses are actual people with interactions and reputation that forms a digital identity when considered together.
 
-A individual's digital Identity is dynamic and constantly changing because they interact with many apps, services, and institutions everyday.  An identity is not just based on what others say about them, but also on the things they do. Their interactions with other people, businesses, and blockchains all form part of who they are and how they choose to represent themselves for future interactions.
+A individual's digital Identity is dynamic and constantly changing because they interact with many apps, services, and institutions everyday.
+
+An identity is not just based on what others say about them, but also on the things they do. Their interactions with other people, businesses, and blockchains all form part of who they are and how they choose to represent themselves for future interactions.
 
 Developers can interact with this data by asking for consent and requesting identity datum.
 
@@ -48,7 +52,7 @@ Users want a reason to use your app, not just once but also to come back and fee
 
 Having a user sign in builds a connection between them and you, where being able to show their previous activity helps build trust that encourages them to continue interacting with it.
 
-### Asking for consent from a user
+### Asking the user to do something
 
 The core concept of uPort is asking for data about individuals or for them to do something, such as:
 
@@ -60,7 +64,7 @@ The core concept of uPort is asking for data about individuals or for them to do
 
 This whole process is performed by the private exchange of signed messages. As a developer, you sign and encrypt requests for a user and they in turn sign and encrypt responses to you.
 
-### Reasons for requesting for Identity Data
+### Reasons for asking for Identity Data
 
 For developers and businesses in the traditional world there are three major reasons to ask for identity data:
 
@@ -135,39 +139,3 @@ Sometimes you still need a few centralized components for your App. In particula
 For these kinds of applications, use uPort Credentials to sign and verify requests from your users. Communication from your server backend is abstracted through the uPort Transports library.
 
 uPort is built using open standards and simple libraries built on them. We use a layered approach and build as much as possible on existing standards and tools.
-
-## Glossary
-
-| Term                                                                                  | Definition                                                                                                                                                                                                |
-| ---                                                                                   | ---                                                                                                                                                                                                       |
-| Attestation                                                                           | These are synonymous with Credentials.  In uPort attestations are cryptographically signed claims.                                                         |
-| Application Identity                                                                  | Just like a user has a uPort identity, applications and dApps that interact with uPort users need their own identity                                                                                      |
-| Claim                                                                                 |  A claim is a record of an attestation that has been verified.                                                                                                                                            |
-| Credentials                                                                           | Credentials are pieces of information about a uPort user that may be requested and/or verified by applications.  They are, in their essence, signed claims that are stored with the uPort user's profile. |
-| dAPP                                                                                  | Distributed Application, generally one that relies on serverless architectures.                                                                                                                           |
-| DID                                                                                   | Decentralized Identifier used to retrieve a DID document as defined by the [W3C Community Group](https://w3c-ccg.github.io/did-spec/)                                                                     |
-| DID Document                                                                          | A DID document contains public keys and other information about the DID that is used to verify interactions with a DID.  To see one implementation of how uPort resolves a DID document, see our [Ethr-DID-Resolver](https://github.com/uport-project/ethr-did-resolver ) library.  Other types of DID resolvers offered by uPort: [uPort-DID-Resolver](https://github.com/uport-project/uport-did-resolver),  [muPort-DID-Resolver](https://github.com/uport-project/muport-did-resolver), [Secp256k1-DID-Resolver](https://github.com/uport-project/secp256k1-did-resolver)                |
-| [DID-Resolver](https://github.com/uport-project/did-resolver)                         | A library that provides a simple interface to resolve DID documents from a decentralized identifier.                                                                                                      |
-| [Ethereum-Claims-Registry](https://github.com/uport-project/ethereum-claims-registry) | A smart contract that manages the storage of claims (attestations) made by identities and other smart contracts on the ethereum blockchain.                                                                |
-| [Ethr-DID](https://github.com/uport-project/ethr-did)                                 | The EthrDid library allows you to create Decentralized Identifiers and manage their interactions in your own app.                                                                                                                                                                                                          |                                                                                                                                                                                |
-| [Ethr-DID-Registry]( https://github.com/uport-project/ethr-did-registry )      | A smart contract that enables the resolution and management of decentralized identifiers (DIDs)                                                                                    |
-| [Ethr-DID-Resolver](https://github.com/uport-project/ethr-did-resolver )      | A library that takes an ethereum address as a decentralized identifier and wraps it in a DID document and also supports key management                                                                                                                                                      |
-| Identity                 | An identity in uPort is really just someone or something that can sign data or transactions and also receive signed data about itself.  Essentially it is an address on a decentralized network, controlled by a private signing key |
-| Issuer                   | A reference to the identity of an application or user that issued a signed JWT                                                                                                                                                       |
-| muPort(Simple ID)        | A way without a Proxy contract to create, update, and recover uPort identities in addition to encryption and decryption of data related to the identity                                                                                                                                                              |
-| [muPort-DID-Resolver](https://github.com/uport-project/muport-did-resolver)    | A DID resolver for muPort/SimpleID resolution with support for creating identities.                                                                                              |
-| PKI                      | Public Key Infrastructure.  uPort implements a simple PKI to verify off-chain messages                                                                                                                                               |
-| Public Key               |  Used to verify privately signed data                                                                                                                                                                                                |
-| Private Key              |  Used to sign data and transactions                                                                                                                                                                                                  |
-| Recovery Seed            |  A 12-word pass phrase used to retrieve the private keys of an Identity                                                                                                                                                              |
-| [Secp256k1-DID-Resolver](https://github.com/uport-project/secp256k1-did-resolver) | A DID resolver that uses secp256k1 public keys as decentralized identifiers, as oppose to an ethereum address.                                                                                     |
-| Selective Disclosure     | The user selective discloses information about themselves based on a signed request.                                                                                                                           |
-| Segregated Account       | An ethereum account specifically used for interactions between your app and your user. It is called *segregated* because for privacy reasons it segregates the transactions to a single app, making it harder to correlate who the user is for external parties.                                                                                     |
-| Signing                  | The act of using a private key to sign data and transactions.                                                                                                                                                                        |
-| Signing Key              | Also referred to as a Private key                                                                                                                                                                                                    |
-| Testnet                  | Ethereum test networks used by developers for testing out their applications. uPort supports both the [Rinkeby](https://www.rinkeby.io/#stats) and [Kovan](https://kovan-testnet.github.io/website/) test networks.                                                                                                                                                                                    |
-| [uPort-DID-Driver](https://github.com/uport-project/uport-did-drive)       | A driver implemented as a docker image that wraps all uPort resolvers for use in the Decentralized Identity Foundation's [Universal Resolver](https://github.com/decentralized-identity/universal-resolver)                                        |
-| [uPort-DID-Resolver](https://github.com/uport-project/uport-did-resolver)     | A library that facilitates the resolution of legacy uPort DID documents                                                                                                           |
-| web3                     | Can be a reference to distributed application architectures, but also [web3.js](https://github.com/ethereum/web3.js/)                                                                                                                                                         |
-| Verified Claim           | A cryptographically signed claim by one party about another party.  Synonymous with Credentials.                                                                                                                                     |
-|                          |                                                                                                                                                                                                                                      |
