@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import SEO from '../components/SEO/SEO'
 import SiteHeader from '../components/Layout/Header'
 import SiteFooter from '../components/Layout/Footer'
-import Demo from '../components/Demo'
 import BuildingBlocks from '../components/BuildingBlocks'
 import config from '../../data/SiteConfig'
 /* import downloadUport from '../images/download-uport.svg'
@@ -78,7 +77,6 @@ class Index extends React.Component {
             </Hero>
           </IndexHeadContainer>
           <BodyContainer className={`body-container`}>
-            <Demo />
             <BuildingBlocks />
           </BodyContainer>
           <FooterContainer>
