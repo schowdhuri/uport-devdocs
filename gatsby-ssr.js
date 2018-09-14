@@ -1,15 +1,24 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { renderToString } from 'react-dom/server'
+import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
+import configureStore from './src/state/configureStore'
 
-import createStore from './src/state/createStore'
+exports.replaceRenderer = ({
+  bodyComponent,
+  replaceBodyHTMLString,
+  setHeadComponents
+}) => {
+  const sheet = new ServerStyleSheet()
+  const store = configureStore().store
 
-export const replaceRenderer = ({ bodyComponent, replaceBodyHTMLString }) => {
-  const store = createStore()
-  const ConnectedBody = () => (
+  const app = () => (
     <Provider store={store}>
-      {bodyComponent}
+      <StyleSheetManager sheet={sheet.instance}>
+        {bodyComponent}
+      </StyleSheetManager>
     </Provider>
   )
-  replaceBodyHTMLString(renderToString(<ConnectedBody />))
+  replaceBodyHTMLString(renderToString(<app />))
+  setHeadComponents([sheet.getStyleElement()])
 }
