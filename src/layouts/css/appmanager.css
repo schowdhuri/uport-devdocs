@@ -160,7 +160,8 @@ p {
   margin-top: 0;
 }
 .sidebar {
-  max-width: 30%;
+  width: 30%;
+  max-width: 280px;
   padding: 60px !important;
 }
 .sidebar h4 {

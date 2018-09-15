@@ -40,7 +40,7 @@ class AppManagerPage extends React.Component {
       const uPortConnect = new Connect('AppManager')
       uPortConnect.requestDisclosure({requested: ['name'], notifications: true})
       uPortConnect.onResponse('disclosureReq').then(payload => {
-        this.setState({showImage: false, showResult: true, profile: {name: payload.res.name, did: payload.res.did}})
+        this.setState({showImage: false, showResult: true, profile: {name: payload.name, did: payload.did}})
         this.props.saveProfile(this.state.profile)
         history.push('/appmanager/getstarted')
       })
