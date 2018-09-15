@@ -128,7 +128,7 @@ class Navigation extends React.Component {
       <NavContainer>
         <section id='topNav'>
           {this.navListItems()}
-          <a href='https://appmanager.uport.me' className={`nav-link w-nav-link`} target='_blank'> App Manager </a>
+          <a href='/appmanager' className={`nav-link w-nav-link`}> App Manager </a>
           <a href='https://chat.uport.me' className={`nav-link w-nav-link`} target='_blank'> Help </a>
           <a href='https://medium.com/uport' className={`nav-link w-nav-link`} target='_blank'> Blog </a>
         </section>

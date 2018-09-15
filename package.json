@@ -12,7 +12,6 @@
     "npm": "^6.3.0",
     "postcss-less": "^2.0.0",
     "prism-themes": "^1.0.0",
-    "qrcode.react": "^0.8.0",
     "react": "^15.6.1",
     "react-autolink-text2": "^3.2.0",
     "react-burger-menu": "^2.5.2",

@@ -25,11 +25,12 @@ class AppManagerStartBuildingPage extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      appName: '',
-      network: 'mainnet',
-      accountType: 'keypair',
-      selectedNetworkObj: networkOptions[0]
-
+      appName: this.props.currentApp.appName || '',
+      network: this.props.currentApp.network || 'mainnet',
+      accountType: this.props.currentApp.accountType || 'keypair',
+      selectedNetworkObj: networkOptions.filter(obj => { return obj.value === this.props.currentApp.network }) || networkOptions[0],
+      appNameValid: false,
+      formSubmitted: false
     }
     this.handleAppNameChange = this.handleAppNameChange.bind(this)
     this.handleNetworkChange = this.handleNetworkChange.bind(this)
@@ -76,24 +77,14 @@ class AppManagerStartBuildingPage extends React.Component {
                 <div className='Grid-cell sidebar'>
                   <h4>Register an app</h4>
                   <ul>
-                    <li className='active'><a href='/'>App Details</a></li>
-                    <li><a href='/'>Sample Code</a></li>
+                    <li className='active'><a href='#'>App Details</a></li>
+                    <li><a>Sample Code</a></li>
                   </ul>
                 </div>
                 <div className='Grid-cell'>
                   <h1>App Details</h1>
                   <label htmlFor='appName'>App Name</label>
                   <input type='text' id='appName' placeholder='Give your app a name' value={this.state.appName} onChange={(e) => { this.handleAppNameChange(e) }} />
-                  <label htmlFor='network'>Select a network</label>
-                  <Select
-                    className='networkDropdown'
-                    classNamePrefix='networkDropdown'
-                    value={selectedNetwork}
-                    onChange={this.handleNetworkChange}
-                    options={networkOptions}
-                    isSearchable={false}
-                    blurInputOnSelect
-                  />
                   <label htmlFor='appName'>Select an account type</label>
                   <span className='note'><strong>Note: </strong>This option can be changed in the future</span>
                   <div className='radioContainer'>
@@ -116,6 +107,17 @@ class AppManagerStartBuildingPage extends React.Component {
                     <span className='note'><strong>Funding: </strong>N/A</span>
                     <span className='note'><strong>Network: </strong>N/A</span>
                   </div>
+                  <label htmlFor='network'>Select a network</label>
+                  <Select
+                    className='networkDropdown'
+                    classNamePrefix='networkDropdown'
+                    value={selectedNetwork}
+                    onChange={this.handleNetworkChange}
+                    options={networkOptions}
+                    isSearchable={false}
+                    blurInputOnSelect
+                    isDisabled={this.state.accountType === 'none'}
+                  />
                 </div>
               </div>
               <footer>
@@ -181,8 +183,8 @@ AppManagerStartBuildingPage.propTypes = {
   saveApp: PropTypes.func.isRequired
 }
 
-const mapStateToProps = ({ profile }) => {
-  return { profile }
+const mapStateToProps = ({ profile, currentApp }) => {
+  return { profile, currentApp }
 }
 
 const mapDispatchToProps = dispatch => {
