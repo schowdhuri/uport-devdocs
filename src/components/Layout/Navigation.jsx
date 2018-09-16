@@ -119,7 +119,6 @@ class Navigation extends React.Component {
         })
       }
     })
-    console.log(navItems)
     return navItems
   }
 
