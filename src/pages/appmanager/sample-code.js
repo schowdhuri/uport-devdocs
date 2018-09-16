@@ -12,58 +12,19 @@ const BodyContainer = styled.div`
 background-color: #f9f9fa;
 height: 100%;
 min-height: 100vh;
-.sampleInstructions {
-  width: 80%;
-  max-width: 720px;
-}
-.sampleInstructions ul {
-  counter-reset: stepNumber;
-  padding-left: 0;
-}
-.sampleInstructions ul li {
-  position: relative;
-  list-style-type: none;
-  padding-left: 40px;
-  margin-bottom: 40px;
-}
-.sampleInstructions ul li:before {
-  counter-increment: stepNumber;
-  content: counter(stepNumber);
-  position: absolute;
-  background-color: #6958cd;
-  color: #fff;
-  font-weight: 700;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  text-align: center;
-  padding-top: 4px;
-  left: 0;
-}
-.sampleInstructions h3 {
-  font-weight: 200;
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-.sampleCode {
-  background-color: #f4f4f7;
-  border-radius: 3px;
-  padding: 20px;
-  font-family: Courier;
-  color: #8380fc;
-}
-.sampleCode span {
-  display: block;
-  white-space: nowrap;
-}
 `
 
 class AppManagerSampleCodePage extends React.Component {
+  componentDidMount () {
+    if (Object.keys(this.props.profile).length === 0) {
+      const history = this.props.history
+      history.push('/appmanager/')
+    }
+  }
   render () {
-    console.log(this.props.currentApp)
     const postEdges = this.props.data.allMarkdownRemark.edges
     return (
-      <div className='index-container'>
+      <div className='index-container appmgr'>
         <Helmet title={config.siteTitle} />
         <main>
           <AppManagerHeadContainer>
@@ -97,7 +58,10 @@ class AppManagerSampleCodePage extends React.Component {
                         <h3>Initialize uPort Connect</h3>
                         <div className='sampleCode'>
                           <span>import Connect from 'uport-connect'</span>
-                          <span>const uport = new Connect('{this.props.currentApp.appName}', {'{'}network: '{this.props.currentApp.network}'{'}'})</span>
+                          {this.props.currentApp.configuration.accountType === 'none'
+                            ? <span>const uport = new Connect('{this.props.currentApp.name}')</span>
+                            : <span>const uport = new Connect('{this.props.currentApp.name}', {'{'}network: '{this.props.currentApp.configuration.network}'{'}'})</span>
+                          }
                         </div>
                       </li>
                       <li>
@@ -105,7 +69,7 @@ class AppManagerSampleCodePage extends React.Component {
                         <div className='sampleCode'>
                         <pre><code style={{backgroundColor: '#f4f4f7'}} className={`language-javascript`}>
                         {`uport.requestDisclosure({
-  requested: ['name', 'country'],
+  requested: ['name','country'],
   notifications: true
 })
 uport.onResponse('disclosureReq').then(payload => {
@@ -177,11 +141,12 @@ query AppManagerSnippetQuery {
 `
 
 AppManagerSampleCodePage.propTypes = {
-  currentApp: PropTypes.object.isRequired
+  currentApp: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
 }
 
-const mapStateToProps = ({ currentApp }) => {
-  return { currentApp }
+const mapStateToProps = ({ profile, currentApp }) => {
+  return { profile, currentApp }
 }
 
 export default connect(mapStateToProps)(AppManagerSampleCodePage)

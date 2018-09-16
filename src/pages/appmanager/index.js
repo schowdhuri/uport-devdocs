@@ -25,7 +25,7 @@ class AppManagerPage extends React.Component {
     super(props)
     this.state = {
       uri: {},
-      profile: {},
+      profile: this.props.profile || {},
       showImage: false,
       showResult: false,
       showExample: false,
@@ -33,16 +33,31 @@ class AppManagerPage extends React.Component {
     }
     this.loginRequest = this.loginRequest.bind(this)
   }
+  componentDidMount () {
+    if (this.state.profile) {
+      if (this.state.profile.uportApps) {
+        this.props.history.push('/appmanager/myapps')
+      } else if (this.state.profile.did) {
+        this.props.history.push('/appmanager/getstarted')
+      } else {
+        return
+      }
+    }
+  }
   loginRequest (e) {
     e.preventDefault()
     const history = this.props.history
     try {
       const uPortConnect = new Connect('AppManager')
-      uPortConnect.requestDisclosure({requested: ['name'], notifications: true})
-      uPortConnect.onResponse('disclosureReq').then(payload => {
-        this.setState({showImage: false, showResult: true, profile: {name: payload.name, did: payload.did}})
+      uPortConnect.requestDisclosure({requested: ['name'], verified: ['uport-apps'], notifications: true})
+      uPortConnect.onResponse('disclosureReq').then(response => {
+        this.setState({showImage: false, showResult: true, profile: {name: response.payload.name, did: response.payload.did, uportApps: response.payload['uport-apps']}})
         this.props.saveProfile(this.state.profile)
-        history.push('/appmanager/getstarted')
+        if (this.state.profile.uportApps) {
+          history.push('/appmanager/myapps')
+        } else {
+          history.push('/appmanager/getstarted')
+        }
       })
     } catch (e) {
       console.log(e)

@@ -3,11 +3,12 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Select from 'react-select';
-import SEO from '../../components/SEO/SEO'
+import Select from 'react-select'
 import SiteHeader from '../../components/Layout/Header'
 import config from '../../../data/SiteConfig'
+import errorIcon from '../../images/error-icon.svg'
 import '../../layouts/css/appmanager.css'
+import { Connect } from 'uport-connect'
 
 const BodyContainer = styled.div`
 background-color: #f9f9fa;
@@ -24,11 +25,12 @@ const networkOptions = [
 class AppManagerStartBuildingPage extends React.Component {
   constructor (props) {
     super(props)
+    console.log(this.props.currentApp)
     this.state = {
-      appName: this.props.currentApp.appName || '',
-      network: this.props.currentApp.network || 'mainnet',
-      accountType: this.props.currentApp.accountType || 'keypair',
-      selectedNetworkObj: networkOptions.filter(obj => { return obj.value === this.props.currentApp.network }) || networkOptions[0],
+      appName: this.props.currentApp.name || '',
+      network: this.props.currentApp.configuration.network || 'mainnet',
+      accountType: this.props.currentApp.configuration.accountType || 'keypair',
+      selectedNetworkObj: networkOptions.filter(obj => { return obj.value === this.props.currentApp.configuration.network }) || networkOptions[0],
       appNameValid: false,
       formSubmitted: false
     }
@@ -38,10 +40,10 @@ class AppManagerStartBuildingPage extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   componentWillMount () {
-    document.addEventListener('mousedown', this.handleOutsideClick, false)
-  }
-  componentWillUnMount () {
-    document.removeEventListener('mousedown', this.handleOutsideClick, false)
+    if (Object.keys(this.props.profile).length === 0) {
+      const history = this.props.history
+      history.push('/appmanager/')
+    }
   }
   handleAppNameChange (e) {
     this.setState({appName: e.target.value})
@@ -50,19 +52,57 @@ class AppManagerStartBuildingPage extends React.Component {
     this.setState({ network: selectedOption.value, selectedNetworkObj: selectedOption })
   }
   handleAccountTypeChange (e) {
-    this.setState({accountType: e.target.value})
+    e.target.value === 'none'
+      ? this.setState({accountType: e.target.value, network: ''})
+      : this.setState({accountType: e.target.value})
   }
   handleSubmit (e) {
     e.preventDefault()
-    const history = this.props.history
-    this.props.saveApp({appName: this.state.appName, network: this.state.network, accountType: this.state.accountType})
-    history.push('/appmanager/sample-code')
+    this.setState({formSubmitted: true})
+    this.state.appName === ''
+    ? this.setState({appNameValid: false})
+    : this.setState({appNameValid: true}, () => {
+      if (this.state.appNameValid) {
+      // Check for existing apps
+        let claim = {}
+        if (this.props.profile.uportApps) {
+          let uportApps = this.props.profile.uportApps
+          uportApps.push({name: this.state.appName,
+            configuration: {
+              network: this.state.network,
+              accountType: this.state.accountType
+            }
+          })
+          claim = {'uport-apps': uportApps}
+        } else {
+          claim = {'uport-apps': [{
+            name: this.state.appName,
+            configuration: {
+              network: this.state.network,
+              accountType: this.state.accountType
+            }
+          }]}
+        }
+        try {
+          // TODO put this in a global
+          const uPortConnect = new Connect('AppManager')
+          // debugger
+          uPortConnect.sendVerification({sub: this.props.profile.did, claim: claim}, 'ADD-APP')
+          uPortConnect.onResponse('ADD-APP').then(payload => {
+            this.props.history.push('/appmanager/sample-code')
+          })
+        } catch (e) {
+          console.log(e)
+        }
+        this.props.setCurrentApp({name: this.state.appName, configuration: {network: this.state.network, accountType: this.state.accountType}})
+      }
+    })
   }
   render () {
     const postEdges = this.props.data.allMarkdownRemark.edges
     let selectedNetwork = this.state.selectedNetworkObj
     return (
-      <div className='index-container'>
+      <div className='index-container appmgr'>
         <Helmet title={config.siteTitle} />
         <main>
           <AppManagerHeadContainer>
@@ -84,7 +124,15 @@ class AppManagerStartBuildingPage extends React.Component {
                 <div className='Grid-cell'>
                   <h1>App Details</h1>
                   <label htmlFor='appName'>App Name</label>
-                  <input type='text' id='appName' placeholder='Give your app a name' value={this.state.appName} onChange={(e) => { this.handleAppNameChange(e) }} />
+                  <div className={(!this.state.appNameValid && this.state.formSubmitted) ? 'fieldError' : ''}>
+                    <input type='text' id='appName' placeholder='Give your app a name' value={this.state.appName} onChange={(e) => { this.handleAppNameChange(e) }} />
+                    {(!this.state.appNameValid && this.state.formSubmitted) && 
+                      <span className='error'>
+                        <img src={errorIcon} />
+                        AppName is required
+                      </span>
+                    }
+                  </div>
                   <label htmlFor='appName'>Select an account type</label>
                   <span className='note'><strong>Note: </strong>This option can be changed in the future</span>
                   <div className='radioContainer'>
@@ -180,7 +228,7 @@ query AppManagerStartBuildingQuery {
 
 AppManagerStartBuildingPage.propTypes = {
   profile: PropTypes.object.isRequired,
-  saveApp: PropTypes.func.isRequired
+  setCurrentApp: PropTypes.func.isRequired
 }
 
 const mapStateToProps = ({ profile, currentApp }) => {
@@ -188,7 +236,7 @@ const mapStateToProps = ({ profile, currentApp }) => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return { saveApp: (app) => dispatch({ type: `SAVE_APP`, app: app }) }
+  return { setCurrentApp: (app) => dispatch({ type: `SET_CURRENT_APP`, app: app }) }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppManagerStartBuildingPage)

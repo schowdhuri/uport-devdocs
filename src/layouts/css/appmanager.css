@@ -1,4 +1,7 @@
 /* index */
+.brand {
+  margin-left: 40px;
+}
 .title {
   font-family: "Nunito Sans";
   font-size: 42px;
@@ -335,4 +338,129 @@ button.continue {
   padding: 10px 20px;
   text-decoration: none;
   float: right;
+}
+
+
+/* myapps.js */
+.myapps {
+  width: 80%;
+  margin: 0 auto;
+  max-width: 800px;
+}
+.myapps h1 {
+  font-size: 36px;
+  color: #000;
+}
+.appList ul {
+  padding-left: 0;
+  margin-top: 40px;
+}
+.appItem {
+  width: 26.65%;
+  min-width: 220px;
+  height: 220px;
+  list-style-type: none;
+  float: left;
+  box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
+  text-align: center;
+  margin-right: 8%;
+  margin-bottom: 40px;
+  position: relative;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.appItem .avatar {
+  position: absolute;
+  background-image: url(${appMgrBg});
+  top: 15%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  left: 26%;
+  background-size: 350px;
+  background-position: 6% 38%;
+}
+.appItem:nth-child(3n) {
+  margin-right: 0;
+}
+.appCover {
+  width: 100%;
+  height: 40%;
+  background-color: #5c54c7;
+  margin-bottom: 60px;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.appItem h3 {
+  font-size: 18px;
+  margin-bottom: -2px;
+}
+.appItem span {
+  color: #89879f;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+.register-button {
+  float: right;
+  margin-top: 40px;
+  position: relative;
+  font-size: 18px;
+  padding: 14px 14px 14px 54px;
+}
+.register-button span {
+  width: 32px;
+  height: 32px;
+  top: 8px;
+}
+.register-button span strong {
+  color: #fff;
+  text-align: center;
+  font-size: 38px;
+  line-height: 32px;
+}
+
+/* sample-code.js */
+.sampleInstructions {
+  width: 80%;
+  max-width: 720px;
+}
+.sampleInstructions ul {
+  counter-reset: stepNumber;
+  padding-left: 0;
+}
+.sampleInstructions ul li {
+  position: relative;
+  list-style-type: none;
+  padding-left: 40px;
+  margin-bottom: 40px;
+}
+.sampleInstructions ul li:before {
+  counter-increment: stepNumber;
+  content: counter(stepNumber);
+  position: absolute;
+  background-color: #6958cd;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  padding-top: 4px;
+  left: 0;
+}
+.sampleInstructions h3 {
+  font-weight: 200;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.sampleCode {
+  background-color: #f4f4f7;
+  border-radius: 3px;
+  padding: 20px;
+  font-family: Courier;
+  color: #8380fc;
+}
+.sampleCode span {
+  display: block;
+  white-space: nowrap;
 }
