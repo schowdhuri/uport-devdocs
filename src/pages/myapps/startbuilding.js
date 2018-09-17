@@ -22,7 +22,7 @@ const networkOptions = [
   { value: 'ropsten', label: 'Ropsten' }
 ]
 
-class AppManagerStartBuildingPage extends React.Component {
+class MyAppsStartBuildingPage extends React.Component {
   constructor (props) {
     super(props)
     console.log(this.props.currentApp)
@@ -42,7 +42,7 @@ class AppManagerStartBuildingPage extends React.Component {
   componentWillMount () {
     if (Object.keys(this.props.profile).length === 0) {
       const history = this.props.history
-      history.push('/appmanager/')
+      history.push('/myapps/')
     }
   }
   handleAppNameChange (e) {
@@ -85,11 +85,11 @@ class AppManagerStartBuildingPage extends React.Component {
         }
         try {
           // TODO put this in a global
-          const uPortConnect = new Connect('AppManager')
+          const uPortConnect = new Connect('MyApps')
           // debugger
           uPortConnect.sendVerification({sub: this.props.profile.did, claim: claim}, 'ADD-APP')
           uPortConnect.onResponse('ADD-APP').then(payload => {
-            this.props.history.push('/appmanager/sample-code')
+            this.props.history.push('/myapps/sample-code')
           })
         } catch (e) {
           console.log(e)
@@ -99,18 +99,17 @@ class AppManagerStartBuildingPage extends React.Component {
     })
   }
   render () {
-    const postEdges = this.props.data.allMarkdownRemark.edges
     let selectedNetwork = this.state.selectedNetworkObj
     return (
       <div className='index-container appmgr'>
         <Helmet title={config.siteTitle} />
         <main>
-          <AppManagerHeadContainer>
+          <MyAppsHeadContainer>
             <SiteHeader
               activeCategory={''}
               location={this.props.location}
               categories={this.props.data.navCategories} />
-          </AppManagerHeadContainer>
+          </MyAppsHeadContainer>
           <BodyContainer className='appMgrBody'>
             <form onSubmit={(e) => { this.handleSubmit(e) }}>
               <div className={'Grid Grid--gutters'}>
@@ -180,7 +179,7 @@ class AppManagerStartBuildingPage extends React.Component {
   }
 }
 
-const AppManagerHeadContainer = styled.div`
+const MyAppsHeadContainer = styled.div`
   background: ${props => props.theme.brand}
 `
 
@@ -226,7 +225,7 @@ query AppManagerStartBuildingQuery {
   }
 `
 
-AppManagerStartBuildingPage.propTypes = {
+MyAppsStartBuildingPage.propTypes = {
   profile: PropTypes.object.isRequired,
   setCurrentApp: PropTypes.func.isRequired
 }
@@ -239,4 +238,4 @@ const mapDispatchToProps = dispatch => {
   return { setCurrentApp: (app) => dispatch({ type: `SET_CURRENT_APP`, app: app }) }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppManagerStartBuildingPage)
+export default connect(mapStateToProps, mapDispatchToProps)(MyAppsStartBuildingPage)
