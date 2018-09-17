@@ -17,7 +17,7 @@ class MyAppsSampleCodePage extends React.Component {
   componentDidMount () {
     if (Object.keys(this.props.profile).length === 0) {
       const history = this.props.history
-      history.push('/appmanager/')
+      history.push('/myapps/')
     }
   }
   render () {
@@ -26,12 +26,12 @@ class MyAppsSampleCodePage extends React.Component {
       <div className='index-container myapps'>
         <Helmet title={config.siteTitle} />
         <main>
-          <AppManagerHeadContainer>
+          <MyAppsHeadContainer>
             <SiteHeader
               activeCategory={''}
               location={this.props.location}
               categories={this.props.data.navCategories} />
-          </AppManagerHeadContainer>
+          </MyAppsHeadContainer>
           <BodyContainer className='appMgrBody'>
 
             <div className={'Grid Grid--gutters'}>
@@ -56,7 +56,7 @@ class MyAppsSampleCodePage extends React.Component {
                       <li>
                         <h3>Initialize uPort Connect</h3>
                         <div className='sampleCode'>
-                          <span>import Connect from 'uport-connect'</span>
+                          <span>import {'{'} Connect {'}'} from 'uport-connect'</span>
                           {this.props.currentApp.configuration.accountType === 'none'
                             ? <span>const uport = new Connect('{this.props.currentApp.name}')</span>
                             : <span>const uport = new Connect('{this.props.currentApp.name}', {'{'}network: '{this.props.currentApp.configuration.network}'{'}'})</span>
@@ -72,7 +72,7 @@ class MyAppsSampleCodePage extends React.Component {
   notifications: true
 })
 uport.onResponse('disclosureReq').then(payload => {
-  const address = payload.res.address
+  const address = payload.address
 })
                         `}
                         </code></pre>
@@ -93,7 +93,7 @@ uport.onResponse('disclosureReq').then(payload => {
   }
 }
 
-const AppManagerHeadContainer = styled.div`
+const MyAppsHeadContainer = styled.div`
   background: ${props => props.theme.brand}
 `
 
