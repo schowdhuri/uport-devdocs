@@ -7,7 +7,7 @@ import Select from 'react-select'
 import SiteHeader from '../../components/Layout/Header'
 import config from '../../../data/SiteConfig'
 import errorIcon from '../../images/error-icon.svg'
-import '../../layouts/css/appmanager.css'
+import '../../layouts/css/myapps.css'
 import { Connect } from 'uport-connect'
 
 const BodyContainer = styled.div`
