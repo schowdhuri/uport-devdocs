@@ -1,9 +1,9 @@
 [submodule "markdown/uport-js"]
-	branch = develop
+	branch = did
 	path = markdown/uport-js
 	url = git@github.com:uport-project/uport-js.git
 [submodule "markdown/uport-connect"]
-	branch = develop
+	branch = did-major
 	path = markdown/uport-connect
 	url = git@github.com:uport-project/uport-connect.git
 [submodule "markdown/specs"]
