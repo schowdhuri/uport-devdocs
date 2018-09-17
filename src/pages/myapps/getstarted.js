@@ -7,23 +7,22 @@ import SEO from '../../components/SEO/SEO'
 import SiteHeader from '../../components/Layout/Header'
 import config from '../../../data/SiteConfig'
 import startBuilding from '../../images/start-building.svg'
-import '../../layouts/css/appmanager.css'
+import '../../layouts/css/myapps.css'
 
 const BodyContainer = styled.div`
 padding: 60px;
 height: 100vh;
-background-color: #f9f9fa;
 img {
   max-width: 240px;
   margin-top: 30px;
 }
 `
 
-class AppManagerGetStartedPage extends React.Component {
+class MyAppsGetStartedPage extends React.Component {
   render () {
     const postEdges = this.props.data.allMarkdownRemark.edges
     return (
-      <div className='index-container'>
+      <div className='index-container myAppsWrap getStarted'>
         <Helmet title={config.siteTitle} />
         <main>
           <AppManagerHeadContainer>
@@ -32,7 +31,7 @@ class AppManagerGetStartedPage extends React.Component {
               location={this.props.location}
               categories={this.props.data.navCategories} />
           </AppManagerHeadContainer>
-          <BodyContainer className='appMgrBody'>
+          <BodyContainer className='myAppsBody'>
             <div className={'Grid Grid--gutters'}>
               <div className='Grid-cell startBuildingLeft'>
                 <img src={startBuilding} />
@@ -40,7 +39,7 @@ class AppManagerGetStartedPage extends React.Component {
               <div className='Grid-cell'>
                 <h1>Get started building.</h1>
                 <p>Register your first app in less than 5 minutes.</p>
-                <a href='/appmanager/startbuilding' className='register-button'>
+                <a href='/myapps/startbuilding' className='register-button'>
                   <span><strong>+</strong></span>
                   Register an App
                 </a>
@@ -103,7 +102,7 @@ const IndexHeadContainer = styled.div`
   background: ${props => props.theme.brand};
 `
 
-AppManagerGetStartedPage.propTypes = {
+MyAppsGetStartedPage.propTypes = {
   profile: PropTypes.object.isRequired
 }
 
@@ -111,4 +110,4 @@ const mapStateToProps = ({ profile }) => {
   return { profile }
 }
 
-export default connect(mapStateToProps)(AppManagerGetStartedPage)
+export default connect(mapStateToProps)(MyAppsGetStartedPage)

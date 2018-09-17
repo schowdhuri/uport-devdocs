@@ -1,4 +1,7 @@
 /* index */
+.myAppsWrap {
+  background-color: #f9f9fa;
+}
 .brand {
   margin-left: 40px;
 }
@@ -14,23 +17,23 @@
   color: #fff;
   text-decoration: none;
 }
-.appmgr-start-left-wrap {
+.myapps-start-left-wrap {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 25px !important;
 }
-p {
+.myapps-start-left-wrap p {
   color: #89879f;
   font-weight: 200;
   font-size: 28px;
   line-height: 32px;
   margin-bottom: 40px
 }
-.appmgr-button {
+.myapps-button {
   margin-top: 50px;
 }
-.appmgr-button a {
+.myapps-button a {
   background-color: #715ad1;
   border-radius: 3px;
   color: #fff;
@@ -120,7 +123,7 @@ h1 {
   max-width: 40%;
   text-align: center;
 }
-p {
+.myAppsWrap p {
   color: #89879f;
   font-weight: 200;
   font-size: 28px;
@@ -342,12 +345,12 @@ button.continue {
 
 
 /* myapps.js */
-.myapps {
+.myAppsBody {
   width: 80%;
   margin: 0 auto;
   max-width: 800px;
 }
-.myapps h1 {
+.myAppsBody h1 {
   font-size: 36px;
   color: #000;
 }
@@ -371,7 +374,7 @@ button.continue {
 }
 .appItem .avatar {
   position: absolute;
-  background-image: url(${appMgrBg});
+  background-image: url(../../images/myapps-bg.svg);
   top: 15%;
   width: 100px;
   height: 100px;

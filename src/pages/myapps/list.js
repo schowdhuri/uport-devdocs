@@ -3,11 +3,9 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import SEO from '../../components/SEO/SEO'
 import SiteHeader from '../../components/Layout/Header'
 import config from '../../../data/SiteConfig'
-import '../../layouts/css/appmanager.css'
-import appMgrBg from '../../images/appmgr-bg.svg'
+import '../../layouts/css/myapps.css'
 
 const BodyContainer = styled.div`
 background-color: #f9f9fa;
@@ -31,7 +29,7 @@ const AppList = (props) => {
   )
 }
 
-class AppManagerMyAppsPage extends React.Component {
+class MyAppsAppListPage extends React.Component {
   constructor (props) {
     super(props)
     this.handleAppItemClick = this.handleAppItemClick.bind(this)
@@ -39,18 +37,17 @@ class AppManagerMyAppsPage extends React.Component {
   componentDidMount () {
     this.props.clearCurrentApp()
     if (Object.keys(this.props.profile).length === 0) {
-      this.props.history.push('/appmanager/')
+      this.props.history.push('/myapps/')
     }
   }
   handleAppItemClick (event, index) {
     this.props.clearCurrentApp()
     this.props.setCurrentApp(this.props.profile.uportApps[index])
-    this.props.history.push('/appmanager/startbuilding')
+    this.props.history.push('/myapps/startbuilding')
   }
   render () {
-    const postEdges = this.props.data.allMarkdownRemark.edges
     return (
-      <div className='index-container appmgr'>
+      <div className='index-container myAppsWrap appListPage'>
         <Helmet title={config.siteTitle} />
         <main>
           <AppManagerHeadContainer>
@@ -59,10 +56,10 @@ class AppManagerMyAppsPage extends React.Component {
               location={this.props.location}
               categories={this.props.data.navCategories} />
           </AppManagerHeadContainer>
-          <BodyContainer className='appMgrBody'>
+          <BodyContainer className='myAppsBody'>
             <div className={'Grid Grid--gutters'}>
               <div className='Grid-cell myapps'>
-                <a href='/appmanager/startbuilding' className='register-button'>
+                <a href='/myapps/startbuilding' className='register-button'>
                   <span><strong>+</strong></span>
                   Register an App
                 </a>
@@ -125,7 +122,7 @@ query AppManagerMyAppsQuery {
   }
 `
 
-AppManagerMyAppsPage.propTypes = {
+MyAppsAppListPage.propTypes = {
   profile: PropTypes.object.isRequired,
   setCurrentApp: PropTypes.func.isRequired,
   clearCurrentApp: PropTypes.func.isRequired
@@ -142,4 +139,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppManagerMyAppsPage)
+export default connect(mapStateToProps, mapDispatchToProps)(MyAppsAppListPage)

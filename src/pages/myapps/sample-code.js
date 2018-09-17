@@ -3,10 +3,9 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import SEO from '../../components/SEO/SEO'
 import SiteHeader from '../../components/Layout/Header'
 import config from '../../../data/SiteConfig'
-import '../../layouts/css/appmanager.css'
+import '../../layouts/css/myapps.css'
 
 const BodyContainer = styled.div`
 background-color: #f9f9fa;
@@ -14,7 +13,7 @@ height: 100%;
 min-height: 100vh;
 `
 
-class AppManagerSampleCodePage extends React.Component {
+class MyAppsSampleCodePage extends React.Component {
   componentDidMount () {
     if (Object.keys(this.props.profile).length === 0) {
       const history = this.props.history
@@ -24,7 +23,7 @@ class AppManagerSampleCodePage extends React.Component {
   render () {
     const postEdges = this.props.data.allMarkdownRemark.edges
     return (
-      <div className='index-container appmgr'>
+      <div className='index-container myapps'>
         <Helmet title={config.siteTitle} />
         <main>
           <AppManagerHeadContainer>
@@ -140,7 +139,7 @@ query AppManagerSnippetQuery {
   }
 `
 
-AppManagerSampleCodePage.propTypes = {
+MyAppsSampleCodePage.propTypes = {
   currentApp: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
 }
@@ -149,4 +148,4 @@ const mapStateToProps = ({ profile, currentApp }) => {
   return { profile, currentApp }
 }
 
-export default connect(mapStateToProps)(AppManagerSampleCodePage)
+export default connect(mapStateToProps)(MyAppsSampleCodePage)

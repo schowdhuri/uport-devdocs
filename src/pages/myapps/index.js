@@ -7,20 +7,20 @@ import { connect } from 'react-redux'
 
 import SiteHeader from '../../components/Layout/Header'
 import config from '../../../data/SiteConfig'
-import appMgrBg from '../../images/appmgr-bg.svg'
+import myAppsBg from '../../images/myapps-bg.svg'
 import uportLogo from '../../images/Horizontal-Logo-purple.svg'
-import '../../layouts/css/appmanager.css'
+import '../../layouts/css/myapps.css'
 
 const BodyContainer = styled.div`
   padding: 0;
   overflow: hidden;
-  .appmgr-start-right {
+  .myapps-start-right {
     height: 100vh;
-    background-image: url(${appMgrBg})
+    background-image: url(${myAppsBg})
   }
 `
 
-class AppManagerPage extends React.Component {
+class MyAppsPage extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -36,9 +36,9 @@ class AppManagerPage extends React.Component {
   componentDidMount () {
     if (this.state.profile) {
       if (this.state.profile.uportApps) {
-        this.props.history.push('/appmanager/myapps')
+        this.props.history.push('/myapps/list')
       } else if (this.state.profile.did) {
-        this.props.history.push('/appmanager/getstarted')
+        this.props.history.push('/myapps/getstarted')
       } else {
         return
       }
@@ -48,15 +48,16 @@ class AppManagerPage extends React.Component {
     e.preventDefault()
     const history = this.props.history
     try {
-      const uPortConnect = new Connect('AppManager')
+      const uPortConnect = new Connect('MyApps')
       uPortConnect.requestDisclosure({requested: ['name'], verified: ['uport-apps'], notifications: true})
       uPortConnect.onResponse('disclosureReq').then(response => {
         this.setState({showImage: false, showResult: true, profile: {name: response.payload.name, did: response.payload.did, uportApps: response.payload['uport-apps']}})
         this.props.saveProfile(this.state.profile)
         if (this.state.profile.uportApps) {
-          history.push('/appmanager/myapps')
+          // history.push('/myapps/list')
+          history.push('/myapps/getstarted')
         } else {
-          history.push('/appmanager/getstarted')
+          history.push('/myapps/getstarted')
         }
       })
     } catch (e) {
@@ -64,31 +65,30 @@ class AppManagerPage extends React.Component {
     }
   }
   render () {
-    const postEdges = this.props.data.allMarkdownRemark.edges
     return (
       <div className='index-container'>
         <Helmet title={config.siteTitle} />
         <main>
-          <AppManagerHeadContainer>
+          <MyAppsHeadContainer>
             <SiteHeader
               activeCategory={''}
               location={this.props.location}
               categories={this.props.data.navCategories} />
-          </AppManagerHeadContainer>
-          <BodyContainer className='appMgrBody'>
+          </MyAppsHeadContainer>
+          <BodyContainer>
             <div className={'Grid Grid--gutters'}>
-              <div className='Grid-cell appmgr-start-left-wrap'>
-                <div className='appmgr-start-left'>
+              <div className='Grid-cell myapps-start-left-wrap'>
+                <div className='myapps-start-left'>
                   <h1 className='title'>Decentralized Identity for Decentralized Applications</h1>
                   <p>Seamless login. Ethereum transaction signing. User credential issuance and consumption.</p>
-                  <div className={`appmgr-button`}>
+                  <div className={`myapps-button`}>
                     <a href='#' onClick={(e) => { this.loginRequest(e) }}>
                       Login with uPort
                     </a>
                   </div>
                 </div>
               </div>
-              <div className='Grid-cell appmgr-start-right' />
+              <div className='Grid-cell myapps-start-right' />
             </div>
           </BodyContainer>
         </main>
@@ -97,12 +97,12 @@ class AppManagerPage extends React.Component {
   }
 }
 
-const AppManagerHeadContainer = styled.div`
+const MyAppsHeadContainer = styled.div`
   background: ${props => props.theme.brand}
 `
 
 export const pageQuery = graphql`
-query AppManagerQuery {
+query MyAppsQuery {
     allMarkdownRemark(
       limit: 2000
       filter: { frontmatter: { type: { eq: "content" }}}
@@ -143,11 +143,7 @@ query AppManagerQuery {
   }
 `
 
-const IndexHeadContainer = styled.div`
-  background: ${props => props.theme.brand};
-`
-
-AppManagerPage.propTypes = {
+MyAppsPage.propTypes = {
   profile: PropTypes.object.isRequired,
   saveProfile: PropTypes.func.isRequired
 }
@@ -160,4 +156,4 @@ const mapDispatchToProps = dispatch => {
   return { saveProfile: (profile) => dispatch({ type: `SAVE_PROFILE`, profile: profile }) }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppManagerPage)
+export default connect(mapStateToProps, mapDispatchToProps)(MyAppsPage)
