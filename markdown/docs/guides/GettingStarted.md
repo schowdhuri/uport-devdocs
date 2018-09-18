@@ -1,44 +1,29 @@
 ---
 title: "Getting Started"
 index: 0
-category: "overview"
+category: "uport-connect"
 type: "guide"
 source: "https://github.com/uport-project/uport-project.github.io/blob/develop/markdown/docs/guides/GettingStarted.md"
 ---
 
-# Getting Started
-
-Welcome! The goal of this guide is to get you set up quickly with a skeleton project and to familiarize you with a few basic concepts.  If you have any questions or difficulties, head over to [Riot](chat.uport.me) and someone will help you out.
+To hit the ground running with Uport Connect this quick guide will help you get setup. If you have any questions or difficulties, head over to [Riot](chat.uport.me) and someone will help you out.
 
 ## Get the uPort App
 
-The primary way this app interacts with applications is by scanning QR codes during transactions like disclosing data, verifying previously disclosed information or sharing contacts for example.
+uPort primarily interacts with applications by scanning QR codes. This is usually done during transactions where an identity is disclosing data, verifying previously disclosed information or sharing contacts, just to name a few.
 
-Install the latest mobile client for your smartphone: [uPort iOS](https://itunes.apple.com/us/app/uport-identity-wallet-ethereum/id1123434510?mt=8) | [uPort Android](https://play.google.com/store/apps/details?id=com.uportMobile)
+To get started, install the latest mobile client for your smartphone: [uPort iOS](https://itunes.apple.com/us/app/uport-identity-wallet-ethereum/id1123434510?mt=8) | [uPort Android](https://play.google.com/store/apps/details?id=com.uportMobile)
 
 ## Get an Application ID
 
-Head over to [MyApps](/myapps) to register an application identity.  Once authenticated to [MyApps](/myapps) proceed to click on **Register an App** and you will be guided through the process of creating and saving an application identity.
+Many of our guides are already setup with application identities for your convenience.  However, you will likely want to issue verifications using your own application identity.  To setup an application identity you can use web3, or you can head over to [MyApps](/myapps) to register an application identity. Once authenticated to [MyApps](/myapps), proceed and click on **Register an App**, from here, you will be guided through the process of creating and saving an application identity.
 
-During this process you will receive a verification on your uPort mobile app which you will need to accept in order to complete the registration steps.
+During this process, you will receive a verification on your uPort mobile app, after accepting that, the registration process will be completed.
 
-Application Identities are tied to your Ethereum identity that you created with the uPort mobile app.  They are stored as a verification and their configuration can be viewed from your mobile device by clicking on the verification to inspect it.
+Your application identities are tied to your Ethereum address – created with the uPort mobile app. They are stored as a verification and their configuration can be viewed within the mobile device, simply click on *verification* to inspect it.
 
 ## Buidl
 
-From here, the world is your oyster! If you are looking to build **client-side** solutions here are a few jumping points:
-
-- [Uport Connect](/uport-connect/guides/usage) (web)
-- [Using uPort with Truffle Box](/reactuporttruffle) (web)
-- [react-native-uport-connect](https://github.com/uport-project/react-native-uport-connect) (mobile)
-
-For **server-side** solutions where you need to keep signing keys secure:
-
-- [Uport Credentials](https://github.com/uport-project/uport-js) 
-- [Uport Transports](/transports/index)
-- [Sign off-chain Messages](/messages/index)
-- [Sign on-chain Transactions](/flows/tx)
-
-That's it!  Please check out our other guides and tutorials for more examples of how you can expand this code to do other things, like [Signing Transactions](https://developer.uport.me/signtransactions), or [Attesting Credentials](https://developer.uport.me/attestcredentials).
+From here, the world is your oyster for building **client-side** solutions using Uport Connect. Please check out the rest of our uport-connect [guides](/uport-connect/guides/usage) and [tutorials](/uport-connect/guides/tutorial) for more examples of how you can expand this code to do other things such as [Signing Transactions](/signtransactions), or [Verifying Credentials](/attestcredentials).
 
 As always, if you have any questions or issues getting started please reach out to us on [Riot](chat.uport.me) or open an issue on [Github](https://github.com/uport-project).
