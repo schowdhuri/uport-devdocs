@@ -68,6 +68,7 @@ class BuildingBlocks extends Component {
   render () {
     return (
       <Container className='building-blocks'>
+        <a id='platform'/>
         <div className='building-blocks-wrapper'>
           <h2>Identity Building Blocks</h2>
           <div className={'Grid Grid--gutters'}>
@@ -75,17 +76,17 @@ class BuildingBlocks extends Component {
               <div>
                 <h3>Libraries</h3>
                 <div className='block-item'>
-                  <h4><a href='https://github.com/uport-project/uport-connect'>uPort Connect</a></h4>
+                  <h4><a href='/categories/uport-connect'>uPort Connect</a></h4>
                   <p>Single sign-on and transaction signing for your client-side app</p>
                   <div className={'code-block'}>
                     <p><a href='https://www.npmjs.com/package/uport-connect'>npm -i uport-connect</a></p>
                   </div>
                 </div>
                 <div>
-                  <h4><a href='https://github.com/uport-project/uport-js'>uPort JS</a></h4>
+                  <h4><a href='/categories/uport-credentials'>uPort Credentials</a></h4>
                   <p>Request, sign, and issue credentials from your app server</p>
                   <div className={'code-block'}>
-                    <p><a href='https://www.npmjs.com/package/uport'>npm -i uport-js</a></p>
+                    <p><a href='https://www.npmjs.com/package/uport'>npm -i uport-credentials</a></p>
                   </div>
                 </div>
               </div>
@@ -94,14 +95,14 @@ class BuildingBlocks extends Component {
               <div>
                 <h3>Tools</h3>
                 <div className='block-item'>
-                  <h4 className={'alpha'}><a href='https://github.com/uport-project/ethr-did'>EthrDID</a></h4>
+                  <h4 className={'alpha'}><a href='/ethr-did/readme'>EthrDID</a></h4>
                   <p>Create Decentralized Identifiers and manage their interactions in your app.</p>
                   <div className={'code-block'}>
                     <p><a href='https://www.npmjs.com/package/ethr-did'>npm -i ethr-did</a></p>
                   </div>
                 </div>
                 <div>
-                  <h4 className={'alpha'}><a href='https://github.com/uport-project/ethr-did-registry'>EthrDID Registry</a></h4>
+                  <h4 className={'alpha'}><a href='/ethr-did-registry/readme'>EthrDID Registry</a></h4>
                   <p>A smart contract that enables the resolution and management of decentralized identifiers (DIDs)</p>
                   <div className={'code-block'}>
                     <p><a href='https://www.npmjs.com/package/ethr-did-registry'>npm -i ethr-did-registry</a></p>

@@ -58,9 +58,10 @@ exports.createPages = ({graphql, boundActionCreators}) => {
 
   /* add new types of pages for programatic creation here */
   return new Promise((resolve, reject) => {
-    // const postPage = path.resolve("src/templates/post.jsx");
+      // const postPage = path.resolve("src/templates/post.jsx");
+      //const tagPage = path.resolve("src/templates/tag.jsx");
     const contentPage = path.resolve("src/templates/content.jsx");
-    //const tagPage = path.resolve("src/templates/tag.jsx");
+    const overviewPage = path.resolve("src/templates/overview.jsx");
     const categoryPage = path.resolve("src/templates/category.jsx");
     resolve(
       graphql(
@@ -104,18 +105,30 @@ exports.createPages = ({graphql, boundActionCreators}) => {
             categorySet.add(edge.node.frontmatter.category);
           }
          //console.log(JSON.stringify(edge.node.frontmatter))
-          if (['guide', 'content', 'tutorial', 'reference', 'overview'].includes(edge.node.frontmatter.type)) {
-            //console.log(JSON.stringify(edge.node.frontmatter));
-            //console.log(edge.node.fields.slug);
-            createPage({
-              path: edge.node.fields.slug,
-              component: contentPage,
-              context: {
-                slug: edge.node.fields.slug
-              }
-            });
+          if (['overview'].includes(edge.node.frontmatter.type)) {
+          //console.log(JSON.stringify(edge.node.frontmatter));
+          //console.log(edge.node.fields.slug);
+          createPage({
+            path: edge.node.fields.slug,
+            component: overviewPage,
+            context: {
+              slug: edge.node.fields.slug
+            }
+          });
           }
 
+          if (['guide', 'content', 'tutorial', 'reference', 'guides', 'tutorials'].includes(edge.node.frontmatter.type)) {
+              //console.log(JSON.stringify(edge.node.frontmatter));
+              //console.log(edge.node.fields.slug);
+              createPage({
+                  path: edge.node.fields.slug,
+                  component: contentPage,
+                  context: {
+                      category: edge.node.frontmatter.category,
+                      slug: edge.node.fields.slug
+                  }
+              });
+          }
         });
 
         // const tagList = Array.from(tagSet);
