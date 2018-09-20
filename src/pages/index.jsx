@@ -133,7 +133,6 @@ export const pageQuery = graphql`
   query IndexQuery {
     allMarkdownRemark(
       limit: 2000
-      filter: { frontmatter: { type: { eq: "content" }}}
     ) {
       edges {
         node {

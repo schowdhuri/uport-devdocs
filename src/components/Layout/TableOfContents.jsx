@@ -18,7 +18,6 @@ export default class TableOfContents extends React.Component {
     const postNodes = []
 
     types.forEach(post => {
-      if (post.node.frontmatter.type === type) {
         const postNode = {
           title: post.node.frontmatter.title,
           path: post.node.fields.slug,
@@ -27,8 +26,8 @@ export default class TableOfContents extends React.Component {
           headings: post.node.headings
         }
         postNodes.push(postNode)
-      }
     })
+
     const listItems = []
     postNodes.sort((a, b) => a.indexNumber - b.indexNumber).forEach((cat) => {
       const chapterContents = []

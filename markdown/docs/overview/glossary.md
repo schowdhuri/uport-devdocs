@@ -1,8 +1,8 @@
 ---
 title: "Glossary"
 index: 2
-category: "overview"
-type: "content"
+category: "glossary"
+type: "overview"
 source: "https://github.com/uport-project/uport-project.github.io/blob/develop/markdown/docs/overview/overview.md"
 ---
 

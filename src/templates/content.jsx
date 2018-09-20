@@ -12,14 +12,17 @@ import SecondaryTitle from '../components/Layout/html/SecondaryTitle'
 import CtaButton from '../components/CtaButton'
 
 export default class ContentTemplate extends React.Component {
+ render() {
+    const category = this.props.pathContext.category;
+    const postEdges = this.props.data.allMarkdownRemark.edges;
 
-  render () {
     const renderAst = new RehypeReact({
       createElement: React.createElement,
       components: {
         'h2': SecondaryTitle
       }
     }).Compiler
+
     const { slug } = this.props.pathContext
     const postNode = this.props.data.postBySlug
     const post = postNode.frontmatter
@@ -39,16 +42,12 @@ export default class ContentTemplate extends React.Component {
       })
     }
 
-    this.props.data.postByCategory.edges.forEach(_type => {
-      if (_type.node.frontmatter.type === type) {
-        types.push(_type)
-      }
-    })
-
     const chapterTitles = []
-    types.forEach(_type => {
-      chapterTitles.push(_type.node.frontmatter.title)
+    postEdges.forEach(_type => {
+        types.push(_type)
+        chapterTitles.push(_type.node.frontmatter.if)
     })
+    
     if (!post.id) {
       post.id = slug
     }
@@ -57,7 +56,7 @@ export default class ContentTemplate extends React.Component {
     }
 
     return (
-      <div>
+    <div>
         <Helmet>
           <title>{`${post.title} | ${config.siteTitle}`}</title>
         </Helmet>
@@ -69,6 +68,7 @@ export default class ContentTemplate extends React.Component {
             location={this.props.location}
             types={this.props.data.navTypes}
             />
+            
           </HeaderContainer>
           <ToCContainer>
             <TableOfContents
@@ -92,7 +92,14 @@ export default class ContentTemplate extends React.Component {
           </BodyContainer>
         </BodyGrid>
       </div>
-    )
+
+      // <div className="category-container">
+      //   <Helmet
+      //     title={`Posts in category "${category}" | ${config.siteTitle}`}
+      //   />
+      //   <PostListing postEdges={postEdges} />
+      // </div>
+    );
   }
 }
 
@@ -188,42 +195,32 @@ const AnnouncementContainer = styled.div`
   margin: auto;
   color: #cc0066;
 `
-/* eslint no-undef: "off" */
+
+/* eslint no-undef: "off"*/
 export const pageQuery = graphql`
-  query ContentBySlug($slug: String!) {
-    allPostTitles: allMarkdownRemark(
-      filter: { frontmatter: { index: { ne: null } } }
-    ){
-      edges {
-        node {
-          frontmatter {
-            title
-            index
-            type
-          }
-          fields {
-            slug
-          }
-        }
-      }
-    }
-    navTypes: allMarkdownRemark (
-      filter: { frontmatter: { category: { ne: null } } }
+  query ContentPage($category: String, $slug: String) {
+    allMarkdownRemark(
+      limit: 1000
+      filter: { frontmatter: { category: { eq: $category } } }
     ) {
+      totalCount
       edges {
         node {
           fields {
             slug
-          }
-          headings {
-            value
-            depth
-          }
-          frontmatter {
-            category
-            type
-            index
-          }
+        }
+        headings  {
+          value
+          depth
+        }
+        excerpt
+        timeToRead
+        frontmatter {
+          title
+          category
+          type
+          source
+        }
         }
       }
     }
@@ -245,10 +242,9 @@ export const pageQuery = graphql`
         slug
       }
     }
-    postByCategory:  allMarkdownRemark(
-      filter: { frontmatter: { category: { ne: null }, index: { ne: null } } }
+    navTypes: allMarkdownRemark (
+      filter: { frontmatter: { category: { ne: null } } }
     ) {
-      totalCount
       edges {
         node {
           fields {
@@ -258,14 +254,10 @@ export const pageQuery = graphql`
             value
             depth
           }
-          excerpt
-          timeToRead
           frontmatter {
-            title
             category
-            index
             type
-            source
+            index
           }
         }
       }

@@ -87,17 +87,16 @@ const StyledLink = styled(Link)`
 class Navigation extends React.Component {
   navListItems() {
     const navItems = []
-debugger
     this.props.sections.forEach(section => {
       if(this.props.data){
         this.props.data.forEach(page => {
-          if((page.node.frontmatter.category === "overview") && (page.node.frontmatter.type === section)) {
+          if((page.node.frontmatter.category === "overview") && (page.node.frontmatter.type === section) || page.node.frontmatter.type === section) {
             switch(section){
               case "overview":
-                navItems[0] = (<StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory === section ? 'active' : ''}`} to={`${page.node.fields.slug}`} activeClassName={'active'} key={`${section}${page.node.frontmatter.index}`}>About</StyledLink>);
+                navItems[0] = (<StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory === section ? 'active' : ''}`} to={"/overview"} activeClassName={'active'} key={`${section}${page.node.frontmatter.index}`}>About</StyledLink>);
                 break;
               default:
-                navItems[1] = (<StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory === section ? 'active' : ''}`} to={`${page.node.fields.slug}`} activeClassName={'active'} key={`${section}${page.node.frontmatter.index}`}>Platform </StyledLink>);
+                navItems[1] = (<StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory === section ? 'active' : ''}`} to={"/index.html#platform"} activeClassName={'active'}> Platform </StyledLink>);
             }
           }
         })
