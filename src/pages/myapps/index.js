@@ -73,7 +73,7 @@ class MyAppsPage extends React.Component {
             <SiteHeader
               activeCategory={''}
               location={this.props.location}
-              categories={this.props.data.navCategories} />
+              types={this.props.data.navCategories} />
           </MyAppsHeadContainer>
           <BodyContainer>
             <div className={'Grid Grid--gutters'}>
