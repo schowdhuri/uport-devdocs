@@ -6,15 +6,6 @@ import Search from '../Search'
 import bannerImg from '../../images/Horizontal-Logo.svg'
 
 class MainHeader extends React.Component {
-  navHeadings () {
-    const navHeadings = []
-    this.props.types.edges.forEach(type => {
-      if (!navHeadings.includes(type.node.frontmatter.type)) {
-        navHeadings.push(type.node.frontmatter.type)
-      }
-    })
-    return navHeadings
-  }
   render () {
     return (
       <SiteContainer>
@@ -26,14 +17,12 @@ class MainHeader extends React.Component {
               </Link>
             </span>
           </div>
-          <div className='Grid-cell'>
-            <Search />
+          <div className='Grid-Search'>
+            <cell />
           </div>
           <div className='Grid-cell nav-wrap'>
             <Navigation
               className={`w-nav`}
-              sections={this.navHeadings()}
-              data={this.props.types.edges}
               activeSection={this.props.activeSection} />
           </div>
         </div>

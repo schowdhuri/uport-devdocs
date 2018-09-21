@@ -85,38 +85,20 @@ const StyledLink = styled(Link)`
 `
 
 class Navigation extends React.Component {
-  navListItems() {
-    const navItems = []
-    this.props.sections.forEach(section => {
-      if(this.props.data){
-        this.props.data.forEach(page => {
-          if((page.node.frontmatter.category === "overview") && (page.node.frontmatter.type === section) || page.node.frontmatter.type === section) {
-            switch(section){
-              case "overview":
-                navItems[0] = (<StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory === section ? 'active' : ''}`} to={"/overview"} activeClassName={'active'} key={`${section}${page.node.frontmatter.index}`}>About</StyledLink>);
-                break;
-              default:
-                navItems[1] = (<StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory === section ? 'active' : ''}`} to={"/index.html#platform"} activeClassName={'active'}> Platform </StyledLink>);
-            }
-          }
-        })
-      }
-    })
-    return navItems
-  }
-
   render () {
     return (
       <NavContainer>
         <section id='topNav'>
-          {this.navListItems()}
+          <StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory === 'overview' ? 'active' : ''}`} to={"/overview"} activeClassName={'active'}>About</StyledLink>
+          <StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory !== 'overview' ? 'active' : ''}`} to={"/index.html#platform"} activeClassName={'active'}> Platform </StyledLink>
           <a href='/myapps' className={`nav-link w-nav-link`}> MyApps </a>
           <a href='https://chat.uport.me' className={`nav-link w-nav-link`} target='_blank'> Help </a>
           <a href='https://medium.com/uport' className={`nav-link w-nav-link`} target='_blank'> Blog </a>
         </section>
         <div id='responsiveNavContainer'>
           <Menu right isOpen={false} styles={styles}>
-            {this.navListItems()}
+            <StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory === 'overview' ? 'active' : ''}`} to={"/overview"} activeClassName={'active'}>About</StyledLink>
+            <StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory !== 'overview' ? 'active' : ''}`} to={"/index.html#platform"} activeClassName={'active'}> Platform </StyledLink>
             <a href='/myapps' className={`menu-item`} target='_blank'> MyApps </a>
             <a href='https://chat.uport.me' className={`menu-item`} target='_blank'> Help </a>
             <a href='https://medium.com/uport' className={`menu-item`} target='_blank'> Blog </a>
