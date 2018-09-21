@@ -17,6 +17,8 @@ export default class CategoryTemplate extends React.Component {
   render() {
     const category = this.props.pathContext.category;
     const postEdges = this.props.data.allMarkdownRemark.edges;
+    const types = []
+    const messages = []
 
     const renderAst = new RehypeReact({
       createElement: React.createElement,
@@ -24,13 +26,6 @@ export default class CategoryTemplate extends React.Component {
         'h2': SecondaryTitle
       }
     }).Compiler
-
-    const { slug } = this.props.pathContext
-    const postNode = this.props.data.postBySlug
-    const post = postNode.frontmatter
-    const type = post.type
-    const types = []
-    const messages = []
 
     /* If there is an announcement, broadcast it at the top of each page */
     if (this.props.data.announcement) {
@@ -44,12 +39,25 @@ export default class CategoryTemplate extends React.Component {
       })
     }
 
+    let postNode = null
+    let slug = null
     const chapterTitles = []
-    postEdges.forEach(_type => {
-        types.push(_type)
-        chapterTitles.push(_type.node.frontmatter.if)
+    let post = null
+    let type = null
+    let index = null
+
+    postEdges.sort((a,b) => b.node.frontmatter.index - a.node.frontmatter.index).forEach((_type) => {
+      if (_type.node.frontmatter.index >= 0 && (_type.node.frontmatter.category === category)) {
+          index = _type.node.frontmatter.index
+          slug = _type.node.fields.slug
+          postNode = _type.node
+          post = postNode.frontmatter
+          type = post.type
+          types.push(_type)
+          chapterTitles.push(_type.node.frontmatter.title)
+      }
     })
- 
+
     if (!post.id) {
       post.id = slug
     }
@@ -61,6 +69,7 @@ export default class CategoryTemplate extends React.Component {
     <div>
         <Helmet>
           <title>{`${post.title} | ${config.siteTitle}`}</title>
+
         </Helmet>
         <SEO postPath={slug} postNode={postNode} postSEO />
         <BodyGrid>
@@ -202,7 +211,7 @@ export const pageQuery = graphql`
   query CategoryPage($category: String, $slug: String) {
     allMarkdownRemark(
       limit: 1000
-      filter: { frontmatter: { category: { eq: $category } } }
+      filter: { frontmatter: { category: { eq: $category }, index: { ne: null} } }
     ) {
       totalCount
       edges {
@@ -210,6 +219,7 @@ export const pageQuery = graphql`
           fields {
             slug
         }
+        htmlAst
         headings  {
           value
           depth
@@ -220,6 +230,7 @@ export const pageQuery = graphql`
           title
           category
           type
+          index
           source
         }
         }
@@ -237,6 +248,7 @@ export const pageQuery = graphql`
         title
         category
         type
+        index
         source
       }
       fields {

@@ -1,12 +1,14 @@
 ---
-title: "Getting Started"
+title: "Uport Connect"
 index: 0
 category: "uport-connect"
 type: "guide"
 source: "https://github.com/uport-project/uport-project.github.io/blob/develop/markdown/docs/guides/GettingStarted.md"
 ---
 
-To hit the ground running with Uport Connect this quick guide will help you get setup. If you have any questions or difficulties, head over to [Riot](chat.uport.me) and someone will help you out.
+## Get Started
+
+To hit the ground running with Uport Connect this guide will help you get setup. If you have any questions or difficulties, head over to [Riot](chat.uport.me) and someone will help you out.
 
 ## Get the uPort App
 
@@ -27,3 +29,4 @@ Your application identities are tied to your Ethereum address – created with t
 From here, the world is your oyster for building **client-side** solutions using Uport Connect. Please check out the rest of our uport-connect [guides](/uport-connect/guides/usage) and [tutorials](/uport-connect/guides/tutorial).  For more specific examples check out our [Verifying Credentials](/attestcredentials) and [Requesting Credentials](/requestcredentials) guides.
 
 As always, if you have any questions or issues getting started please reach out to us on [Riot](chat.uport.me) or open an issue on [Github](https://github.com/uport-project).
+

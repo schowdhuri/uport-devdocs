@@ -44,11 +44,12 @@ export default class OverviewTemplate extends React.Component {
         types.push(_type)
       }
     })
-
+      
     const chapterTitles = []
     types.forEach(_type => {
       chapterTitles.push(_type.node.frontmatter.title)
     })
+     
     if (!post.id) {
       post.id = slug
     }
@@ -240,6 +241,7 @@ export const pageQuery = graphql`
         category
         type
         source
+        index
       }
       fields {
         slug

@@ -25,7 +25,10 @@ export default class TableOfContents extends React.Component {
           category: post.node.frontmatter.category,
           headings: post.node.headings
         }
-        postNodes.push(postNode)
+        
+        if (postNode.indexNumber || postNode.indexNumber === 0) {
+          postNodes.push(postNode)
+        }
     })
 
     const listItems = []
