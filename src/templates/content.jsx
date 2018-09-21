@@ -45,7 +45,7 @@ export default class ContentTemplate extends React.Component {
     const chapterTitles = []
     postEdges.forEach(_type => {
         types.push(_type)
-        chapterTitles.push(_type.node.frontmatter.if)
+        chapterTitles.push(_type.node.frontmatter.title)
     })
     
     if (!post.id) {
@@ -201,7 +201,7 @@ export const pageQuery = graphql`
   query ContentPage($category: String, $slug: String) {
     allMarkdownRemark(
       limit: 1000
-      filter: { frontmatter: { category: { eq: $category } } }
+      filter: { frontmatter: { category: { eq: $category }, index: { ne: null } } }
     ) {
       totalCount
       edges {
@@ -219,6 +219,7 @@ export const pageQuery = graphql`
           title
           category
           type
+          index
           source
         }
         }
