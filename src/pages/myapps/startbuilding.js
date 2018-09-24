@@ -3,12 +3,15 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import ipfsAPI from 'ipfs-api'
 import Select from 'react-select'
 import SiteHeader from '../../components/Layout/Header'
 import config from '../../../data/SiteConfig'
 import errorIcon from '../../images/error-icon.svg'
 import '../../layouts/css/myapps.css'
 import { Connect } from 'uport-connect'
+
+const ipfs = ipfsAPI('ipfs.infura.io', '5001', {protocol: 'https'})
 
 const BodyContainer = styled.div`
 background-color: #f9f9fa;
@@ -25,18 +28,21 @@ const networkOptions = [
 class MyAppsStartBuildingPage extends React.Component {
   constructor (props) {
     super(props)
-    console.log(this.props.currentApp)
     this.state = {
       appName: this.props.currentApp.name || '',
       network: this.props.currentApp.configuration.network || 'mainnet',
       accountType: this.props.currentApp.configuration.accountType || 'keypair',
       selectedNetworkObj: networkOptions.filter(obj => { return obj.value === this.props.currentApp.configuration.network }) || networkOptions[0],
       appNameValid: false,
+      data_uri: null,
+      file_name: null,
+      file_type: null,
       formSubmitted: false
     }
     this.handleAppNameChange = this.handleAppNameChange.bind(this)
     this.handleNetworkChange = this.handleNetworkChange.bind(this)
     this.handleAccountTypeChange = this.handleAccountTypeChange.bind(this)
+    this.handleAppImageChange = this.handleAppImageChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   componentWillMount () {
@@ -55,6 +61,22 @@ class MyAppsStartBuildingPage extends React.Component {
     e.target.value === 'none'
       ? this.setState({accountType: e.target.value, network: ''})
       : this.setState({accountType: e.target.value})
+  }
+  handleAppImageChange (e) {
+    const photo = e.target.files[0]
+    const reader = new window.FileReader()
+    reader.onloadend = function () {
+      const buf = new Buffer(reader.result)
+      ipfs.files.add(buf, (err, result) => {
+        if (err) {
+          console.error(err)
+          return
+        }
+        let url = `https://ipfs.io/ipfs/${result[0].hash}`
+        console.log(url)
+      })
+    }
+    reader.readAsArrayBuffer(photo)
   }
   handleSubmit (e) {
     e.preventDefault()
@@ -110,7 +132,7 @@ class MyAppsStartBuildingPage extends React.Component {
               location={this.props.location}
               categories={this.props.data.navCategories} />
           </MyAppsHeadContainer>
-          <BodyContainer className='appMgrBody'>
+          <BodyContainer className='appMgrBody startBuilding'>
             <form onSubmit={(e) => { this.handleSubmit(e) }}>
               <div className={'Grid Grid--gutters'}>
                 <div className='Grid-cell sidebar'>
@@ -165,6 +187,34 @@ class MyAppsStartBuildingPage extends React.Component {
                     blurInputOnSelect
                     isDisabled={this.state.accountType === 'none'}
                   />
+                  <div className='appBranding Grid'>
+                    <div className='Grid-cell brandingSettings'>
+                      <h4>App Branding</h4>
+                      <div className='colorPicker'>
+                        <label htmlFor='accentColor'>App Accent Color</label>
+                        <input type='text' id='accentColor' placeholder='#5C50CA' value='#5C50CA' />
+                        <div className='colorPreview' />
+                      </div>
+                      <div className='appImage'>
+                        <label htmlFor='appImage'>App Profile Image</label>
+                        <div className='fileUpload'>
+                          <span>Upload Image</span>
+                          <input type='file' className='upload' onChange={(e) => { this.handleAppImageChange(e) }} />
+                        </div>
+                        <div className='imagePreview' />
+                      </div>
+                    </div>
+                    <div className='Grid-cell brandingPreview'>
+                      <div className='appItem'>
+                        <div className='appCover'>&nbsp;</div>
+                        <div className='avatar'>
+                          &nbsp;
+                        </div>
+                        <h3>{this.state.appName || 'App Name'}</h3>
+                        <span>{this.state.network}</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <footer>
@@ -232,6 +282,61 @@ MyAppsStartBuildingPage.propTypes = {
 
 const mapStateToProps = ({ profile, currentApp }) => {
   return { profile, currentApp }
+}
+
+function base64ArrayBuffer (arrayBuffer) {
+  let base64 = ''
+  const encodings = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+
+  const bytes = new Uint8Array(arrayBuffer)
+  const byteLength = bytes.byteLength
+  const byteRemainder = byteLength % 3
+  const mainLength = byteLength - byteRemainder
+
+  let a
+  let b
+  let c
+  let d
+  let chunk
+
+  // Main loop deals with bytes in chunks of 3
+  for (let i = 0; i < mainLength; i += 3) {
+    // Combine the three bytes into a single integer
+    chunk = (bytes[i] << 16) | (bytes[i + 1] << 8) | bytes[i + 2]
+
+    // Use bitmasks to extract 6-bit segments from the triplet
+    a = (chunk & 16515072) >> 18 // 16515072 = (2^6 - 1) << 18
+    b = (chunk & 258048) >> 12 // 258048   = (2^6 - 1) << 12
+    c = (chunk & 4032) >> 6 // 4032     = (2^6 - 1) << 6
+    d = chunk & 63 // 63       = 2^6 - 1
+
+    // Convert the raw binary segments to the appropriate ASCII encoding
+    base64 += encodings[a] + encodings[b] + encodings[c] + encodings[d]
+  }
+
+  // Deal with the remaining bytes and padding
+  if (byteRemainder === 1) {
+    chunk = bytes[mainLength]
+
+    a = (chunk & 252) >> 2 // 252 = (2^6 - 1) << 2
+
+    // Set the 4 least significant bits to zero
+    b = (chunk & 3) << 4 // 3   = 2^2 - 1
+
+    base64 += `${encodings[a]}${encodings[b]}==`
+  } else if (byteRemainder === 2) {
+    chunk = (bytes[mainLength] << 8) | bytes[mainLength + 1]
+
+    a = (chunk & 64512) >> 10 // 64512 = (2^6 - 1) << 10
+    b = (chunk & 1008) >> 4 // 1008  = (2^6 - 1) << 4
+
+    // Set the 2 least significant bits to zero
+    c = (chunk & 15) << 2 // 15    = 2^4 - 1
+
+    base64 += `${encodings[a]}${encodings[b]}${encodings[c]}=`
+  }
+
+  return base64
 }
 
 const mapDispatchToProps = dispatch => {
