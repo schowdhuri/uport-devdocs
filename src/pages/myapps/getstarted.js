@@ -20,7 +20,6 @@ img {
 
 class MyAppsGetStartedPage extends React.Component {
   render () {
-    const postEdges = this.props.data.allMarkdownRemark.edges
     return (
       <div className='index-container myAppsWrap getStarted'>
         <Helmet title={config.siteTitle} />
