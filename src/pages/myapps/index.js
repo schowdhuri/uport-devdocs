@@ -54,8 +54,7 @@ class MyAppsPage extends React.Component {
         this.setState({showImage: false, showResult: true, profile: {name: response.payload.name, did: response.payload.did, uportApps: response.payload['uport-apps']}})
         this.props.saveProfile(this.state.profile)
         if (this.state.profile.uportApps) {
-          // history.push('/myapps/list')
-          history.push('/myapps/getstarted')
+          history.push('/myapps/list')
         } else {
           history.push('/myapps/getstarted')
         }
