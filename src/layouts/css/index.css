@@ -391,6 +391,35 @@ footer .footer-menu-wrap a {
     border-top: 1px solid;
   }
 
+/*  Content Table Styles    */
+.docSearch-content table {
+  color: #5F5D68;
+}
+.docSearch-content thead tr {
+  border-bottom: 1px solid #E5E5E5;
+}
+.docSearch-content tbody tr {
+  border-bottom: 1px solid #E5E5E5;
+}
+.docSearch-content tbody tr:last-child {
+  border-bottom: none;
+}
+.docSearch-content tbody tr:last-child td {
+  padding-bottom: 20px;
+}
+.docSearch-content th {
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 15px 10px;
+  text-align: left;
+}
+.docSearch-content td {
+  font-size: 16px;
+  padding: 20px 0;
+}
+.docSearch-content tr td:first-child, .docSearch-content tr th:first-child  {
+  padding-left: 20px;
+}
 
 /* Grid Classes */
 *, :after, :before {
