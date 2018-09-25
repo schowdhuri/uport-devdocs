@@ -1,12 +1,12 @@
 ---
-title: "Uport Connect"
-index: 0
+title: "Quick Start"
+index: 1
 category: "uport-connect"
 type: "guide"
 source: "https://github.com/uport-project/uport-project.github.io/blob/develop/markdown/docs/guides/GettingStarted.md"
 ---
 
-## Get Started
+# Get Started
 
 To hit the ground running with Uport Connect this guide will help you get setup. If you have any questions or difficulties, head over to [Riot](chat.uport.me) and someone will help you out.
 
