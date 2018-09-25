@@ -6,8 +6,8 @@ uPort Developer Portal
 
 |Name|Branch|
 | --|--|
-|[markdown/uport-js](git@github.com:uport-project/uport-js.git)|feature/structure-content-by-product|
-|[markdown/uport-connect](git@github.com:uport-project/uport-connect.git)|feature/structure-content-by-product|
+|[markdown/uport-js](git@github.com:uport-project/uport-js.git)|did|
+|[markdown/uport-connect](git@github.com:uport-project/uport-connect.git)|did-major|
 |[markdown/specs](git@github.com:uport-project/specs.git)|feature/structure-content-by-product|
 |[markdown/muport-core-js](git@github.com:uport-project/muport-core-js.git)|master|
 |[markdown/ethr-did](git@github.com:uport-project/ethr-did.git)|develop|
