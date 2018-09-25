@@ -117,7 +117,7 @@ exports.createPages = ({graphql, boundActionCreators}) => {
           });
           }
 
-          if (['guide', 'content', 'tutorial', 'reference', 'guides', 'tutorials'].includes(edge.node.frontmatter.type)) {
+          if (['guide', 'content', 'tutorial', 'reference', 'guides', 'tutorials', 'landing'].includes(edge.node.frontmatter.type)) {
               //console.log(JSON.stringify(edge.node.frontmatter));
               //console.log(edge.node.fields.slug);
               createPage({

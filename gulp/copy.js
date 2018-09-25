@@ -48,6 +48,11 @@ gulp.task('copy-markdown', (done) => {
   gulp.src(['./markdown/muport-core-js/docs/**/*'])
     .pipe(gulp.dest('./content/public/muport-core-js'));
 
+  // Add uport-transports
+  gulp.src(['./markdown/uport-transports/docs/**/*'])
+    .pipe(gulp.dest('./content/public/uport-transports'));
+
+
   done();
 
 });

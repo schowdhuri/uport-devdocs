@@ -14,6 +14,7 @@ uPort Developer Portal
 |[markdown/ethr-did-resolver](git@github.com:uport-project/ethr-did-resolver.git)|develop|
 |[markdown/ethr-did-registry](git@github.com:uport-project/ethr-did-registry.git)|develop|
 |[markdown/did-jwt](git@github.com:uport-project/did-jwt.git)|develop|
+|[markdown/uport-transports](git@github.com:uport-project/uport-transports.git)|develop|
 
 ## Get started
 

@@ -30,3 +30,7 @@
 	branch = develop
 	path = markdown/did-jwt
 	url = git@github.com:uport-project/did-jwt.git
+[submodule "markdown/uport-transports"]
+	branch = develop
+	path = markdown/uport-transports
+	url = git@github.com:uport-project/uport-transports.git

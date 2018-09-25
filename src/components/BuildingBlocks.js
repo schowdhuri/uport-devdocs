@@ -12,6 +12,7 @@ const Container = styled.section`
       line-height: 40px;
     }
     h3, h4 {
+      padding: 20px;
       color: #8986A0;
       font-size: 24px;
       line-height: 32px;
@@ -21,46 +22,38 @@ const Container = styled.section`
     }
     h4 {
       color: #5C50CA;
+      padding: 20px;
+      margin: 0;
     }
     p {
-      max-width: 80%;
+      max-width: 90%;
+      padding: 0px 20px 20px 20px
+      margin: 0;
     }
     .code-block {
+      display: table;
       border-radius: 4px;
       background-color: #f9f9fa;
-      padding: 10px 16px 1px 30px;
-      margin-left: -5px;
-      max-width: 80%;
+      margin: 0px 20px 21px 20px;
+      width: 390px;
+      height: 50px;
       font-family: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
       color: #3db77d;
       white-space: nowrap;
-      a {
-       color: #3db77d;
-       text-decoration: none;
-      }
-    }
-    h4.alpha {
-      position:relative;
-      &::after {
-        content: "NEW";
-        margin-left: 10px;
-        font-family: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
-        font-size: 12px;
-        border: 1px solid #8380fc;
-        border-radius: 10px;
-        position: absolute;
-        font-weight: normal;
-        top: 7px;
-        height: 19px;
-        width: 70px;
-        padding: 0px 15px 0px 16px;
-        text-align: center;
-        letter-spacing: 0.75px;
-        line-height: 20px;
+      span {
+        display: table-cell;
+        vertical-align: middle;
+        padding: 13px 0px 18px 20px;
       }
     }
     .block-item {
-      padding-bottom: 40px;
+      width: 430px;
+      height: 220px;
+      box-shadow: 0px 0px 4px
+      rgba(0,0,0, 0.25);
+      border-radius: 4px;
+      margin-bottom: 30px;
+      margin-left: 30px;
     }
 `
 
@@ -72,40 +65,47 @@ class BuildingBlocks extends Component {
         <div className='building-blocks-wrapper'>
           <h2>Identity Building Blocks</h2>
           <div className={'Grid Grid--gutters'}>
-            <div className='Grid-cell'>
+            <div className=''>
+              <h3>Libraries</h3>
               <div>
-                <h3>Libraries</h3>
                 <div className='block-item'>
-                  <h4><a href='/categories/uport-connect'>uPort Connect</a></h4>
+                  <h4 className={'libraries'}><a href='/categories/uport-connect'>uPort Connect</a></h4>
                   <p>Single sign-on and transaction signing for your client-side app</p>
                   <div className={'code-block'}>
-                    <p><a href='https://www.npmjs.com/package/uport-connect'>npm -i uport-connect</a></p>
+                    <span>npm -i uport-connect</span>
                   </div>
                 </div>
-                <div>
-                  <h4><a href='/categories/uport-credentials'>uPort Credentials</a></h4>
+                <div className='block-item'>
+                  <h4 className={'libraries'}><a href='/categories/uport-credentials'>uPort Credentials</a></h4>
                   <p>Request, sign, and issue credentials from your app server</p>
                   <div className={'code-block'}>
-                    <p><a href='https://www.npmjs.com/package/uport'>npm -i uport-credentials</a></p>
+                    <span>npm -i uport-credentials</span>
+                  </div>
+                </div>
+                <div className='block-item'>
+                  <h4 className={'libraries'}><a href='/categories/uport-transports'>uPort Transports</a></h4>
+                  <p>Set up communication channels between your app and uPort clients.</p>
+                  <div className={'code-block'}>
+                    <span>npm -i uport-transports</span>
                   </div>
                 </div>
               </div>
             </div>
-            <div className='Grid-cell'>
+            <div className=''>
+              <h3>Tools</h3>
               <div>
-                <h3>Tools</h3>
                 <div className='block-item'>
-                  <h4 className={'alpha'}><a href='/ethr-did/readme'>EthrDID</a></h4>
+                  <h4 className={'tools'}><a href='/ethr-did/readme'>EthrDID</a></h4>
                   <p>Create Decentralized Identifiers and manage their interactions in your app.</p>
                   <div className={'code-block'}>
-                    <p><a href='https://www.npmjs.com/package/ethr-did'>npm -i ethr-did</a></p>
+                    <span>npm -i ethr-did</span>
                   </div>
                 </div>
-                <div>
-                  <h4 className={'alpha'}><a href='/ethr-did-registry/readme'>EthrDID Registry</a></h4>
-                  <p>A smart contract that enables the resolution and management of decentralized identifiers (DIDs)</p>
+                <div className='block-item'>
+                  <h4 className={'tools'}><a href='/ethr-did-registry/readme'>EthrDID Registry</a></h4>
+                  <p>Smart contract for the resolution and management of decentralized identifiers (DIDs)</p>
                   <div className={'code-block'}>
-                    <p><a href='https://www.npmjs.com/package/ethr-did-registry'>npm -i ethr-did-registry</a></p>
+                    <span>npm -i ethr-did-registry</span>
                   </div>
                 </div>
               </div>
