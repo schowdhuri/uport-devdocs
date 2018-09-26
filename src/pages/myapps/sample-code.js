@@ -21,7 +21,6 @@ class MyAppsSampleCodePage extends React.Component {
     }
   }
   render () {
-    const postEdges = this.props.data.allMarkdownRemark.edges
     return (
       <div className='index-container myapps'>
         <Helmet title={config.siteTitle} />
