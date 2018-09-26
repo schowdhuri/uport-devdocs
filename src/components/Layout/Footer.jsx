@@ -60,25 +60,26 @@ class Footer extends React.Component {
             <h4>Platform</h4>
             <ul>
               <li><a href='/overview'>Overview</a></li>
-              <li><a href='/protocol'>Protocols</a></li>
-              <li><a href='/platform'>Platform</a></li>
+              <li><a href='/categories/specs'>Protocols</a></li>
             </ul>
           </div>
-          <div className='footer-menu Grid-cell'>
-            <h4>Solutions</h4>
-            <ul>
-              <li><a href='/flows/privatechain'>Private Credentials</a></li>
-              <li><a href='https://github.com/uport-project/uport-connect/'>Authentication</a></li>
-              {/* <li><a href='#'>Ethereum Apps</a></li>  */}
-              <li><a href='/signtransactions'>Mobile Signing / 2FA</a></li>
-            </ul>
-          </div>
+          {/* <div className='footer-menu Grid-cell'> */}
+          {/*   <h4>Solutions</h4> */}
+          {/*   <ul> */}
+          {/*     <li><a href='/flows/privatechain'>Private Credentials</a></li> */}
+          {/*     <li><a href='/categories/uport-connect'>Authentication</a></li> */}
+          {/*     {/\* <li><a href='#'>Ethereum Apps</a></li>  *\/} */}
+          {/*     <li><a href='/signtransactions'>Mobile Signing / 2FA</a></li> */}
+          {/*   </ul> */}
+          {/* </div> */}
           <div className='footer-menu Grid-cell'>
             <h4>Guides</h4>
             <ul>
               {/* <li><a href='#'>Build a hybrid dapp</a></li> */}
               {/* <li><a href='#'>Authenticate Wallet</a></li> */}
-              <li><a href='/attestcredentials'>Issue Credentials</a></li>
+              <li><a href='/uport-connect/guides/usage'>Connect</a></li>
+              <li><a href='/uport-credentials/guides/tutorial'>Credentials</a></li>
+              <li><a href='/uport-transports/guides/modules'>Transports</a></li>
             </ul>
           </div>
           <div className='footer-menu Grid-cell'>

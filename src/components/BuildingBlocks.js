@@ -16,9 +16,6 @@ const Container = styled.section`
       color: #8986A0;
       font-size: 24px;
       line-height: 32px;
-      a {
-        text-decoration: none;
-      }
     }
     h4 {
       color: #5C50CA;
@@ -55,6 +52,10 @@ const Container = styled.section`
       margin-bottom: 30px;
       margin-left: 30px;
     }
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
 `
 
 class BuildingBlocks extends Component {
@@ -68,46 +69,56 @@ class BuildingBlocks extends Component {
             <div className=''>
               <h3>Libraries</h3>
               <div>
-                <div className='block-item'>
-                  <h4><a href='/categories/uport-connect'>uPort Connect</a></h4>
-                  <p>Single sign-on and transaction signing for your client-side app</p>
-                  <div className={'code-block'}>
-                    <span>npm -i uport-connect</span>
+                <a href='/categories/uport-connect'>
+                  <div className='block-item'>
+                    <h4>uPort Connect    &#x2192;</h4>
+                    <p>Single sign-on and transaction signing for your client-side app</p>
+                    <div className={'code-block'}>
+                      <span>npm -i uport-connect</span>
+                    </div>
                   </div>
-                </div>
-                <div className='block-item'>
-                  <h4><a href='/categories/uport-credentials'>uPort Credentials</a></h4>
-                  <p>Request, sign, and issue credentials from your app server</p>
-                  <div className={'code-block'}>
-                    <span>npm -i uport-credentials</span>
+                </a>
+                <a href='/categories/uport-credentials'>
+                  <div className='block-item'>
+                    <h4>uPort Credentials     &#x2192;</h4>
+                    <p>Request, sign, and issue credentials from your app server</p>
+                    <div className={'code-block'}>
+                      <span>npm -i uport-credentials</span>
+                    </div>
                   </div>
-                </div>
-                <div className='block-item'>
-                  <h4><a href='/categories/uport-transports'>uPort Transports</a></h4>
-                  <p>Set up communication channels between your app and uPort clients.</p>
-                  <div className={'code-block'}>
-                    <span>npm -i uport-transports</span>
+                </a>
+               <a href='/categories/uport-transports'>
+                  <div className='block-item'>
+                    <h4>uPort Transports    &#x2192;</h4>
+                    <p>Set up communication channels between your app and uPort clients.</p>
+                    <div className={'code-block'}>
+                      <span>npm -i uport-transports</span>
+                    </div>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
             <div className=''>
               <h3>Tools</h3>
               <div>
-                <div className='block-item'>
-                  <h4><a href='/categories/ethr-did'>EthrDID</a></h4>
-                  <p>Create Decentralized Identifiers and manage their interactions in your app.</p>
-                  <div className={'code-block'}>
-                    <span>npm -i ethr-did</span>
+                <a href='/categories/ethr-did'>
+                  <div className='block-item'>
+                    <h4>EthrDID    &#x2192;</h4>
+                    <p>Create Decentralized Identifiers and manage their interactions in your app.</p>
+                    <div className={'code-block'}>
+                      <span>npm -i ethr-did</span>
+                    </div>
                   </div>
-                </div>
-                <div className='block-item'>
-                  <h4><a href='/categories/ethr-did-registry'>EthrDID Registry</a></h4>
-                  <p>Smart contract for the resolution and management of decentralized identifiers (DIDs)</p>
-                  <div className={'code-block'}>
-                    <span>npm -i ethr-did-registry</span>
+                </a>
+                <a href='/categories/ethr-did-registry'>
+                  <div className='block-item'>
+                    <h4>EthrDID Registry    &#x2192;</h4>
+                    <p>Smart contract for the resolution and management of decentralized identifiers (DIDs)</p>
+                    <div className={'code-block'}>
+                      <span>npm -i ethr-did-registry</span>
+                    </div>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
           </div>
