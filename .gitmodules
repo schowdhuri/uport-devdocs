@@ -7,7 +7,7 @@
 	path = markdown/uport-connect
 	url = git@github.com:uport-project/uport-connect.git
 [submodule "markdown/specs"]
-	branch = feature/structure-content-by-product
+	branch = develop
 	path = markdown/specs
 	url = git@github.com:uport-project/specs.git
 [submodule "markdown/muport-core-js"]
@@ -34,3 +34,5 @@
 	branch = develop
 	path = markdown/uport-transports
 	url = git@github.com:uport-project/uport-transports.git
+
+
