@@ -11,7 +11,7 @@ pre > code.highlight {
 code[class*="language-"],
 pre[class*="language-"] {
     background: #f9f9fa;
-    color: #5c50ca;
+    color: #5954c3;
 }
 
 pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
@@ -32,7 +32,7 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 .token.doctype,
 .token.cdata,
 .token.punctuation {
-    color: #a4a1b5;
+    color: #5f5d68;
 }
 
 .token.tag,
@@ -43,7 +43,7 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 
 .token.property,
 .token.function {
-    color: #827cff;
+    color: #7e80f7;
 }
 
 code.language-css,
@@ -63,7 +63,7 @@ code.language-scss,
 .token.statement,
 .token.regex,
 .token.atrule {
-    color: #728fcb;
+    color: #62b482;
 }
 
 tr {
