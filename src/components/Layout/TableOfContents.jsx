@@ -12,22 +12,35 @@ export default class TableOfContents extends React.Component {
       urlHash = window.location.hash.replace('#', '')
       pathName = window.location.pathname
     }
-    const {type} = this.props
+    
     const {types} = this.props
-    /* const type = this.props.contentsType */
-    const postNodes = []
+    const {post} = this.props
+    const type = post.type
 
-    types.forEach(post => {
+    /* const type = this.props.contentsType */
+    const postNodes = [];
+  
+    types.forEach(_post => {
         const postNode = {
-          title: post.node.frontmatter.title,
-          path: post.node.fields.slug,
-          indexNumber: post.node.frontmatter.index,
-          category: post.node.frontmatter.category,
-          headings: post.node.headings
+          title: _post.node.frontmatter.title,
+          path: _post.node.fields.slug,
+          indexNumber: _post.node.frontmatter.index,
+          category: _post.node.frontmatter.category,
+          headings: _post.node.headings
         }
         
         if (postNode.indexNumber || postNode.indexNumber === 0) {
           postNodes.push(postNode)
+        } else if (post.title == _post.node.frontmatter.title ) {
+          postNodes.push(
+            {
+              title: _post.node.frontmatter.title,
+              path: _post.node.fields.slug,
+              indexNumber: 0,
+              category: _post.node.frontmatter.category,
+              headings: _post.node.headings
+            } 
+          )
         }
     })
 

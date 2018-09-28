@@ -66,17 +66,15 @@ export default class OverviewTemplate extends React.Component {
         <BodyGrid>
           <HeaderContainer>
             <SiteHeader
-            activeType={type}
-            location={this.props.location}
-            types={this.props.data.navTypes}
+              activeType={type}
+              location={this.props.location}
+              types={this.props.data.navTypes}
             />
           </HeaderContainer>
           <ToCContainer>
             <TableOfContents
-            contentsType={post.type}
-            chapterTitles={chapterTitles}
-            types={types}
-            type={type}
+              post={post}
+              types={types}
             />
           </ToCContainer>
           <BodyContainer>

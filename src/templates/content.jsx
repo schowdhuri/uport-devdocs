@@ -42,12 +42,10 @@ export default class ContentTemplate extends React.Component {
       })
     }
 
-    const chapterTitles = []
     postEdges.forEach(_type => {
         types.push(_type)
-        chapterTitles.push(_type.node.frontmatter.title)
     })
-    
+
     if (!post.id) {
       post.id = slug
     }
@@ -56,7 +54,7 @@ export default class ContentTemplate extends React.Component {
     }
 
     return (
-    <div>
+      <div>
         <Helmet>
           <title>{`${post.title} | ${config.siteTitle}`}</title>
         </Helmet>
@@ -64,18 +62,16 @@ export default class ContentTemplate extends React.Component {
         <BodyGrid>
           <HeaderContainer>
             <SiteHeader
-            activeType={type}
-            location={this.props.location}
-            types={this.props.data.navTypes}
+              activeType={type}
+              location={this.props.location}
+              types={this.props.data.navTypes}
             />
-            
+
           </HeaderContainer>
           <ToCContainer>
             <TableOfContents
-            contentsType={post.type}
-            chapterTitles={chapterTitles}
-            types={types}
-            type={type}
+              types={types}
+              post={post}
             />
           </ToCContainer>
           <BodyContainer>
@@ -201,7 +197,7 @@ export const pageQuery = graphql`
   query ContentPage($category: String, $slug: String) {
     allMarkdownRemark(
       limit: 1000
-      filter: { frontmatter: { category: { eq: $category }, index: { ne: null } } }
+      filter: { frontmatter: { category: { eq: $category } } }
     ) {
       totalCount
       edges {
