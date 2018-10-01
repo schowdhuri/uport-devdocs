@@ -43,24 +43,31 @@ class Index extends React.Component {
               <div className={`hero-wrapper`}>
                 <div className={'Grid Grid--gutters'}>
                   <div className='Grid-cell hero-left'>
-                    <h1 className='hero-title'>Build with uPort</h1>
-                    <p className='hero-subheading'>Bootstrap your app with single sign on, reusable credentials, mobile signing, and more.</p>
+                    <h1 className='hero-title'>Build User Centric Ethereum Apps</h1>
+                    <h2>uPort is Ethereum’s User Platform</h2>
+                    <ul className='hero-subheading'>
+                      <li>Onboard new users in minutes.</li>
+                      <li>Instant Privacy Preserving Ethereum Account Creation</li>
+                      <li>Request Ethereum Transaction signing with web3</li>
+                      <li>Issue and Request Verified Credentials about your users</li>
+                      <li>Works with both Desktop and mobile browsers</li>
+                    </ul>
                     <div className={'Grid Grid--gutters hero-features'}>
                       <div className='Grid-cell'>
-                        <h2>Privacy Preserving Single Sign-On</h2>
-                        <p>Enable your ethereum or server app to securely authenticate users.</p>
+                        <h2>Instantly Connect Users to Your web3 dApp</h2>
+                        <p>Add full support for uPort by adding a single line of code to your web3 dApp.</p>
                         <div className={`hero-button`}>
-                          <a href='/requestcredentials' className={`banner-link`}>
-                            Enable Single Sign-On
+                          <a href='/gettingstarted' className={`banner-link`}>
+                            Connect to your Users Today
                           </a>
                         </div>
                       </div>
                       <div className='Grid-cell'>
-                        <h2>Exchange Verifiable Credentials</h2>
-                        <p>Issue, request, and verify reusable identity credentials to your users.</p>
+                        <h2>Issue and Request Verified Credentials</h2>
+                        <p>Help your users build their digital identity by issuing Verified Credentials about them or the things they do in your app.</p>
                         <div className={`hero-button`}>
-                          <a href='/attestcredentials' className={`banner-link`}>
-                           Start Using Credentials
+                          <a href='/uport-js/index' className={`banner-link`}>
+                            Issue your first Verified Credentials Today
                           </a>
                         </div>
                       </div>
