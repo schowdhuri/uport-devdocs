@@ -43,31 +43,32 @@ class Index extends React.Component {
               <div className={`hero-wrapper`}>
                 <div className={'Grid Grid--gutters'}>
                   <div className='Grid-cell hero-left'>
-                    <h1 className='hero-title'>Build User Centric Ethereum Apps</h1>
+                    <h1 className='hero-title'>Build User-Centric Ethereum Apps</h1>
                     <h2>uPort is Ethereum’s User Platform</h2>
                     <ul className='hero-subheading'>
-                      <li>Onboard new users in minutes.</li>
-                      <li>Instant Privacy Preserving Ethereum Account Creation</li>
-                      <li>Request Ethereum Transaction signing with web3</li>
-                      <li>Issue and Request Verified Credentials about your users</li>
-                      <li>Works with both Desktop and mobile browsers</li>
+                      <li>Onboard new users within minutes</li>
+                      <li>Instantly create a privacy-preserving Ethereum account</li>
+                      <li>Request Ethereum transaction signing with web3</li>
+                      <li>Issue verified credentials about your users</li>
+                      <li>Request verified credentials from your users</li>
+                      <li>Build for both desktop and mobile browsers</li>
                     </ul>
                     <div className={'Grid Grid--gutters hero-features'}>
                       <div className='Grid-cell'>
-                        <h2>Instantly Connect Users to Your web3 dApp</h2>
+                        <h2>Connect Users to Your web3 dApp</h2>
                         <p>Add full support for uPort by adding a single line of code to your web3 dApp.</p>
                         <div className={`hero-button`}>
                           <a href='/gettingstarted' className={`banner-link`}>
-                            Connect to your Users Today
+                            Connect With Your Users Today
                           </a>
                         </div>
                       </div>
                       <div className='Grid-cell'>
-                        <h2>Issue and Request Verified Credentials</h2>
-                        <p>Help your users build their digital identity by issuing Verified Credentials about them or the things they do in your app.</p>
+                        <h2>Issue & Request Verified Credentials</h2>
+                        <p>Help your users build their digital identity by issuing or requesting Verified Credentials about them and the things they do in your app.</p>
                         <div className={`hero-button`}>
                           <a href='/uport-js/index' className={`banner-link`}>
-                            Issue your first Verified Credentials Today
+                            Issue Your first Verified Credentials Today
                           </a>
                         </div>
                       </div>
