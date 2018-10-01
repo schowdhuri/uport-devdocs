@@ -56,6 +56,9 @@ const Container = styled.section`
         color: inherit;
         text-decoration: none;
     }
+    .nudge-right {
+      padding-left: 28px;
+    }
 `
 
 class BuildingBlocks extends Component {
@@ -66,8 +69,8 @@ class BuildingBlocks extends Component {
         <div className='building-blocks-wrapper'>
           <h2>Identity Building Blocks</h2>
           <div className={'Grid Grid--gutters'}>
-            <div className=''>
-              <h3>Libraries</h3>
+            <div>
+              <h3 className='nudge-right'>Libraries</h3>
               <div>
                 <a href='/categories/uport-connect'>
                   <div className='block-item'>
@@ -98,8 +101,8 @@ class BuildingBlocks extends Component {
                 </a>
               </div>
             </div>
-            <div className=''>
-              <h3>Tools</h3>
+            <div>
+              <h3 className='nudge-right'>Tools</h3>
               <div>
                 <a href='/categories/ethr-did'>
                   <div className='block-item'>

@@ -44,22 +44,24 @@ class Index extends React.Component {
                 <div className={'Grid Grid--gutters'}>
                   <div className='Grid-cell hero-left'>
                     <h1 className='hero-title'>Build User-Centric Ethereum Apps</h1>
-                    <h2>uPort is Ethereum’s User Platform</h2>
-                    <ul className='hero-subheading'>
-                      <li>Onboard new users within minutes</li>
-                      <li>Instantly create a privacy-preserving Ethereum account</li>
-                      <li>Request Ethereum transaction signing with web3</li>
-                      <li>Issue verified credentials about your users</li>
-                      <li>Request verified credentials from your users</li>
-                      <li>Build for both desktop and mobile browsers</li>
-                    </ul>
+                    <ValueProps>
+                      <h2>uPort is Ethereum’s User Platform</h2>
+                      <ul>
+                        <li>Onboard new users within minutes</li>
+                        <li>Instantly create a privacy-preserving Ethereum account</li>
+                        <li>Request Ethereum transaction signing with web3</li>
+                        <li>Issue verified credentials about your users</li>
+                        <li>Request verified credentials from your users</li>
+                        <li>Build for both desktop and mobile browsers</li>
+                      </ul>
+                    </ValueProps>
                     <div className={'Grid Grid--gutters hero-features'}>
                       <div className='Grid-cell'>
                         <h2>Connect Users to Your web3 dApp</h2>
                         <p>Add full support for uPort by adding a single line of code to your web3 dApp.</p>
                         <div className={`hero-button`}>
-                          <a href='/gettingstarted' className={`banner-link`}>
-                            Connect With Your Users Today
+                          <a href='/gettingstarted'>
+                            Connect With Your Users
                           </a>
                         </div>
                       </div>
@@ -67,8 +69,8 @@ class Index extends React.Component {
                         <h2>Issue & Request Verified Credentials</h2>
                         <p>Help your users build their digital identity by issuing or requesting Verified Credentials about them and the things they do in your app.</p>
                         <div className={`hero-button`}>
-                          <a href='/uport-js/index' className={`banner-link`}>
-                            Issue Your first Verified Credentials Today
+                          <a href='/uport-js/index'>
+                            Issue Verified Credentials
                           </a>
                         </div>
                       </div>
@@ -109,6 +111,16 @@ const IndexHeadContainer = styled.div`
   header {
     width: 90vw;
     margin: 0 auto;
+  }
+`
+
+const ValueProps = styled.div`
+  padding-left: 10px;
+  h2 {
+     color: #8986a0;
+  }
+  ul {
+     font-size: 16px;
   }
 `
 
