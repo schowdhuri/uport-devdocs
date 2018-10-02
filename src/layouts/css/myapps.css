@@ -328,7 +328,32 @@ span.note {
 }
 .networkDropdown__input {
 } 
-footer {
+.fieldError {
+  width: 80%;
+  max-width: 450px;
+  border: 1px solid #c6475b;
+  margin-bottom: 20px;
+  border-radius: 3px;
+}
+form .fieldError input[type="text"] {
+  width: 99.5%;
+  box-shadow: none;
+  margin-left: 1px;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+.fieldError span {
+  display: block;
+  border-top: 1px solid #c6475b;
+  padding: 14px 16px 10px;
+  background-color: #f9eef0;
+}
+.fieldError img {
+  max-width: 24px;
+  margin-right: 15px;
+  margin-top: -5px;
+}
+.startBuilding footer {
   border-top: 2px solid #e0dfe6; 
   width: 80%;
   padding: 20px 20px 100px;

@@ -25,14 +25,14 @@ const networkOptions = [
 class MyAppsStartBuildingPage extends React.Component {
   constructor (props) {
     super(props)
-    console.log(this.props.currentApp)
     this.state = {
       appName: this.props.currentApp.name || '',
       network: this.props.currentApp.configuration.network || 'mainnet',
       accountType: this.props.currentApp.configuration.accountType || 'keypair',
       selectedNetworkObj: networkOptions.filter(obj => { return obj.value === this.props.currentApp.configuration.network }) || networkOptions[0],
       appNameValid: false,
-      formSubmitted: false
+      formSubmitted: false,
+      duplicateAppName: false
     }
     this.handleAppNameChange = this.handleAppNameChange.bind(this)
     this.handleNetworkChange = this.handleNetworkChange.bind(this)
@@ -58,15 +58,16 @@ class MyAppsStartBuildingPage extends React.Component {
   }
   handleSubmit (e) {
     e.preventDefault()
+    let uportApps = this.props.profile.uportApps
+    let uportAppNames = uportApps.map(app => app.name)
     this.setState({formSubmitted: true})
-    this.state.appName === ''
-    ? this.setState({appNameValid: false})
+    this.state.appName === '' || uportAppNames.indexOf(this.state.appName) >= 0
+    ? this.setState({appNameValid: false, duplicateAppName: (uportAppNames.indexOf(this.state.appName) >= 0)})
     : this.setState({appNameValid: true}, () => {
       if (this.state.appNameValid) {
       // Check for existing apps
         let claim = {}
         if (this.props.profile.uportApps) {
-          let uportApps = this.props.profile.uportApps
           uportApps.push({name: this.state.appName,
             configuration: {
               network: this.state.network,
@@ -86,7 +87,6 @@ class MyAppsStartBuildingPage extends React.Component {
         try {
           // TODO put this in a global
           const uPortConnect = new Connect('MyApps')
-          // debugger
           uPortConnect.sendVerification({sub: this.props.profile.did, claim: claim}, 'ADD-APP')
           uPortConnect.onResponse('ADD-APP').then(payload => {
             this.props.history.push('/myapps/sample-code')
@@ -101,7 +101,7 @@ class MyAppsStartBuildingPage extends React.Component {
   render () {
     let selectedNetwork = this.state.selectedNetworkObj
     return (
-      <div className='index-container appmgr'>
+      <div className='index-container startBuilding'>
         <Helmet title={config.siteTitle} />
         <main>
           <MyAppsHeadContainer>
@@ -125,10 +125,10 @@ class MyAppsStartBuildingPage extends React.Component {
                   <label htmlFor='appName'>App Name</label>
                   <div className={(!this.state.appNameValid && this.state.formSubmitted) ? 'fieldError' : ''}>
                     <input type='text' id='appName' placeholder='Give your app a name' value={this.state.appName} onChange={(e) => { this.handleAppNameChange(e) }} />
-                    {(!this.state.appNameValid && this.state.formSubmitted) && 
+                    {(!this.state.appNameValid && this.state.formSubmitted) &&
                       <span className='error'>
                         <img src={errorIcon} />
-                        AppName is required
+                        {this.state.duplicateAppName ? 'App name already in use' : 'App name is required'}
                       </span>
                     }
                   </div>
