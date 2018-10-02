@@ -146,7 +146,7 @@ p.hero-subheading {
     font-family: "Nunito Sans";
     font-size: 16px;
     line-height: 24px;
-    margin-top: -5px;
+    /* margin-top: -5px; */
 }
 
 .hero-features h2  {
@@ -171,7 +171,7 @@ p.hero-subheading {
 
 
 .hero-button {
-    width: 213px;
+    width: 240px;
     margin-top: 30px;
     border-radius: 4px;
     background: linear-gradient(180deg, #7958D8 0%, #5C50CA 100%);
@@ -179,10 +179,14 @@ p.hero-subheading {
     text-decoration: none;
     display: block;
     margin-left: 0;
-    padding: 8px 0px 5px 0px;
+    padding: 20px 20px 20px 20px;
     font-weight: 400;
     border: 2px solid #5c50ca;
     text-align: center;
+}
+
+.hero-button a {
+    font-size: 16px;
 }
 
 .hero-img {
@@ -442,7 +446,7 @@ footer .footer-menu-wrap a {
   margin: -1em 0 0 -1em;
 }
 .Grid--gutters > .Grid-cell {
-  padding: 1em 0 0 1em;
+  padding: 1em 25px 0 1em;
 }
 
 /* Base classes for all media */
@@ -647,7 +651,7 @@ https://getbootstrap.com/docs/4.1/layout/overview/#responsive-breakpoints
     flex-direction: row;
   }
   div.hero-left {
-    padding-right: 30px !important;
+    /* padding-right: 100px !important; */
   }
   section.demo {
     max-width: 80vw;
