@@ -87,7 +87,8 @@ class MyAppsStartBuildingPage extends React.Component {
         try {
           // TODO put this in a global
           const uPortConnect = new Connect('MyApps')
-          uPortConnect.sendVerification({sub: this.props.profile.did, claim: claim}, 'ADD-APP')
+          // debugger
+          uPortConnect.sendVerification({sub: this.props.profile.did, claim: claim}, 'ADD-APP', {notifications: true})
           uPortConnect.onResponse('ADD-APP').then(payload => {
             this.props.history.push('/myapps/sample-code')
           })
