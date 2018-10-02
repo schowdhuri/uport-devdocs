@@ -59,6 +59,23 @@ const Container = styled.section`
     .nudge-right {
       padding-left: 28px;
     }
+
+   @media screen and (max-width: 600px) {
+    .code-block, .block-item {
+      width: 90%;
+      height: 100%;
+    }
+    .block-item {
+      padding: 5px;
+      margin-left: 25px;
+      p {
+        max-width: 100%;
+      }
+    }
+    .building-blocks-wrapper {
+      padding: 0;
+    }
+  }
 `
 
 class BuildingBlocks extends Component {

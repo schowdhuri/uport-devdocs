@@ -135,6 +135,20 @@ const Hero = styled.div`
   flex: 0 0 42%;
   align-self: center;
   }
+  @media screen and (max-width: 600px) {
+   h1 {
+     font-size: 34px;
+     line-height: 40px;
+   }
+   .hero-wrapper {
+     padding: 0;
+   }
+   .hero-features {
+     h2 {
+       margin-top: 20px;
+     }
+   }
+ }
 `
 
 const BodyContainer = styled.div`
