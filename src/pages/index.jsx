@@ -45,10 +45,7 @@ class Index extends React.Component {
                   <div className='Grid-cell hero-left'>
                     <h1 className='hero-title'>Build User-Centric Ethereum Apps</h1>
                     <ValueProps>
-                      <h2>uPort is Ethereum’s User Platform</h2>
-                      <p>
-                        Give your users the sovereignity of managing details about their digital-selves.
-                      </p>
+                      <h2>Give your users the sovereignty to manage details about their digital-selves.</h2>
                     </ValueProps>
                     <div className={'Grid Grid--gutters hero-features'}>
                       <div className='Grid-cell'>
@@ -119,13 +116,17 @@ const IndexHeadContainer = styled.div`
 `
 
 const ValueProps = styled.div`
-  padding-left: 10px;
   h2 {
      color: #8986a0;
+     font-size: 24px;
+     font-weight: 800;
   }
 `
 
 const Hero = styled.div`
+  h2 {
+    font-size 24px;
+  }
   ul {
      margin-top: 1em;
      height: 3em;
