@@ -68,7 +68,7 @@ export default class TableOfContents extends React.Component {
         })
       }
       listItems.push(
-        <li className='chapter' key={`${cat.path}`}>
+        <li key={`${cat.path}`}>
           <Link to={`${cat.path}`}>
             <span>
               {<h5 className={`tocHeading ${(pathName === cat.path) ? 'active' : ''}`}>{cat.title.charAt(0).toUpperCase() + cat.title.slice(1)}</h5>}
@@ -93,6 +93,13 @@ export default class TableOfContents extends React.Component {
 const TableOfContentsContainer = styled.div`
   padding: ${props => props.theme.sitePadding};
 
+
+  ul li::before {
+    all: initial;
+    background-image: none;
+    list-style: none;
+   }
+ 
  & > ul, .chapterItems {
    list-style: none;
    padding: 0;

@@ -121,6 +121,35 @@ a {
     color: #5c50ca;
 }
 
+ol, ul{
+    margin-left: 0;
+    padding-right: 0;
+    padding-bottom: 20px;
+    list-style: none;
+}
+
+li {
+    list-style: none;
+    font-size: 16px;
+}
+ul li::before {
+    content: '';
+    color: #62B482;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-top: .3em;
+    margin-right: 20px;
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
+    bottom: 2px;
+    direction: rtl;
+    background-image: url(../../images/Tick.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 /*  START: Hero styles */
 h1.hero-title {
     font-family: "Nunito Sans";
@@ -428,6 +457,7 @@ footer .footer-menu-wrap a {
   overflow-wrap: break-word;
   white-space: pre-wrap;
 }
+.docSearch-content 
 
 /* Grid Classes */
 *, :after, :before {
