@@ -118,8 +118,6 @@ const IndexHeadContainer = styled.div`
 const ValueProps = styled.div`
   h2 {
      color: #8986a0;
-     font-size: 24px;
-     font-weight: 800;
   }
 `
 
