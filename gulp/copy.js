@@ -24,9 +24,9 @@ gulp.task('copy-markdown', (done) => {
   gulp.src(['./markdown/uport-connect/docs/**/*'])
     .pipe(gulp.dest('./content/public/uport-connect'));
 
-  // Add Uport JS
-  gulp.src(['./markdown/uport-js/docs/**/*'])
-    .pipe(gulp.dest('./content/public/uport-js'));
+  // Add Uport Credentials
+  gulp.src(['./markdown/uport-credentials/docs/**/*'])
+    .pipe(gulp.dest('./content/public/uport-credentials'));
 
   // Add lambda-oloron (private chain support)
   gulp.src(['./markdown/lambda-olorun/README.md'])
