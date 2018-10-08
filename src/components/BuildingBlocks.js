@@ -89,56 +89,56 @@ class BuildingBlocks extends Component {
             <div>
               <h3 className='nudge-right'>Libraries</h3>
               <div>
-                <a href='/categories/uport-connect'>
-                  <div className='block-item'>
+                <div className='block-item'>
+                  <a href='/categories/uport-connect'>
                     <h4>uPort Connect    &#x2192;</h4>
                     <p>Single sign-on and transaction signing for your client-side app</p>
-                    <div className={'code-block'}>
-                      <span>npm -i uport-connect</span>
-                    </div>
+                  </a>
+                  <div className={'code-block'}>
+                    <span>npm -i uport-connect</span>
                   </div>
-                </a>
-                <a href='/categories/uport-credentials'>
-                  <div className='block-item'>
+                </div>
+                <div className='block-item'>
+                  <a href='/categories/uport-credentials'>
                     <h4>uPort Credentials     &#x2192;</h4>
                     <p>Request, sign, and issue credentials from your app server</p>
-                    <div className={'code-block'}>
-                      <span>npm -i uport-credentials</span>
-                    </div>
+                  </a>
+                  <div className={'code-block'}>
+                    <span>npm -i uport-credentials</span>
                   </div>
-                </a>
-               <a href='/categories/uport-transports'>
-                  <div className='block-item'>
+                </div>
+                <div className='block-item'>
+                  <a href='/categories/uport-transports'>
                     <h4>uPort Transports    &#x2192;</h4>
                     <p>Set up communication channels between your app and uPort clients.</p>
-                    <div className={'code-block'}>
-                      <span>npm -i uport-transports</span>
-                    </div>
+                  </a>
+                  <div className={'code-block'}>
+                    <span>npm -i uport-transports</span>
                   </div>
-                </a>
+                </div>
               </div>
             </div>
             <div>
               <h3 className='nudge-right'>Tools</h3>
               <div>
-                <a href='/categories/ethr-did'>
-                  <div className='block-item'>
+                <div className='block-item'>
+                  <a href='/categories/ethr-did'>
                     <h4>EthrDID    &#x2192;</h4>
                     <p>Create Decentralized Identifiers and manage their interactions in your app.</p>
-                    <div className={'code-block'}>
-                      <span>npm -i ethr-did</span>
-                    </div>
+                  </a>
+                  <div className={'code-block'}>
+                    <span>npm -i ethr-did</span>
                   </div>
-                </a>
-                <a href='/categories/ethr-did-registry'>
-                  <div className='block-item'>
+                </div>
+                <div className='block-item'>
+                  <a href='/categories/ethr-did-registry'>
                     <h4>EthrDID Registry    &#x2192;</h4>
                     <p>Smart contract for the resolution and management of decentralized identifiers (DIDs)</p>
-                    <div className={'code-block'}>
-                      <span>npm -i ethr-did-registry</span>
-                    </div>
+                  </a>
+                  <div className={'code-block'}>
+                    <span>npm -i ethr-did-registry</span>
                   </div>
-                </a>
+                </div>
               </div>
             </div>
           </div>
