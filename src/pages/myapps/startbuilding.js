@@ -58,8 +58,8 @@ class MyAppsStartBuildingPage extends React.Component {
   }
   handleSubmit (e) {
     e.preventDefault()
-    let uportApps = this.props.profile.uportApps
-    let uportAppNames = uportApps.map(app => app.name)
+    let uportApps = this.props.profile.uportApps || {}
+    let uportAppNames = (Object.keys(uportApps).length > 0 ? uportApps.map(app => app.name) : [])
     this.setState({formSubmitted: true})
     this.state.appName === '' || uportAppNames.indexOf(this.state.appName) >= 0
     ? this.setState({appNameValid: false, duplicateAppName: (uportAppNames.indexOf(this.state.appName) >= 0)})

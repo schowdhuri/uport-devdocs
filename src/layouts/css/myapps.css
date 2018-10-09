@@ -205,6 +205,8 @@ h1 {
   height: 28px;
   text-align: center;
   padding-top: 2px;
+  bottom: auto;
+  background-image: none;
 }
 .sidebar ul li.active a {
   color: #5c54c7;
@@ -475,6 +477,8 @@ button.continue {
   text-align: center;
   padding-top: 4px;
   left: 0;
+  background-image: none;
+  bottom: auto;
 }
 .sampleInstructions h3 {
   font-weight: 200;
