@@ -22,7 +22,7 @@ The first thing we need to do is create an instance of the uport-connect object 
 
 Open up the connectors.js file found in 'src/util/connectors.js'.
 
-From the [uPort AppManager](https://appmanager.uport.me/), copy and paste the import statement and the code for creating the uport-connect object. 'NAME_OF_APP', 'YOUR_ADDRESS' and 'YOUR_SIGNING_KEY' in the example below will come pre-populated.
+From [My Apps](https://developer.uport.me/myapps), copy and paste the import statement and the code for creating the uport-connect object. 'NAME_OF_APP', 'YOUR_ADDRESS' and 'YOUR_SIGNING_KEY' in the example below will come pre-populated.
 
 Next, specify the network we will use. The code allows you to choose from 'rinkeby or ropsten or kovan'. We will use 'rinkeby'.
 
