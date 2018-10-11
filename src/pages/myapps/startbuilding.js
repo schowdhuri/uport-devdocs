@@ -90,6 +90,7 @@ class MyAppsStartBuildingPage extends React.Component {
           // debugger
           uPortConnect.sendVerification({sub: this.props.profile.did, claim: claim}, 'ADD-APP', {notifications: true})
           uPortConnect.onResponse('ADD-APP').then(payload => {
+            Object.keys(uportApps).length > 0 ? this.props.saveApps(uportApps) : this.props.saveApps([{name: this.state.appName, configuration: {network: this.state.network, accountType: this.state.accountType}}])
             this.props.history.push('/myapps/sample-code')
           })
         } catch (e) {
@@ -169,7 +170,7 @@ class MyAppsStartBuildingPage extends React.Component {
                 </div>
               </div>
               <footer>
-                <a href='/'>Having trouble getting your app set up? Get in touch with us.</a>
+                <a href='https://chat.uport.me/#/home'>Having trouble getting your app set up? Get in touch with us.</a>
                 <button type='submit' className='continue'>Continue</button>
               </footer>
             </form>
@@ -228,7 +229,8 @@ query AppManagerStartBuildingQuery {
 
 MyAppsStartBuildingPage.propTypes = {
   profile: PropTypes.object.isRequired,
-  setCurrentApp: PropTypes.func.isRequired
+  setCurrentApp: PropTypes.func.isRequired,
+  saveApps: PropTypes.func.isRequired
 }
 
 const mapStateToProps = ({ profile, currentApp }) => {
@@ -236,7 +238,10 @@ const mapStateToProps = ({ profile, currentApp }) => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return { setCurrentApp: (app) => dispatch({ type: `SET_CURRENT_APP`, app: app }) }
+  return {
+    setCurrentApp: (app) => dispatch({ type: `SET_CURRENT_APP`, app: app }),
+    saveApps: (apps) => dispatch({ type: `SAVE_APPS`, uportApps: apps })
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyAppsStartBuildingPage)

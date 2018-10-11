@@ -43,7 +43,7 @@ class MyAppsAppListPage extends React.Component {
   handleAppItemClick (event, index) {
     this.props.clearCurrentApp()
     this.props.setCurrentApp(this.props.profile.uportApps[index])
-    this.props.history.push('/myapps/startbuilding')
+    this.props.history.push('/myapps/detail')
   }
   render () {
     return (

@@ -11,6 +11,21 @@ const BodyContainer = styled.div`
 background-color: #f9f9fa;
 height: 100%;
 min-height: 100vh;
+.returnLink {
+  float: right;
+  color: #8986A0;
+  margin: 30px 0 0;
+  background-color: #735ad2;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-decoration: none;
+  float: right;
+  font-size: 14px;
+}
+.sampleInstructions h1 {
+  margin: 30px 0 40px 0;
+}
 `
 
 class MyAppsSampleCodePage extends React.Component {
@@ -37,14 +52,15 @@ class MyAppsSampleCodePage extends React.Component {
               <div className='Grid-cell sidebar'>
                 <h4>Register an app</h4>
                 <ul>
-                  <li><a href='/appmanager/startbuilding'>App Details</a></li>
+                  <li><a href='/myapps/startbuilding'>App Details</a></li>
                   <li className='active'><a href='#'>App Code</a></li>
                 </ul>
               </div>
               <div className='Grid-cell'>
-                <h1>App Code</h1>
                 <div className={'Grid Grid--gutters'}>
                   <div className='Grid-cell sampleInstructions'>
+                    <a href='/myapps/list' className='returnLink'>Go to My Apps</a>
+                    <h1>App Code</h1>
                     <ul>
                       <li>
                         <h3>Install Library</h3>
@@ -83,7 +99,7 @@ uport.onResponse('disclosureReq').then(payload => {
               </div>
             </div>
             <footer>
-              <a href='/'>Having trouble getting your app set up? Get in touch with us.</a>
+              <a href='https://chat.uport.me/#/home'>Having trouble getting your app set up? Get in touch with us.</a>
             </footer>
           </BodyContainer>
         </main>

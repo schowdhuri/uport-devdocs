@@ -387,8 +387,8 @@ button.continue {
 }
 .appItem {
   width: 26.65%;
-  min-width: 220px;
-  height: 220px;
+  min-width: 217px;
+  height: 217px;
   list-style-type: none;
   float: left;
   box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
@@ -398,6 +398,10 @@ button.continue {
   position: relative;
   cursor: pointer;
   border-radius: 3px;
+}
+.appItem:before {
+  background-image: none;
+  content: normal;
 }
 .appItem .avatar {
   position: absolute;
@@ -495,4 +499,31 @@ button.continue {
 .sampleCode span {
   display: block;
   white-space: nowrap;
+}
+
+/* AppDetail */
+.appDetailHeaderWrap {
+  background-color: #fff;
+  min-height: 140px;
+  padding: 30px;
+  box-shadow: 0px 0px 20px rgba(139, 139, 139, 0.5)
+}
+.appDetailHeader .avatar {
+  background-image: url(../../images/myapps-bg.svg);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-size: 350px;
+  background-position: 6% 38%;
+  float:left;
+}
+.appDetailHeader h3 {
+  float:left;
+  margin: 25px 0 0 30px;
+  font-size: 32px;
+  font-weight: 800;
+}
+.sampleInstructions li:before {
+  background-image: none;
+  bottom: auto;
 }
