@@ -29,15 +29,10 @@ min-height: 100vh;
 `
 
 class MyAppsSampleCodePage extends React.Component {
-  componentDidMount () {
-    if (Object.keys(this.props.profile).length === 0) {
-      const history = this.props.history
-      history.push('/myapps/')
-    }
-  }
   render () {
     return (
-      <div className='index-container myapps'>
+      Object.keys(this.props.profile).length
+      ? <div className='index-container myapps'>
         <Helmet title={config.siteTitle} />
         <main>
           <MyAppsHeadContainer>
@@ -104,6 +99,7 @@ uport.onResponse('disclosureReq').then(payload => {
           </BodyContainer>
         </main>
       </div>
+      : this.props.history.push('/myapps')
     )
   }
 }

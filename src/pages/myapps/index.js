@@ -33,7 +33,7 @@ class MyAppsPage extends React.Component {
     }
     this.loginRequest = this.loginRequest.bind(this)
   }
-  componentDidMount () {
+  componentDidUpdate () {
     if (this.props.profile) {
       if (this.props.profile.uportApps) {
         this.props.history.push('/myapps/list')

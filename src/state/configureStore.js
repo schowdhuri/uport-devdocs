@@ -33,6 +33,12 @@ const reducer = (state = initialState, action) => {
       profile: {...state.profile, uportApps: action.uportApps}
     })
   }
+  if (action.type === `LOGOUT`) {
+    return Object.assign({}, state, {
+      profile: initialState.profile,
+      currentApp: initialState.currentApp
+    })
+  }
   return state
 }
 const persistedReducer = persistReducer(persistConfig, reducer)

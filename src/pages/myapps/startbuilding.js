@@ -39,12 +39,6 @@ class MyAppsStartBuildingPage extends React.Component {
     this.handleAccountTypeChange = this.handleAccountTypeChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  componentWillMount () {
-    if (Object.keys(this.props.profile).length === 0) {
-      const history = this.props.history
-      history.push('/myapps/')
-    }
-  }
   handleAppNameChange (e) {
     this.setState({appName: e.target.value})
   }
@@ -103,7 +97,8 @@ class MyAppsStartBuildingPage extends React.Component {
   render () {
     let selectedNetwork = this.state.selectedNetworkObj
     return (
-      <div className='index-container startBuilding'>
+      Object.keys(this.props.profile).length
+      ? <div className='index-container startBuilding'>
         <Helmet title={config.siteTitle} />
         <main>
           <MyAppsHeadContainer>
@@ -177,6 +172,7 @@ class MyAppsStartBuildingPage extends React.Component {
           </BodyContainer>
         </main>
       </div>
+      : this.props.history.push('/myapps')
     )
   }
 }

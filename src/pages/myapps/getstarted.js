@@ -21,7 +21,8 @@ img {
 class MyAppsGetStartedPage extends React.Component {
   render () {
     return (
-      <div className='index-container myAppsWrap getStarted'>
+      Object.keys(this.props.profile).length
+      ? <div className='index-container myAppsWrap getStarted'>
         <Helmet title={config.siteTitle} />
         <main>
           <AppManagerHeadContainer>
@@ -47,6 +48,7 @@ class MyAppsGetStartedPage extends React.Component {
           </BodyContainer>
         </main>
       </div>
+      : this.props.history.push('/myapps')
     )
   }
 }

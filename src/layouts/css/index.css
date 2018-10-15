@@ -233,8 +233,6 @@ p.hero-subheading {
 .building-blocks-wrapper .Grid {
   flex-direction: column;
 }
-
-
 /* END: Building Blocks styles */
 
 /* START: Footer styles */
@@ -457,7 +455,65 @@ footer .footer-menu-wrap a {
   overflow-wrap: break-word;
   white-space: pre-wrap;
 }
-.docSearch-content 
+
+/* Login Status */
+.loginStatus {
+  border-left: 1px solid #fff;
+  display:inline-block;
+  height: 30px;
+  margin-top: 15px;
+  position:relative;
+}
+.loginStatus div {
+  margin-top: -15px;
+}
+.loginStatus .register-app {
+  border: 2px solid #fff;
+  border-radius: 5px;
+  margin: 9px 4px;
+  padding: 9px 14px;
+}
+.loginStatus .myapps-nav:after {
+  content: url('../../images/caret-down.svg');
+  position: relative;
+  top: -1px;
+  left: 8px;
+}
+.loginStatus .myAppsDropdown {
+  position:absolute;
+  right: 10px;
+  margin-top: -10px;
+  box-shadow: 0 4px 4px 0 rgba(134, 134, 134, 0.25);
+  background-color: #fff;
+  text-align: left;
+  min-width: 180px;
+}
+.loginStatus li.logout {
+  border-bottom: none;
+}
+.loginStatus li.logout a {
+  color: #D63A59;
+}
+.loginStatus ul {
+  padding: 0;
+}
+.loginStatus ul li {
+  padding: 0;
+  border-bottom: 1px solid #efefef;
+  padding: 8px 0 12px 10px;
+  cursor: pointer;
+}
+.loginStatus ul li:before {
+  background-image: none;
+  bottom: auto;
+  width: auto;
+}
+.loginStatus ul li a {
+  color: #5C50CA;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
 
 /* Grid Classes */
 *, :after, :before {

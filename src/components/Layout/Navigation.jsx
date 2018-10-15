@@ -2,6 +2,7 @@ import React from "react"
 import Link from 'gatsby-link'
 import styled from 'styled-components'
 import Menu from 'react-burger-menu/lib/menus/slide'
+import LoginStatus from './LoginStatus'
 
 const styles = {
   bmMenuWrap: {
@@ -91,15 +92,14 @@ class Navigation extends React.Component {
         <section id='topNav'>
           <StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory === 'overview' ? 'active' : ''}`} to={"/overview"} activeClassName={'active'}>About</StyledLink>
           <StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory !== 'overview' ? 'active' : ''}`} to={"/index.html#platform"} activeClassName={'active'}> Platform </StyledLink>
-          <a href='/myapps' className={`nav-link w-nav-link`}> MyApps </a>
           <a href='https://chat.uport.me' className={`nav-link w-nav-link`} target='_blank'> Help </a>
           <a href='https://medium.com/uport' className={`nav-link w-nav-link`} target='_blank'> Blog </a>
+          <LoginStatus />
         </section>
         <div id='responsiveNavContainer'>
           <Menu right isOpen={false} styles={styles}>
             <StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory === 'overview' ? 'active' : ''}`} to={"/overview"} activeClassName={'active'}>About</StyledLink>
             <StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory !== 'overview' ? 'active' : ''}`} to={"/index.html#platform"} activeClassName={'active'}> Platform </StyledLink>
-            <a href='/myapps' className={`menu-item`} target='_blank'> MyApps </a>
             <a href='https://chat.uport.me' className={`menu-item`} target='_blank'> Help </a>
             <a href='https://medium.com/uport' className={`menu-item`} target='_blank'> Blog </a>
           </Menu>
