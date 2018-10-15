@@ -33,7 +33,7 @@ uport.onResponse('signClaimReq').then(payload => {
 
 ## Relaying an existing credential
 
-Credentials issued to the user from outside the app can sent to them from the app as well. Learn more about creating credentials from our [server-side credentials tutorial](/uport-js/guides/server-side-credentials-example.md).
+Credentials issued to the user from outside the app can sent to them from the app as well. Learn more about creating credentials from our [server-side credentials tutorial](/uport-credentials/guides/tutorial).
 
 ```js
 const credential = 'eyJ0eXAiOiJKV1QiLCJh...' // some credential JWT

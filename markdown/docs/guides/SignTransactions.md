@@ -7,7 +7,7 @@ source: "https://github.com/uport-project/uport-project.github.io/blob/develop/m
 
 # Ethereum Transactions and Contract Calls
 
-`uport-connect` offers two Ethereum interaction models. The first is similar to above, where all Ethereum interactions get encoded as uPort requests for a uPort client. You can create these requests in both and `uport-connect` and `uport-js` and then send them the same way as the examples above. The second allows you to create a web3 style provider wrapped with uPort functionality.
+`uport-connect` offers two Ethereum interaction models. The first is similar to above, where all Ethereum interactions get encoded as uPort requests for a uPort client. You can create these requests in both and `uport-connect` and `uport-credentials` and then send them the same way as the examples above. The second allows you to create a web3 style provider wrapped with uPort functionality.
 
 ## uPort Requests
 
