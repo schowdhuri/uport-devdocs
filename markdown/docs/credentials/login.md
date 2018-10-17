@@ -22,8 +22,8 @@ To allow for maximum flexibility, uPort Credential’s only deals with creation 
 
 If you plan on using uPort Credentials + uPort Transports for your solution, then this tutorial is written for you. To integrate this solution into your dApp, you’ll need to:
 
-Clone the [uPort Credentials](https://github.com/uport-project/uport-credentials) repository locally
-Clone the [uPort Transports](https://github.com/uport-project/uport-transports) repository locally
-Download the uPort Mobile app ([Android](https://github.com/uport-project/uport-transports) | [iOS](https://itunes.apple.com/us/app/uport-id/id1123434510?mt=8))
+* Clone the [uPort Credentials](https://github.com/uport-project/uport-credentials) repository locally
+* Clone the [uPort Transports](https://github.com/uport-project/uport-transports) repository locally
+* Download the uPort Mobile app ([Android](https://github.com/uport-project/uport-transports) | [iOS](https://itunes.apple.com/us/app/uport-id/id1123434510?mt=8))
 
 We’ll cover these steps and more in the next section.
