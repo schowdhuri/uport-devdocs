@@ -1,5 +1,5 @@
 ---
-title: "Server-side examples"
+title: "verification tutorial"
 index: 2
 category: "uport-credentials"
 type: "tutorial"
@@ -16,7 +16,7 @@ In this tutorial, we will demonstrate:
 
 The Creator process provides the owner of the uPort identity with a new credential to add to their list of credentials. The Requester process allows an app to request that credential from them when the need arises. 
 
-For more information on this tutorial and the code, please visit the [uport-credentials repo](https://github.com/uport-project/uport-credentials).
+For more information on this library and the code, please visit the [uport-credentials repo](https://github.com/uport-project/uport-credentials).
 
 To get started, download the repo, run install, run build, and finally access the code for this tutorial in the **examples** folder:
 
@@ -34,7 +34,7 @@ After completing the steps above, run the **Credential Creator Service** and ope
 $ node createcredential.js
 ```
 
-Once you have the credential in your uPort client, you can use the **Credential Requestor Service** by running and opening the URL in the terminal console output. You will be prompted to share the credential you just received, upon receiving the credential, it will verify it. The output will be available in the terminal console.
+Once you have the credential in your uPort client, you can use the **Credential Requestor Service** by running and opening the URL in the terminal console output. You will be prompted to share the credential you just received. Once it receives the credential, it will verify it. The output will be available in the terminal console.
 
 ``` bash
 $ node requestcredential.js
@@ -54,7 +54,7 @@ $ node
 }
 ```
 
-**Note**: in practice the signing key for the identity should remain private.
+Please note that in practice the signing key for the identity **should** remain private.
 
 ## Create a Verification Service
 
@@ -91,7 +91,7 @@ The verification requires three fields: `sub`, which identifies the *subject* of
 
 The `createVerification()` function returns a promise that resolves to a JWT. This time, we will make use of another transport from the `uport-transports` library (specifically, `transports.push.send`) to send the JWT as a push notification, without requiring the user to scan another QR code. This transport requires a public encryption key and a push token of the user to whom it’s being sent to — both of which are included in the initial disclosure response.
 
-When the `/callback` page loads, a push notification should appear in the mobile app of the user who has just scanned the QR code, containing the credential that you have edited above.
+When the `/callback` page loads, a push notification will appear in the mobile app of the user who has just scanned the QR code, containing the credential that you have edited above.
 
 After performing any edits, you can test this flow by starting the server with:
 ```bash
@@ -106,7 +106,7 @@ The `requestcredential.js` file contains a simple node `express` server which wi
 
 As with the Creator service, we start by setting up the `Credentials` object using the private key and DID we created above (or using the example provided). We also set up `bodyParser` so that we can parse the JWT that we receive from the user.
 
-When we load the app at the default route, our handler `app.get('/')` will call `createDisclosureRequest()` much like before, but this time we will request a specific credential from the user. In a disclosure request, the `verified` key to denotes a list of credentials that we are requesting -- we are currently requesting that the user disclose a verification with the primary key `'My Title'` -- changing the keys in this array will request different pieces of data from the user, and they will be prompted to approve all verifications that you request. If you changed the primary key of the credential that you issue in the `createcredentials.js` service, remember to change the name of the key in the `verified` array.
+When we load the app at the default route, our handler `app.get('/')` will call `createDisclosureRequest()` much like before, but this time, we will request a specific credential from the user. In a disclosure request, the `verified` key denotes a list of credentials that we are requesting.  In this scenario, we are requesting that the user disclose a verification with the primary key `'My Title'`. Changing the keys in this array will request different pieces of data from the user, and they’ll be prompted to approve the verifications that you request. If you change the primary key of the credential that you issue in the `createcredentials.js` service, remember to change the name of the key in the `verified` array.
 
 Once again, we use the `callbackUrl` field to specify where we should handle the response from the user, assuming they agree to share it. This must be a publicly available endpoint so that the uPort client can post the response to it. Here as above, the example servers are wrapped with [ngrok](https://ngrok.com/) to create a publicly available endpoint on demand from a server running on `localhost`.
 
