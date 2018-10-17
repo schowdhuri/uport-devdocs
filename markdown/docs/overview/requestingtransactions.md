@@ -24,3 +24,10 @@ The third transaction type is what we’re primarily exploring in this section.
 
 uPort allows you to send a request to your users, asking them to sign an Ethereum transaction. Your dApp creates the Ethereum Transaction before sending it to a user's uPort mobile app through the Ethereum Transaction Request Flow.
 
+Our tutorials have been tailored based on the type of solution you seek. The following are the two main categories:
+
+* Server-side dApp
+  * If you’re building a server-side app using uPort Credential + uPorts Transports, then this is the appropriate solution for you.
+* Web3 dApp
+  * If you’re building your app using uPort Connect; the default, quick start implementation to integrate with uPort, then this is the appropriate solution for you.
+
