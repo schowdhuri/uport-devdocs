@@ -70,7 +70,7 @@ class Index extends React.Component {
                           <li>Issue and Request Verified Credentials about your users</li>
                         </ul>
                         <div className={`hero-button`}>
-                          <a href='/uport-js/index'>
+                          <a href='/uport-credentials/index'>
                             Issue Verified Credentials
                           </a>
                         </div>
