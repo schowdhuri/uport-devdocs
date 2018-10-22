@@ -2,13 +2,12 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { Connect } from 'uport-connect'
+import { uPortConnect } from '../../utilities/uPortConnectSetup'
 import { connect } from 'react-redux'
 
 import SiteHeader from '../../components/Layout/Header'
 import config from '../../../data/SiteConfig'
 import myAppsBg from '../../images/myapps-bg.svg'
-import uportLogo from '../../images/Horizontal-Logo-purple.svg'
 import '../../layouts/css/myapps.css'
 
 const BodyContainer = styled.div`
@@ -25,11 +24,8 @@ class MyAppsPage extends React.Component {
     super(props)
     this.state = {
       uri: {},
-      profile: this.props.profile || {},
       showImage: false,
-      showResult: false,
-      showExample: false,
-      showProfile: false
+      showResult: false
     }
     this.loginRequest = this.loginRequest.bind(this)
   }
@@ -48,12 +44,10 @@ class MyAppsPage extends React.Component {
     e.preventDefault()
     const history = this.props.history
     try {
-      const uPortConnect = new Connect('MyApps')
       uPortConnect.requestDisclosure({requested: ['name'], verified: ['uport-apps'], notifications: true})
       uPortConnect.onResponse('disclosureReq').then(response => {
-        this.setState({showImage: false, showResult: true, profile: {name: response.payload.name, did: response.payload.did, uportApps: response.payload['uport-apps']}})
-        this.props.saveProfile(this.state.profile)
-        if (this.state.profile.uportApps) {
+        this.props.saveProfile({name: response.payload.name, did: response.payload.did, uportApps: response.payload['uport-apps']})
+        if (this.props.profile.uportApps) {
           history.push('/myapps/list')
         } else {
           history.push('/myapps/getstarted')

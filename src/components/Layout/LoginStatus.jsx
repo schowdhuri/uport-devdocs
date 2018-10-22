@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Connect } from 'uport-connect'
+import { uPortConnect } from '../../utilities/uPortConnectSetup'
 import onClickOutside from 'react-onclickoutside'
 
 class LoginStatus extends Component {
@@ -23,7 +23,6 @@ class LoginStatus extends Component {
   loginRequest (e) {
     e.preventDefault()
     try {
-      const uPortConnect = new Connect('MyApps')
       uPortConnect.requestDisclosure({requested: ['name'], verified: ['uport-apps'], notifications: true})
       uPortConnect.onResponse('disclosureReq').then(response => {
         this.props.saveProfile({name: response.payload.name, did: response.payload.did, uportApps: response.payload['uport-apps']})

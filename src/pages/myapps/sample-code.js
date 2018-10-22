@@ -76,16 +76,17 @@ class MyAppsSampleCodePage extends React.Component {
                       <li>
                         <h3>Request Credentials</h3>
                         <div className='sampleCode'>
-                        <pre><code style={{backgroundColor: '#f4f4f7'}} className={`language-javascript`}>
-                        {`uport.requestDisclosure({
+                          <pre><code style={{backgroundColor: '#f4f4f7'}} className={`language-javascript`}>
+                            {`uport.requestDisclosure({
   requested: ['name','country'],
-  notifications: true
+  notifications: true,
+  issc: '${this.props.currentApp.configuration.profile['/']}'
 })
 uport.onResponse('disclosureReq').then(payload => {
   const address = payload.address
 })
                         `}
-                        </code></pre>
+                          </code></pre>
                         </div>
                       </li>
                     </ul>
