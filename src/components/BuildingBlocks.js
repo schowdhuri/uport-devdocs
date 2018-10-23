@@ -91,7 +91,7 @@ class BuildingBlocks extends Component {
               <div>
                 <div className='block-item'>
                   <a href='/categories/uport-connect'>
-                    <h4>uPort Connect    &#x2192;</h4>
+                    <h4 className='arrow'>uPort Connect</h4>
                     <p>Single sign-on and transaction signing for your client-side app</p>
                   </a>
                   <div className={'code-block'}>
@@ -100,7 +100,7 @@ class BuildingBlocks extends Component {
                 </div>
                 <div className='block-item'>
                   <a href='/categories/uport-credentials'>
-                    <h4>uPort Credentials     &#x2192;</h4>
+                    <h4 className='arrow'>uPort Credentials</h4>
                     <p>Request, sign, and issue credentials from your app server</p>
                   </a>
                   <div className={'code-block'}>
@@ -109,7 +109,7 @@ class BuildingBlocks extends Component {
                 </div>
                 <div className='block-item'>
                   <a href='/categories/uport-transports'>
-                    <h4>uPort Transports    &#x2192;</h4>
+                    <h4 className='arrow'>uPort Transports</h4>
                     <p>Set up communication channels between your app and uPort clients.</p>
                   </a>
                   <div className={'code-block'}>
@@ -123,7 +123,7 @@ class BuildingBlocks extends Component {
               <div>
                 <div className='block-item'>
                   <a href='/categories/ethr-did'>
-                    <h4>EthrDID    &#x2192;</h4>
+                    <h4 className='arrow'>EthrDID</h4>
                     <p>Create Decentralized Identifiers and manage their interactions in your app.</p>
                   </a>
                   <div className={'code-block'}>
@@ -132,7 +132,7 @@ class BuildingBlocks extends Component {
                 </div>
                 <div className='block-item'>
                   <a href='/categories/ethr-did-registry'>
-                    <h4>EthrDID Registry    &#x2192;</h4>
+                    <h4 className='arrow'>EthrDID Registry</h4>
                     <p>Smart contract for the resolution and management of decentralized identifiers (DIDs)</p>
                   </a>
                   <div className={'code-block'}>
