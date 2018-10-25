@@ -1,4 +1,8 @@
 import { Connect } from 'uport-connect'
-const uPortConnect = new Connect('MyApps')
+let uPortConnect = {}
+
+if (typeof window !== 'undefined') {
+  uPortConnect = new Connect('MyApps')
+}
 
 export {uPortConnect}

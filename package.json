@@ -31,7 +31,7 @@
     "styled-components": "^3.4.2",
     "sugarss": "^1.0.1",
     "uport": "next",
-    "uport-connect": "^1.0.0-beta.1",
+    "uport-connect": "^1.0.0",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
@@ -41,6 +41,8 @@
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-plugin-transform-react-pug": "^6.0.0",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "base64url": "2.0.0",
     "broken-link-checker": "^0.7.8",

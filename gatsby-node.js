@@ -157,8 +157,33 @@ exports.createPages = ({graphql, boundActionCreators}) => {
   });
 };
 
-exports.modifyWebpackConfig = ({config, stage}) => {
+const generateBabelConfig = require('gatsby/dist/utils/babel-config')
+exports.modifyWebpackConfig = ({ config, stage }) => {
   if (stage === "build-javascript") {
     config.plugin("Lodash", webpackLodashPlugin, null);
   }
-};
+
+  const program = {
+    directory: __dirname,
+    browserslist: ["> 1%", "last 2 versions", "IE >= 9"],
+  }
+
+  return generateBabelConfig(program, stage).then(babelConfig => {
+    config.removeLoader('js').loader('js', {
+      test: /\.jsx?$/,
+      exclude: modulePath => {
+        return (
+          /node_modules/.test(modulePath) &&
+          !/node_modules\/(ipfs-api|cids|multihashes|is-ipfs|ipld-dag-pb|multiaddr|multihashing-async|class-is|peer-id|borc|libp2p-crypto|multibase|ipfs-block|ipld-dag-cbor|multicodec|peer-info|ipfs-unixfs)/.test(modulePath)
+        )
+      },
+      loader: 'babel',
+      query: babelConfig
+    })
+  })
+}
+
+exports.modifyBabelrc = ({ babelrc }) => ({
+  ...babelrc,
+  plugins: babelrc.plugins.concat(['transform-regenerator'])
+})

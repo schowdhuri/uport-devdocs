@@ -20,10 +20,15 @@ class AppList extends Component {
           if (response.status >= 400) { console.log('Bad response from IPFS') }
           return response.json()
         }).then(function (data) {
-          let profileImageUrl = 'https://ipfs.io' + data.profileImage['/']
-          bgImageArray[index] = {backgroundImage: `url(${profileImageUrl})`}
-          that.setState({bgImageStyles: bgImageArray})
-          return {backgroundImage: `url(${profileImageUrl})`}
+          let profileImageUrl
+          if (data.profileImage) {
+            profileImageUrl = 'https://ipfs.io' + data.profileImage['/']
+            bgImageArray[index] = {backgroundImage: `url(${profileImageUrl})`}
+            that.setState({bgImageStyles: bgImageArray})
+            return {backgroundImage: `url(${profileImageUrl})`}
+          } else {
+            return {backgroundImage: `url(${myAppsBg})`}
+          }
         })
       } else {
         bgImageArray[index] = {backgroundImage: `url(${myAppsBg})`}
