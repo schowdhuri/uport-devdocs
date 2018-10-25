@@ -125,17 +125,17 @@ ol, ul{
     margin-left: 0;
     padding-right: 0;
     padding-bottom: 20px;
-    list-style: none;
+    /* list-style: none; */
 }
 
 li {
     margin-top: .4em;
-    list-style: none;
+    /* list-style: none; */
     font-size: 16px;
 }
 ul li::before {
-    content: '';
-    color: #62B482;
+    /* content: ''; */
+    /* color: #62B482; */
     display: inline-block;
     width: 1em;
     height: 1em;
@@ -144,10 +144,10 @@ ul li::before {
     text-align: center;
     position: relative;
     bottom: 2px;
-    direction: rtl;
-    background-image: url(../../images/Tick.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
+    /* direction: rtl; */
+    /* background-image: url(../../images/Tick.svg); */
+    /* background-size: contain; */
+    /* background-repeat: no-repeat; */
 }
 
 /*  START: Hero styles */
@@ -226,6 +226,13 @@ p.hero-subheading {
 /* END: Hero styles */
 
 /* START: Building Blocks styles */
+
+.arrow::after {
+    content: url('../../images/ArrowBlurple.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+}
 
 .building-blocks-wrapper {
   padding: 20px 20px 40px 20px;

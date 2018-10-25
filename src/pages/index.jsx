@@ -4,12 +4,13 @@ import styled from 'styled-components'
 import SEO from '../components/SEO/SEO'
 import SiteHeader from '../components/Layout/Header'
 import SiteFooter from '../components/Layout/Footer'
+import ServerLanding from '../components/server/ServerLanding'
 import BuildingBlocks from '../components/BuildingBlocks'
+import Solutions from '../components/Solutions'
 import config from '../../data/SiteConfig'
-/* import downloadUport from '../images/download-uport.svg'
- * import registerApp from '../images/register-app.svg'
- * import installSDK from '../images/install-sdk.svg'*/
 import heroImg from '../images/hero-img.svg'
+import backgroundImg from '../images/grey-background.png'
+import greenTick from '../images/Tick.svg'
 import AutoLinkText from 'react-autolink-text2'
 
 class Index extends React.Component {
@@ -88,6 +89,7 @@ class Index extends React.Component {
             </Hero>
           </IndexHeadContainer>
           <BodyContainer className={`body-container`}>
+            <Solutions />
             <BuildingBlocks />
           </BodyContainer>
           <FooterContainer>
@@ -129,16 +131,33 @@ const Hero = styled.div`
      margin-top: 1em;
      height: 3em;
      font-size: 16px;
+     list-style: none;
+  }
+  ul li::before {
+    content: '';
+    color: #62B482;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-right: 15px;
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
+    bottom: 2px;
+    direction: rtl;
+    background-image: url(${greenTick});
+    background-size: contain;
+    background-repeat: no-repeat;
   }
   background-color: #fff;
   .hero-wrapper {
-  width: 90vw;
-  margin: 0 auto;
-  padding: 60px 0;
+    width: 90vw;
+    margin: 0 auto;
+    padding: 60px 0;
   }
   .hero-img-wrap {
-  flex: 0 0 42%;
-  align-self: center;
+    flex: 0 0 42%;
+    align-self: center;
   }
   @media screen and (max-width: 600px) {
    h1 {

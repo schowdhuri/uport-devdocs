@@ -4,6 +4,7 @@
   "version": "2.3.3",
   "author": "team@uport.me",
   "dependencies": {
+    "babel-plugin-styled-components": "^1.8.0",
     "babel-register": "^6.26.0",
     "ipfs-api": "^25.0.0",
     "jotted": "^1.5.2",

@@ -10,10 +10,9 @@ gulp.task('copy-markdown', (done) => {
   // safeSymlink("./src/images", "./static/images");
 
   // Copy files.
-  gulp.src(['./markdown/docs/reference/*',
-            './markdown/docs/guides/*',
-            './markdown/docs/overview/*',
-            './markdown/specs/**/*'])
+  gulp.src(['./markdown/docs/**/*',
+            './markdown/specs/**/*'
+           ])
     .pipe(gulp.dest('./content/public/'));
 
   // Add DID-JWT work
