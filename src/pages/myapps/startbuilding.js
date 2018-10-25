@@ -7,8 +7,10 @@ import Select from 'react-select'
 import SiteHeader from '../../components/Layout/Header'
 import config from '../../../data/SiteConfig'
 import errorIcon from '../../images/error-icon.svg'
+import myAppsBg from '../../images/myapps-bg.svg'
 import '../../layouts/css/myapps.css'
-import { Connect } from 'uport-connect'
+import { uPortConnect } from '../../utilities/uPortConnectSetup'
+import { addFile } from '../../utilities/ipfs'
 
 const BodyContainer = styled.div`
 background-color: #f9f9fa;
@@ -26,10 +28,17 @@ class MyAppsStartBuildingPage extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      appName: this.props.currentApp.name || '',
-      network: this.props.currentApp.configuration.network || 'mainnet',
-      accountType: this.props.currentApp.configuration.accountType || 'keypair',
-      selectedNetworkObj: networkOptions.filter(obj => { return obj.value === this.props.currentApp.configuration.network }) || networkOptions[0],
+      appName: '',
+      network: 'mainnet',
+      accountType: 'keypair',
+      selectedNetworkObj: networkOptions[0],
+      file_name: null,
+      file_type: null,
+      ipfsLogoHash: null,
+      ipfsBgHash: null,
+      ipfsProfileClaim: null,
+      ipfsProfileHash: null,
+      accentColor: '#5C50CA',
       appNameValid: false,
       formSubmitted: false,
       duplicateAppName: false
@@ -38,6 +47,9 @@ class MyAppsStartBuildingPage extends React.Component {
     this.handleNetworkChange = this.handleNetworkChange.bind(this)
     this.handleAccountTypeChange = this.handleAccountTypeChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleAppImageChange = this.handleAppImageChange.bind(this)
+    this.buildClaim = this.buildClaim.bind(this)
+    this.uploadClaim = this.uploadClaim.bind(this)
   }
   handleAppNameChange (e) {
     this.setState({appName: e.target.value})
@@ -50,6 +62,63 @@ class MyAppsStartBuildingPage extends React.Component {
       ? this.setState({accountType: e.target.value, network: ''})
       : this.setState({accountType: e.target.value})
   }
+  handleAccentColorChange (e) {
+    this.setState({accentColor: e.target.value})
+  }
+  handleAppImageChange (e) {
+    const photo = e.target.files[0]
+    const reader = new window.FileReader()
+    let that = this
+    reader.onloadend = async function () {
+      const buf = new Buffer(reader.result)
+      const ipfsHash = await addFile(buf)
+      that.setState({ipfsLogoHash: ipfsHash})
+      that.setState({ipfsLogoUrl: `https://ipfs.io/ipfs/${ipfsHash}`})
+      console.log(`Uploaded profileImage: https://ipfs.io/ipfs/${ipfsHash}`)
+    }
+    reader.readAsArrayBuffer(photo)
+  }
+  async buildClaim () {
+    let profileClaim = {'name': this.state.appName}
+    if (this.state.ipfsLogoHash !== null) profileClaim['profileImage'] = {'/': '/ipfs/' + this.state.ipfsLogoHash}
+    return new Promise(async (resolve, reject) => {
+      if ((this.state.accentColor !== '' || this.state.accentColor !== '#5C50CA') && this.state.ipfsBgHash === null) {
+        // Generate image from accentColor and upload to IPFS
+        let canvas = document.getElementById('canvas')
+        let ctx = canvas.getContext('2d')
+        ctx.fillStyle = this.state.accentColor
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+        let that = this
+        canvas.toBlob(function (blob) {
+          var reader = new window.FileReader()
+          reader.onloadend = async function () {
+            const buf = new Buffer(reader.result)
+            const ipfsHash = await addFile(buf)
+            that.setState({ipfsBgHash: ipfsHash})
+            console.log(`Uploaded bannerImage: https://ipfs.io/ipfs/${ipfsHash}`)
+            profileClaim['bannerImage'] = {'/': `/ipfs/${ipfsHash}`}
+            const ipfsClaimHash = await that.uploadClaim(profileClaim)
+            resolve(ipfsClaimHash)
+          }
+          reader.readAsArrayBuffer(blob)
+        })
+      } else {
+        const ipfsClaimHash = await this.uploadClaim(profileClaim)
+        resolve(ipfsClaimHash)
+      }
+    })
+  }
+  async uploadClaim (profileClaim) {
+    let dataStr = JSON.stringify(profileClaim)
+    const buf = new Buffer(dataStr)
+    let that = this
+    return new Promise(async (resolve, reject) => {
+      const ipfsHash = await addFile(buf)
+      that.setState({ipfsProfileHash: ipfsHash})
+      console.log(`Uploaded profile claim: https://ipfs.io/ipfs/${ipfsHash}`)
+      resolve(ipfsHash)
+    })
+  }
   handleSubmit (e) {
     e.preventDefault()
     let uportApps = this.props.profile.uportApps || {}
@@ -57,45 +126,42 @@ class MyAppsStartBuildingPage extends React.Component {
     this.setState({formSubmitted: true})
     this.state.appName === '' || uportAppNames.indexOf(this.state.appName) >= 0
     ? this.setState({appNameValid: false, duplicateAppName: (uportAppNames.indexOf(this.state.appName) >= 0)})
-    : this.setState({appNameValid: true}, () => {
+    : this.setState({appNameValid: true}, async () => {
       if (this.state.appNameValid) {
-      // Check for existing apps
-        let claim = {}
+        await this.buildClaim()
+        let claim = {
+          name: this.state.appName,
+          configuration: {
+            network: this.state.network,
+            accountType: this.state.accountType,
+            accentColor: this.state.accentColor,
+            profile: {'/': '/ipfs/' + this.state.ipfsProfileHash}
+          }
+        }
         if (this.props.profile.uportApps) {
-          uportApps.push({name: this.state.appName,
-            configuration: {
-              network: this.state.network,
-              accountType: this.state.accountType
-            }
-          })
+          uportApps.push(claim)
           claim = {'uport-apps': uportApps}
         } else {
-          claim = {'uport-apps': [{
-            name: this.state.appName,
-            configuration: {
-              network: this.state.network,
-              accountType: this.state.accountType
-            }
-          }]}
+          claim = {'uport-apps': [claim]}
         }
         try {
-          // TODO put this in a global
-          const uPortConnect = new Connect('MyApps')
-          // debugger
           uPortConnect.sendVerification({sub: this.props.profile.did, claim: claim}, 'ADD-APP', {notifications: true})
           uPortConnect.onResponse('ADD-APP').then(payload => {
-            Object.keys(uportApps).length > 0 ? this.props.saveApps(uportApps) : this.props.saveApps([{name: this.state.appName, configuration: {network: this.state.network, accountType: this.state.accountType}}])
+            Object.keys(uportApps).length > 0
+            ? this.props.saveApps(uportApps)
+            : this.props.saveApps([claim])
+            this.props.setCurrentApp({name: this.state.appName, configuration: {network: this.state.network, accountType: this.state.accountType, accentColor: this.state.accentColor, profile: {'/': '/ipfs/' + this.state.ipfsProfileHash}}})
             this.props.history.push('/myapps/sample-code')
           })
         } catch (e) {
           console.log(e)
         }
-        this.props.setCurrentApp({name: this.state.appName, configuration: {network: this.state.network, accountType: this.state.accountType}})
       }
     })
   }
   render () {
     let selectedNetwork = this.state.selectedNetworkObj
+    const bgImageStyle = {backgroundImage: this.state.ipfsLogoHash ? `url(https://ipfs.io/ipfs/${this.state.ipfsLogoHash})` : `url(${myAppsBg})`}
     return (
       Object.keys(this.props.profile).length
       ? <div className='index-container startBuilding'>
@@ -107,7 +173,7 @@ class MyAppsStartBuildingPage extends React.Component {
               location={this.props.location}
               categories={this.props.data.navCategories} />
           </MyAppsHeadContainer>
-          <BodyContainer className='appMgrBody'>
+          <BodyContainer className='appMgrBody startBuilding'>
             <form onSubmit={(e) => { this.handleSubmit(e) }}>
               <div className={'Grid Grid--gutters'}>
                 <div className='Grid-cell sidebar'>
@@ -162,8 +228,37 @@ class MyAppsStartBuildingPage extends React.Component {
                     blurInputOnSelect
                     isDisabled={this.state.accountType === 'none'}
                   />
+                  <div className='appBranding Grid'>
+                    <div className='Grid-cell brandingSettings'>
+                      <h4>App Branding</h4>
+                      <div className='colorPicker'>
+                        <label htmlFor='accentColor'>App Accent Color</label>
+                        <input type='text' id='accentColor' placeholder='#5C50CA' value={this.state.accentColor} onChange={(e) => { this.handleAccentColorChange(e) }} />
+                        <div className='colorPreview' style={{backgroundColor: this.state.accentColor}} />
+                      </div>
+                      <div className='appImage'>
+                        <label htmlFor='appImage'>App Profile Image</label>
+                        <div className='fileUpload'>
+                          <span>Upload Image</span>
+                          <input type='file' className='upload' onChange={(e) => { this.handleAppImageChange(e) }} />
+                        </div>
+                        <div className={'imagePreview ' + (this.state.ipfsLogoHash ? 'uploaded' : 'default')} style={bgImageStyle} />
+                      </div>
+                    </div>
+                    <div className='Grid-cell brandingPreview'>
+                      <div className='appItem'>
+                        <div className='appCover' style={{backgroundColor: this.state.accentColor}}>&nbsp;</div>
+                        <div className={'avatar ' + (this.state.ipfsLogoHash ? 'uploaded' : 'default')} style={bgImageStyle}>
+                          &nbsp;
+                        </div>
+                        <h3>{this.state.appName || 'App Name'}</h3>
+                        <span>{this.state.network}</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <canvas width='100' height='100' id='canvas' style={{visibility: 'hidden'}} />
               <footer>
                 <a href='https://chat.uport.me/#/home'>Having trouble getting your app set up? Get in touch with us.</a>
                 <button type='submit' className='continue'>Continue</button>
@@ -225,18 +320,18 @@ query AppManagerStartBuildingQuery {
 
 MyAppsStartBuildingPage.propTypes = {
   profile: PropTypes.object.isRequired,
-  setCurrentApp: PropTypes.func.isRequired,
-  saveApps: PropTypes.func.isRequired
+  saveApps: PropTypes.func.isRequired,
+  setCurrentApp: PropTypes.func.isRequired
 }
 
-const mapStateToProps = ({ profile, currentApp }) => {
-  return { profile, currentApp }
+const mapStateToProps = ({ profile }) => {
+  return { profile }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    setCurrentApp: (app) => dispatch({ type: `SET_CURRENT_APP`, app: app }),
-    saveApps: (apps) => dispatch({ type: `SAVE_APPS`, uportApps: apps })
+    saveApps: (apps) => dispatch({ type: `SAVE_APPS`, uportApps: apps }),
+    setCurrentApp: (app) => dispatch({ type: `SET_CURRENT_APP`, app: app })
   }
 }
 

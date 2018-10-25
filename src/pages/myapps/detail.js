@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import SiteHeader from '../../components/Layout/Header'
+import myAppsBg from '../../images/myapps-bg.svg'
 import config from '../../../data/SiteConfig'
 import '../../layouts/css/myapps.css'
 
@@ -108,7 +109,31 @@ img {
 `
 
 class AppDetail extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      bgImageStyle: {},
+      ipfsLookupDone: false
+    }
+  }
+  getProfileImage (app) {
+    if (app.configuration.profile) {
+      let profileClaim = 'https://ipfs.io' + app.configuration.profile['/']
+      let that = this
+      fetch(profileClaim).then(function (response) {
+        if (response.status >= 400) { console.log('Bad response from IPFS') }
+        return response.json()
+      }).then(function (data) {
+        let profileImageUrl = 'https://ipfs.io' + data.profileImage['/']
+        that.setState({bgImageStyle: {backgroundImage: `url(${profileImageUrl})`}, ipfsLookupDone: true})
+      })
+    } else {
+      this.setState({bgImageStyle: {backgroundImage: `url(${myAppsBg})`}, ipfsLookupDone: true})
+    }
+  }
   render () {
+    if (!this.state.ipfsLookupDone) this.getProfileImage(this.props.currentApp)
+    console.log(this.props.currentApp)
     return (
       Object.keys(this.props.profile).length
       ? <div className='index-container myAppsWrap getStarted'>
@@ -122,7 +147,7 @@ class AppDetail extends React.Component {
           </AppManagerHeadContainer>
           <div className='appDetailHeaderWrap'>
             <div className='appDetailHeader'>
-              <div className='avatar'>&nbsp;</div>
+              <div className={'avatar ' + (this.props.currentApp.configuration.profile ? 'uploaded' : 'default')} style={this.state.bgImageStyle}>&nbsp;</div>
               <h3>{this.props.currentApp.name}</h3>
             </div>
           </div>
@@ -146,8 +171,8 @@ class AppDetail extends React.Component {
                 </div>
                 <div className='Grid-cell previewContainer'>
                   <div className='appItem'>
-                    <div className='appCover'>&nbsp;</div>
-                    <div className='avatar'>&nbsp;</div>
+                    <div className='appCover' style={{backgroundColor: this.props.currentApp.configuration.accentColor || '#5c54c7'}}>&nbsp;</div>
+                    <div className={'avatar ' + (this.props.currentApp.configuration.profile ? 'uploaded' : 'default')} style={this.state.bgImageStyle}>&nbsp;</div>
                     <h3>{this.props.currentApp.name}</h3>
                     <span>{this.props.currentApp.configuration.network}</span>
                   </div>

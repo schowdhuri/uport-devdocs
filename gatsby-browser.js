@@ -1,6 +1,7 @@
 import React from 'react'
 import { Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import 'babel-polyfill'
 
 import configureStore from './src/state/configureStore'
 

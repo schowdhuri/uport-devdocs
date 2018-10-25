@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import SiteHeader from '../../components/Layout/Header'
+import AppList from '../../components/MyApps/AppList'
 import config from '../../../data/SiteConfig'
 import '../../layouts/css/myapps.css'
 
@@ -13,37 +14,11 @@ height: 100%;
 min-height: 100vh;
 `
 
-const AppList = (props) => {
-  const appItems = props.apps.map((app, index) =>
-    <li className='appItem' key={index} onClick={(e) => { props.clickHandler(e, index) }}>
-      <div className='appCover'>&nbsp;</div>
-      <div className='avatar'>
-        &nbsp;
-      </div>
-      <h3>{app.name}</h3>
-      <span>{app.configuration.network}</span>
-    </li>
-  )
-  return (
-    <ul className='appList'>{appItems}</ul>
-  )
-}
-
 class MyAppsAppListPage extends React.Component {
-  constructor (props) {
-    super(props)
-    this.handleAppItemClick = this.handleAppItemClick.bind(this)
-  }
   componentDidMount () {
-    this.props.clearCurrentApp()
     if (Object.keys(this.props.profile).length === 0) {
       this.props.history.push('/myapps/')
     }
-  }
-  handleAppItemClick (event, index) {
-    this.props.clearCurrentApp()
-    this.props.setCurrentApp(this.props.profile.uportApps[index])
-    this.props.history.push('/myapps/detail')
   }
   render () {
     return (
@@ -65,7 +40,10 @@ class MyAppsAppListPage extends React.Component {
                 </a>
                 <h1>My Apps</h1>
                 <div className='appList'>
-                  <AppList apps={this.props.profile.uportApps} clickHandler={this.handleAppItemClick} />
+                  {this.props.profile.uportApps
+                  ? <AppList history={this.props.history} />
+                  : null
+                  }
                 </div>
               </div>
             </div>
@@ -123,20 +101,11 @@ query AppManagerMyAppsQuery {
 `
 
 MyAppsAppListPage.propTypes = {
-  profile: PropTypes.object.isRequired,
-  setCurrentApp: PropTypes.func.isRequired,
-  clearCurrentApp: PropTypes.func.isRequired
+  profile: PropTypes.object.isRequired
 }
 
-const mapStateToProps = ({ profile, currentApp }) => {
-  return { profile, currentApp }
+const mapStateToProps = ({ profile }) => {
+  return { profile }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setCurrentApp: (app) => dispatch({ type: `SET_CURRENT_APP`, app: app }),
-    clearCurrentApp: () => dispatch({ type: `CLEAR_CURRENT_APP` })
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MyAppsAppListPage)
+export default connect(mapStateToProps)(MyAppsAppListPage)
