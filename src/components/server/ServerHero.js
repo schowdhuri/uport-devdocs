@@ -80,4 +80,13 @@ const Hero = styled.div`
     text-align: center;
     padding: 7px 0 7px 0;
   }
+
+  @media screen and (min-width: 1440px) {
+    .right {
+      margin-top: -80px; 
+    }
+  }
 `
+
+
+// https://foundation.zurb.com/sites/docs/media-queries.html#default-media-queries
