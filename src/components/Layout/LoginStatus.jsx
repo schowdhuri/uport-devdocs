@@ -39,7 +39,7 @@ class LoginStatus extends Component {
       )
     }
     return (
-      <div className='loginStatus'>
+      <div className={'loginStatus ' + (this.state.visible ? 'open' : 'closed')}>
         { Object.keys(this.props.profile).length === 0
         ? <div>
           <a href='#' className={`nav-link w-nav-link`} onClick={(e) => { this.loginRequest(e) }}>Log In</a>
@@ -49,6 +49,7 @@ class LoginStatus extends Component {
           <a href='#' className={`nav-link w-nav-link myapps-nav`} onClick={(e) => { this.toggleMenu(e) }}>MyApps</a>
           {this.state.visible &&
             <ul className='myAppsDropdown'>
+              <li className=''><a href='/myapps/startbuilding'>Register Your App</a></li>
               {this.props.profile.uportApps ? appItems : null}
               <li className='logout' onClick={() => { this.props.logout() }}><a href='#'>Logout</a></li>
             </ul>
