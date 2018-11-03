@@ -93,7 +93,7 @@ class Navigation extends React.Component {
     return (
       <NavContainer>
         <section id='topNav'>
-          <StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory === 'overview' ? 'active' : ''}`} to={"/overview"} activeClassName={'active'}>About</StyledLink>
+          <StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory === 'overview' ? 'active' : ''}`} to={"/overview/index"} activeClassName={'active'}>About</StyledLink>
           <StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory !== 'overview' ? 'active' : ''}`} to={"/index.html#platform"} activeClassName={'active'}> Platform </StyledLink>
           <a href='https://chat.uport.me' className={`nav-link w-nav-link`} target='_blank'> Help </a>
           <a href='https://medium.com/uport' className={`nav-link w-nav-link`} target='_blank'> Blog </a>

@@ -1,6 +1,6 @@
 ---
 title: "Server Side Login Example"
-index: 4
+index: 2
 category: "uport-credentials"
 type: "guide"
 source: "https://github.com/uport-project/uport-project.github.io/blob/develop/markdown/docs/credentials/login.md"

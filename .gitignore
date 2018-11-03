@@ -68,3 +68,4 @@ bundle-stats.json
 yarn.lock
 /src/pages/.tern-port
 /src/pages/server/.tern-port
+/src/components/server/.tern-port
