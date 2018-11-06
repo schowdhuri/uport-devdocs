@@ -12,13 +12,13 @@ import config from '../../data/SiteConfig'
 import TableOfContents from '../components/Layout/TableOfContents'
 import SecondaryTitle from '../components/Layout/html/SecondaryTitle'
 import CtaButton from '../components/CtaButton'
+import Announcement from '../components/Announcement'
 
 export default class CategoryTemplate extends React.Component {
   render() {
     const category = this.props.pathContext.category;
     const postEdges = this.props.data.allMarkdownRemark.edges;
     const types = []
-    const messages = []
 
     const renderAst = new RehypeReact({
       createElement: React.createElement,
@@ -26,18 +26,6 @@ export default class CategoryTemplate extends React.Component {
         'h2': SecondaryTitle
       }
     }).Compiler
-
-    /* If there is an announcement, broadcast it at the top of each page */
-    if (this.props.data.announcement) {
-      this.props.data.announcement.edges.forEach(announcement => {
-        messages.push(
-          <h3>
-            <AutoLinkText text={`${announcement.node.frontmatter.announcement}`}
-            linkProps={{target: '_blank'}} />
-          </h3>
-        )
-      })
-    }
 
     let postNode = null
     let slug = null
@@ -87,9 +75,7 @@ export default class CategoryTemplate extends React.Component {
             />
           </ToCContainer>
           <BodyContainer>
-            <AnnouncementContainer>
-              {messages}
-            </AnnouncementContainer>
+            <Announcement data={this.props.data} />
             <CtaButton to={`${post.source}`}>
               Edit
             </CtaButton>
@@ -114,7 +100,7 @@ export default class CategoryTemplate extends React.Component {
 const BodyGrid = styled.div`
   height: 100vh;
   display: grid;
-  grid-template-rows: 75px 1fr;
+  grid-template-rows: 60px 1fr;
   grid-template-columns: 300px 1fr;
 
   @media screen and (max-width: 600px) {
@@ -167,7 +153,6 @@ const BodyContainer = styled.div`
 const HeaderContainer = styled.div`
   background: ${props => props.theme.brand};
   width: 100vw;
-  height: 84%;
   .Grid {
   width: 90vw;
   margin: 0 auto;
@@ -198,10 +183,6 @@ const ToCContainer = styled.div`
   order: 3;
   overflow: inherit;
   }
-`
-const AnnouncementContainer = styled.div`
-  margin: auto;
-  color: #cc0066;
 `
 
 /* eslint no-undef: "off"*/
@@ -280,6 +261,7 @@ export const pageQuery = graphql`
           node {
             frontmatter {
               announcement
+              announcementType
             }
           }
         }

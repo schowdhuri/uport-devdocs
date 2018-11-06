@@ -12,6 +12,7 @@ import heroImg from '../images/hero-img.svg'
 import backgroundImg from '../images/grey-background.png'
 import blueTick from '../images/Tick.svg'
 import AutoLinkText from 'react-autolink-text2'
+import Announcement from '../components/Announcement'
 
 class Index extends React.Component {
   render () {
@@ -89,7 +90,7 @@ class Index extends React.Component {
                   </div>
                 </div>
               </div>
-              <AnnouncementContainer>{messages}</AnnouncementContainer>
+              <Announcement>{messages}</Announcement>
             </Hero>
           </IndexHeadContainer>
           <BodyContainer className={`body-container`}>
