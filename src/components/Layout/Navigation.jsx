@@ -3,6 +3,7 @@ import Link from 'gatsby-link'
 import styled from 'styled-components'
 import Menu from 'react-burger-menu/lib/menus/slide'
 import LoginStatus from './LoginStatus'
+import Search from '../Search'
 
 const styles = {
   bmMenuWrap: {
@@ -75,7 +76,9 @@ const NavContainer = styled.nav`
     #responsiveNavContainer {
       display: none;
     }
-
+    #topNav {
+      display: flex;
+    }
   }
 `
 const StyledLink = styled(Link)`
@@ -94,6 +97,9 @@ class Navigation extends React.Component {
           <StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory !== 'overview' ? 'active' : ''}`} to={"/index.html#platform"} activeClassName={'active'}> Platform </StyledLink>
           <a href='https://chat.uport.me' className={`nav-link w-nav-link`} target='_blank'> Help </a>
           <a href='https://medium.com/uport' className={`nav-link w-nav-link`} target='_blank'> Blog </a>
+          <div>
+            <Search />
+          </div>
           <LoginStatus />
         </section>
         <div id='responsiveNavContainer'>
