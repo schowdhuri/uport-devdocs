@@ -6,12 +6,10 @@ class ServerResources extends Component {
     return (
       <Container>
         <div className='grid'>
-          <div>
+          <div className='header-row'>
             <h2>Additional Resources</h2>
             <h3>Libraries</h3>
           </div>
-          <div/>
-          <div/>
           <div className='block-item'>
             <a href='/categories/transports'>
               <h4>Transports    &#x2192;</h4>
@@ -52,16 +50,16 @@ padding-top: 150px;
 margin-bottom: 154px;
 background-color: #fff;
 .grid {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  grid-template-rows: auto auto;
-  grid-gap: 30px;
   justify-content: center;
+  margin: 0 20px;
 }
 h2 {
   font-size: 32px;
   font-weight: bold;
   line-height: 40px;
+}
+h2, h3 {
+  padding: 0;
 }
 h3, h4 {
   color: #8986A0;
@@ -82,17 +80,16 @@ p {
   max-width: 90%;
 }
 .code-block {
-  display: table;
   border-radius: 4px
   background-color: #f9f9fa;
-  margin: 0 20px 21px 20px;
-  width: 347px;
-  height: 50px;
   font-size: 16px;
   line-height: 19px;
   font-family: Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
   color: #3db77d;
-  white-space: nowrap;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
   span {
     display: table-cell;
     vertical-align: middle;
@@ -100,31 +97,42 @@ p {
   }
 }
 .block-item {
-  width: 387px;
-  height: 195px;
-  box-shadow: 0px 0px 4px
-  rgba(0,0,0, 0.25);
+  box-shadow: 0px 0px 4px rgba(0,0,0, 0.25);
   border-radius: 4px;
+  margin-bottom: 30px;
+  padding-bottom: 80px;
+  position: relative;
 }
 a {
     color: inherit;
     text-decoration: none;
 }
-
-@media screen and (max-width: 600px) {
-  .code-block, .block-item {
-    width: 90%;
-    height: 100%;
+.header-row {
+  margin-bottom: 30px;
+}
+@media screen and (min-width: 768px) {
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-gap: 30px;
+    max-width: 80em;
+  }
+  .header-row {
+    grid-area: 1 / 1 / 2 / 4;
+    margin: 0;
   }
   .block-item {
-    padding: 5px;
-    margin-left: 25px;
-    p {
-      max-width: 100%;
-    }
+
   }
-  .wrapper {
-    padding: 0;
+  .code-block {
+
+  }
+}
+@media screen and (min-width: 1200px) {
+  .grid {
+    margin: 0 auto;
+    width: 80em;
   }
 }
 `

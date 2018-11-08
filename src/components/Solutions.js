@@ -31,6 +31,7 @@ const SolutionsWrapper = styled.div`
   }
 }
 .solutions-grid-header {
+  padding: 0 20px;
   text-align: center;
 }
 

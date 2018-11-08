@@ -43,18 +43,8 @@ export default ServerSolutions
 const Container = styled.section`
 margin-top: 143px;
 .grid {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto;
-  grid-gap: 30px 30px;
   justify-content: center;
-  margin-bottom: 150px;
-}
-.left {
-  // background: pink;
-}
-.right {
-  // background: grey;
+  margin: 0 20px 150px;
 }
 .blob {
   position: absolute;
@@ -85,7 +75,6 @@ p {
 }
 .block-item {
   position: relative;
-  width: 590px;
   height: 349px;
   box-shadow: 0px 0px 10px
   rgba(139, 139, 139, 0.25);
@@ -105,20 +94,15 @@ a {
   padding-left: 13px;
 }
 
-@media screen and (max-width: 600px) {
-  .code-block, .block-item {
-    width: 90%;
-    height: 100%;
+@media screen and (min-width: 768px) {
+  .grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 30px 30px;
+    margin: 0 20px;
   }
   .block-item {
-    padding: 5px;
-    margin-left: 25px;
-    p {
-      max-width: 100%;
-    }
-  }
-  .wrapper {
-    max-width: 80vw;
+    width: 590px;
   }
 }
 `

@@ -9,23 +9,25 @@ class ServerHero extends React.Component {
     return (
       <Hero>
         <div className={`left`}>
-          <h4>Using uPort in</h4>
-          <h1 className='hero-title'>Server Solutions</h1>
-          <p className='hero-subheading'>
-            Login your users, in addition to issuing and accepting verified data.
-          </p>
-          <div className={'hero-features'}>
-            <div className=''>
-              <a href='/server#server-solutions'>
-                <div className={`hero-button`}>
-                  GET STARTED
-                </div>
-              </a>
+          <div className='content'>
+            <h4>Using uPort in</h4>
+            <h1 className='hero-title'>Server Solutions</h1>
+            <p className='hero-subheading'>
+              Login your users, in addition to issuing and accepting verified data.
+            </p>
+            <div className={'hero-features'}>
+              <div className=''>
+                <a href='/server#server-solutions'>
+                  <div className={`hero-button`}>
+                    GET STARTED
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>
         <div className={`right`}>
-          &nbsp;C
+          &nbsp;
         </div>
       </Hero>
     );
@@ -35,21 +37,17 @@ class ServerHero extends React.Component {
 export default ServerHero
 
 const Hero = styled.div`
-  height: 100vh;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto;
   .left {
-    padding: 45% 0 0 120px;
+    position: relative;
+    .content {
+      padding: 50px 20px;
+    }
   }
-  .right { 
-    width: 80vw;
+  .right {
     background-image: url(${heroImg});
-    background-position: left top;
+    background-position: 0 -65px;
     background-repeat: no-repeat;
-    background-size: auto 63vw;
-    margin: -62px 0 0 0;
+    display: none;
   }
   .hero-title {
     font-style: normal;
@@ -63,6 +61,7 @@ const Hero = styled.div`
     font-weight: normal;
     line-height: 36px;
     font-size: 24px;
+    margin: 20px 0;
   }
   .hero-title, .hero-subheading, h2, h4, p {
     color: #3F3D4B;
@@ -81,9 +80,14 @@ const Hero = styled.div`
     padding: 7px 0 7px 0;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    .left .content {
+      padding: 120px 0 0 120px;
+    }
     .right {
-      margin-top: -80px; 
+      display: block;
     }
   }
 `

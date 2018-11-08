@@ -66,7 +66,7 @@ class Index extends React.Component {
                         <li>Instantly create a privacy-preserving Ethereum account</li>
                         <li>Build for both desktop and mobile browsers</li>
                       </ul>
-                      <div className={`hero-button`}>
+                      <div className={`home-hero-button`}>
                         <a href='/gettingstarted'>
                           Connect With Your Users
                         </a>
@@ -81,7 +81,7 @@ class Index extends React.Component {
                         <li>Request Ethereum transaction signing with web3</li>
                         <li>Issue and Request Verified Credentials about your users</li>
                       </ul>
-                      <div className={`hero-button`}>
+                      <div className={`home-hero-button`}>
                         <a href='/uport-credentials/index'>
                           Issue Verified Credentials
                         </a>
@@ -164,20 +164,41 @@ const Hero = styled.div`
     flex: 0 0 42%;
     align-self: center;
   }
+  .home-hero-button {
+    border-radius: 4px;
+    background: linear-gradient(180deg, #7958D8 0%, #5C50CA 100%);
+    box-shadow: 0 2px 10px 0 rgba(63,61,75,0.2);
+    text-decoration: none;
+    font-weight: 400;
+    border: 2px solid #5c50ca;
+    text-align: center;
+    a {
+      display: block;
+      padding: 20px 20px 20px 20px;
+    }
+  }
   @media screen and (max-width: 600px) {
-   h1 {
-     font-size: 34px;
-     line-height: 40px;
-   }
-   .hero-wrapper {
-     padding: 0;
-   }
-   .hero-features {
-     h2 {
-       margin-top: 20px;
-     }
-   }
- }
+    h1 {
+      font-size: 34px;
+      line-height: 40px;
+    }
+    .hero-wrapper {
+      padding: 0;
+    }
+    .hero-features {
+      h2 {
+        margin-top: 20px;
+      }
+    }
+  }
+  @media (min-width: 768px) {
+    .home-hero-button {
+      position: absolute;
+      bottom: 2em;
+      left: 2em;
+      right: 2em;
+    }
+  }
 `
 
 const BodyContainer = styled.div`

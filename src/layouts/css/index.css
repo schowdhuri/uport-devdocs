@@ -209,11 +209,14 @@ p.hero-subheading {
 }
 
 .hero-button {
+    width: 240px;
+    margin-top: 40px;
     border-radius: 4px;
     background: linear-gradient(180deg, #7958D8 0%, #5C50CA 100%);
     box-shadow: 0 2px 10px 0 rgba(63,61,75,0.2);
     text-decoration: none;
     display: block;
+    margin-left: 0;
     padding: 20px 20px 20px 20px;
     font-weight: 400;
     border: 2px solid #5c50ca;
@@ -751,12 +754,6 @@ https://getbootstrap.com/docs/4.1/layout/overview/#responsive-breakpoints
   .hero-feature {
     padding-bottom: 8em;
     position: relative;
-  }
-  .hero-button {
-    position: absolute;
-    bottom: 2em;
-    left: 2em;
-    right: 2em;
   }
   .building-blocks-wrapper {
     padding: 60px 0;
