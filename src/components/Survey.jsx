@@ -78,8 +78,10 @@ const Input = styled.input`
 `
 
 const Label = styled.label`
-  padding: 10px;
+  font-weight: normal;
   margin: auto;
+  padding: 10px;
+  text-transform: none;
   @media (min-width: 768px) {
     padding: 0 5px;
   }

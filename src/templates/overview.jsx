@@ -9,6 +9,8 @@ import DevSurvey from '../components/Survey.jsx'
 import config from '../../data/SiteConfig'
 import TableOfContents from '../components/Layout/TableOfContents'
 import SecondaryTitle from '../components/Layout/html/SecondaryTitle'
+import OrderedList from '../components/Layout/html/OrderedList'
+import UnorderedList from '../components/Layout/html/UnorderedList'
 import CtaButton from '../components/CtaButton'
 import Announcement from '../components/Announcement'
 
@@ -18,7 +20,9 @@ export default class OverviewTemplate extends React.Component {
     const renderAst = new RehypeReact({
       createElement: React.createElement,
       components: {
-        'h2': SecondaryTitle
+        h2: SecondaryTitle,
+        ul: UnorderedList,
+        ol: OrderedList
       }
     }).Compiler
     const { slug } = this.props.pathContext
@@ -89,9 +93,9 @@ const BodyGrid = styled.div`
   grid-template-columns: 300px 1fr;
 
   @media screen and (max-width: 600px) {
-  display: flex;
-  flex-direction: column;
-  height: inherit;
+    display: flex;
+    flex-direction: column;
+    height: inherit;
   }
 `
 
@@ -103,35 +107,38 @@ const BodyContainer = styled.div`
   width: 100%;
   padding: ${props => props.theme.sitePadding};
   @media screen and (max-width: 600px) {
-  order: 2;
+    order: 2;
   }
 
   & > div {
-  max-width: ${props => props.theme.contentWidthLaptop};
-  margin-left: ${props => props.theme.bobbysLeftMarginPreference};
-  margin-top: auto;
-  margin-right: auto;
-  margin-bottom: auto;
+    max-width: ${props => props.theme.contentWidthLaptop};
+    margin-left: ${props => props.theme.bobbysLeftMarginPreference};
+    margin-top: auto;
+    margin-right: auto;
+    margin-bottom: auto;
   }
 
   & > h1 {
-  color: ${props => props.theme.accentDark};
+    color: ${props => props.theme.accentDark};
+  }
+  h2 {
+    margin-top: 60px;
   }
   @media screen and (max-width: 1068px) {
-  & > div {
-  max-width: ${props => props.theme.contentWidthTablet};
-  margin-left: ${props => props.theme.gregsLeftMarginPreference};
-  }
+    & > div {
+      max-width: ${props => props.theme.contentWidthTablet};
+      margin-left: ${props => props.theme.gregsLeftMarginPreference};
+    }
   }
   @media screen and (max-width: 768px) {
-  & > div {
-  max-width: ${props => props.theme.contentWidthLargePhone};
-  }
+    & > div {
+      max-width: ${props => props.theme.contentWidthLargePhone};
+    }
   }
   @media screen and (max-width: 520px) {
-  & > div {
-  max-width: ${props => props.theme.contentWidthLaptop};
-  }
+    & > div {
+      max-width: ${props => props.theme.contentWidthLaptop};
+    }
   }
 `
 
@@ -139,8 +146,8 @@ const HeaderContainer = styled.div`
   background: ${props => props.theme.brand};
   width: 100vw;
   .Grid {
-  width: 90vw;
-  margin: 0 auto;
+    width: 90vw;
+    margin: 0 auto;
   }
 `
 
@@ -151,22 +158,19 @@ const ToCContainer = styled.div`
 
   ::-webkit-scrollbar-track
   {
-  background: ${props => props.theme.lightGrey};
+    background: ${props => props.theme.lightGrey};
   }
-
   ::-webkit-scrollbar
   {
-  width: 2px;
+    width: 2px;
   }
-
   ::-webkit-scrollbar-thumb
   {
-  background: ${props => props.theme.tocAccent};
+    background: ${props => props.theme.tocAccent};
   }
-
   @media screen and (max-width: 600px) {
-  order: 3;
-  overflow: inherit;
+    order: 3;
+    overflow: inherit;
   }
 `
 

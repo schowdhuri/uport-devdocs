@@ -26,9 +26,8 @@ const SolutionsWrapper = styled.div`
   grid-template-rows: auto;
   grid-gap: 50px;
   padding-top: 100px;
-  @media (min-width: 768px) {
-    padding-top: 300px;
-  }
+  padding-top: 150px;
+  margin-bottom: -150px;
 }
 .solutions-grid-header {
   padding: 0 20px;

@@ -56,9 +56,8 @@ a {
   text-decoration: none;
 }
 .cta {
-  margin: 109px auto 90px; auto;
-  height: 320px;
-  width: 589px;
+  margin: 109px auto 90px;
+  padding: 0 20px;
   text-align: center;
 }
 .cta-button {

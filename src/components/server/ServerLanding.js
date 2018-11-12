@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import styled from 'styled-components'
 import serverImg from '../../images/server-landing.png'
 import arrowImg from '../../images/ArrowBlack.png'
-import blueTick from '../../images/blue-grey-tick.png'
+import blueTick from '../../images/Tick.svg'
 
 class ServerLanding extends Component {
 
@@ -23,14 +23,22 @@ class ServerLanding extends Component {
                 <div className='subgrid'>
                   <div className='subleft'>
                     <ul>
-                      <li className='blue-tick'>Create and verify authentication requests</li>
-                      <li className='blue-tick'>Ask users to sign Ethereum transactions</li>
+                      <li className='blue-tick'>
+                        <a href='/attestcredentials'>Create and verify authentication requests</a>
+                      </li>
+                      <li className='blue-tick'>
+                        <a href='/signtransactions'>Ask users to sign Ethereum transactions</a>
+                      </li>
                     </ul>
                   </div>
                   <div className='subright'>
                     <ul>
-                      <li className='blue-tick'>Request verified claims</li>
-                      <li className='blue-tick'>Verify claims for your users</li>
+                      <li className='blue-tick'>
+                        <a href='/requestcredentials'>Request verified claims</a>
+                      </li>
+                      <li className='blue-tick'>
+                        <a href='/attestcredentials'>Verify claims for your users</a>
+                      </li>
                     </ul>
                   </div>
                   <a href='/server' className='link'>
@@ -65,26 +73,14 @@ const Container = styled.section`
   margin: 2em;
 }
 .subgrid {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto;
-  grid-gap: 40px
   justify-content: center;
-  margin-bottom: 2em;
+  margin: 40px 0;
 }
 .subleft {
 
 }
 .subright {
 
-}
-.border {
-  height: 434px;
-  width: 386px;
-  box-shadow: 0px 0px 10px
-  rgba(139, 139, 139, 0.25);
-  border-radius: 8px;
-  margin: auto;
 }
 hr {
   margin: unset;
@@ -105,21 +101,22 @@ ul {
   font-style: normal;
   font-weight: bold;
   line-height: 24px;
-  margin-top: 36.93px;
   list-style: none;
+  text-indent: -25px;
 }
 li {
   color: #4C9EA6;
   word-wrap: break-word;
-  margin-bottom: 20px;
+  margin: 0 0 20px 40px;
 }
 li::before {
   content: unset;
   content: initial;
   content: url(${blueTick});
+  left: 5px;
+  margin-right: 10px;
 }
 p {
-  height: 81px;
   font-size: 16px;
   line-height: 24px;
   font-weight: normal;
@@ -162,6 +159,16 @@ a {
   }
   .right-wrap {
     margin: 76px 80px 0 0;
+  }
+  .subgrid {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    grid-gap: 40px
+    margin-top: 0;
+  }
+  ul {
+    margin-top: 40px;
   }
 }
 @media (max-width: 1137px) {

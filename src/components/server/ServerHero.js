@@ -1,7 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
-import heroImg from '../../images/Image.svg'
+import heroImg from '../../images/server_hero.svg'
 
 
 class ServerHero extends React.Component {
@@ -45,8 +45,9 @@ const Hero = styled.div`
   }
   .right {
     background-image: url(${heroImg});
-    background-position: 0 -65px;
+    background-position: top right;
     background-repeat: no-repeat;
+    background-size: contain;
     display: none;
   }
   .hero-title {
@@ -82,9 +83,11 @@ const Hero = styled.div`
 
   @media screen and (min-width: 768px) {
     display: grid;
-    grid-template-columns: 2fr 3fr;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 122px;
+    height: 90vh;
     .left .content {
-      padding: 120px 0 0 120px;
+      padding: 20vh 0 0 10vw;
     }
     .right {
       display: block;

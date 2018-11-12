@@ -12,6 +12,7 @@ import ServerResources from '../../components/server/ServerResources'
 import config from '../../../data/SiteConfig'
 import heroImg from '../../images/Image.svg'
 import AutoLinkText from 'react-autolink-text2'
+import bgPattern from '../../images/bg-pattern-gray.svg'
 
 class Server extends React.Component {
   render () {
@@ -60,12 +61,13 @@ const IndexHeadContainer = styled.div`
     word-wrap: break-word
   }
   .Grid--gutter {
-    
+
   }
 `
 
 const BodyContainer = styled.div`
-  background-color: #F9F9FA;
+  background: #f9f9fa url(${bgPattern});
+  background-size: 60%;
   margin: 0 auto;
 `
 

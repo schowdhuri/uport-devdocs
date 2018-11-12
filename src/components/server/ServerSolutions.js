@@ -41,68 +41,80 @@ class ServerSolutions extends Component {
 export default ServerSolutions
 
 const Container = styled.section`
-margin-top: 143px;
-.grid {
-  justify-content: center;
-  margin: 0 20px 150px;
-}
-.blob {
-  position: absolute;
-  padding: 40px 0 0 40px;
-}
-h2 {
-  font-size: 32px;
-  font-weight: bold;
-  line-height: 40px;
-}
-h3 {
-  color: #4C9EA6;
-  text-align: right;
-  margin: 61px 40px 0px 0;
-}
-h4 {
-  font-size: 24px;
-  line-height: 32px;
-  a {
-    text-decoration: none;
-  }
-}
-h4, p {
-  color: #3E3C49;
-}
-p {
-  max-width: 93%;
-}
-.block-item {
-  position: relative;
-  height: 349px;
-  box-shadow: 0px 0px 10px
-  rgba(139, 139, 139, 0.25);
-  border-radius: 8px;
-}
-.block-content  {
-  position: absolute;
-  z-index: 10;
-  top: 65px;
-  left: 60px;
-}
-a {
-  color: inherit;
-  text-decoration: none;
-}
-.nudge-right {
-  padding-left: 13px;
-}
-
-@media screen and (min-width: 768px) {
+  margin-top: 150px;
+  margin-bottom: -150px;
   .grid {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 30px 30px;
+    justify-content: center;
     margin: 0 20px;
   }
-  .block-item {
-    width: 590px;
+  .blob {
+    display: none;
   }
-}
+  h2 {
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 40px;
+  }
+  h3 {
+    color: #4C9EA6;
+    text-align: right;
+    margin: 61px 40px 0px 0;
+  }
+  h4 {
+    font-size: 24px;
+    line-height: 32px;
+    a {
+      text-decoration: none;
+    }
+  }
+  h4, p {
+    color: #3E3C49;
+  }
+  p {
+    max-width: 93%;
+  }
+  .block-item {
+    background-color: #fff;
+    position: relative;
+    box-shadow: 0px 0px 10px
+    rgba(139, 139, 139, 0.25);
+    border-radius: 8px;
+  }
+  .block-content  {
+    padding: 20px;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .nudge-right {
+    padding-left: 13px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .grid {
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-gap: 30px 30px;
+      margin: 0 20px;
+    }
+    .block-item {
+      width: 590px;
+    }
+    .block-item {
+      height: 349px;
+    }
+    .blob {
+      display: block;
+      position: absolute;
+      padding: 40px 0 0 40px;
+    }
+    .block-content  {
+      left: 60px;
+      padding: 0;
+      position: absolute;
+      top: 65px;
+      z-index: 10;
+    }
+  }
 `

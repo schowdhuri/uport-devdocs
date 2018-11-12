@@ -13,6 +13,7 @@ import backgroundImg from '../images/grey-background.png'
 import blueTick from '../images/Tick.svg'
 import AutoLinkText from 'react-autolink-text2'
 import Announcement from '../components/Announcement'
+import bgPattern from '../images/bg-pattern-gray.svg'
 
 class Index extends React.Component {
   render () {
@@ -202,7 +203,8 @@ const Hero = styled.div`
 `
 
 const BodyContainer = styled.div`
-  background-color: #F9F9FA;
+  background: #f9f9fa url(${bgPattern});
+  background-size: 60%;
   margin: 0 auto;
 `
 const FooterContainer = styled.footer`

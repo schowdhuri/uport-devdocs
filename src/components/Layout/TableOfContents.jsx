@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import _ from 'lodash'
 import { cleanDoubleByteChars } from '../../helpers/cleanDoubleByteChars'
 
+const fixOverviewPaths = (path='') => path.replace(/^\/overview\/overview$/, '/overview')
+
 export default class TableOfContents extends React.Component {
   render () {
     let urlHash = ''
@@ -12,38 +14,37 @@ export default class TableOfContents extends React.Component {
       urlHash = window.location.hash.replace('#', '')
       pathName = window.location.pathname
     }
-    
+
     const {types} = this.props
     const {post} = this.props
     const type = post.type
 
     /* const type = this.props.contentsType */
     const postNodes = [];
-  
+
     types.forEach(_post => {
         const postNode = {
           title: _post.node.frontmatter.title,
-          path: _post.node.fields.slug,
+          path: fixOverviewPaths(_post.node.fields.slug),
           indexNumber: _post.node.frontmatter.index,
           category: _post.node.frontmatter.category,
           headings: _post.node.headings
         }
-        
+
         if (postNode.indexNumber || postNode.indexNumber === 0) {
           postNodes.push(postNode)
         } else if (post.title == _post.node.frontmatter.title ) {
           postNodes.push(
             {
               title: _post.node.frontmatter.title,
-              path: _post.node.fields.slug,
+              path: fixOverviewPaths(_post.node.fields.slug),
               indexNumber: 0,
               category: _post.node.frontmatter.category,
               headings: _post.node.headings
-            } 
+            }
           )
         }
     })
-
     const listItems = []
     postNodes.sort((a, b) => a.indexNumber - b.indexNumber).forEach((cat) => {
       const chapterContents = []
@@ -51,27 +52,29 @@ export default class TableOfContents extends React.Component {
         cat.headings.forEach(node => {
           if (node.depth === 2) {
             chapterContents.push(
-              <ContentContainer key={`${node.value}`}>
-                <Link to={`${cat.path}#${cleanDoubleByteChars(_.kebabCase(node.value))}`}>
-                  <li>
+              <li>
+                <ContentContainer key={`${node.value}`}>
+                  <Link to={`${cat.path}#${cleanDoubleByteChars(_.kebabCase(node.value))}`}>
                     <span>
                       {cleanDoubleByteChars(_.kebabCase(node.value)) === urlHash
                         ? <h6 className='active'>{node.value}</h6>
                         : <h6>{node.value}</h6>
                       }
                     </span>
-                  </li>
-                </Link>
-              </ContentContainer>
+                  </Link>
+                </ContentContainer>
+              </li>
             )
           }
         })
       }
       listItems.push(
-        <li key={`${cat.path}`}>
+        <li key={`${cat.path}`} className="TEST">
           <Link to={`${cat.path}`}>
             <span>
-              {<h5 className={`tocHeading ${(pathName === cat.path) ? 'active' : ''}`}>{cat.title.charAt(0).toUpperCase() + cat.title.slice(1)}</h5>}
+              <h5 className={`tocHeading ${(pathName === cat.path) ? 'active' : ''}`}>
+                {cat.title.charAt(0).toUpperCase() + cat.title.slice(1)}
+              </h5>
             </span>
           </Link>
           <ul className='chapterItems'>
@@ -99,7 +102,7 @@ const TableOfContentsContainer = styled.div`
     background-image: none;
     list-style: none;
    }
- 
+
  & > ul, .chapterItems {
    list-style: none;
    padding: 0;

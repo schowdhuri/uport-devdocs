@@ -11,11 +11,13 @@ import TableOfContents from '../components/Layout/TableOfContents'
 import SecondaryTitle from '../components/Layout/html/SecondaryTitle'
 import CtaButton from '../components/CtaButton'
 import Announcement from '../components/Announcement'
+import PageLink from '../components/Layout/html/PageLink'
 
 export default class ContentTemplate extends React.Component {
  render() {
     console.log("Data: ", this.props.data);
     const category = this.props.pathContext.category;
+    const { next } = this.props.pathContext;
     const postEdges = this.props.data.allMarkdownRemark.edges;
 
     const renderAst = new RehypeReact({
@@ -72,6 +74,10 @@ export default class ContentTemplate extends React.Component {
               { renderAst(postNode.htmlAst) }
             </div>
             <DevSurvey />
+            {next ? <PageLink
+              prefix='Next:'
+              url={next.url}
+              title={next.title} /> : null}
           </BodyContainer>
         </BodyGrid>
       </div>

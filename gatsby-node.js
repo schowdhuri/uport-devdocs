@@ -71,9 +71,12 @@ exports.createPages = ({graphql, boundActionCreators}) => {
             edges {
               node {
                 frontmatter {
+                  title
                   category
                   type
                   source
+                  next
+                  prev
                 }
                 fields {
                   slug
@@ -94,28 +97,99 @@ exports.createPages = ({graphql, boundActionCreators}) => {
         const categorySet = new Set();
         // console.log(result.data.allMarkdownRemark.edges.length)
         // console.log(JSON.stringify(result.data.allMarkdownRemark.edges))
+        const articleList = {};
+        result.data.allMarkdownRemark.edges.forEach(edge => {
+          const { source } = edge.node.frontmatter;
+          let { prev, next } = edge.node.frontmatter;
+          if(next) {
+            const nextNode = result.data.allMarkdownRemark.edges.find(e =>
+              e.node.frontmatter.source == next);
+            if(nextNode) {
+              next = {
+                url: nextNode.node.fields.slug,
+                title: nextNode.node.frontmatter.title
+              };
+            } else {
+              next = null;
+            }
+          }
+          if(prev) {
+            const prevNode = result.data.allMarkdownRemark.edges.find(e =>
+              e.node.frontmatter.source == prev);
+            if(prevNode) {
+              prev = {
+                url: prevNode.node.fields.slug,
+                title: prevNode.node.frontmatter.title
+              };
+            } else {
+              prev = null;
+            }
+          }
+          if(source && (!prev || !next)) {
+            const matches = source.match(/(\/|\\)([^/\\]+)-(\d+)\.md$/i);
+            if(matches && matches.length == 4) {
+              const basePath = source.substr(0, matches.index + 1);
+              const baseName = matches[2];
+              const num = parseInt(matches[3], 10);
+              if(!next) {
+                next = `${basePath}${baseName}-${num + 1}.md`;
+                const nextNode = result.data.allMarkdownRemark.edges.find(e =>
+                  e.node.frontmatter.source == next);
+                if(nextNode) {
+                  next = {
+                    url: nextNode.node.fields.slug,
+                    title: nextNode.node.frontmatter.title
+                  };
+                } else {
+                  next = null;
+                }
+              }
+              if(!prev && num >= 0) {
+                prev = `${basePath}${baseName}-${num - 1}.md`;
+                const prevNode = result.data.allMarkdownRemark.edges.find(e =>
+                  e.node.frontmatter.source == prev);
+                if(prevNode) {
+                  prev = {
+                    url: prevNode.node.fields.slug,
+                    title: prevNode.node.frontmatter.title
+                  };
+                } else {
+                  prev = null;
+                }
+              }
+            }
+          }
+          articleList[edge.node.fields.slug] = {};
+          if(next)
+            articleList[edge.node.fields.slug].next = next;
+          if(prev)
+            articleList[edge.node.fields.slug].prev = prev;
+        });
+
         result.data.allMarkdownRemark.edges.forEach(edge => {
           // if (edge.node.frontmatter.tags) {
           //   edge.node.frontmatter.tags.forEach(tag => {
           //     tagSet.add(tag);
           //   });
           // }
+          const linkedArticles = articleList[edge.node.fields.slug] || {};
 
           if (edge.node.frontmatter.category) {
             categorySet.add(edge.node.frontmatter.category);
           }
          //console.log(JSON.stringify(edge.node.frontmatter))
           if (['overview'].includes(edge.node.frontmatter.type)) {
-          //console.log(JSON.stringify(edge.node.frontmatter));
-          //console.log(edge.node.fields.slug);
-          const path = edge.node.fields.slug.replace(/^\/overview\/overview$/, '/overview');
-          createPage({
-            path,
-            component: overviewPage,
-            context: {
-              slug: edge.node.fields.slug
-            }
-          });
+            //console.log(JSON.stringify(edge.node.frontmatter));
+            //console.log(edge.node.fields.slug);
+            const path = edge.node.fields.slug.replace(/^\/overview\/overview$/, '/overview');
+            createPage({
+              path,
+              component: overviewPage,
+              context: {
+                slug: edge.node.fields.slug,
+                ...linkedArticles
+              }
+            });
           }
 
           if (['guide', 'content', 'tutorial', 'reference', 'guides', 'tutorials', 'landing'].includes(edge.node.frontmatter.type)) {
@@ -126,7 +200,8 @@ exports.createPages = ({graphql, boundActionCreators}) => {
                   component: contentPage,
                   context: {
                       category: edge.node.frontmatter.category,
-                      slug: edge.node.fields.slug
+                      slug: edge.node.fields.slug,
+                      ...linkedArticles
                   }
               });
           }

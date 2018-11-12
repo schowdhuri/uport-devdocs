@@ -69,22 +69,28 @@ ul {
   font-size: 18px;
   line-height: 29px;
   list-style: none;
+  margin: 0;
 }
 li {
   word-wrap: break-word;
-  margin: 35px 30px 0;
   &:first-child {
     margin-top: 0;
   }
+  &:last-child {
+    margin-bottom: 0;
+  }
+  margin: 40px 10px 40px 35px;
+  text-indent: -30px;
 }
 li::before {
   content: unset;
   content: initial;
   content: url(${blueTick});
+  left: 10px;
 }
 p {
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 24px;
+  line-height: 1.5;
   font-weight: normal;
   font-style: normal;
   padding-top: 20px;
@@ -94,7 +100,7 @@ p {
   .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 60px;
+    grid-gap: 122px;
   }
   .left {
     padding: 0 0 0 120px;
@@ -106,6 +112,7 @@ p {
   .border {
     margin: 0 20px 0 0;
     max-width: 386px;
+    padding: 40px;
   }
 }
 `
