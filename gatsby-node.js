@@ -108,8 +108,9 @@ exports.createPages = ({graphql, boundActionCreators}) => {
           if (['overview'].includes(edge.node.frontmatter.type)) {
           //console.log(JSON.stringify(edge.node.frontmatter));
           //console.log(edge.node.fields.slug);
+          const path = edge.node.fields.slug.replace(/^\/overview\/overview$/, '/overview');
           createPage({
-            path: edge.node.fields.slug,
+            path,
             component: overviewPage,
             context: {
               slug: edge.node.fields.slug
