@@ -5,6 +5,7 @@ category: "releases"
 type: "overview"
 source: "https://github.com/uport-project/uport-project.github.io/blob/develop/markdown/docs/overview/releases.md"
 announcement: "New Major Releases with Breaking Changes!  See https://developer.uport.me/releases for more info."
+announcementType: "negative"
 ---
 
 # Releases
