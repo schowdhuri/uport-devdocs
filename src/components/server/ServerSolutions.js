@@ -25,13 +25,28 @@ class ServerSolutions extends Component {
               </div>
             </div>
           </a>
-          {/* <div className='right block-item'> */}
-          {/*   {/\* <img className='blob' src={blob} /> *\/} */}
-          {/*   {/\* <div className='block-content'> *\/} */}
-          {/*   {/\*   <h4>Verify Credentials</h4> *\/} */}
-          {/*   {/\*   <p>verify verify verify verify verify verify verify verify verify verify verify</p> *\/} */}
-          {/*   {/\* </div> *\/} */}
-          {/* </div> */}
+          <a href='/credentials/createverification'>
+            <div className='right block-item'>
+              <img className='blob' src={blob} />
+              <div className='block-content'>
+                <h4>Verificiations</h4>
+                <h5>Part 1</h5>
+                <p>Create and issue verifications to your users.  They can store these verifications on their mobile device and use them with applications that request them.</p>
+                <h3>LEARN MORE</h3>
+              </div>
+            </div>
+          </a>
+          <a href='/credentials/requestverification'>
+            <div className='left block-item'>
+              <img className='blob' src={blob} />
+              <div className='block-content'>
+                <h4>Verificiations</h4>
+                <h5>Part 2</h5>
+                <p>Request and verify claims about your users to interact with their digital identity and add value to your application</p>
+                <h3>LEARN MORE</h3>
+              </div>
+            </div>
+          </a>
         </div>
       </Container>
     )

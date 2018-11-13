@@ -24,20 +24,20 @@ class ServerLanding extends Component {
                   <div className='subleft'>
                     <ul>
                       <li className='blue-tick'>
-                        <a href='/attestcredentials'>Create and verify authentication requests</a>
+                        <a href='/credentials/login'>Create and verify authentication requests</a>
                       </li>
                       <li className='blue-tick'>
-                        <a href='/signtransactions'>Ask users to sign Ethereum transactions</a>
+                        <a href='#'>Ask users to sign Ethereum transactions</a>
                       </li>
                     </ul>
                   </div>
                   <div className='subright'>
                     <ul>
                       <li className='blue-tick'>
-                        <a href='/requestcredentials'>Request verified claims</a>
+                        <a href='/credentials/createverification'>Create verified claims</a>
                       </li>
                       <li className='blue-tick'>
-                        <a href='/attestcredentials'>Verify claims for your users</a>
+                        <a href='/credentials/requestverification'>Verify claims for your users</a>
                       </li>
                     </ul>
                   </div>
