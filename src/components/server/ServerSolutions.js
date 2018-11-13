@@ -25,7 +25,7 @@ class ServerSolutions extends Component {
               </div>
             </div>
           </a>
-          <a href='server/verification/create'>
+          <a href='/credentials/createverification'>
             <div className='right block-item'>
               <img className='blob' src={blob} />
               <div className='block-content'>
@@ -36,7 +36,7 @@ class ServerSolutions extends Component {
               </div>
             </div>
           </a>
-          <a href='server/verification/request'>
+          <a href='/credentials/requestverification'>
             <div className='left block-item'>
               <img className='blob' src={blob} />
               <div className='block-content'>
