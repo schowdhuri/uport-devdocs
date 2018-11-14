@@ -33,7 +33,7 @@ In addition to the above concepts and uport-credentials, also note the following
 
 - NodeJS
 - Create a folder for the example and `cd ./example && npm init` 
-- Install dependencies `npm install --save ngrok expressjs did-jwt uport-transports uport-credentials`
+- Install dependencies `npm install --save ngrok express did-jwt uport-transports uport-credentials`
 
 This content is best if followed by interacting with a node console.
 
