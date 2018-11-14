@@ -67,20 +67,23 @@ class MyAppsStartBuildingPage extends React.Component {
   }
   handleAppImageChange (e) {
     const photo = e.target.files[0]
-    const reader = new window.FileReader()
-    let that = this
-    reader.onloadend = async function () {
-      const buf = new Buffer(reader.result)
-      const ipfsHash = await addFile(buf)
-      that.setState({ipfsLogoHash: ipfsHash})
-      that.setState({ipfsLogoUrl: `https://ipfs.io/ipfs/${ipfsHash}`})
-      console.log(`Uploaded profileImage: https://ipfs.io/ipfs/${ipfsHash}`)
-    }
-    reader.readAsArrayBuffer(photo)
+    const result = addFile(photo)
+      .then(result => {
+        this.setState({
+          ipfsLogoHash: result.Hash,
+          ipfsLogoUrl: `https://ipfs.io/ipfs/${result.Hash}`
+        })
+        console.log(`Uploaded profileImage: https://ipfs.io/ipfs/${result.Hash}`)
+      })
+      .catch(err => {
+        console.log('Upload failed')
+      })
   }
   async buildClaim () {
     let profileClaim = {'name': this.state.appName}
-    if (this.state.ipfsLogoHash !== null) profileClaim['profileImage'] = {'/': '/ipfs/' + this.state.ipfsLogoHash}
+    if (this.state.ipfsLogoHash !== null) {
+      profileClaim['profileImage'] = {'/': '/ipfs/' + this.state.ipfsLogoHash}
+    }
     return new Promise(async (resolve, reject) => {
       if ((this.state.accentColor !== '' || this.state.accentColor !== '#5C50CA') && this.state.ipfsBgHash === null) {
         // Generate image from accentColor and upload to IPFS
@@ -88,19 +91,17 @@ class MyAppsStartBuildingPage extends React.Component {
         let ctx = canvas.getContext('2d')
         ctx.fillStyle = this.state.accentColor
         ctx.fillRect(0, 0, canvas.width, canvas.height)
-        let that = this
-        canvas.toBlob(function (blob) {
-          var reader = new window.FileReader()
-          reader.onloadend = async function () {
-            const buf = new Buffer(reader.result)
-            const ipfsHash = await addFile(buf)
-            that.setState({ipfsBgHash: ipfsHash})
-            console.log(`Uploaded bannerImage: https://ipfs.io/ipfs/${ipfsHash}`)
-            profileClaim['bannerImage'] = {'/': `/ipfs/${ipfsHash}`}
-            const ipfsClaimHash = await that.uploadClaim(profileClaim)
-            resolve(ipfsClaimHash)
-          }
-          reader.readAsArrayBuffer(blob)
+        canvas.toBlob(blob => {
+          addFile(blob)
+            .then(result => {
+              this.setState({ipfsBgHash: result.Hash})
+              console.log(`Uploaded bannerImage: https://ipfs.io/ipfs/${result.Hash}`)
+              profileClaim['bannerImage'] = {'/': `/ipfs/${result.Hash}`}
+              this.uploadClaim(profileClaim)
+                .then(ipfsClaimHash => {
+                  resolve(ipfsClaimHash)
+                })
+            })
         })
       } else {
         const ipfsClaimHash = await this.uploadClaim(profileClaim)
@@ -110,14 +111,10 @@ class MyAppsStartBuildingPage extends React.Component {
   }
   async uploadClaim (profileClaim) {
     let dataStr = JSON.stringify(profileClaim)
-    const buf = new Buffer(dataStr)
-    let that = this
-    return new Promise(async (resolve, reject) => {
-      const ipfsHash = await addFile(buf)
-      that.setState({ipfsProfileHash: ipfsHash})
-      console.log(`Uploaded profile claim: https://ipfs.io/ipfs/${ipfsHash}`)
-      resolve(ipfsHash)
-    })
+    const result = await addFile(dataStr)
+    this.setState({ipfsProfileHash: result.Hash})
+    console.log(`Uploaded profile claim: https://ipfs.io/ipfs/${result.Hash}`)
+    return result.Hash
   }
   handleSubmit (e) {
     e.preventDefault()
