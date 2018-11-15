@@ -7,11 +7,11 @@
 }
 .title {
   font-family: "Nunito Sans";
-  font-size: 42px;
-  font-weight: 700;
-  line-height: 54px;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 48px;
   margin-bottom: 25px;
-  color: #5c54c7;
+  color: #3F3D4B;
 }
 .banner-link {
   color: #fff;
@@ -21,7 +21,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 25px !important;
+  padding: 20px 20px 20px 40px !important;
+  background-color: #F9F9FA;
 }
 .myapps-start-left-wrap p {
   color: #89879f;
@@ -31,16 +32,18 @@
   margin-bottom: 40px
 }
 .myapps-button {
-  margin-top: 50px;
-}
-.myapps-button a {
+  margin-top: 30px;
+  width: 70%;
   background-color: #715ad1;
   border-radius: 3px;
+  padding: 20px;
+  text-align: center;
+}
+.myapps-button a {
   color: #fff;
-  padding: 16px;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 22px;
+  font-weight: 800;
+  font-size: 20px;
 }
 .connectModal {
   position: absolute;
@@ -626,4 +629,83 @@ button.continue {
 .sampleInstructions li:before {
   background-image: none;
   bottom: auto;
+}
+
+/* Server Flow */
+.headsUp {
+  margin-top: 30px;
+  background-color: #fff;
+  position: relative;
+  height: 60px;
+  border-radius: 5px;
+  padding: 20px 0 20px 20px;
+  width: 70%;
+}
+.headsUp p {
+  font-size: 14px;
+  line-height: 19px;
+  padding-left: 50px;
+}
+.headsUp p:before {
+  content: url(../../images/headsUp.svg);
+  position: absolute;
+  top: 13px;
+  left: 20px;
+}
+
+.configuratorWrap {
+  background-image: url(../../images/configuratorBg.svg);
+  background-size: cover;
+}
+
+.configuratorWrap section {
+  padding: 15vh 0;
+  width: 70vw;
+  margin: 0 auto;
+}
+
+.configuratorWrap section header {
+
+}
+.configuratorWrap section header h2 {
+  font-weight: 800;
+  float: left;
+}
+.configuratorWrap section header a.cancel {
+  font-weight: 700;
+  float: right;
+  text-decoration: none;
+  color: #8986A0;
+  padding: 30px 30px 0 0;
+}
+.module {
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0px 0px 20px rgba(139, 139, 139, 0.5);
+  margin-bottom: 20px;
+  border-radius: 2px;
+  padding: 30px;
+  clear: both;
+}
+
+.module h4 {
+  display: inline;
+  font-size: 16px;
+}
+.module span.step {
+  background-color: #62B482;
+  border-radius: 50%;
+  text-align: center;
+  padding: 5px 10px;
+  height: 20px;
+  width: 20px;
+  margin-right: 20px;
+  color: #fff;
+  font-weight: 800;
+}
+
+.module .storeBadge {
+  margin: 0 0 0 20px;
+  float: right;
+  margin-top: -8px;
 }

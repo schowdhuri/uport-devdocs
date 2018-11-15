@@ -34,7 +34,7 @@ class MyAppsAppListPage extends React.Component {
           <BodyContainer className='myAppsBody'>
             <div className={'Grid Grid--gutters'}>
               <div className='Grid-cell myapps'>
-                <a href='/myapps/startbuilding' className='register-button'>
+                <a href='/myapps/configurator' className='register-button'>
                   <span><strong>+</strong></span>
                   Register an App
                 </a>
