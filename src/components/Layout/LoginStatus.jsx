@@ -54,7 +54,7 @@ class LoginStatus extends Component {
           <a href='#' className={`nav-link w-nav-link myapps-nav`} onClick={(e) => { this.toggleMenu(e) }}>MyApps</a>
           {this.state.visible &&
             <ul className='myAppsDropdown'>
-              <li className=''><a href='/myapps/startbuilding'>Register Your App</a></li>
+              <li className=''><a href='/myapps/configurator'>Register Your App</a></li>
               {this.props.profile.uportApps ? appItems : null}
               <li className='logout' onClick={() => { this.handleLogout() }}><a href='#'>Logout</a></li>
             </ul>

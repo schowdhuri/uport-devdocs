@@ -5,40 +5,52 @@ import PropTypes from 'prop-types'
 import { uPortConnect } from '../../utilities/uPortConnectSetup'
 import { connect } from 'react-redux'
 
-import SiteHeader from '../../components/Layout/Header'
 import config from '../../../data/SiteConfig'
 import myAppsBg from '../../images/myapps-bg.svg'
+import greenTick from '../../images/greenTick.svg'
 import '../../layouts/css/myapps.css'
 
 const BodyContainer = styled.div`
   padding: 0;
   overflow: hidden;
+  ul {
+     margin-top: 1em;
+     list-style: none;
+     padding-left: 20px;
+  }
+  ul li {
+    line-height: 32px;
+    font-size: 20px;
+  }
+  ul li::before {
+    content: '';
+    color: #62B482;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-right: 15px;
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
+    bottom: 2px;
+    direction: rtl;
+    background-image: url(${greenTick});
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
   .myapps-start-right {
     height: 100vh;
     background-image: url(${myAppsBg})
   }
 `
 
-class MyAppsPage extends React.Component {
+class MyApps extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      uri: {},
-      showImage: false,
-      showResult: false
+      environment: null
     }
     this.loginRequest = this.loginRequest.bind(this)
-  }
-  componentDidUpdate () {
-    if (this.props.profile) {
-      if (this.props.profile.uportApps) {
-        this.props.history.push('/myapps/list')
-      } else if (this.props.profile.did) {
-        this.props.history.push('/myapps/getstarted')
-      } else {
-        return
-      }
-    }
   }
   loginRequest (e) {
     e.preventDefault()
@@ -50,7 +62,7 @@ class MyAppsPage extends React.Component {
         if (this.props.profile.uportApps) {
           history.push('/myapps/list')
         } else {
-          history.push('/myapps/getstarted')
+          history.push('/myapps/configurator')
         }
       })
     } catch (e) {
@@ -62,22 +74,23 @@ class MyAppsPage extends React.Component {
       <div className='index-container'>
         <Helmet title={config.siteTitle} />
         <main>
-          <MyAppsHeadContainer>
-            <SiteHeader
-              activeCategory={''}
-              location={this.props.location}
-              types={this.props.data.navCategories} />
-          </MyAppsHeadContainer>
           <BodyContainer>
             <div className={'Grid Grid--gutters'}>
               <div className='Grid-cell myapps-start-left-wrap'>
                 <div className='myapps-start-left'>
                   <h1 className='title'>Decentralized Identity for Decentralized Applications</h1>
-                  <p>Seamless login. Ethereum transaction signing. User credential issuance and consumption.</p>
+                  <ul>
+                    <li>Seamless login.</li>
+                    <li>Ethereum transaction signing.</li>
+                    <li>User credential issuance and consumption</li>
+                  </ul>
                   <div className={`myapps-button`}>
                     <a href='#' onClick={(e) => { this.loginRequest(e) }}>
-                      Login with uPort
+                      Register Your App with uPort
                     </a>
+                  </div>
+                  <div className='headsUp'>
+                    <p><strong>Heads up! </strong>Have your mobile phone handy.</p>
                   </div>
                 </div>
               </div>
@@ -86,13 +99,9 @@ class MyAppsPage extends React.Component {
           </BodyContainer>
         </main>
       </div>
-    );
+    )
   }
 }
-
-const MyAppsHeadContainer = styled.div`
-  background: ${props => props.theme.brand}
-`
 
 export const pageQuery = graphql`
 query MyAppsQuery {
@@ -136,7 +145,7 @@ query MyAppsQuery {
   }
 `
 
-MyAppsPage.propTypes = {
+MyApps.propTypes = {
   profile: PropTypes.object.isRequired,
   saveProfile: PropTypes.func.isRequired
 }
@@ -149,4 +158,4 @@ const mapDispatchToProps = dispatch => {
   return { saveProfile: (profile) => dispatch({ type: `SAVE_PROFILE`, profile: profile }) }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyAppsPage)
+export default connect(mapStateToProps, mapDispatchToProps)(MyApps)
