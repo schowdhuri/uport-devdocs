@@ -1,4 +1,6 @@
 import gulp from 'gulp';
+import copyMarkdown from "./gulp/copy";
+import watchMarkdown from "./gulp/watch";
 
 let argv = require('minimist')(process.argv.slice(2));
 let $g = require('gulp-load-plugins')();
@@ -9,5 +11,5 @@ if (argv.pathPrefix && argv.pathPrefix[0] !== '/') {
 
 const PATH_PREFIX = argv.pathPrefix || '';
 
-import "./gulp/watch";
-import "./gulp/copy";
+gulp.task('copy-markdown', copyMarkdown)
+gulp.task('watch:markdown', watchMarkdown)

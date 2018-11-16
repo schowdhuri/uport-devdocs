@@ -1,11 +1,10 @@
 import gulp from 'gulp';
-import safeSymlink from './safeSymlink';
+// import safeSymlink from './safeSymlink';
 
 let $g = require('gulp-load-plugins')();
 //var frontMatter = require('gulp-front-matter');
 
-gulp.task('copy-markdown', (done) => {
-
+const copyMarkdown = () => {
   // Symlink files
   // safeSymlink("./src/images", "./static/images");
 
@@ -28,8 +27,8 @@ gulp.task('copy-markdown', (done) => {
     .pipe(gulp.dest('./content/public/uport-credentials'));
 
   // Add lambda-oloron (private chain support)
-  gulp.src(['./markdown/lambda-olorun/README.md'])
-    .pipe(gulp.dest('./content/public/lambda-olorun'));
+  // gulp.src(['./markdown/lambda-olorun/README.md'])
+  //   .pipe(gulp.dest('./content/public/lambda-olorun'));
 
   // Add Ethr-did
   gulp.src(['./markdown/ethr-did/**/*'])
@@ -51,7 +50,7 @@ gulp.task('copy-markdown', (done) => {
   gulp.src(['./markdown/uport-transports/docs/**/*'])
     .pipe(gulp.dest('./content/public/uport-transports'));
 
+  // done();
+}
 
-  done();
-
-});
+export default copyMarkdown;

@@ -1,15 +1,8 @@
-import {exec} from "child_process";
 import gulp from 'gulp';
+import copyMarkdown from "./copy";
 
-let watch = require('gulp-watch');
+const watchMarkdown = () => {
+  gulp.watch(["./markdown/**/*.*"], gulp.series(copyMarkdown));
+}
 
-gulp.task('watch:markdown', function() {
-  return watch(["./markdown/**/*.*"], function() {
-    gulp.start('copy-markdown');
-  });
-});
-
-// function() {
-//   //gulp.start('copy-files');
-//   gulp.run(['copy-files']);
-// }
+export default watchMarkdown;
