@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Credentials } from 'uport-credentials'
+import CancelModal from './CancelModal'
 
 class AppSigningKey extends Component {
   constructor (props) {
@@ -7,6 +8,7 @@ class AppSigningKey extends Component {
     const {did, privateKey} = Credentials.createIdentity()
     const credentials = new Credentials({appName: this.props.appDetails.appName, did, privateKey})
     this.state = {
+      cancelModal: false,
       did: did,
       pk: privateKey
     }
@@ -16,12 +18,19 @@ class AppSigningKey extends Component {
     e.preventDefault()
     e.currentTarget.innerHTML = this.state.pk
   }
+  hideCancelModal = () => {
+    this.setState({ cancelModal: false })
+  }
+  showCancelModal = () => {
+    this.setState({ cancelModal: true })
+  }
   render () {
-    return (
-      <section>
+    const { cancelModal } = this.state
+    return (<div>
+      <section className={`${cancelModal ? 'blurred' : ''}`}>
         <header>
           <h2>Download Signing Key</h2>
-          <a href='/' className='cancel'>CANCEL</a>
+          <button className="btn-cancel" onClick={this.showCancelModal}>Cancel</button>
         </header>
         <div className='module'>
           <label>Please Note</label>
@@ -41,7 +50,8 @@ class AppSigningKey extends Component {
           </a>
         </div>
       </section>
-    )
+      <CancelModal show={cancelModal} onClose={this.hideCancelModal} />
+    </div>)
   }
 }
 

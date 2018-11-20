@@ -781,6 +781,9 @@ https://getbootstrap.com/docs/4.1/layout/overview/#responsive-breakpoints
   section.demo, .building-blocks-wrapper {
     max-width: 70vw;
   }
+  .blurred {
+    filter: blur(8px);
+  }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
