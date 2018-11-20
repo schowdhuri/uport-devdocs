@@ -4,15 +4,17 @@ import { addFile } from '../../../utilities/ipfs'
 import errorIcon from '../../../images/error-icon.svg'
 import myAppsBg from '../../../images/myapps-bg.svg'
 import CancelModal from './CancelModal'
+import arrowWhite from '../../../images/ArrowWhite.svg'
+import arrowBlurple from '../../../images/ArrowBlurple.png'
 import '../../../layouts/css/myapps.css'
 
 class AppDetails extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      appName: '',
-      appURL: '',
-      appDescription: '',
+      appName: this.props.appDetails.appName,
+      appURL: this.props.appDetails.appURL,
+      appDescription: this.props.appDescription,
       cancelModal: false,
       file_name: null,
       file_type: null,
@@ -32,6 +34,7 @@ class AppDetails extends Component {
   }
   handleAppNameChange (e) {
     this.setState({appName: e.target.value})
+    e.target.value !== '' ? this.setState({appNameValid: true}) : this.setState({appNameValid: false}) 
   }
   handleAppURLChange (e) {
     this.setState({appURL: e.target.value})
@@ -167,12 +170,20 @@ class AppDetails extends Component {
             </div>
           </form>
         </div>
-        <div className={`myapps-button`}>
-          <a href='#' onClick={(e) => this.handleSubmit(e)}>
-            Save
-          </a>
-        </div>
         <canvas width='100' height='100' id='canvas' style={{visibility: 'hidden'}} />
+        <footer className='stepFooter'>
+          <div className={`cta-prev`}>
+            <a href='#' onClick={(e) => this.props.previousStep(e)}>
+              <img src={arrowBlurple} />
+              APP ENVIRONMENT
+              <p>{this.props.appEnvironment.environment} <span>|</span> {this.props.appEnvironment.network}</p>
+            </a>
+          </div>
+          <a className={"cta-next " + (this.state.appNameValid ? '' : 'disabled')} href='#' onClick={(e) => this.handleSubmit(e)}>
+            GENERATE SIGNING KEY
+            <img src={arrowWhite} />
+          </a>
+        </footer>
       </section>
       <CancelModal show={cancelModal} onClose={this.hideCancelModal} />
     </div>)

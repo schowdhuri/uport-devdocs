@@ -320,12 +320,6 @@ form .fieldError input[type="text"] {
   margin-right: 15px;
   margin-top: -5px;
 }
-.startBuilding footer {
-  border-top: 2px solid #e0dfe6;
-  width: 80%;
-  padding: 20px 20px 100px;
-  margin: 20px auto 0;
-}
 button.continue {
   background-color: #735ad2;
   color: #fff;
@@ -334,7 +328,6 @@ button.continue {
   text-decoration: none;
   float: right;
 }
-
 
 /* myapps.js */
 .myAppsBody {
@@ -630,13 +623,13 @@ button.continue {
 }
 
 .configuratorWrap section {
-  padding: 15vh 0;
-  width: 70vw;
-  margin: 0 auto;
+  min-height: calc(100vh - 100px);
 }
 
 .configuratorWrap section header {
-
+  width: 70vw;
+  padding: 15vh 0 0 0;
+  margin: 0 auto;
 }
 .configuratorWrap section header h2 {
   font-weight: 800;
@@ -650,6 +643,9 @@ button.continue {
   padding: 30px 30px 0 0;
 }
 .module {
+  width: 70vw;
+  padding: 15vh 0 0 0;
+  margin: 0 auto;
   background-color: #fff;
   box-shadow: 0px 0px 20px rgba(139, 139, 139, 0.5);
   margin-bottom: 20px;
@@ -678,4 +674,64 @@ button.continue {
   margin: 0 0 0 20px;
   float: right;
   margin-top: -8px;
+}
+
+footer.stepFooter {
+  background: #fff;
+  box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
+}
+
+footer.stepFooter .cta-prev {
+  display: inline-block;
+  float: left;
+  margin-left: 40px;
+  margin-top: 20px;
+}
+
+footer.stepFooter .cta-prev a {
+  font-weight: 800;
+  text-decoration: none;
+}
+
+footer.stepFooter .cta-prev p {
+  font-weight: 700;
+  color: #8986a0;
+  margin-left: 40px;
+  line-height: 1em;
+  margin-top: -5px;
+  text-transform: capitalize;
+}
+footer.stepFooter .cta-prev p span {
+  margin: 0 2px;
+  font-weight: 800;
+  display: inline-block;
+}
+
+footer.stepFooter .cta-prev img {
+  transform: scaleX(-1);
+  filter: FlipH;
+  margin: 15px 20px 0 0;
+}
+
+footer.stepFooter .cta-next {
+  background-color: #5C50CA;
+  color: #fff;
+  padding: 20px;
+  text-decoration: none;
+  margin-top: 20px;
+  display: inline-block;
+  border-radius: 5px;
+  float: right;
+  margin-right: 40px;
+  font-weight: 800;
+  font-size: 16px;
+}
+
+footer.stepFooter .cta-next.disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+footer.stepFooter .cta-next img {
+  margin: -3px 0 0 10px;
 }

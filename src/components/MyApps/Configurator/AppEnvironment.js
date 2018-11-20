@@ -3,6 +3,7 @@ import Select from 'react-select'
 import CancelModal from './CancelModal'
 import RadioButton from './RadioButton'
 import styled from 'styled-components'
+import arrowWhite from '../../../images/ArrowWhite.svg'
 
 const networkOptions = [
   { value: 'mainnet', label: 'Mainnet' },
@@ -16,12 +17,13 @@ class AppEnvironment extends Component {
     super(props)
     this.state = {
       CancelModal: false,
-      network: null,
-      environment: null,
+      network: this.props.appEnvironment.network,
+      environment: this.props.appEnvironment.environment,
       selectedNetworkObj: networkOptions[0]
     }
     this.handleNetworkChange = this.handleNetworkChange.bind(this)
     this.handleEnvironmentChange = this.handleEnvironmentChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleNetworkChange (selectedOption) {
     this.setState({ network: selectedOption.value, selectedNetworkObj: selectedOption })
@@ -34,6 +36,11 @@ class AppEnvironment extends Component {
   }
   showCancelModal = () => {
     this.setState({ cancelModal: true })
+  }
+  handleSubmit (e) {
+    if (this.state.environment) {
+      this.props.getChildState('appEnvironment', {network: this.state.network, environment: this.state.environment})
+    }
   }
   render () {
     const { cancelModal, environment } = this.state
@@ -53,6 +60,7 @@ class AppEnvironment extends Component {
             <RadioButton
               value='client'
               name='environment'
+              label='Client side'
               checked={environment === 'client'}
               onChange={this.handleEnvironmentChange} />
             <span className='note'><strong>Type: </strong>Simple Ethereum keypair</span>
@@ -67,6 +75,7 @@ class AppEnvironment extends Component {
             <RadioButton
               value='server'
               name='environment'
+              label='Server side'
               checked={environment === 'server'}
               onChange={this.handleEnvironmentChange} />
             <span className='note'><strong>Type: </strong>Simple Ethereum keypair</span>
@@ -78,7 +87,7 @@ class AppEnvironment extends Component {
             <Select
               className='networkDropdown'
               classNamePrefix='networkDropdown'
-              value={this.props.network}
+              value={this.state.selectedNetworkObj}
               onChange={this.handleNetworkChange}
               options={networkOptions}
               isSearchable={false}
@@ -86,13 +95,14 @@ class AppEnvironment extends Component {
             />
           </div>
         </Grid>
-        <div className={`myapps-button`}>
-          <a href='#' onClick={() => this.props.getChildState('appEnvironment', {network: this.state.network, environment: this.state.environment})}>
-            Save
-          </a>
-        </div>
       </section>
       <CancelModal show={cancelModal} onClose={this.hideCancelModal} />
+      <footer className='stepFooter'>
+        <a className={"cta-next " + (this.state.environment ? '' : 'disabled')} href='#' onClick={(e) => this.handleSubmit(e)}>
+          ADD APP DETAILS
+          <img src={arrowWhite} />
+        </a>
+      </footer>
     </div>)
   }
 }

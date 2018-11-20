@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Credentials } from 'uport-credentials'
 import CancelModal from './CancelModal'
+import arrowWhite from '../../../images/ArrowWhite.svg'
+import arrowBlurple from '../../../images/ArrowBlurple.png'
 
 class AppSigningKey extends Component {
   constructor (props) {
@@ -44,13 +46,21 @@ class AppSigningKey extends Component {
             </a>
           </div>
         </div>
-        <div className={`myapps-button`}>
-          <a href='#' onClick={() => this.props.getChildState('appIdentity', {did: this.state.did})}>
-            Save
-          </a>
-        </div>
       </section>
       <CancelModal show={cancelModal} onClose={this.hideCancelModal} />
+      <footer className='stepFooter'>
+          <div className={`cta-prev`}>
+            <a href='#' onClick={(e) => this.props.previousStep(e)}>
+              <img src={arrowBlurple} />
+              APP DETAILS
+              <p>{this.props.appDetails.appName}</p>
+            </a>
+          </div>
+          <a className={`cta-next`} href='#' onClick={() => this.props.getChildState('appIdentity', {did: this.state.did})}>
+            COMPLETE REGISTRATION
+            <img src={arrowWhite} />
+          </a>
+        </footer>
     </div>)
   }
 }

@@ -10,14 +10,14 @@ class RadioButton extends React.Component {
       onChange(e.target.value)
   }
   render() {
-    const { checked, name, value } = this.props
+    const { checked, name, value, label } = this.props
     return (<Label>
       <Radio type='radio'
         value={value}
         name={name}
         checked={checked}
         onChange={this.handleChange} />
-      <p>Client Side</p>
+      <p>{label}</p>
       {checked ? <Checked src={tick} /> : <Unchecked />}
     </Label>)
   }

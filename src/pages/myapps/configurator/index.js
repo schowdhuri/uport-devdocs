@@ -25,13 +25,21 @@ class MyAppsConfigurator extends React.Component {
     super(props)
     this.state = {
       step: 1,
-      appEnvironment: null,
-      appDetails: null,
+      appEnvironment: {
+        environment: null,
+        network: 'mainnet'
+      },
+      appDetails: {
+        appName: '',
+        appURL: '',
+        appDescription: ''
+      },
       appIdentity: null,
       appDomain: null,
       appProfileHash: null
     }
     this.getChildState = this.getChildState.bind(this)
+    this.previousStep = this.previousStep.bind(this)
   }
   async getChildState (childName, childState) {
     let childStateObject = {}
@@ -60,9 +68,13 @@ class MyAppsConfigurator extends React.Component {
     console.log(`Uploaded profile claim: https://ipfs.io/ipfs/${result.Hash}`)
     return result.Hash
   }
+  previousStep (e) {
+    e.preventDefault()
+    this.setState({step: (this.state.step - 1)})
+  }
   render () {
     return (
-      <div className='index-container'>
+      <div className='index-container' style={{minHeight: '100vh'}}>
         <Helmet title={config.siteTitle} />
         <main>
           <BodyContainer>
@@ -75,11 +87,11 @@ class MyAppsConfigurator extends React.Component {
               {(() => {
                 switch (this.state.step) {
                   case 1:
-                    return <AppEnvironment getChildState={this.getChildState} />
+                    return <AppEnvironment appEnvironment={this.state.appEnvironment} getChildState={this.getChildState} />
                   case 2:
-                    return <AppDetails uportApps={this.props.profile.uportApps} appEnvironment={this.state.appEnvironment} getChildState={this.getChildState} />
+                    return <AppDetails uportApps={this.props.profile.uportApps} appDetails={this.state.appDetails} appEnvironment={this.state.appEnvironment} getChildState={this.getChildState} previousStep={this.previousStep} />
                   case 3:
-                    return <AppSigningKey appDetails={this.state.appDetails} getChildState={this.getChildState} />
+                    return <AppSigningKey appDetails={this.state.appDetails} appEnvironment={this.state.appEnvironment} getChildState={this.getChildState} previousStep={this.previousStep} />
                   case 4:
                     return <AppComplete profile={this.props.profile} appDetails={this.state.appDetails} appEnvironment={this.state.appEnvironment} saveApps={this.props.saveApps} setCurrentApp={this.props.setCurrentApp} ipfsProfileHash={this.state.ipfsProfileHash} getChildState={this.getChildState} />
                   case 5:
