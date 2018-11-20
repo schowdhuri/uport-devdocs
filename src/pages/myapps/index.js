@@ -40,7 +40,18 @@ const BodyContainer = styled.div`
   }
   .myapps-start-right {
     height: 100vh;
-    background-image: url(${myAppsBg})
+    background-image: url(${myAppsBg});
+    padding: 0;
+    overflow: hidden;
+    @media all and (max-width: 768px) {
+      display: none;
+    }
+  }
+  .skewed-bg {
+    background: #f9f9fa;
+    height: 100vh;
+    width: 100px;
+    transform: skew(5deg) translateX(-50%);
   }
 `
 
@@ -94,7 +105,9 @@ class MyApps extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className='Grid-cell myapps-start-right' />
+              <div className='Grid-cell myapps-start-right'>
+                <div className='skewed-bg' />
+              </div>
             </div>
           </BodyContainer>
         </main>

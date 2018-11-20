@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
 import { addFile } from '../../../utilities/ipfs'
 import errorIcon from '../../../images/error-icon.svg'
 import myAppsBg from '../../../images/myapps-bg.svg'
+import CancelModal from './CancelModal'
 import '../../../layouts/css/myapps.css'
 
 class AppDetails extends Component {
@@ -11,6 +13,7 @@ class AppDetails extends Component {
       appName: '',
       appURL: '',
       appDescription: '',
+      cancelModal: false,
       file_name: null,
       file_type: null,
       ipfsLogoHash: null,
@@ -85,13 +88,20 @@ class AppDetails extends Component {
       }
     })
   }
+  hideCancelModal = () => {
+    this.setState({ cancelModal: false })
+  }
+  showCancelModal = () => {
+    this.setState({ cancelModal: true })
+  }
   render () {
+    const { cancelModal } = this.state;
     const bgImageStyle = {backgroundImage: this.state.ipfsLogoHash ? `url(https://ipfs.io/ipfs/${this.state.ipfsLogoHash})` : `url(${myAppsBg})`}
-    return (
-      <section className='startBuilding'>
+    return (<div>
+      <section className={`startBuilding ${cancelModal ? 'blurred' : ''}`}>
         <header>
+          <button className="btn-cancel" onClick={this.showCancelModal}>Cancel</button>
           <h2>Add App Details</h2>
-          <a href='/' className='cancel'>CANCEL</a>
         </header>
         <div className='module'>
           <form onSubmit={(e) => { this.handleSubmit(e) }}>
@@ -105,8 +115,26 @@ class AppDetails extends Component {
                 </span>
               }
             </div>
-            <label htmlFor='appURL'>URL Address (optional)</label>
-            <input type='text' id='appURL' placeholder='https://yourapphomepage.com' value={this.state.appURL} onChange={(e) => { this.handleAppURLChange(e) }} />
+            <LabelRow>
+              <label htmlFor='appURL'>URL Address (optional)</label>
+              <Tooltip>
+                <Tooltip.Hotspot>?</Tooltip.Hotspot>
+                <Tooltip.Popover>
+                  <Tooltip.Body>
+                    <Tooltip.Header>Why we ask for URL address?</Tooltip.Header>
+                      <p>
+                        This signing (private) key should be protected.
+                        Do not distribute it publicly. We display the private key
+                        in our demos, guides, and tutorials for an educational
+                        purpose and recommend that you use your own signing key
+                        and application identifier (MNID) in place of the ones we
+                        provide for reference.
+                      </p>
+                  </Tooltip.Body>
+                </Tooltip.Popover>
+              </Tooltip>
+            </LabelRow>
+              <input type='text' id='appURL' placeholder='https://yourapphomepage.com' value={this.state.appURL} onChange={(e) => { this.handleAppURLChange(e) }} />
             <label htmlFor='appDescription'>App Description (optional)</label>
             <textarea rows='4' cols='50' placeholder='Describe what your app can do...' value={this.state.appDescription} onChange={(e) => { this.handleAppDescriptionChange(e) }} />
             <div className='appBranding Grid'>
@@ -146,8 +174,81 @@ class AppDetails extends Component {
         </div>
         <canvas width='100' height='100' id='canvas' style={{visibility: 'hidden'}} />
       </section>
-    )
+      <CancelModal show={cancelModal} onClose={this.hideCancelModal} />
+    </div>)
   }
 }
+
+const LabelRow = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 20px;
+  max-width: 450px;
+  width: 80%;
+`
+const Tooltip = styled.div`
+  position: relative;
+  z-index: 2;
+`
+Tooltip.Hotspot = styled.div`
+  border: solid 1px #8986A0;
+  border-radius: 50%;
+  color: #8986A0;
+  cursor: pointer;
+  font-size: 10px;
+  height: 17px;
+  line-height: 17px;
+  position: relative;
+  text-align: center;
+  width: 17px;
+  z-index: 4;
+`
+Tooltip.Popover = styled.div`
+  left: 0;
+  opacity: 0;
+  padding-left: 35px;
+  position: absolute;
+  top: -16px;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+
+  ${Tooltip}:hover & {
+    opacity: 1;
+    visibility: visible;
+  }
+`
+Tooltip.Body = styled.div`
+  background: #fcf2e5;
+  border: solid 1px #ffe1bd;
+  border-radius: 4px;
+  color: #5f5d68;
+  padding: 20px;
+  width: 237px;
+  &:before {
+    background: #fcf2e5;
+    border-left: solid 1px #ffe1bd;
+    border-bottom: solid 1px #ffe1bd;
+    content: "";
+    display: block;
+    height: 16px;
+    left: 27px;
+    position: absolute;
+    top: 16px;
+    transform: rotate(45deg);
+    width: 16px;
+    z-index: 3;
+  }
+  p {
+    font-size: 0.85em;
+    margin: 0;
+    padding: 0;
+  }
+`
+Tooltip.Header = styled.h5`
+  border-bottom: solid 1px rgba(95, 93, 104, 0.5);
+  font-size: 0.8em;
+  margin: 0 0 10px;
+  padding: 0 0 5px;
+  text-transform: uppercase;
+`
 
 export default AppDetails
