@@ -13,6 +13,7 @@ import AppDetails from '../../../components/MyApps/Configurator/AppDetails'
 import AppSigningKey from '../../../components/MyApps/Configurator/AppSigningKey'
 import AppResolver from '../../../components/MyApps/Configurator/AppResolver'
 import AppComplete from '../../../components/MyApps/Configurator/AppComplete'
+import AppRegComplete from '../../../components/MyApps/Configurator/AppRegComplete'
 import '../../../layouts/css/myapps.css'
 
 const BodyContainer = styled.div`
@@ -36,7 +37,8 @@ class MyAppsConfigurator extends React.Component {
       },
       appIdentity: null,
       appDomain: null,
-      appProfileHash: null
+      appProfileHash: null,
+      pk: null
     }
     this.getChildState = this.getChildState.bind(this)
     this.previousStep = this.previousStep.bind(this)
@@ -72,6 +74,10 @@ class MyAppsConfigurator extends React.Component {
     e.preventDefault()
     this.setState({step: (this.state.step - 1)})
   }
+  saveKey = pk => {
+    console.log("saving key: ", pk)
+    this.setState({ pk })
+  }
   render () {
     return (
       <div className='index-container' style={{minHeight: '100vh'}}>
@@ -91,11 +97,21 @@ class MyAppsConfigurator extends React.Component {
                   case 2:
                     return <AppDetails uportApps={this.props.profile.uportApps} appDetails={this.state.appDetails} appEnvironment={this.state.appEnvironment} getChildState={this.getChildState} previousStep={this.previousStep} />
                   case 3:
-                    return <AppSigningKey appDetails={this.state.appDetails} appEnvironment={this.state.appEnvironment} getChildState={this.getChildState} previousStep={this.previousStep} />
+                    return <AppSigningKey
+                      appDetails={this.state.appDetails}
+                      appEnvironment={this.state.appEnvironment}
+                      getChildState={this.getChildState}
+                      previousStep={this.previousStep}
+                      onGenerateKey={this.saveKey} />
                   case 4:
                     return <AppComplete profile={this.props.profile} appDetails={this.state.appDetails} appEnvironment={this.state.appEnvironment} saveApps={this.props.saveApps} setCurrentApp={this.props.setCurrentApp} ipfsProfileHash={this.state.ipfsProfileHash} getChildState={this.getChildState} />
                   case 5:
-                    return <AppResolver appIdentity={this.state.appIdentity} appDetails={this.state.appDetails} getChildState={this.getChildState} />
+                    return <AppRegComplete
+                      appIdentity={this.state.appIdentity}
+                      appDetails={this.state.appDetails}
+                      appEnvironment={this.state.appEnvironment}
+                      getChildState={this.getChildState}
+                      signingKey={this.state.pk} />
                   default :
                     return <AppEnvironment getChildState={this.getChildState} />
                 }

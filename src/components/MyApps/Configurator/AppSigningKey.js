@@ -16,6 +16,10 @@ class AppSigningKey extends Component {
     }
     this.displayPK = this.displayPK.bind(this)
   }
+  componentDidMount() {
+    console.log("calling onGenerateKey", this.state.pk)
+    this.props.onGenerateKey(this.state.pk)
+  }
   displayPK (e) {
     e.preventDefault()
     e.currentTarget.innerHTML = this.state.pk
