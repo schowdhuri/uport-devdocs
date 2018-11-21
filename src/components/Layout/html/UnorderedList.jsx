@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import tick from '../../../images/Tick.svg'
+import tick from '../../../images/blue-tick.svg'
 
 export default styled.ul`
   list-style: none;

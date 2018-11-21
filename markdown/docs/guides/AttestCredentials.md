@@ -1,6 +1,5 @@
 ---
 title: "Attesting Credentials"
-index: 5
 category: "uport-connect"
 type: "guide"
 source: "https://github.com/uport-project/uport-project.github.io/blob/develop/markdown/docs/guides/AttestCredentials.md"
