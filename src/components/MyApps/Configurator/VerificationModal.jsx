@@ -39,8 +39,7 @@ class VerificationModal extends React.Component {
   }
   render() {
     const { appDetails, children, show } = this.props
-    // const { stage } = this.state
-    const stage = 0
+    const { stage } = this.state
     return (<Modal show={show}>
       <Backdrop />
       <Content verifying={stage==1}>
