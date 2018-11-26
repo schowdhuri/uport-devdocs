@@ -34,7 +34,7 @@ class AppDetails extends Component {
   }
   handleAppNameChange (e) {
     this.setState({appName: e.target.value})
-    e.target.value !== '' ? this.setState({appNameValid: true}) : this.setState({appNameValid: false}) 
+    e.target.value !== '' ? this.setState({appNameValid: true}) : this.setState({appNameValid: false})
   }
   handleAppURLChange (e) {
     this.setState({appURL: e.target.value})
@@ -119,7 +119,10 @@ class AppDetails extends Component {
               }
             </div>
             <LabelRow>
-              <label htmlFor='appURL'>URL Address (optional)</label>
+              <label htmlFor='appURL'>
+                URL Address {" "}
+                <Subtle>(optional)</Subtle>
+              </label>
               <Tooltip>
                 <Tooltip.Hotspot>?</Tooltip.Hotspot>
                 <Tooltip.Popover>
@@ -138,7 +141,10 @@ class AppDetails extends Component {
               </Tooltip>
             </LabelRow>
               <input type='text' id='appURL' placeholder='https://yourapphomepage.com' value={this.state.appURL} onChange={(e) => { this.handleAppURLChange(e) }} />
-            <label htmlFor='appDescription'>App Description (optional)</label>
+            <label htmlFor='appDescription'>
+              App Description {" "}
+              <Subtle>(optional)</Subtle>
+            </label>
             <textarea rows='4' cols='50' placeholder='Describe what your app can do...' value={this.state.appDescription} onChange={(e) => { this.handleAppDescriptionChange(e) }} />
             <div className='appBranding Grid'>
               <div className='Grid-cell brandingSettings'>
@@ -193,8 +199,10 @@ class AppDetails extends Component {
 const LabelRow = styled.div`
   display: grid;
   grid-template-columns: 1fr 20px;
-  max-width: 450px;
-  width: 80%;
+`
+const Subtle = styled.span`
+  font-weight: 400;
+  text-transform: none;
 `
 const Tooltip = styled.div`
   position: relative;
@@ -214,11 +222,11 @@ Tooltip.Hotspot = styled.div`
   z-index: 4;
 `
 Tooltip.Popover = styled.div`
-  left: 0;
   opacity: 0;
-  padding-left: 35px;
+  padding-top: 35px;
   position: absolute;
-  top: -16px;
+  right: -20px;
+  top: 0;
   visibility: hidden;
   transition: opacity 0.3s, visibility 0.3s;
 
@@ -241,10 +249,10 @@ Tooltip.Body = styled.div`
     content: "";
     display: block;
     height: 16px;
-    left: 27px;
+    right: 24px;
     position: absolute;
-    top: 16px;
-    transform: rotate(45deg);
+    top: 28px;
+    transform: rotate(135deg);
     width: 16px;
     z-index: 3;
   }
