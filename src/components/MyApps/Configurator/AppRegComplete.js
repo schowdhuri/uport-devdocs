@@ -280,6 +280,7 @@ Step.Label = styled.label`
 `
 Step.Content = styled.div`
   grid-area: 2 / 1 / 3 / 3;
+  overflow: auto;
 `
 const Code = styled.code``
 const Pre = styled.pre`
@@ -288,6 +289,7 @@ const Pre = styled.pre`
   padding: 40px 20px 20px;
 `
 const CodeContainer = styled.div`
+  overflow: auto;
   position: relative;
 `
 

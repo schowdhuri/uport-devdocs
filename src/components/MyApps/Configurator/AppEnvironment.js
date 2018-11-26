@@ -17,9 +17,10 @@ class AppEnvironment extends Component {
     super(props)
     this.state = {
       cancelModal: false,
-      network: this.props.appEnvironment.network,
-      environment: this.props.appEnvironment.environment,
-      selectedNetworkObj: networkOptions[0]
+      network: props.appEnvironment.network,
+      environment: props.appEnvironment.environment,
+      selectedNetworkObj: networkOptions
+        .find(n => n.value == props.appEnvironment.network) || networkOptions[0]
     }
     this.handleNetworkChange = this.handleNetworkChange.bind(this)
     this.handleEnvironmentChange = this.handleEnvironmentChange.bind(this)
