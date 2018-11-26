@@ -16,7 +16,7 @@ class AppEnvironment extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      CancelModal: false,
+      cancelModal: false,
       network: this.props.appEnvironment.network,
       environment: this.props.appEnvironment.environment,
       selectedNetworkObj: networkOptions[0]

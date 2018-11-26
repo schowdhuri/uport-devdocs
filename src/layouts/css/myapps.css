@@ -735,3 +735,7 @@ footer.stepFooter .cta-next.disabled {
 footer.stepFooter .cta-next img {
   margin: -3px 0 0 10px;
 }
+#uport__modal-content {
+  min-width: 200px;
+  width: 30vw;
+}

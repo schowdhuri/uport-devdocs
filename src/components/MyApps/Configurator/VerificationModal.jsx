@@ -24,7 +24,6 @@ class VerificationModal extends React.Component {
     registerResolver()
     resolve('did:https:' + appDetails.appURL)
       .then(doc => {
-        console.log(doc)
         console.log(doc.publicKey[0].ethereumAddress + ' | ' + publicAddress)
         setTimeout(() => {
           this.setState({ stage: 2 })
