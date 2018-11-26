@@ -11,8 +11,7 @@ import logo from '../../../images/logo-mark-purple.svg'
 import AppEnvironment from '../../../components/MyApps/Configurator/AppEnvironment'
 import AppDetails from '../../../components/MyApps/Configurator/AppDetails'
 import AppSigningKey from '../../../components/MyApps/Configurator/AppSigningKey'
-import AppResolver from '../../../components/MyApps/Configurator/AppResolver'
-import AppComplete from '../../../components/MyApps/Configurator/AppComplete'
+import AppRegister from '../../../components/MyApps/Configurator/AppRegister'
 import AppRegComplete from '../../../components/MyApps/Configurator/AppRegComplete'
 import '../../../layouts/css/myapps.css'
 
@@ -41,6 +40,7 @@ class MyAppsConfigurator extends React.Component {
       pk: null
     }
     this.getChildState = this.getChildState.bind(this)
+    this.nextStep = this.nextStep.bind(this);
     this.previousStep = this.previousStep.bind(this)
   }
   async getChildState (childName, childState) {
@@ -69,6 +69,11 @@ class MyAppsConfigurator extends React.Component {
     this.setState({ipfsProfileHash: result.Hash})
     console.log(`Uploaded profile claim: https://ipfs.io/ipfs/${result.Hash}`)
     return result.Hash
+  }
+  nextStep (e) {
+    if(e)
+      e.preventDefault()
+    this.setState({step: (this.state.step + 1)})
   }
   previousStep (e) {
     e.preventDefault()
@@ -104,6 +109,16 @@ class MyAppsConfigurator extends React.Component {
                       previousStep={this.previousStep}
                       onGenerateKey={this.saveKey} />
                   case 4:
+                    return <AppRegister
+                      profile={this.props.profile}
+                      appDetails={this.state.appDetails}
+                      appEnvironment={this.state.appEnvironment}
+                      saveApps={this.props.saveApps}
+                      setCurrentApp={this.props.setCurrentApp}
+                      ipfsProfileHash={this.state.ipfsProfileHash}
+                      nextStep={this.nextStep}
+                      previousStep={this.previousStep} />
+                  case 5:
                     return <AppRegComplete
                       appIdentity={this.state.appIdentity}
                       appDetails={this.state.appDetails}
