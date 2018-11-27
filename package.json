@@ -89,7 +89,7 @@
     "jest": "^23.5.0",
     "jest-cli": "^23.6.0",
     "jest-config": "^23.5.0",
-    "jest-puppeteer": "^3.2.1",
+    "jest-puppeteer": "^3.5.2",
     "jsdoc": "3.5.5",
     "minimatch": "^3.0.4",
     "minimist": "^1.2.0",
