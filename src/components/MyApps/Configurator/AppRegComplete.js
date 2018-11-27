@@ -12,14 +12,20 @@ import copyToClipboard from '../../../helpers/copyToClipboard'
 const installCode =
 `npm init
 npm install --save uport-connect
-npm install --save qrcode-terminal
 `
-const initCode = (appDetails, appEnvironment, pk) =>
+const initServerCode = (appDetails, appEnvironment, pk) =>
 `import { Connect, SimpleSigner } from 'uport-connect'
 
 const uport = new Connect('${appDetails.appName}', {
   network: '${appEnvironment.network}'
   signer: SimpleSigner('${pk}')
+})`
+
+const initClientCode = (appDetails, appEnvironment) =>
+`import { Connect } from 'uport-connect'
+
+const uport = new Connect('${appDetails.appName}', {
+  network: '${appEnvironment.network}'
 })`
 
 const didDoc = (appDetails, appIdentity) => {
@@ -57,7 +63,7 @@ class AppRegComplete extends Component {
     this.setState({ verificationModal: true })
   }
   render () {
-    const { appIdentity, appDetails, appEnvironment, signingKey } = this.props
+    const { appDetails, appEnvironment, signingKey } = this.props
     const { verificationModal } = this.state;
     return (<div>
       <Section className={verificationModal ? 'blurred' : ''}>
@@ -95,19 +101,19 @@ class AppRegComplete extends Component {
                   <Step.Content>
                     <CodeContainer>
                       <CopyButton
-                        onCopy={this.handleCopy(initCode(appDetails, appEnvironment, signingKey))}
+                        onCopy={appEnvironment.environment === 'server' ? this.handleCopy(initServerCode(appDetails, appEnvironment, signingKey)) : this.handleCopy(initClientCode(appDetails, appEnvironment))}
                       >
                         Copy
                       </CopyButton>
                       <Pre>
-                        <Code>{initCode(appDetails, appEnvironment, signingKey)}</Code>
+                        <Code>{appEnvironment.environment === 'server' ? initServerCode(appDetails, appEnvironment, signingKey) : initClientCode(appDetails, appEnvironment)}</Code>
                       </Pre>
                     </CodeContainer>
                   </Step.Content>
                 </Step>
               </Card.Content>
               <Card.Footer>
-                <CTAButton>View Full App Code</CTAButton>
+                {/* <CTAButton>View Full App Code</CTAButton> */}
               </Card.Footer>
             </Card>
 
@@ -127,17 +133,11 @@ class AppRegComplete extends Component {
               </Card.Footer>
             </Card>
           </CardContainer>
-
         </Body>
-        <div className={`myapps-button`}>
-          <a href='#' onClick={() => this.verifyDomain()}>
-            Verify
-          </a>
-        </div>
       </Section>
       <VerificationModal
         appDetails={appDetails}
-        appIdentity={appIdentity}
+        appIdentity={appDetails.appIdentity}
         show={verificationModal}
         onClose={this.hideVerificationModal}
       >
@@ -147,12 +147,12 @@ class AppRegComplete extends Component {
           <strong>https://{appDetails.appURL}/.well-known/did.json</strong>
         </p>
         <CodeContainer>
-          <CopyButton onCopy={this.handleCopy(didDoc(appDetails, appIdentity))}>
+          <CopyButton onCopy={this.handleCopy(didDoc(appDetails, appDetails.appIdentity))}>
             Copy
           </CopyButton>
           <Pre>
             <Code className='language-javascript'>
-              {didDoc(appDetails, appIdentity)}
+              {didDoc(appDetails, appDetails.appIdentity)}
             </Code>
           </Pre>
         </CodeContainer>
