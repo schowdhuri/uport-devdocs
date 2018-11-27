@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Credentials } from 'uport-credentials'
 import styled from 'styled-components'
 import { addFile } from '../../../utilities/ipfs'
 import errorIcon from '../../../images/error-icon.svg'
@@ -23,7 +24,9 @@ class AppDetails extends Component {
       accentColor: '#5C50CA',
       appNameValid: false,
       formSubmitted: false,
-      duplicateAppName: false
+      duplicateAppName: false,
+      did: null,
+      pk: null
     }
     this.handleAppNameChange = this.handleAppNameChange.bind(this)
     this.handleAppURLChange = this.handleAppURLChange.bind(this)
@@ -79,6 +82,9 @@ class AppDetails extends Component {
     ? this.setState({appNameValid: false, duplicateAppName: (uportAppNames.indexOf(this.state.appName) >= 0)})
     : this.setState({appNameValid: true}, async () => {
       if (this.state.appNameValid) {
+         const {did, privateKey} = Credentials.createIdentity()
+        const credentials = new Credentials({appName: this.state.appName, did, privateKey})
+        this.setState({did: did, pk: privateKey})
         if ((this.state.accentColor !== '' || this.state.accentColor !== '#5C50CA') && this.state.ipfsBgHash === null) { await this.handleBgImageUpload() }
         this.props.getChildState('appDetails', {
           appName: this.state.appName,
@@ -86,7 +92,11 @@ class AppDetails extends Component {
           appDescription: this.state.appDescription,
           ipfsLogoHash: this.state.ipfsLogoHash,
           ipfsBgHash: this.state.ipfsBgHash,
-          accentColor: this.state.accentColor
+          accentColor: this.state.accentColor,
+          appIdentity: {
+            did: this.state.did,
+            pk: this.state.pk
+          }
         })
       }
     })
@@ -186,7 +196,7 @@ class AppDetails extends Component {
             </a>
           </div>
           <a className={"cta-next " + (this.state.appNameValid ? '' : 'disabled')} href='#' onClick={(e) => this.handleSubmit(e)}>
-            GENERATE SIGNING KEY
+            {(this.props.appEnvironment.environment === 'server') ? 'GENERATE SIGNING KEY' : 'COMPLETE REGISTRATION'}
             <img src={arrowWhite} />
           </a>
         </footer>

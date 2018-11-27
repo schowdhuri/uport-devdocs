@@ -7,12 +7,10 @@ import arrowBlurple from '../../../images/ArrowBlurple.png'
 class AppSigningKey extends Component {
   constructor (props) {
     super(props)
-    const {did, privateKey} = Credentials.createIdentity()
-    const credentials = new Credentials({appName: this.props.appDetails.appName, did, privateKey})
     this.state = {
       cancelModal: false,
-      did: did,
-      pk: privateKey
+      did: this.props.appDetails.appIdentity.did,
+      pk: this.props.appDetails.appIdentity.pk
     }
     this.displayPK = this.displayPK.bind(this)
   }

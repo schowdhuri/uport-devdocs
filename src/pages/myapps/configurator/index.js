@@ -32,9 +32,9 @@ class MyAppsConfigurator extends React.Component {
       appDetails: {
         appName: '',
         appURL: '',
-        appDescription: ''
+        appDescription: '',
+        appIdentity: {}
       },
-      appIdentity: null,
       appDomain: null,
       appProfileHash: null,
       pk: null
@@ -102,12 +102,16 @@ class MyAppsConfigurator extends React.Component {
                   case 2:
                     return <AppDetails uportApps={this.props.profile.uportApps} appDetails={this.state.appDetails} appEnvironment={this.state.appEnvironment} getChildState={this.getChildState} previousStep={this.previousStep} />
                   case 3:
-                    return <AppSigningKey
-                      appDetails={this.state.appDetails}
-                      appEnvironment={this.state.appEnvironment}
-                      getChildState={this.getChildState}
-                      previousStep={this.previousStep}
-                      onGenerateKey={this.saveKey} />
+                    if (this.state.appEnvironment.environment === 'server') {
+                      return <AppSigningKey
+                        appDetails={this.state.appDetails}
+                        appEnvironment={this.state.appEnvironment}
+                        getChildState={this.getChildState}
+                        previousStep={this.previousStep}
+                        onGenerateKey={this.saveKey} />
+                    } else {
+                      this.nextStep() 
+                    }
                   case 4:
                     return <AppRegister
                       profile={this.props.profile}
@@ -120,7 +124,7 @@ class MyAppsConfigurator extends React.Component {
                       previousStep={this.previousStep} />
                   case 5:
                     return <AppRegComplete
-                      appIdentity={this.state.appIdentity}
+                      appIdentity={this.state.appDetails.appIdentity}
                       appDetails={this.state.appDetails}
                       appEnvironment={this.state.appEnvironment}
                       getChildState={this.getChildState}
