@@ -14,8 +14,14 @@ import blueTick from '../images/blue-tick.svg'
 import AutoLinkText from 'react-autolink-text2'
 import Announcement from '../components/Announcement'
 import bgPattern from '../images/bg-pattern-gray.svg'
+import track from '../utilities/track'
 
 class Index extends React.Component {
+  track = (name) => () => {
+    track(name, {
+      source: 'home'
+    })
+  }
   render () {
     const postEdges = this.props.data.allMarkdownRemark.edges
     const messages = []
@@ -68,7 +74,7 @@ class Index extends React.Component {
                         <li>Build for both desktop and mobile browsers</li>
                       </ul>
                       <div className={`home-hero-button`}>
-                        <a href='/guides/gettingstarted'>
+                        <a href='/guides/gettingstarted' onClick={this.track('Connect With Users Clicked')}>
                           Connect With Your Users
                         </a>
                       </div>
@@ -83,7 +89,7 @@ class Index extends React.Component {
                         <li>Issue and Request Verified Credentials about your users</li>
                       </ul>
                       <div className={`home-hero-button`}>
-                        <a href='/uport-credentials/index'>
+                        <a href='/uport-credentials/index' onClick={this.track('Issue Credentials Clicked')}>
                           Issue Verified Credentials
                         </a>
                       </div>

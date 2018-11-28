@@ -1,7 +1,14 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
+import track from '../../../utilities/track'
 
 class ServerLoginResources extends Component {
+  track = (name, properties={}) => () => {
+    track(name, {
+      source: 'Server Login Landing',
+      ...properties
+    })
+  }
   render () {
     return (
       <Resources>
@@ -15,7 +22,7 @@ class ServerLoginResources extends Component {
           <div/>
           <div/>
           <div className='block-item'>
-            <a href='/categories/transports'>
+            <a href='/categories/transports' onClick={this.track("uPort Transports Clicked")}>
               <h4>Transports    &#x2192;</h4>
               <p>Setup communication channels between your app and uPort clients.</p>
             </a>
@@ -24,7 +31,7 @@ class ServerLoginResources extends Component {
             </div>
           </div>
           <div className='block-item'>
-            <a href='/categories/ethr-did'>
+            <a href='/categories/ethr-did' onClick={this.track("EthrDID Clicked")}>
               <h4>EthrDID    &#x2192;</h4>
               <p>Create Decentralized Identifiers and manage their interactions in your app.</p>
             </a>
@@ -33,7 +40,7 @@ class ServerLoginResources extends Component {
             </div>
           </div>
           <div className='block-item'>
-            <a href='/categories/ethr-did-registry'>
+            <a href='/categories/ethr-did-registry' onClick={this.track("EthrDID Registry Clicked")}>
               <h4>Ethr DID Registry    &#x2192;</h4>
               <p>Smart contract to resolve and manage decentralized identifiers (DIDs)</p>
             </a>

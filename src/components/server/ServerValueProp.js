@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
-import blueTick from '../../images/blue-grey-tick.png'
+import blueTick from '../../images/blue-tick.svg'
 
 class ServerValueProp extends Component {
-
   render() {
     return (
       <Container>
@@ -12,7 +11,11 @@ class ServerValueProp extends Component {
             <h2>
               Create & Request Attested Data
             </h2>
-            <p>Just like you can ask a user for verified data about themselves, you can also help a user build their identity by verifying their data.</p>
+            <p>
+              Just like you can ask a user for verified data about themselves,
+              you can also help a user build their identity by verifying their
+              data.
+            </p>
           </div>
           <div className='right'>
             <div className='border'>
@@ -103,7 +106,7 @@ p {
     grid-gap: 122px;
   }
   .left {
-    padding: 0 0 0 120px;
+    padding: 0 0 0 10vw;
   }
   .right {
     margin: 0;

@@ -3,9 +3,14 @@ import styled from 'styled-components'
 import serverImg from '../../images/server-landing.png'
 import arrowImg from '../../images/ArrowBlack.png'
 import blueTick from '../../images/blue-tick.svg'
+import track from '../../utilities/track'
 
 class ServerLanding extends Component {
-
+  track = (name) => () => {
+    track(name, {
+      source: 'home'
+    })
+  }
   render() {
     return (
       <Container>
@@ -24,7 +29,9 @@ class ServerLanding extends Component {
                   <div className='subleft'>
                     <ul>
                       <li className='blue-tick'>
-                        <a href='/credentials/login'>Create and verify authentication requests</a>
+                        <a href='/credentials/login' onClick={this.track('Create & Verify Auth Requests Clicked')}>
+                          Create and verify authentication requests
+                        </a>
                       </li>
                       <li className='blue-tick'>
                         <a href='/credentials/transactions'>Ask users to sign Ethereum transactions</a>
@@ -34,14 +41,18 @@ class ServerLanding extends Component {
                   <div className='subright'>
                     <ul>
                       <li className='blue-tick'>
-                        <a href='/credentials/createverification'>Create verified claims</a>
+                        <a href='/credentials/createverification' onClick={this.track('Create Verified Claims Clicked')}>
+                          Create verified claims
+                        </a>
                       </li>
                       <li className='blue-tick'>
-                        <a href='/credentials/requestverification'>Verify claims for your users</a>
+                        <a href='/credentials/requestverification' onClick={this.track('Verify Claims For Users Clicked')}>
+                          Verify claims for your users
+                        </a>
                       </li>
                     </ul>
                   </div>
-                  <a href='/server' className='link'>
+                  <a href='/server' className='link' onClick={this.track('View All Solutions Clicked')}>
                     VIEW ALL SOLUTIONS
                   </a>
                 </div>
@@ -112,6 +123,7 @@ li {
 li::before {
   content: unset;
   content: initial;
+  content: "";
   content: url(${blueTick});
   left: 5px;
   margin-right: 10px;

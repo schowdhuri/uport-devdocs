@@ -8,8 +8,15 @@ import ServerLoginResources from '../../../components/server/login/ServerLoginRe
 import ServerLoginValueProp from '../../../components/server/login/ServerLoginValueProp'
 import config from '../../../../data/SiteConfig'
 import AutoLinkText from 'react-autolink-text2'
+import track from '../../../utilities/track'
 
 class ServerLogin extends React.Component {
+  track = (name, properties={}) => () => {
+    track(name, {
+      source: 'Server Login Landing',
+      ...properties
+    })
+  }
   render () {
     const postEdges = this.props.data.allMarkdownRemark.edges
     return (
@@ -30,7 +37,7 @@ class ServerLogin extends React.Component {
               <p>
                 The Login Solution for Your Server-side dApp
               </p>
-              <a href='/credentials/login'>
+              <a href='/credentials/login' onClick={this.track("Get Started Clicked")}>
                 <div className='cta-button'>
                   GET STARTED
                 </div>

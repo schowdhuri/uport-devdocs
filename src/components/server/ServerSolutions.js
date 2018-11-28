@@ -1,50 +1,51 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
 import blob from '../../images/Blob.svg'
+import track from '../../utilities/track'
 
 class ServerSolutions extends Component {
+  track = (name) => () => {
+    track(name, {
+      source: 'Server Landing'
+    })
+  }
   render () {
     return (
       <Container>
         <div className={'grid'}>
-          <div>
+          <div className='server-solutions-header'>
             <a id='server-solutions'>
               <h2>Solutions for Server Applications</h2>
             </a>
           </div>
-          <div>
-            &nbsp;
-          </div>
-          <a href='/server/login'>
+          <a href='/server/login' onClick={this.track('Server Login Clicked')}>
             <div className='left block-item'>
-              <img className='blob' src={blob} />
               <div className='block-content'>
                 <h4>Login</h4>
                 <p>uPort provides a simple solution for your users to log in to your app and share private credentials, such as identity information and contact details.</p>
-                <h3>LEARN MORE</h3>
               </div>
+              <h3>LEARN MORE</h3>
             </div>
           </a>
-          <a href='/credentials/createverification'>
+          <a href='/credentials/createverification' onClick={this.track('Verifications Part 1 Clicked')}>
             <div className='right block-item'>
-              <img className='blob' src={blob} />
+
               <div className='block-content'>
                 <h4>Verifications</h4>
                 <h5>Part 1</h5>
                 <p>Create and issue verifications to your users.  They can store these verifications on their mobile device and use them with applications that request them.</p>
-                <h3>LEARN MORE</h3>
               </div>
+              <h3>LEARN MORE</h3>
             </div>
           </a>
-          <a href='/credentials/requestverification'>
+          <a href='/credentials/requestverification' onClick={this.track('Verifications Part 2 Clicked')}>
             <div className='left block-item'>
-              <img className='blob' src={blob} />
               <div className='block-content'>
                 <h4>Verifications</h4>
                 <h5>Part 2</h5>
                 <p>Request and verify claims about your users to interact with their digital identity and add value to your application</p>
-                <h3>LEARN MORE</h3>
               </div>
+              <h3>LEARN MORE</h3>
             </div>
           </a>
         </div>
@@ -73,11 +74,13 @@ const Container = styled.section`
   h3 {
     color: #4C9EA6;
     text-align: right;
-    margin: 61px 40px 0px 0;
+    margin: 0 40px 0 0;
   }
   h4 {
     font-size: 24px;
     line-height: 32px;
+    margin: 0 0 25px;
+    padding: 20px 0 0 0;
     a {
       text-decoration: none;
     }
@@ -90,10 +93,12 @@ const Container = styled.section`
   }
   .block-item {
     background-color: #fff;
-    position: relative;
-    box-shadow: 0px 0px 10px
-    rgba(139, 139, 139, 0.25);
     border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(139, 139, 139, 0.25);
+    display: grid;
+    grid-template-rows: 1fr 80px;
+    margin-bottom: 30px;
+    position: relative;
   }
   .block-content  {
     padding: 20px;
@@ -109,27 +114,32 @@ const Container = styled.section`
   @media screen and (min-width: 768px) {
     .grid {
       display: grid;
-      grid-template-columns: auto auto;
+      grid-template-columns: 1fr 1fr;
       grid-gap: 30px 30px;
-      margin: 0 20px;
+      margin: 0 10vw;
+    }
+    .server-solutions-header {
+      grid-area: 1 / 1 / 2 / 3;
     }
     .block-item {
-      width: 590px;
+      margin: 0;
     }
     .block-item {
-      height: 349px;
+      height: 100%;
     }
     .blob {
       display: block;
-      position: absolute;
+      // position: absolute;
       padding: 40px 0 0 40px;
     }
     .block-content  {
-      left: 60px;
-      padding: 0;
-      position: absolute;
+      background: url(${blob}) 40px 40px no-repeat;
+      padding: 0 40px 0 60px;
       top: 65px;
       z-index: 10;
+    }
+    h4 {
+      padding: 75px 0 0 0;
     }
   }
 `

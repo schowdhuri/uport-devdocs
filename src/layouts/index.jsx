@@ -8,9 +8,30 @@ import "./css/uport-51f8fe-896815bc956b8e53e437c9c3db.webflow.css"
 import "../../node_modules/prism-themes/themes/prism-duotone-light.css"
 import "./css/index.css";
 import theme from './theme'
-
+import getSelectedText from '../utilities/getSelectedText'
+import track from '../utilities/track'
 
 export default class MainLayout extends React.Component {
+  componentDidMount() {
+    this.trackTextSelection()
+  }
+  trackTextSelection = () => {
+    const trackSelectedText = () => {
+      const selectedText = getSelectedText()
+      if(selectedText) {
+        track('Text Selected', {
+          value: selectedText
+        })
+      }
+    }
+    document.addEventListener('mouseup', trackSelectedText, false)
+    document.addEventListener('keyup', e => {
+      const key = e.keyCode || e.which
+      if(key === 16) {
+        trackSelectedText
+      }
+    }, false)
+  }
   getLocalTitle() {
     function capitalize(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
@@ -35,7 +56,6 @@ export default class MainLayout extends React.Component {
     }
     return title;
   }
-
   render() {
     const { children } = this.props;
     return (

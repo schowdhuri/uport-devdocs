@@ -2,9 +2,14 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import heroImg from '../../images/server_hero.svg'
-
+import track from '../../utilities/track'
 
 class ServerHero extends React.Component {
+  track = (name) => () => {
+    track(name, {
+      source: 'Server Landing'
+    })
+  }
   render () {
     return (
       <Hero>
@@ -17,7 +22,7 @@ class ServerHero extends React.Component {
             </p>
             <div className={'hero-features'}>
               <div className=''>
-                <a href='/server#server-solutions'>
+                <a href='/server#server-solutions' onClick={this.track('Server Solutions Clicked')}>
                   <div className={`hero-button`}>
                     GET STARTED
                   </div>

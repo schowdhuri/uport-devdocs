@@ -1,7 +1,13 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
+import track from '../../utilities/track'
 
 class ServerResources extends Component {
+  track = (name) => () => {
+    track(name, {
+      source: 'Server Landing'
+    })
+  }
   render () {
     return (
       <Container>
@@ -11,7 +17,7 @@ class ServerResources extends Component {
             <h3>Libraries</h3>
           </div>
           <div className='block-item'>
-            <a href='/categories/transports'>
+            <a href='/categories/uport-transports' onClick={this.track('uPort Transports Clicked')}>
               <h4>Transports    &#x2192;</h4>
               <p>Setup communication channels between your app and uPort clients.</p>
             </a>
@@ -20,7 +26,7 @@ class ServerResources extends Component {
             </div>
           </div>
           <div className='block-item'>
-            <a href='/categories/ethr-did'>
+            <a href='/categories/ethr-did' onClick={this.track('EthrDID Clicked')}>
               <h4>EthrDID    &#x2192;</h4>
               <p>Create Decentralized Identifiers and manage their interactions in your app.</p>
             </a>
@@ -29,7 +35,7 @@ class ServerResources extends Component {
             </div>
           </div>
           <div className='block-item'>
-            <a href='/categories/ethr-did-registry'>
+            <a href='/categories/ethr-did-registry' onClick={this.track('EthrDID Registry Clicked')}>
               <h4>Ethr DID Registry    &#x2192;</h4>
               <p>Smart contract to resolve and manage decentralized identifiers (DIDs)</p>
             </a>

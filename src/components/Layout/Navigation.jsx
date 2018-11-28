@@ -4,6 +4,77 @@ import styled from 'styled-components'
 import Menu from 'react-burger-menu/lib/menus/slide'
 import LoginStatus from './LoginStatus'
 import Search from '../Search'
+import track from '../../utilities/track'
+
+class Navigation extends React.Component {
+  track = (name, properties={}) => () => {
+    track(name, {
+      source: 'Header',
+      ...properties
+    })
+  }
+  render () {
+    const { activeCategory } = this.props
+    return (
+      <NavContainer>
+        <section id='topNav'>
+          <StyledLink
+            className={`w-nav-link nav-link menu-item ${activeCategory === 'overview' ? 'active' : ''}`}
+            to='/overview/index'
+            activeClassName='active'
+            onClick={this.track('Overview Clicked')}
+          > About </StyledLink>
+          <StyledLink
+            className={`w-nav-link nav-link menu-item ${activeCategory !== 'overview' ? 'active' : ''}`}
+            to='/index.html#platform'
+            activeClassName='active'
+            onClick={this.track('Platform Clicked')}
+          > Platform </StyledLink>
+          <a href='https://chat.uport.me'
+            className={`nav-link w-nav-link`}
+            target='_blank'
+            onClick={this.track('Help Opened')}
+          > Help </a>
+          <a href='https://medium.com/uport'
+            className='nav-link w-nav-link'
+            target='_blank'
+            onClick={this.track('Blog Opened')}
+          > Blog </a>
+          <div>
+            <Search />
+          </div>
+          <LoginStatus />
+        </section>
+        <div id='responsiveNavContainer'>
+          <Menu right isOpen={false} styles={styles}>
+            <StyledLink
+              className={`w-nav-link nav-link menu-item ${activeCategory === 'overview' ? 'active' : ''}`}
+              to='/overview/index'
+              activeClassName='active'
+              onClick={this.track('Overview Clicked', { mobile: true })}
+            > About </StyledLink>
+            <StyledLink
+              className={`w-nav-link nav-link menu-item ${activeCategory !== 'overview' ? 'active' : ''}`}
+              to='/index.html#platform'
+              activeClassName='active'
+              onClick={this.track('Platform Clicked', { mobile: true })}
+            > Platform </StyledLink>
+            <a href='https://chat.uport.me'
+              className={`menu-item`}
+              target='_blank'
+              onClick={this.track('Help Opened', { mobile: true })}
+            > Help </a>
+            <a href='https://medium.com/uport'
+              className='menu-item'
+              target='_blank'
+              onClick={this.track('Blog Opened', { mobile: true })}
+            > Blog </a>
+          </Menu>
+        </div>
+      </NavContainer>
+    )
+  }
+}
 
 const styles = {
   bmMenuWrap: {
@@ -87,32 +158,5 @@ const StyledLink = styled(Link)`
     color: ${props => props.theme.themedWhite};
   }
 `
-
-class Navigation extends React.Component {
-  render () {
-    return (
-      <NavContainer>
-        <section id='topNav'>
-          <StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory === 'overview' ? 'active' : ''}`} to={"/overview/index"} activeClassName={'active'}>About</StyledLink>
-          <StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory !== 'overview' ? 'active' : ''}`} to={"/index.html#platform"} activeClassName={'active'}> Platform </StyledLink>
-          <a href='https://chat.uport.me' className={`nav-link w-nav-link`} target='_blank'> Help </a>
-          <a href='https://medium.com/uport' className={`nav-link w-nav-link`} target='_blank'> Blog </a>
-          <div>
-            <Search />
-          </div>
-          <LoginStatus />
-        </section>
-        <div id='responsiveNavContainer'>
-          <Menu right isOpen={false} styles={styles}>
-            <StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory === 'overview' ? 'active' : ''}`} to={"/overview"} activeClassName={'active'}>About</StyledLink>
-            <StyledLink className={`w-nav-link nav-link menu-item ${this.props.activeCategory !== 'overview' ? 'active' : ''}`} to={"/index.html#platform"} activeClassName={'active'}> Platform </StyledLink>
-            <a href='https://chat.uport.me' className={`menu-item`} target='_blank'> Help </a>
-            <a href='https://medium.com/uport' className={`menu-item`} target='_blank'> Blog </a>
-          </Menu>
-        </div>
-      </NavContainer>
-    )
-  }
-}
 
 export default Navigation

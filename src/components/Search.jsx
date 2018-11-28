@@ -24,14 +24,14 @@ const SearchWrap = styled.form`
       padding-right: 0.35rem;
       padding-bottom: 0.175rem;
       padding-left: 2.0rem;
-      background-color:#6960DF; 
+      background-color:#6960DF;
       font-size:16px;
       color: #fff;
     }
     input::-webkit-input-placeholder {
       color: #817cff;
     }
-    input:focus { 
+    input:focus {
       outline: none;
       border: 2px solid #6960df;
       background-color: #5754c3;

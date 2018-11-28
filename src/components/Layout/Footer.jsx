@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import track from '../../utilities/track'
 
 const FooterContainer = styled.section`
   display: flex;
@@ -8,7 +9,7 @@ const FooterContainer = styled.section`
   h2 {
     text-align: center;
     color: #fff;
-    padding: 40px 0 20px  ;
+    padding: 40px 0 20px;
   }
   .footer-menu {
     color: #fff;
@@ -32,7 +33,12 @@ const FooterContainer = styled.section`
 `
 
 class Footer extends React.Component {
-
+  track = (name, properties={}) => () => {
+    track(name, {
+      source: 'Footer',
+      ...properties
+    })
+  }
   render () {
     return (
       <FooterContainer>
@@ -43,24 +49,33 @@ class Footer extends React.Component {
         </div>
         <div className={'Grid Grid--gutters button-wrap'}>
           <div className='Grid-cell'>
-            <a href='https://chat.uport.me/'><button>Join The Community</button></a>
+            <a href='https://chat.uport.me/' onClick={this.track('Join The Community Clicked')}>
+              <button>Join The Community</button>
+            </a>
           </div>
           <div className='Grid-cell'>
-            <a href='https://github.com/uport-project'><button>Explore uPort Projects</button></a>
+            <a href='https://github.com/uport-project' onClick={this.track('Github uPort Projects Opened')}>
+              <button>Explore uPort Projects</button>
+            </a>
           </div>
         </div>
         <div className='footer-menu-wrap Grid'>
           <div className='footer-menu Grid-cell'>
             <h4>Apps</h4>
             <ul>
-              <li><a href='https://itunes.apple.com/us/app/uport-id/id1123434510'>Wallet</a></li>
+              <li>
+                <a
+                  href='https://itunes.apple.com/us/app/uport-id/id1123434510'
+                  onClick={this.track('iTunes Opened')}
+                >Wallet</a>
+              </li>
             </ul>
           </div>
           <div className='footer-menu Grid-cell'>
             <h4>Platform</h4>
             <ul>
-              <li><a href='/overview/index'>Overview</a></li>
-              <li><a href='/categories/specs'>Protocols</a></li>
+              <li><a href='/overview/index' onClick={this.track('Overview Clicked')}>Overview</a></li>
+              <li><a href='/categories/specs' onClick={this.track('Specs Clicked')}>Protocols</a></li>
             </ul>
           </div>
           {/* <div className='footer-menu Grid-cell'> */}
@@ -77,9 +92,9 @@ class Footer extends React.Component {
             <ul>
               {/* <li><a href='#'>Build a hybrid dapp</a></li> */}
               {/* <li><a href='#'>Authenticate Wallet</a></li> */}
-              <li><a href='/uport-connect/guides/usage'>Connect</a></li>
-              <li><a href='/uport-credentials/guides/tutorial'>Credentials</a></li>
-              <li><a href='/uport-transports/guides/modules'>Transports</a></li>
+              <li><a href='/uport-connect/guides/usage' onClick={this.track('Connect Guide Clicked')}>Connect</a></li>
+              <li><a href='/uport-credentials/guides/tutorial' onClick={this.track('Credentials Guide Clicked')}>Credentials</a></li>
+              <li><a href='/uport-transports/guides/modules' onClick={this.track('Transports Guide Clicked')}>Transports</a></li>
             </ul>
           </div>
           <div className='footer-menu Grid-cell'>
@@ -87,8 +102,8 @@ class Footer extends React.Component {
             <ul>
               {/* <li><a href='#'>Mission</a></li> */}
               {/* <li><a href='#'>Team</a></li> */}
-              <li><a href='https://www.uport.me/job-listings'>Jobs (We're Hiring)</a></li>
-              <li><a href='https://consensys.net'>ConsenSys</a></li>
+              <li><a href='https://www.uport.me/job-listings' onClick={this.track('Job Listing Opened')}>Jobs (We're Hiring)</a></li>
+              <li><a href='https://consensys.net' onClick={this.track('ConsenSys Website Opened')}>ConsenSys</a></li>
             </ul>
         </div>
         </div>
