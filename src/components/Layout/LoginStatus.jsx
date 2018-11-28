@@ -12,6 +12,7 @@ class LoginStatus extends Component {
     }
     this.toggleMenu = this.toggleMenu.bind(this)
     this.loginRequest = this.loginRequest.bind(this)
+    this.handleLogout = this.handleLogout.bind(this)
   }
   toggleMenu (e) {
     e.preventDefault()
@@ -30,6 +31,10 @@ class LoginStatus extends Component {
     } catch (e) {
       console.log(e)
     }
+  }
+  handleLogout () {
+    uPortConnect.logout()
+    this.props.logout()
   }
   render () {
     let appItems
@@ -51,7 +56,7 @@ class LoginStatus extends Component {
             <ul className='myAppsDropdown'>
               <li className=''><a href='/myapps/startbuilding'>Register Your App</a></li>
               {this.props.profile.uportApps ? appItems : null}
-              <li className='logout' onClick={() => { this.props.logout() }}><a href='#'>Logout</a></li>
+              <li className='logout' onClick={() => { this.handleLogout() }}><a href='#'>Logout</a></li>
             </ul>
           }
         </div>
