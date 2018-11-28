@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
-import serverImg from '../../images/server-landing.png'
+import web3Img from '../../images/web3monitor.png'
 import arrowImg from '../../images/ArrowBlack.png'
-import blueTick from '../../images/blue-tick.svg'
+import orangeTick from '../../images/orange-tick.svg'
 
-class ServerLanding extends Component {
+class WebThreeLanding extends Component {
 
   render() {
     return (
@@ -15,29 +15,29 @@ class ServerLanding extends Component {
             </div>
             <div className='right'>
               <div className='right-wrap'>
-                <h2>Server</h2>
+                <h2>Web 3.0</h2>
                 <p>
-                  Server applications can integrate with uPort easily using uport-credentials and other helpful tools for traditional and web3 solutions.
+                  uPort provides client-side libraries that allow you to interact with a user's uPort identity&mdash;through the mobile app. You can create requests for a user's data, share credentials, and generate transactions to be signed on the user's mobile app.
                 </p>
                 <hr />
                 <div className='subgrid'>
                   <div className='subleft'>
                     <ul>
                       <li className='blue-tick'>
-                        <a href='/credentials/login'>Create and verify authentication requests</a>
+                        <a href='/connect/login'>Create and verify authentication requests</a>
                       </li>
-                      <li className='blue-tick'>
-                        <a href='/credentials/transactions'>Ask users to sign Ethereum transactions</a>
-                      </li>
+                      {/* <li className='blue-tick'> */}
+                      {/*   <a href='#'>Ask users to sign Ethereum transactions</a> */}
+                      {/* </li> */}
                     </ul>
                   </div>
                   <div className='subright'>
                     <ul>
                       <li className='blue-tick'>
-                        <a href='/credentials/createverification'>Create verified claims</a>
+                        <a href='/connect/sendverification'>Create and Send verified claims</a>
                       </li>
                       <li className='blue-tick'>
-                        <a href='/credentials/requestverification'>Verify claims for your users</a>
+                        <a href='/connect/requestverification'>Request verified claims from your users</a>
                       </li>
                     </ul>
                   </div>
@@ -53,7 +53,7 @@ class ServerLanding extends Component {
   }
 }
 
-export default ServerLanding
+export default WebThreeLanding
 
 const Container = styled.section`
 .grid {
@@ -105,14 +105,14 @@ ul {
   text-indent: -25px;
 }
 li {
-  color: #4C9EA6;
+  color: #E77E55;
   word-wrap: break-word;
   margin: 0 0 20px 40px;
 }
 li::before {
   content: unset;
   content: initial;
-  content: url(${blueTick});
+  content: url(${orangeTick});
   left: 5px;
   margin-right: 10px;
 }
@@ -124,6 +124,7 @@ p {
   color: #3F3D4B;
 }
 a {
+  color: #E77E55;
   text-decoration: none;
 }
 .link {
@@ -153,7 +154,7 @@ a {
   }
   .left {
     display: block;
-    background-image: url(${serverImg});
+    background-image: url(${web3Img});
     background-position: right bottom;
     background-repeat: no-repeat;
   }

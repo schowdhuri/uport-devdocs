@@ -6,7 +6,7 @@ type: "guide"
 source: "https://github.com/uport-project/uport-project.github.io/blob/develop/markdown/docs/credentials/login.md"
 ---
 
-## Introduction
+# Introduction
 
 Creating a simple login solution with uport-credentials can be accomplished with a small Node.js application to request verified data about an ethereum identity.
 
