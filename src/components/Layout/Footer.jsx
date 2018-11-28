@@ -59,7 +59,7 @@ class Footer extends React.Component {
           <div className='footer-menu Grid-cell'>
             <h4>Platform</h4>
             <ul>
-              <li><a href='/overview'>Overview</a></li>
+              <li><a href='/overview/index'>Overview</a></li>
               <li><a href='/categories/specs'>Protocols</a></li>
             </ul>
           </div>

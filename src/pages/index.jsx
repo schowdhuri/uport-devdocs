@@ -68,7 +68,7 @@ class Index extends React.Component {
                         <li>Build for both desktop and mobile browsers</li>
                       </ul>
                       <div className={`home-hero-button`}>
-                        <a href='/gettingstarted'>
+                        <a href='/guides/gettingstarted'>
                           Connect With Your Users
                         </a>
                       </div>
