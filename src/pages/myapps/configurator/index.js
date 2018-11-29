@@ -87,7 +87,6 @@ class MyAppsConfigurator extends React.Component {
       this.setState({ step: step - 1})
   }
   saveKey = pk => {
-    console.log("saving key: ", pk)
     this.setState({ pk })
   }
   render () {

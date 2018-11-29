@@ -39,6 +39,18 @@
   padding: 20px;
   text-align: center;
 }
+.myapps-button.signing {
+  width: 80%;
+  background-color: #fff;
+  border: 2px solid #715ad1;
+  margin: 0 auto;
+}
+.myapps-button.signing a {
+  color: #715ad1;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
 .myapps-button a {
   color: #fff;
   text-decoration: none;
@@ -679,6 +691,36 @@ button.continue {
   margin: 0 0 0 20px;
   float: right;
   margin-top: -8px;
+}
+
+.pk-confirmation {
+  background-color: #fcf2e5;
+  margin-top: 30px;
+  width: 80%;
+  padding: 30px;
+  margin: 30px auto;
+  border-radius: 3px;
+}
+
+.pk-confirmation span {
+  color: #3F3D4B;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.pk-confirmation input {
+  height: 60px;
+  width: 60px;
+  margin-right: 20px;
+  border-radius: 3px;
+  border: 1px solid #d9d8df;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.pk-confirmation.hidden {
+  display: none;
 }
 
 footer.stepFooter {
