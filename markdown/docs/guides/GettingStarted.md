@@ -1,6 +1,5 @@
 ---
 title: "Quick Start"
-index: 1
 category: "uport-connect"
 type: "guide"
 source: "https://github.com/uport-project/uport-project.github.io/blob/develop/markdown/docs/guides/GettingStarted.md"

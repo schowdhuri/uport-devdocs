@@ -4,16 +4,15 @@ import styled from 'styled-components'
 import SEO from '../../components/SEO/SEO'
 import SiteHeader from '../../components/Layout/Header'
 import SiteFooter from '../../components/Layout/Footer'
-import ServerHero from '../../components/server/ServerHero'
-import ServerValueProp from '../../components/server/ServerValueProp'
-import ServerSolutions from '../../components/server/ServerSolutions'
-import ServerResources from '../../components/server/ServerResources'
+import Web3Hero from '../../components/web3/Web3Hero'
+import Web3ValueProp from '../../components/web3/Web3ValueProp'
+import Web3Solutions from '../../components/web3/Web3Solutions'
+import Web3Resources from '../../components/web3/Web3Resources'
 import config from '../../../data/SiteConfig'
-import heroImg from '../../images/Image.svg'
 import AutoLinkText from 'react-autolink-text2'
 import bgPattern from '../../images/bg-pattern-gray.svg'
 
-class Server extends React.Component {
+class Web3 extends React.Component {
   render () {
     const postEdges = this.props.data.allMarkdownRemark.edges
     return (
@@ -27,11 +26,11 @@ class Server extends React.Component {
               location={this.props.location}
               categories={this.props.data.navCategories} />
           </IndexHeadContainer>
-          <ServerHero />
+          <Web3Hero />
           <BodyContainer className={`body-container`}>
-            <ServerValueProp />
-            <ServerSolutions />
-            <ServerResources />
+            <Web3ValueProp />
+            <Web3Solutions />
+            <Web3Resources />
           </BodyContainer>
           <FooterContainer>
             <SiteFooter />
@@ -42,7 +41,7 @@ class Server extends React.Component {
   }
 }
 
-export default Server
+export default Web3
 
 const IndexHeadContainer = styled.div`
   background: ${props => props.theme.brand};
@@ -77,7 +76,7 @@ const FooterContainer = styled.footer`
 
 /* eslint no-undef: "off"*/
 export const pageQuery = graphql`
-  query ServerQuery {
+  query Web3Query {
     allMarkdownRemark(
       limit: 2000
       filter: { frontmatter: { type: { ne: null }}}
