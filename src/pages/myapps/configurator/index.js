@@ -73,11 +73,18 @@ class MyAppsConfigurator extends React.Component {
   nextStep (e) {
     if(e)
       e.preventDefault()
-    this.setState({step: (this.state.step + 1)})
+    const { step, appEnvironment } = this.state
+    if(step === 2 && appEnvironment.environment !== 'server')
+      this.setState({ step: step + 2})
+    else
+      this.setState({ step: step + 1})
   }
   previousStep (e) {
     e.preventDefault()
-    this.setState({step: (this.state.step - 1)})
+    if(step === 4 && appEnvironment.environment !== 'server')
+      this.setState({ step: step - 2})
+    else
+      this.setState({ step: step - 1})
   }
   saveKey = pk => {
     console.log("saving key: ", pk)
@@ -98,9 +105,16 @@ class MyAppsConfigurator extends React.Component {
               {(() => {
                 switch (this.state.step) {
                   case 1:
-                    return <AppEnvironment appEnvironment={this.state.appEnvironment} getChildState={this.getChildState} />
+                    return <AppEnvironment
+                      appEnvironment={this.state.appEnvironment}
+                      getChildState={this.getChildState} />
                   case 2:
-                    return <AppDetails uportApps={this.props.profile.uportApps} appDetails={this.state.appDetails} appEnvironment={this.state.appEnvironment} getChildState={this.getChildState} previousStep={this.previousStep} />
+                    return <AppDetails
+                      uportApps={this.props.profile.uportApps}
+                      appDetails={this.state.appDetails}
+                      appEnvironment={this.state.appEnvironment}
+                      getChildState={this.getChildState}
+                      previousStep={this.previousStep} />
                   case 3:
                     if (this.state.appEnvironment.environment === 'server') {
                       return <AppSigningKey
@@ -109,8 +123,6 @@ class MyAppsConfigurator extends React.Component {
                         getChildState={this.getChildState}
                         previousStep={this.previousStep}
                         onGenerateKey={this.saveKey} />
-                    } else {
-                      this.nextStep() 
                     }
                   case 4:
                     return <AppRegister
@@ -124,7 +136,6 @@ class MyAppsConfigurator extends React.Component {
                       previousStep={this.previousStep} />
                   case 5:
                     return <AppRegComplete
-                      appIdentity={this.state.appDetails.appIdentity}
                       appDetails={this.state.appDetails}
                       appEnvironment={this.state.appEnvironment}
                       getChildState={this.getChildState}

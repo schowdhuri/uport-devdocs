@@ -7,6 +7,7 @@ import imageBg from '../../../images/Products-BG.svg'
 import UnorderedList from '../../Layout/html/UnorderedList'
 import VerificationModal from './VerificationModal'
 import CopyButton from './CopyButton'
+import { Container, Grid, Col, medium } from '../../../layouts/grid'
 import copyToClipboard from '../../../helpers/copyToClipboard'
 
 const installCode =
@@ -28,8 +29,8 @@ const uport = new Connect('${appDetails.appName}', {
   network: '${appEnvironment.network}'
 })`
 
-const didDoc = (appDetails, appIdentity) => {
-  const did = appIdentity.did.replace('did:ethr:', '')
+const didDoc = (appDetails) => {
+  const did = appDetails.appIdentity.did.replace('did:ethr:', '')
   return `{
   "@context": "https://w3id.org/did/v1",
   "id": "did:https:${appDetails.appURL}",
@@ -77,7 +78,7 @@ class AppRegComplete extends Component {
           </p>
         </Success>
         <Body>
-          <CardContainer>
+          <Container className='card-container'>
             <h3>Start Building with Your App Code</h3>
             <Card>
               <Card.Content>
@@ -101,12 +102,16 @@ class AppRegComplete extends Component {
                   <Step.Content>
                     <CodeContainer>
                       <CopyButton
-                        onCopy={appEnvironment.environment === 'server' ? this.handleCopy(initServerCode(appDetails, appEnvironment, signingKey)) : this.handleCopy(initClientCode(appDetails, appEnvironment))}
+                        onCopy={appEnvironment.environment === 'server'
+                          ? this.handleCopy(initServerCode(appDetails, appEnvironment, signingKey))
+                          : this.handleCopy(initClientCode(appDetails, appEnvironment))}
                       >
                         Copy
                       </CopyButton>
                       <Pre>
-                        <Code>{appEnvironment.environment === 'server' ? initServerCode(appDetails, appEnvironment, signingKey) : initClientCode(appDetails, appEnvironment)}</Code>
+                        <Code>{appEnvironment.environment === 'server'
+                          ? initServerCode(appDetails, appEnvironment, signingKey)
+                          : initClientCode(appDetails, appEnvironment)}</Code>
                       </Pre>
                     </CodeContainer>
                   </Step.Content>
@@ -118,41 +123,53 @@ class AppRegComplete extends Component {
             </Card>
 
             <Card>
-              <Card.Content>
-                <h4>Get uPort Verification Badge</h4>
-                <p>Verify your URL domain in 2 easy steps</p>
-                <Icon src={cog} />
-                <UnorderedList>
-                  <li>Make your user feel safe while using your app</li>
-                  <li>Protect your user against phishing </li>
-                  <li>Join the community of verified uPort users</li>
-                </UnorderedList>
-              </Card.Content>
+              {appDetails.appURL
+                ? <Card.Content>
+                  <h4>Get uPort Verification Badge</h4>
+                  <p>Verify your URL domain in 2 easy steps</p>
+                  <Icon src={cog} />
+                  <UnorderedList>
+                    <li>Make your user feel safe while using your app</li>
+                    <li>Protect your user against phishing </li>
+                    <li>Join the community of verified uPort users</li>
+                  </UnorderedList>
+                </Card.Content>
+                : <Card.Content>
+                  <h4>Get uPort Verification Badge</h4>
+                  <Icon src={cog} />
+                  <p>
+                    If you want to build trust and verify your domain,
+                    please re-register and add your project’s url
+                  </p>
+                </Card.Content>}
               <Card.Footer>
-                <CTAButton onClick={this.showVerificationModal}>Learn How to Get the Badge</CTAButton>
+                {!appDetails.appURL || <CTAButton onClick={this.showVerificationModal}>
+                  Learn How to Get the Badge
+                </CTAButton>}
               </Card.Footer>
             </Card>
-          </CardContainer>
+          </Container>
         </Body>
       </Section>
       <VerificationModal
         appDetails={appDetails}
-        appIdentity={appDetails.appIdentity}
         show={verificationModal}
         onClose={this.hideVerificationModal}
       >
         <p>
           To associate your domain with your App Identity just upload the
           following document to {" "}
-          <strong>https://{appDetails.appURL}/.well-known/did.json</strong>
+          <strong>
+            {`https://${appDetails.appURL}/.well-known/did.json`}
+          </strong>
         </p>
         <CodeContainer>
-          <CopyButton onCopy={this.handleCopy(didDoc(appDetails, appDetails.appIdentity))}>
+          <CopyButton onCopy={this.handleCopy(didDoc(appDetails))}>
             Copy
           </CopyButton>
           <Pre>
             <Code className='language-javascript'>
-              {didDoc(appDetails, appDetails.appIdentity)}
+              {didDoc(appDetails)}
             </Code>
           </Pre>
         </CodeContainer>
@@ -188,32 +205,33 @@ const Check = styled.img`
 `
 const Body = styled.div`
   background: #5c50ca;
-  padding: 40px 15px;
-  @media screen and (min-width: 768px) {
+  padding: 40px 0;
+  ${medium(`
     background-image: url(${imageBg});
     background-size: cover;
     margin-bottom: 180px;
-    padding: 0 4vw;
-  }
-`
-const CardContainer = styled.div`
-  h3 {
-    color: #fff;
-    margin: 0 0 20px;
-    text-align: center;
-  }
-  @media screen and (min-width: 768px) {
-    display: grid;
-    grid-template-columns: 2fr minmax(320px, 1fr);
-    grid-template-rows: auto auto;
-    grid-gap: 1vw 2vw;
-    transform: translateY(130px);
+    padding: 0;
+  `)}
 
+  .card-container {
     h3 {
-      grid-area: 1 / 1 / 2 / 3;
-      margin: 0;
-      text-align: left;
+      color: #fff;
+      margin: 0 0 20px;
+      text-align: center;
     }
+    ${medium(`
+      display: grid;
+      grid-template-columns: 2fr minmax(320px, 1fr);
+      grid-template-rows: auto auto;
+      grid-gap: 1vw 2vw;
+      transform: translateY(130px);
+
+      h3 {
+        grid-area: 1 / 1 / 2 / 3;
+        margin: 0;
+        text-align: left;
+      }
+    `)}
   }
 `
 const Card = styled.div`
@@ -223,9 +241,9 @@ const Card = styled.div`
   grid-template-rows: 1fr 64px;
   padding: 3vw;
   margin-bottom: 40px;
-  @media screen and (min-width: 768px) {
+  ${medium(`
     margin: 0;
-  }
+  `)}
   h4, p {
     text-align: center;
   }

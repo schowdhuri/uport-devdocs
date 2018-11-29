@@ -7,15 +7,20 @@ import myAppsBg from '../../../images/myapps-bg.svg'
 import CancelModal from './CancelModal'
 import arrowWhite from '../../../images/ArrowWhite.svg'
 import arrowBlurple from '../../../images/ArrowBlurple.png'
+import { Container, Grid, Col } from '../../../layouts/grid'
 import '../../../layouts/css/myapps.css'
+import { isValidHttpsUrl } from '../../../utilities/isValidUrl'
 
 class AppDetails extends Component {
   constructor (props) {
     super(props)
+    const appURL = props.appDetails.appURL
+      ? `https://${props.appDetails.appURL}`
+      : ''
     this.state = {
-      appName: this.props.appDetails.appName,
-      appURL: this.props.appDetails.appURL,
-      appDescription: this.props.appDescription,
+      appName: props.appDetails.appName,
+      appURL,
+      appDescription: props.appDescription,
       cancelModal: false,
       file_name: null,
       file_type: null,
@@ -26,7 +31,9 @@ class AppDetails extends Component {
       formSubmitted: false,
       duplicateAppName: false,
       did: null,
-      pk: null
+      pk: null,
+      validUrl: !appURL ||
+        isValidHttpsUrl(appURL)
     }
     this.handleAppNameChange = this.handleAppNameChange.bind(this)
     this.handleAppURLChange = this.handleAppURLChange.bind(this)
@@ -40,7 +47,10 @@ class AppDetails extends Component {
     e.target.value !== '' ? this.setState({appNameValid: true}) : this.setState({appNameValid: false})
   }
   handleAppURLChange (e) {
-    this.setState({appURL: e.target.value})
+    this.setState({
+      appURL: e.target.value,
+      validUrl: !e.target.value || isValidHttpsUrl(e.target.value)
+    })
   }
   handleAppDescriptionChange (e) {
     this.setState({appDescription: e.target.value})
@@ -81,14 +91,14 @@ class AppDetails extends Component {
     this.state.appName === '' || uportAppNames.indexOf(this.state.appName) >= 0
     ? this.setState({appNameValid: false, duplicateAppName: (uportAppNames.indexOf(this.state.appName) >= 0)})
     : this.setState({appNameValid: true}, async () => {
-      if (this.state.appNameValid) {
-         const {did, privateKey} = Credentials.createIdentity()
+      if (this.state.appNameValid && this.state.validUrl) {
+        const {did, privateKey} = Credentials.createIdentity()
         const credentials = new Credentials({appName: this.state.appName, did, privateKey})
         this.setState({did: did, pk: privateKey})
         if ((this.state.accentColor !== '' || this.state.accentColor !== '#5C50CA') && this.state.ipfsBgHash === null) { await this.handleBgImageUpload() }
         this.props.getChildState('appDetails', {
           appName: this.state.appName,
-          appURL: this.state.appURL,
+          appURL: this.state.appURL.replace(/^https:\/\//, ''),
           appDescription: this.state.appDescription,
           ipfsLogoHash: this.state.ipfsLogoHash,
           ipfsBgHash: this.state.ipfsBgHash,
@@ -108,99 +118,149 @@ class AppDetails extends Component {
     this.setState({ cancelModal: true })
   }
   render () {
-    const { cancelModal } = this.state;
-    const bgImageStyle = {backgroundImage: this.state.ipfsLogoHash ? `url(https://ipfs.io/ipfs/${this.state.ipfsLogoHash})` : `url(${myAppsBg})`}
+    const { cancelModal, validUrl } = this.state;
+    const bgImageStyle = {backgroundImage: this.state.ipfsLogoHash
+      ? `url(https://ipfs.io/ipfs/${this.state.ipfsLogoHash})`
+      : `url(${myAppsBg})`}
     return (<div>
       <section className={`startBuilding ${cancelModal ? 'blurred' : ''}`}>
-        <header>
-          <button className="btn-cancel" onClick={this.showCancelModal}>Cancel</button>
-          <h2>Add App Details</h2>
-        </header>
-        <div className='module'>
-          <form onSubmit={(e) => { this.handleSubmit(e) }}>
-            <label htmlFor='appName'>App Name</label>
-            <div className={(!this.state.appNameValid && this.state.formSubmitted) ? 'fieldError' : ''}>
-              <input type='text' id='appName' placeholder='Give your app a name' value={this.state.appName} onChange={(e) => { this.handleAppNameChange(e) }} />
-              {(!this.state.appNameValid && this.state.formSubmitted) &&
-                <span className='error'>
-                  <img src={errorIcon} />
-                  {this.state.duplicateAppName ? 'App name already in use' : 'App name is required'}
-                </span>
-              }
-            </div>
-            <LabelRow>
-              <label htmlFor='appURL'>
-                URL Address {" "}
-                <Subtle>(optional)</Subtle>
-              </label>
-              <Tooltip>
-                <Tooltip.Hotspot>?</Tooltip.Hotspot>
-                <Tooltip.Popover>
-                  <Tooltip.Body>
-                    <Tooltip.Header>Why we ask for URL address?</Tooltip.Header>
-                      <p>
-                        This signing (private) key should be protected.
-                        Do not distribute it publicly. We display the private key
-                        in our demos, guides, and tutorials for an educational
-                        purpose and recommend that you use your own signing key
-                        and application identifier (MNID) in place of the ones we
-                        provide for reference.
-                      </p>
-                  </Tooltip.Body>
-                </Tooltip.Popover>
-              </Tooltip>
-            </LabelRow>
-              <input type='text' id='appURL' placeholder='https://yourapphomepage.com' value={this.state.appURL} onChange={(e) => { this.handleAppURLChange(e) }} />
-            <label htmlFor='appDescription'>
-              App Description {" "}
-              <Subtle>(optional)</Subtle>
-            </label>
-            <textarea rows='4' cols='50' placeholder='Describe what your app can do...' value={this.state.appDescription} onChange={(e) => { this.handleAppDescriptionChange(e) }} />
-            <div className='appBranding Grid'>
-              <div className='Grid-cell brandingSettings'>
-                <h4>App Branding</h4>
-                <div className='colorPicker'>
-                  <label htmlFor='accentColor'>App Accent Color</label>
-                  <input type='text' id='accentColor' placeholder='#5C50CA' value={this.state.accentColor} onChange={(e) => { this.handleAccentColorChange(e) }} />
-                  <div className='colorPreview' style={{backgroundColor: this.state.accentColor}} />
-                </div>
-                <div className='appImage'>
-                  <label htmlFor='appImage'>App Profile Image</label>
-                  <div className='fileUpload'>
-                    <span>Upload Image</span>
-                    <input type='file' className='upload' onChange={(e) => { this.handleAppImageChange(e) }} />
+        <Container>
+          <header>
+            <Grid>
+              <Col span={8}>
+                <h2>Add App Details</h2>
+              </Col>
+              <Col span={4}>
+                <button className="btn-cancel" onClick={this.showCancelModal}>Cancel</button>
+              </Col>
+            </Grid>
+          </header>
+          <div className='module'>
+            <form onSubmit={(e) => { this.handleSubmit(e) }}>
+              <Grid>
+                <Col span={12}>
+                  <label htmlFor='appName'>App Name</label>
+                  <div className={(!this.state.appNameValid && this.state.formSubmitted) ? 'fieldError' : ''}>
+                    <input
+                      type='text'
+                      id='appName'
+                      placeholder='Give your app a name'
+                      value={this.state.appName}
+                      onChange={this.handleAppNameChange} />
+                    {(!this.state.appNameValid && this.state.formSubmitted) &&
+                      <span className='error'>
+                        <img src={errorIcon} />
+                        {this.state.duplicateAppName
+                          ? 'App name already in use'
+                          : 'App name is required'}
+                      </span>
+                    }
                   </div>
-                  <div className={'imagePreview ' + (this.state.ipfsLogoHash ? 'uploaded' : 'default')} style={bgImageStyle} />
-                </div>
-              </div>
-              <div className='Grid-cell brandingPreview'>
-                <div className='appItem'>
-                  <div className='appCover' style={{backgroundColor: this.state.accentColor}}>&nbsp;</div>
-                  <div className={'avatar ' + (this.state.ipfsLogoHash ? 'uploaded' : 'default')} style={bgImageStyle}>
-                    &nbsp;
+                </Col>
+                <Col span={12}>
+                  <LabelRow>
+                    <label htmlFor='appURL'>
+                      URL Address {" "}
+                      <Subtle>(optional)</Subtle>
+                    </label>
+                    <Tooltip>
+                      <Tooltip.Hotspot>?</Tooltip.Hotspot>
+                      <Tooltip.Popover>
+                        <Tooltip.Body>
+                          <Tooltip.Header>Why we ask for URL address?</Tooltip.Header>
+                            <p>
+                              This signing (private) key should be protected.
+                              Do not distribute it publicly. We display the private key
+                              in our demos, guides, and tutorials for an educational
+                              purpose and recommend that you use your own signing key
+                              and application identifier (MNID) in place of the ones we
+                              provide for reference.
+                            </p>
+                        </Tooltip.Body>
+                      </Tooltip.Popover>
+                    </Tooltip>
+                  </LabelRow>
+                  <div className={!this.state.validUrl ? 'fieldError' : ''}>
+                    <input
+                      type='text'
+                      id='appURL'
+                      placeholder='https://yourapphomepage.com'
+                      value={this.state.appURL}
+                      onChange={this.handleAppURLChange} />
+                    {validUrl ||
+                      <span className='error'>
+                        <img src={errorIcon} />
+                        Invalid URL
+                      </span>}
+                    </div>
+                </Col>
+                <Col span={12}>
+                  <label htmlFor='appDescription'>
+                    App Description {" "}
+                    <Subtle>(optional)</Subtle>
+                  </label>
+                  <textarea
+                    rows='4'
+                    cols='50'
+                    placeholder='Describe what your app can do...'
+                    value={this.state.appDescription}
+                    onChange={this.handleAppDescriptionChange} />
+                </Col>
+                <Col span={6}>
+                  <Grid className='appBranding Grid'>
+                    <Col span={12} className='Grid-cell brandingSettings'>
+                      <h4>App Branding</h4>
+                    </Col>
+                    <Col span={12}>
+                      <div className='colorPicker'>
+                        <label htmlFor='accentColor'>App Accent Color</label>
+                        <input type='text' id='accentColor' placeholder='#5C50CA' value={this.state.accentColor} onChange={(e) => { this.handleAccentColorChange(e) }} />
+                        <div className='colorPreview' style={{backgroundColor: this.state.accentColor}} />
+                      </div>
+                    </Col>
+                    <Col span={12}>
+                      <div className='appImage'>
+                        <label htmlFor='appImage'>App Profile Image</label>
+                        <div className='fileUpload'>
+                          <span>Upload Image</span>
+                          <input type='file' className='upload' onChange={(e) => { this.handleAppImageChange(e) }} />
+                        </div>
+                        <div className={'imagePreview ' + (this.state.ipfsLogoHash ? 'uploaded' : 'default')} style={bgImageStyle} />
+                      </div>
+                    </Col>
+                  </Grid>
+                </Col>
+                <Col span={6}>
+                  <div className='Grid-cell brandingPreview'>
+                    <div className='appItem'>
+                      <div className='appCover' style={{backgroundColor: this.state.accentColor}}>&nbsp;</div>
+                      <div className={'avatar ' + (this.state.ipfsLogoHash ? 'uploaded' : 'default')} style={bgImageStyle}>
+                        &nbsp;
+                      </div>
+                      <h3>{this.state.appName || 'App Name'}</h3>
+                      <span>{this.props.appEnvironment.network}</span>
+                    </div>
                   </div>
-                  <h3>{this.state.appName || 'App Name'}</h3>
-                  <span>{this.props.appEnvironment.network}</span>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-        <canvas width='100' height='100' id='canvas' style={{visibility: 'hidden'}} />
-        <footer className='stepFooter'>
-          <div className={`cta-prev`}>
-            <a href='#' onClick={(e) => this.props.previousStep(e)}>
-              <img src={arrowBlurple} />
-              APP ENVIRONMENT
-              <p>{this.props.appEnvironment.environment} <span>|</span> {this.props.appEnvironment.network}</p>
-            </a>
+                </Col>
+              </Grid>
+            </form>
           </div>
-          <a className={"cta-next " + (this.state.appNameValid ? '' : 'disabled')} href='#' onClick={(e) => this.handleSubmit(e)}>
-            {(this.props.appEnvironment.environment === 'server') ? 'GENERATE SIGNING KEY' : 'COMPLETE REGISTRATION'}
-            <img src={arrowWhite} />
-          </a>
-        </footer>
+          <canvas width='100' height='100' id='canvas' style={{visibility: 'hidden'}} />
+        </Container>
       </section>
+      <footer className='stepFooter'>
+        <div className={`cta-prev`}>
+          <a href='#' onClick={(e) => this.props.previousStep(e)}>
+            <img src={arrowBlurple} />
+            APP ENVIRONMENT
+            <p>{this.props.appEnvironment.environment} <span>|</span> {this.props.appEnvironment.network}</p>
+          </a>
+        </div>
+        <a className={"cta-next " + (this.state.appNameValid ? '' : 'disabled')} href='#' onClick={(e) => this.handleSubmit(e)}>
+          {(this.props.appEnvironment.environment === 'server') ? 'GENERATE SIGNING KEY' : 'COMPLETE REGISTRATION'}
+          <img src={arrowWhite} />
+        </a>
+      </footer>
       <CancelModal show={cancelModal} onClose={this.hideCancelModal} />
     </div>)
   }

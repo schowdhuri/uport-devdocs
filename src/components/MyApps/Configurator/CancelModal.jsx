@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { medium } from '../../../layouts/grid'
 
 class CancelModal extends React.Component {
   handleStay = () => {
@@ -70,9 +71,7 @@ const Body = styled.div`
     font-size: 18px;
     line-height: 24px;
   }
-  @media screen and (min-width: 768px) {
-    padding: 100px;
-  }
+  ${medium('padding: 70px;')}
 `
 const ButtonBar = styled.div`
   margin-top: 50px;
@@ -81,14 +80,16 @@ const StayButton = styled.button`
   background: linear-gradient(49.62deg, #5c50ca 0%, #7958d8 100%);
   border-radius: 4px;
   color: #fff;
+  display: block;
   margin: 20px 0;
   padding: 20px;
   text-transform: uppercase;
   width: 100%;
-  @media screen and (min-width: 768px) {
+  ${medium(`
+    display: inline-block;
     margin: 10px;
     width: 266px;
-  }
+  `)}
 `
 const LeaveButton = styled.a`
   border: solid 2px #5c50ca;
@@ -99,11 +100,11 @@ const LeaveButton = styled.a`
   text-decoration: none;
   text-transform: uppercase;
   width: 100%;
-  @media screen and (min-width: 768px) {
+  ${medium(`
     display: inline-block;
     margin: 10px;
     width: 266px;
-  }
+  `)}
 `
 
 export default CancelModal

@@ -3,6 +3,7 @@ import { Credentials } from 'uport-credentials'
 import CancelModal from './CancelModal'
 import arrowWhite from '../../../images/ArrowWhite.svg'
 import arrowBlurple from '../../../images/ArrowBlurple.png'
+import { Container, Grid, Col } from '../../../layouts/grid'
 
 class AppSigningKey extends Component {
   constructor (props) {
@@ -31,22 +32,30 @@ class AppSigningKey extends Component {
     const { cancelModal } = this.state
     return (<div>
       <section className={`${cancelModal ? 'blurred' : ''}`}>
-        <header>
-          <h2>Download Signing Key</h2>
-          <button className="btn-cancel" onClick={this.showCancelModal}>Cancel</button>
-        </header>
-        <div className='module'>
-          <label>Please Note</label>
-          <ul>
-            <li>This key is used to retain ownership of your app identity</li>
-            <li>It is a private key and should be protected</li>
-          </ul>
-          <div className={`myapps-button`} onClick={(e) => this.displayPK(e)}>
-            <a id='pk' href='#'>
-              View Your Signing Key
-            </a>
+        <Container>
+          <header>
+            <Grid>
+              <Col span={8}>
+                <h2>Download Signing Key</h2>
+              </Col>
+              <Col span={4}>
+                <button className="btn-cancel" onClick={this.showCancelModal}>Cancel</button>
+              </Col>
+            </Grid>
+          </header>
+          <div className='module'>
+            <label>Please Note</label>
+            <ul>
+              <li>This key is used to retain ownership of your app identity</li>
+              <li>It is a private key and should be protected</li>
+            </ul>
+            <div className={`myapps-button`} onClick={(e) => this.displayPK(e)}>
+              <a id='pk' href='#'>
+                View Your Signing Key
+              </a>
+            </div>
           </div>
-        </div>
+        </Container>
       </section>
       <CancelModal show={cancelModal} onClose={this.hideCancelModal} />
       <footer className='stepFooter'>

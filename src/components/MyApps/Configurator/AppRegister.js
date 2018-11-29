@@ -4,6 +4,7 @@ import CancelModal from './CancelModal'
 import { uPortConnect } from '../../../utilities/uPortConnectSetup'
 import arrowBlurple from '../../../images/ArrowBlurple.png'
 import arrowWhite from '../../../images/ArrowWhite.svg'
+import { Container, Grid, Col } from '../../../layouts/grid'
 
 class AppRegister extends Component {
   constructor() {
@@ -71,21 +72,29 @@ class AppRegister extends Component {
     const { cancelModal, done } = this.state
     return (<div>
       <section className={`${cancelModal ? 'blurred' : ''}`}>
-        <header>
-          <h2>Complete Registration</h2>
-          <button className="btn-cancel" onClick={this.showCancelModal}>Cancel</button>
-        </header>
-        <div className='module'>
-          <Heading>Check your device to register your app</Heading>
-          <RetryButton onClick={this.showPopup}>
-            {done ? 'Register Again' : 'Try Again'}
-          </RetryButton>
-        </div>
+        <Container>
+          <header>
+            <Grid>
+              <Col span={8}>
+                <h2>Complete Registration</h2>
+              </Col>
+              <Col span={4}>
+                <button className="btn-cancel" onClick={this.showCancelModal}>Cancel</button>
+              </Col>
+            </Grid>
+          </header>
+          <div className='module'>
+            <Heading>Check your device to register your app</Heading>
+            <RetryButton onClick={this.showPopup}>
+              {done ? 'Register Again' : 'Try Again'}
+            </RetryButton>
+          </div>
+        </Container>
       </section>
       <CancelModal show={cancelModal} onClose={this.hideCancelModal} />
       <footer className='stepFooter'>
         <div className={`cta-prev`}>
-          <a href='#' onClick={(e) => this.props.previousStep(e)}>
+          <a href='#' onClick={this.props.previousStep}>
             <img src={arrowBlurple} />
             APP DETAILS
             <p>{this.props.appDetails.appName}</p>
