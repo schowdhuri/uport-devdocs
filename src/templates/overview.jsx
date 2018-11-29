@@ -13,9 +13,10 @@ import OrderedList from '../components/Layout/html/OrderedList'
 import UnorderedList from '../components/Layout/html/UnorderedList'
 import CtaButton from '../components/CtaButton'
 import Announcement from '../components/Announcement'
+import getHeadings from "../utilities/getHeadings"
 
 export default class OverviewTemplate extends React.Component {
-
+  getContentWindow = () => this.contentWindow
   render () {
     const renderAst = new RehypeReact({
       createElement: React.createElement,
@@ -49,7 +50,6 @@ export default class OverviewTemplate extends React.Component {
     if (!post.id) {
       post.category_id = config.postDefaultCategoryID
     }
-
     return (
       <div>
         <Helmet>
@@ -68,9 +68,11 @@ export default class OverviewTemplate extends React.Component {
             <TableOfContents
               post={post}
               types={types}
+              headings={getHeadings(postNode.htmlAst)}
+              getContentWindow={this.getContentWindow}
             />
           </ToCContainer>
-          <BodyContainer>
+          <BodyContainer innerRef={ref => this.contentWindow=ref}>
             <Announcement data={this.props.data} />
             <CtaButton to={`${post.source}`}>
               Edit

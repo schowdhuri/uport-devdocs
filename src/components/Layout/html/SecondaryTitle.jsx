@@ -19,9 +19,10 @@ class SecondaryTitle extends Component {
         h2Text = this.props.children[1]
     }
     const svgAnchor = this.props.children[0].props.children[0]
+    const id = cleanDoubleByteChars(_.kebabCase(h2Text))
     return (
-      <h2 id={cleanDoubleByteChars(_.kebabCase(h2Text))}>
-        <a href={'#' + cleanDoubleByteChars(_.kebabCase(h2Text))} aria-hidden='true' className='anchor'>
+      <h2 id={id}>
+        <a href={`#${id}`} aria-hidden='true' className='anchor'>
           {svgAnchor}
         </a>
         {h2Text}

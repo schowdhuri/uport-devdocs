@@ -13,8 +13,10 @@ import TableOfContents from '../components/Layout/TableOfContents'
 import SecondaryTitle from '../components/Layout/html/SecondaryTitle'
 import CtaButton from '../components/CtaButton'
 import Announcement from '../components/Announcement'
+import getHeadings from "../utilities/getHeadings"
 
 export default class CategoryTemplate extends React.Component {
+  getContentWindow = () => this.contentWindow
   render() {
     const category = this.props.pathContext.category;
     const postEdges = this.props.data.allMarkdownRemark.edges;
@@ -72,9 +74,11 @@ export default class CategoryTemplate extends React.Component {
             <TableOfContents
               types={types}
               post={post}
+              headings={getHeadings(postNode.htmlAst)}
+              getContentWindow={this.getContentWindow}
             />
           </ToCContainer>
-          <BodyContainer>
+          <BodyContainer innerRef={ref => this.contentWindow=ref}>
             <Announcement data={this.props.data} />
             <CtaButton to={`${post.source}`}>
               Edit

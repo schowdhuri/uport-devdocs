@@ -12,10 +12,11 @@ import SecondaryTitle from '../components/Layout/html/SecondaryTitle'
 import CtaButton from '../components/CtaButton'
 import Announcement from '../components/Announcement'
 import PageLink from '../components/Layout/html/PageLink'
+import getHeadings from "../utilities/getHeadings"
 
 export default class ContentTemplate extends React.Component {
- render() {
-    console.log("Data: ", this.props.data);
+  getContentWindow = () => this.contentWindow
+  render() {
     const category = this.props.pathContext.category;
     const { next } = this.props.pathContext;
     const postEdges = this.props.data.allMarkdownRemark.edges;
@@ -43,7 +44,6 @@ export default class ContentTemplate extends React.Component {
     if (!post.id) {
       post.category_id = config.postDefaultCategoryID
     }
-
     return (
       <div>
         <Helmet>
@@ -63,9 +63,11 @@ export default class ContentTemplate extends React.Component {
             <TableOfContents
               types={types}
               post={post}
+              headings={getHeadings(postNode.htmlAst)}
+              getContentWindow={this.getContentWindow}
             />
           </ToCContainer>
-          <BodyContainer>
+          <BodyContainer innerRef={ref => this.contentWindow = ref}>
             <Announcement data={this.props.data} />
             <CtaButton to={`${post.source}`}>
               Edit
