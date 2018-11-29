@@ -204,7 +204,7 @@ class AppDetails extends Component {
                     cols='50'
                     placeholder='Describe what your app can do...'
                     value={this.state.appDescription}
-                    onChange={this.handleAppDescriptionChange} />
+                    onChange={(e) => { this.handleAppDescriptionChange(e) }} />
                 </Col>
                 <Col span={6}>
                   <Grid className='appBranding Grid'>
