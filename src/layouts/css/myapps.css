@@ -228,7 +228,7 @@ label {
   padding-bottom: 5px;
 }
 form input[type=text],
-textarea {
+form textarea {
   border: none;
   border-radius: 4px;
   box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
@@ -243,6 +243,10 @@ form input[type=text]:focus,
 textarea:focus {
   border: solid 1px #827CFF;
   outline: none;
+}
+form .fieldError input[type=text]:focus,
+form .fieldError textarea:focus {
+  border: none;
 }
 span.note {
   color: #89879f;
@@ -302,8 +306,6 @@ span.note {
 .networkDropdown__input {
 }
 .fieldError {
-  width: 80%;
-  max-width: 450px;
   border: 1px solid #c6475b;
   margin-bottom: 20px;
   border-radius: 3px;
@@ -477,9 +479,6 @@ button.continue {
 }
 
 /* App Branding Styles */
-.startBuilding .appBranding {
-  max-width: 80%;
-}
 .startBuilding .brandingPreview {
   margin-top: 50px;
 }
@@ -630,16 +629,16 @@ button.continue {
 
 .configuratorWrap section {
   min-height: calc(100vh - 100px);
+  padding-bottom: 30px;
 }
 
 .configuratorWrap section header {
-  width: 70vw;
+  /*width: 70vw;*/
   padding: 15vh 0 0 0;
-  margin: 0 auto;
+  /*margin: 0 auto;*/
 }
 .configuratorWrap section header h2 {
   font-weight: 800;
-  float: left;
 }
 .configuratorWrap section header a.cancel {
   font-weight: 700;
@@ -649,15 +648,15 @@ button.continue {
   padding: 30px 30px 0 0;
 }
 .module {
-  width: 70vw;
-  padding: 15vh 0 0 0;
-  margin: 0 auto;
   background-color: #fff;
-  box-shadow: 0px 0px 20px rgba(139, 139, 139, 0.5);
-  margin-bottom: 20px;
   border-radius: 2px;
+  box-shadow: 0px 0px 20px rgba(139, 139, 139, 0.5);
   padding: 30px;
-  clear: both;
+  /*clear: both;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 30px;
+  /*width: 70vw;*/
 }
 
 .module h4 {
@@ -685,6 +684,7 @@ button.continue {
 footer.stepFooter {
   background: #fff;
   box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
+  overflow: auto;
 }
 
 footer.stepFooter .cta-prev {

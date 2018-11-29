@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import lightPatternBg from '../../../images/configuratorBg.svg'
 import successImage from '../../../images/success-icon.svg'
 import errorImage from '../../../images/error-icon-circle.svg'
+import { medium } from '../../../layouts/grid'
 
 class VerificationModal extends React.Component {
   constructor() {
@@ -18,7 +19,8 @@ class VerificationModal extends React.Component {
     this.props.onClose()
   }
   handleVerify = () => {
-    const { appDetails, appIdentity } = this.props
+    const { appDetails } = this.props
+    const { appIdentity } = appDetails
     this.setState({ stage: 1 })
     const publicAddress = appIdentity.did.replace('did:ethr:', '')
     registerResolver()
@@ -137,10 +139,10 @@ const Content = styled.div`
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
   z-index: 920;
-  ${props => props.verifying ? '' : 'width: 96vw;'}
-  @media screen and (min-width: 768px) {
-    ${props => props.verifying ? '' : 'width: 70%;'}
-  }
+  ${props => props.verifying ? '' : 'width: 80vw;'}
+  ${medium(`
+    ${props => props.verifying ? '' : 'width: 70vw;'}
+  `)}
 
   h5 {
     color: #3f3d4b;
@@ -153,9 +155,9 @@ const Header = styled.div`
   ${props => props.nobg ? '' : 'background: #f9f9fa;'}
   padding: 30px 20px 10px 20px;
   position: relative;
-  @media screen and (min-width: 768px) {
+  ${medium(`
     padding: 40px 60px 20px 60px;
-  }
+  `)}
 `
 const ButtonClose = styled.button`
   background: none;
@@ -169,9 +171,9 @@ const ButtonClose = styled.button`
 `
 const Body = styled.div`
   padding: 10px 20px 20px 20px;
-  @media screen and (min-width: 768px) {
+  ${medium(`
     padding: 20px 60px 0 60px;
-  }
+  `)}
 `
 const Info = styled.p`
   color: #8986A0;
@@ -181,9 +183,9 @@ const Info = styled.p`
 `
 const Footer = styled.div`
   padding: 0 20px 30px 20px;
-  @media screen and (min-width: 768px) {
+  ${medium(`
     padding: 10px 60px 40px 60px;
-  }
+  `)}
 `
 const VerifyButton = styled.button`
   background: linear-gradient(49.62deg, #5c50ca 0%, #7958d8 100%);
