@@ -1,0 +1,48 @@
+ @startuml
+  autonumber
+  skinparam roundcorner 10
+  skinparam BoxPadding 10
+  skinparam headerFontColor #6959DB
+  skinparam headerFontSize 18
+  skinparam ControlBorderColor #4C9EA6
+  skinparam NoteBorderColor #4C9EA6
+  skinparam sequence {
+    ArrowColor #4C9EA6
+    GroupBackgroundColor #6959DB
+    GroupBorderColor #EDECFF
+    GroupHeaderFontColor #ffffff
+    BoxBorderColor #4C9EA6
+    BoxBackgroundColor #D8E9EA
+    BoxPadding 10
+
+    ParticipantBorderColor #4C9EA6
+    ParticipantBackgroundColor #ffffff
+    ParticipantPadding 10
+
+    ActorBorderColor #4C9EA6
+    ActorBackgroundColor #ffffff
+    EntityBorderColor #4C9EA6
+    EntityBackgroundColor #ffffff
+    DatabaseBorderColor #4C9EA6
+    DatabaseBackgroundColor #ffffff
+    LifeLineBorderColor #4C9EA6
+    }
+  box "Server"
+  participant "uPort Services" as services #4C9EA6
+  end box
+  control "HTTP Interaction" as web #EFAC92
+  box "Client"
+  actor Mobile
+  end box 
+  web -[#E77E55]> web : Create a disclosure request\nand setup a messaging\nchannel for polling
+  note left #D8E9EA : Pass an array of verificaiton titles in the disclosure to\nrequest specific claim data by title:\n\n""<color: #7F7EF5><i>uport.requestDisclosure({verified: ["Example"]})</i></color>""\n\nSent as a JWT encoded as a QR each page request    
+  web --> services : begin polling  
+  activate web #F5CBBB
+  Mobile --> web : scan QR
+  Mobile --> Mobile : approve request
+  Mobile --> services : Respond to messaging topic
+  note over web #D8E9EA : Listens to topic address for response from mobile
+  web --> services : retrieve response from message topic
+  deactivate web
+  web -[#E77E55]x web : login <b>and</b> receive credential\ninformation that was requested
+@enduml
