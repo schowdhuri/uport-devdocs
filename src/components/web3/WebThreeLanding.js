@@ -41,7 +41,7 @@ class WebThreeLanding extends Component {
                       </li>
                     </ul>
                   </div>
-                  <a href='/server' className='link'>
+                  <a href='/web3' className='link'>
                     VIEW ALL SOLUTIONS
                   </a>
                 </div>
