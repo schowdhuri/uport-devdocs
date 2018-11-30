@@ -125,20 +125,14 @@ class MyAppsConfigurator extends React.Component {
                         onGenerateKey={this.saveKey} />
                     }
                   case 4:
-                    return <AppRegister
+                    return <AppRegComplete
                       profile={this.props.profile}
                       appDetails={this.state.appDetails}
                       appEnvironment={this.state.appEnvironment}
+                      getChildState={this.getChildState}
                       saveApps={this.props.saveApps}
                       setCurrentApp={this.props.setCurrentApp}
                       ipfsProfileHash={this.state.ipfsProfileHash}
-                      nextStep={this.nextStep}
-                      previousStep={this.previousStep} />
-                  case 5:
-                    return <AppRegComplete
-                      appDetails={this.state.appDetails}
-                      appEnvironment={this.state.appEnvironment}
-                      getChildState={this.getChildState}
                       signingKey={this.state.pk} />
                   default :
                     return <AppEnvironment getChildState={this.getChildState} />

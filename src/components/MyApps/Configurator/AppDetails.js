@@ -219,12 +219,9 @@ class AppDetails extends Component {
                         <Tooltip.Body>
                           <Tooltip.Header>Why we ask for URL address?</Tooltip.Header>
                             <p>
-                              This signing (private) key should be protected.
-                              Do not distribute it publicly. We display the private key
-                              in our demos, guides, and tutorials for an educational
-                              purpose and recommend that you use your own signing key
-                              and application identifier (MNID) in place of the ones we
-                              provide for reference.
+                              Providing a URL can help establish trust with 
+                              your application. Following registration, we include
+                              instructions for verifying ownership of your domain. 
                             </p>
                         </Tooltip.Body>
                       </Tooltip.Popover>
