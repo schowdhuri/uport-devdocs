@@ -6,6 +6,7 @@ import Link from 'gatsby-link'
 import { connect } from 'react-redux'
 import { addFile } from '../../../utilities/ipfs'
 
+import SiteHeader from '../../../components/Layout/Header'
 import config from '../../../../data/SiteConfig'
 import logo from '../../../images/logo-mark-purple.svg'
 import AppEnvironment from '../../../components/MyApps/Configurator/AppEnvironment'
@@ -47,7 +48,7 @@ class MyAppsConfigurator extends React.Component {
     let childStateObject = {}
     childStateObject[childName] = childState
     this.setState(childStateObject)
-    this.setState({step: (this.state.step + 1)})
+    this.nextStep()
     if (childName === 'appDetails') {
       await this.buildClaim()
     }
@@ -91,17 +92,30 @@ class MyAppsConfigurator extends React.Component {
     this.setState({ pk })
   }
   render () {
+    console.log(this.state.step)
     return (
       <div className='index-container' style={{minHeight: '100vh'}}>
         <Helmet title={config.siteTitle} />
         <main>
+          {this.state.step == 4 
+            ? <AppManagerHeadContainer>
+                <SiteHeader
+                  activeCategory={''}
+                  location={this.props.location}
+                  categories={this.props.data.navCategories} />
+              </AppManagerHeadContainer>
+            : null 
+          }
           <BodyContainer>
             <div className={'configuratorWrap'}>
-              <span className={`brand w-nav-brand`}>
-                <Link to='/'>
-                  <img src={logo} />
-                </Link>
-              </span>
+              {this.state.step !== 4 
+                ? <span className={`brand w-nav-brand`}>
+                    <Link to='/'>
+                      <img src={logo} />
+                    </Link>
+                  </span>
+                : null 
+              }
               {(() => {
                 switch (this.state.step) {
                   case 1:
@@ -186,6 +200,11 @@ query MyAppsConfiguratorQuery {
       }
     }
   }
+`
+
+
+const AppManagerHeadContainer = styled.div`
+  background: ${props => props.theme.brand}
 `
 
 MyAppsConfigurator.propTypes = {
