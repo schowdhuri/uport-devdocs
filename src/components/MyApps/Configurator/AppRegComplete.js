@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+<<<<<<< HEAD
+import { uPortConnect } from '../../../utilities/uPortConnectSetup'
+=======
 
+>>>>>>> 24668b7334dacac8344e00864442f6df3d572133
 import cog from '../../../images/cog.svg'
 import tick from '../../../images/greenTick.svg'
 import imageBg from '../../../images/Products-BG.svg'
@@ -54,6 +58,53 @@ class AppRegComplete extends Component {
       verificationModal: false
     }
   }
+<<<<<<< HEAD
+  componentDidMount () {
+    this.showPopup();
+  }
+  showPopup = () => {
+    let uportApps = this.props.profile.uportApps || {}
+    let claim = {
+      name: this.props.appDetails.appName,
+      configuration: {
+        network: this.props.appEnvironment.network,
+        accentColor: this.props.appDetails.accentColor,
+        profile: {'/': '/ipfs/' + this.props.ipfsProfileHash}
+      }
+    }
+    if (this.props.profile.uportApps) {
+      uportApps.push(claim)
+      claim = {'uport-apps': uportApps}
+    } else {
+      claim = {'uport-apps': [claim]}
+    }
+    try {
+      uPortConnect.sendVerification({
+        sub: this.props.profile.did,
+        claim
+      }, 'ADD-APP', {
+        notifications: true
+      })
+      uPortConnect.onResponse('ADD-APP').then(payload => {
+        Object.keys(uportApps).length > 0 ? this.props.saveApps(uportApps) : this.props.saveApps([claim])
+        this.props.setCurrentApp({
+          name: this.props.appDetailsappName,
+          configuration: {
+            network: this.props.appEnvironment.network,
+            accentColor: this.props.appDetails.accentColor,
+            profile: {
+              '/': '/ipfs/' + this.props.ipfsProfileHash
+            }
+          }
+        })
+        this.setState({ done: true })
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+=======
+>>>>>>> 24668b7334dacac8344e00864442f6df3d572133
   handleCopy = str => () => {
     copyToClipboard(str);
   }

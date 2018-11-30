@@ -76,9 +76,16 @@ class AppEnvironment extends Component {
                     label='Client side'
                     checked={environment === 'client'}
                     onChange={this.handleEnvironmentChange} />
+<<<<<<< HEAD
+                  <span className='note'>
+                    Login flow, credential consumption and ability
+                    to customize requests with your own branding. 
+                  </span>
+=======
                   <span className='note'><strong>Type: </strong>Simple Ethereum keypair</span>
                   <span className='note'><strong>Funding: </strong>Gas is self-funded</span>
                   <span className='note'><strong>Network: </strong>Supported on mainnet and testnets</span>
+>>>>>>> 24668b7334dacac8344e00864442f6df3d572133
                 </Option>
               </Col>
               <Col span={6}>
@@ -93,9 +100,16 @@ class AppEnvironment extends Component {
                     label='Server side'
                     checked={environment === 'server'}
                     onChange={this.handleEnvironmentChange} />
+<<<<<<< HEAD
+                  <span className='note'>
+                    Login flow, credential issuance and ability
+                    to customize requests with your own branding.
+                  </span>
+=======
                   <span className='note'><strong>Type: </strong>Simple Ethereum keypair</span>
                   <span className='note'><strong>Funding: </strong>Gas is self-funded</span>
                   <span className='note'><strong>Network: </strong>Supported on mainnet and testnets</span>
+>>>>>>> 24668b7334dacac8344e00864442f6df3d572133
                 </Option>
               </Col>
               <Col span={12}>

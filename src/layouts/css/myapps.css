@@ -250,6 +250,18 @@ form textarea {
   margin-bottom: 20px;
   padding: 12px 16px;
   width: 100%;
+<<<<<<< HEAD
+=======
+}
+form input[type=text]:focus,
+textarea:focus {
+  border: solid 1px #827CFF;
+  outline: none;
+}
+form .fieldError input[type=text]:focus,
+form .fieldError textarea:focus {
+  border: none;
+>>>>>>> 24668b7334dacac8344e00864442f6df3d572133
 }
 form input[type=text]:focus,
 textarea:focus {
@@ -260,9 +272,7 @@ form .fieldError input[type=text]:focus,
 form .fieldError textarea:focus {
   border: none;
 }
-span.note {
-  color: #89879f;
-}
+
 .radioContainer {
   background-color: #fff;
   border: solid 2px transparent;
@@ -274,6 +284,7 @@ span.note {
   position: relative;
 }
 .radioContainer span.note {
+  color: #3F3D4B;
   display: block;
   padding: 0 0 5px;
 }
@@ -287,6 +298,10 @@ span.note {
   font-weight: 700;
   /*margin: -5px 0 0 32px;*/
   padding: 0;
+<<<<<<< HEAD
+  color: #3F3D4B;
+=======
+>>>>>>> 24668b7334dacac8344e00864442f6df3d572133
 }
 .networkDropdown {
   /*width: 80%;*/
