@@ -250,18 +250,6 @@ form textarea {
   margin-bottom: 20px;
   padding: 12px 16px;
   width: 100%;
-<<<<<<< HEAD
-=======
-}
-form input[type=text]:focus,
-textarea:focus {
-  border: solid 1px #827CFF;
-  outline: none;
-}
-form .fieldError input[type=text]:focus,
-form .fieldError textarea:focus {
-  border: none;
->>>>>>> 24668b7334dacac8344e00864442f6df3d572133
 }
 form input[type=text]:focus,
 textarea:focus {
@@ -272,7 +260,6 @@ form .fieldError input[type=text]:focus,
 form .fieldError textarea:focus {
   border: none;
 }
-
 .radioContainer {
   background-color: #fff;
   border: solid 2px transparent;
@@ -298,10 +285,6 @@ form .fieldError textarea:focus {
   font-weight: 700;
   /*margin: -5px 0 0 32px;*/
   padding: 0;
-<<<<<<< HEAD
-  color: #3F3D4B;
-=======
->>>>>>> 24668b7334dacac8344e00864442f6df3d572133
 }
 .networkDropdown {
   /*width: 80%;*/
@@ -739,35 +722,39 @@ button.continue {
 }
 
 footer.stepFooter {
+  align-items: center;
   background: #fff;
   box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
+  display: grid;
+  grid-gap: 40px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
   overflow: auto;
+  padding: 10px 40px;
 }
 
 footer.stepFooter .cta-prev {
-  display: inline-block;
-  float: left;
-  margin-left: 40px;
-  margin-top: 20px;
+  justify-self: center;
 }
 
-footer.stepFooter .cta-prev a {
+footer.stepFooter .cta-prev button {
+  display: flex;
   font-weight: 800;
   text-decoration: none;
 }
 
 footer.stepFooter .cta-prev p {
-  font-weight: 700;
   color: #8986a0;
-  margin-left: 40px;
+  font-weight: 700;
+  margin: 0;
   line-height: 1em;
-  margin-top: -5px;
+  text-align: left;
   text-transform: capitalize;
 }
 footer.stepFooter .cta-prev p span {
-  margin: 0 2px;
-  font-weight: 800;
   display: inline-block;
+  font-weight: 800;
+  margin: 0 2px;
 }
 
 footer.stepFooter .cta-prev img {
@@ -775,22 +762,21 @@ footer.stepFooter .cta-prev img {
   filter: FlipH;
   margin: 15px 20px 0 0;
 }
-
 footer.stepFooter .cta-next {
+  justify-self: center;
+}
+footer.stepFooter .cta-next button {
   background-color: #5C50CA;
   color: #fff;
   padding: 20px;
   text-decoration: none;
-  margin-top: 20px;
   display: inline-block;
   border-radius: 5px;
-  float: right;
-  margin-right: 40px;
   font-weight: 800;
   font-size: 16px;
 }
 
-footer.stepFooter .cta-next.disabled {
+footer.stepFooter .cta-next button.disabled {
   opacity: 0.5;
   cursor: default;
 }
@@ -798,6 +784,21 @@ footer.stepFooter .cta-next.disabled {
 footer.stepFooter .cta-next img {
   margin: -3px 0 0 10px;
 }
+
+@media all and (min-width: 768px) {
+  footer.stepFooter {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
+  footer.stepFooter .cta-prev {
+    justify-self: start;
+  }
+  footer.stepFooter .cta-next {
+    justify-self: end;
+  }
+}
+
 #uport__modal-content {
   min-width: 200px;
   width: 30vw;

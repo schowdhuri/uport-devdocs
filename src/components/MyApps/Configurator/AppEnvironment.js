@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import Select from 'react-select'
 import styled from 'styled-components'
 import CancelModal from './CancelModal'
+import Footer from './Footer'
 import RadioButton from './RadioButton'
 import { Container, Grid, Col } from '../../../layouts/grid'
-import arrowWhite from '../../../images/ArrowWhite.svg'
+import { default as track, trackPage } from '../../../utilities/track'
 
 const networkOptions = [
   { value: 'mainnet', label: 'Mainnet' },
@@ -27,22 +28,60 @@ class AppEnvironment extends Component {
     this.handleEnvironmentChange = this.handleEnvironmentChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  handleNetworkChange (selectedOption) {
-    this.setState({ network: selectedOption.value, selectedNetworkObj: selectedOption })
+  componentDidMount() {
+    trackPage('App Configurator', {
+      step: 'App Environment'
+    })
+  }
+  hideCancelModal = () => {
+    this.track('App Configurator Cancel Aborted', {
+      step: 'App Environment'
+    })
+    this.setState({ cancelModal: false })
   }
   handleEnvironmentChange (environment) {
     this.setState({ environment })
   }
-  hideCancelModal = () => {
-    this.setState({ cancelModal: false })
-  }
-  showCancelModal = () => {
-    this.setState({ cancelModal: true })
+  handleNetworkChange (selectedOption) {
+    this.setState({
+      network: selectedOption.value,
+      selectedNetworkObj: selectedOption
+    })
   }
   handleSubmit (e) {
-    if (this.state.environment) {
-      this.props.getChildState('appEnvironment', {network: this.state.network, environment: this.state.environment})
+    const { environment, network } = this.state
+    if (environment) {
+      this.track('App Configurator Submit Clicked', {
+        step: 'App Environment',
+        value: {
+          environment,
+          network
+        }
+      })
+      this.props.getChildState('appEnvironment', {
+        network: network,
+        environment: environment
+      })
+    } else {
+      this.track('App Configurator Submit Clicked', {
+        step: 'App Environment',
+        notes: [
+          'Required field missing: environment'
+        ]
+      })
     }
+  }
+  showCancelModal = () => {
+    this.track('App Configurator Cancel Clicked', {
+      step: 'App Environment'
+    })
+    this.setState({ cancelModal: true })
+  }
+  track = (name, properties={}) => () => {
+    track(name, {
+      source: 'App Configurator',
+      ...properties
+    })
   }
   render () {
     const { cancelModal, environment } = this.state
@@ -76,16 +115,9 @@ class AppEnvironment extends Component {
                     label='Client side'
                     checked={environment === 'client'}
                     onChange={this.handleEnvironmentChange} />
-<<<<<<< HEAD
-                  <span className='note'>
-                    Login flow, credential consumption and ability
-                    to customize requests with your own branding. 
-                  </span>
-=======
                   <span className='note'><strong>Type: </strong>Simple Ethereum keypair</span>
                   <span className='note'><strong>Funding: </strong>Gas is self-funded</span>
                   <span className='note'><strong>Network: </strong>Supported on mainnet and testnets</span>
->>>>>>> 24668b7334dacac8344e00864442f6df3d572133
                 </Option>
               </Col>
               <Col span={6}>
@@ -100,16 +132,9 @@ class AppEnvironment extends Component {
                     label='Server side'
                     checked={environment === 'server'}
                     onChange={this.handleEnvironmentChange} />
-<<<<<<< HEAD
-                  <span className='note'>
-                    Login flow, credential issuance and ability
-                    to customize requests with your own branding.
-                  </span>
-=======
                   <span className='note'><strong>Type: </strong>Simple Ethereum keypair</span>
                   <span className='note'><strong>Funding: </strong>Gas is self-funded</span>
                   <span className='note'><strong>Network: </strong>Supported on mainnet and testnets</span>
->>>>>>> 24668b7334dacac8344e00864442f6df3d572133
                 </Option>
               </Col>
               <Col span={12}>
@@ -131,12 +156,10 @@ class AppEnvironment extends Component {
         </Container>
       </section>
       <CancelModal show={cancelModal} onClose={this.hideCancelModal} />
-      <footer className='stepFooter'>
-        <a className={"cta-next " + (this.state.environment ? '' : 'disabled')} href='#' onClick={(e) => this.handleSubmit(e)}>
-          ADD APP DETAILS
-          <img src={arrowWhite} />
-        </a>
-      </footer>
+      <Footer
+        Next={() => <span>ADD APP DETAILS</span>}
+        nextEnabled={this.state.environment}
+        onNext={this.handleSubmit} />
     </div>)
   }
 }

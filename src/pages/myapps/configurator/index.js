@@ -81,10 +81,7 @@ class MyAppsConfigurator extends React.Component {
   }
   previousStep (e) {
     e.preventDefault()
-<<<<<<< HEAD
     const { step, appEnvironment } = this.state
-=======
->>>>>>> 24668b7334dacac8344e00864442f6df3d572133
     if(step === 4 && appEnvironment.environment !== 'server')
       this.setState({ step: step - 2})
     else
@@ -128,16 +125,6 @@ class MyAppsConfigurator extends React.Component {
                         onGenerateKey={this.saveKey} />
                     }
                   case 4:
-<<<<<<< HEAD
-                    return <AppRegComplete
-                      profile={this.props.profile}
-                      appDetails={this.state.appDetails}
-                      appEnvironment={this.state.appEnvironment}
-                      getChildState={this.getChildState}
-                      saveApps={this.props.saveApps}
-                      setCurrentApp={this.props.setCurrentApp}
-                      ipfsProfileHash={this.state.ipfsProfileHash}
-=======
                     return <AppRegister
                       profile={this.props.profile}
                       appDetails={this.state.appDetails}
@@ -152,7 +139,6 @@ class MyAppsConfigurator extends React.Component {
                       appDetails={this.state.appDetails}
                       appEnvironment={this.state.appEnvironment}
                       getChildState={this.getChildState}
->>>>>>> 24668b7334dacac8344e00864442f6df3d572133
                       signingKey={this.state.pk} />
                   default :
                     return <AppEnvironment getChildState={this.getChildState} />

@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import CancelModal from './CancelModal'
-import { uPortConnect } from '../../../utilities/uPortConnectSetup'
+import Footer from './Footer'
 import arrowBlurple from '../../../images/ArrowBlurple.png'
 import arrowWhite from '../../../images/ArrowWhite.svg'
 import { Container, Grid, Col } from '../../../layouts/grid'
+import { uPortConnect } from '../../../utilities/uPortConnectSetup'
+import { default as track, trackPage } from '../../../utilities/track'
 
 class AppRegister extends Component {
   constructor() {
@@ -15,12 +17,29 @@ class AppRegister extends Component {
     }
   }
   componentDidMount () {
+    trackPage('App Configurator', {
+      step: 'Register App'
+    })
     this.showPopup();
   }
   hideCancelModal = () => {
+    this.track('App Configurator Cancel Aborted', {
+      step: 'Register App',
+      value: {
+        name: this.props.appDetails.appName,
+        appUrl: this.props.appDetails.appUrl
+      }
+    })
     this.setState({ cancelModal: false })
   }
   showCancelModal = () => {
+    this.track('App Configurator Cancel Clicked', {
+      step: 'Register App',
+      value: {
+        name: this.props.appDetails.appName,
+        appUrl: this.props.appDetails.appUrl
+      }
+    })
     this.setState({ cancelModal: true })
   }
   showPopup = () => {
@@ -48,8 +67,15 @@ class AppRegister extends Component {
       })
       uPortConnect.onResponse('ADD-APP').then(payload => {
         Object.keys(uportApps).length > 0 ? this.props.saveApps(uportApps) : this.props.saveApps([claim])
+        this.track('App Configurator Registration Complete', {
+          step: 'Register App',
+          value: {
+            name: this.props.appDetails.appName,
+            appUrl: this.props.appDetails.appUrl
+          }
+        })
         this.props.setCurrentApp({
-          name: this.props.appDetailsappName,
+          name: this.props.appDetails.appName,
           configuration: {
             network: this.props.appEnvironment.network,
             accentColor: this.props.appDetails.accentColor,
@@ -62,11 +88,33 @@ class AppRegister extends Component {
       })
     } catch (e) {
       console.log(e)
+      this.track('App Configurator Registration Failed', {
+        step: 'Register App',
+        error: e,
+        value: {
+          name: this.props.appDetails.appName,
+          appUrl: this.props.appDetails.appUrl
+        }
+      })
     }
   }
   handleNext = () => {
-    if(this.state.done)
+    if(this.state.done) {
+      this.track('App Configurator Submit Clicked', {
+        step: 'Register App',
+        value: {
+          name: this.props.appDetails.appName,
+          network: this.props.appEnvironment.network
+        }
+      })
       this.props.nextStep()
+    }
+  }
+  track = (name, properties={}) => () => {
+    track(name, {
+      source: 'App Configurator',
+      ...properties
+    })
   }
   render () {
     const { cancelModal, done } = this.state
@@ -92,19 +140,17 @@ class AppRegister extends Component {
         </Container>
       </section>
       <CancelModal show={cancelModal} onClose={this.hideCancelModal} />
-      <footer className='stepFooter'>
-        <div className={`cta-prev`}>
-          <a href='#' onClick={this.props.previousStep}>
-            <img src={arrowBlurple} />
-            APP DETAILS
-            <p>{this.props.appDetails.appName}</p>
-          </a>
-        </div>
-        <a className={"cta-next " + (done ? '' : 'disabled')} href='#' onClick={this.handleNext}>
-          FINISH
-          <img src={arrowWhite} />
-        </a>
-      </footer>
+      <Footer
+        Prev={() => (<div>
+          APP DETAILS
+          <p>
+            <span>jhjhj{this.props.appDetails.appName}</span>
+          </p>
+        </div>)}
+        Next={() => <span>FINISH</span>}
+        nextEnabled={true}
+        onNext={this.handleNext}
+        onPrev={this.props.previousStep} />
     </div>)
   }
 }

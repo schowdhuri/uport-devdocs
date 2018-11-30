@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { Credentials } from 'uport-credentials'
 import styled from 'styled-components'
-import { addFile } from '../../../utilities/ipfs'
+import CancelModal from './CancelModal'
+import Footer from './Footer'
+import { Container, Grid, Col } from '../../../layouts/grid'
 import errorIcon from '../../../images/error-icon.svg'
 import myAppsBg from '../../../images/myapps-bg.svg'
-import CancelModal from './CancelModal'
-import arrowWhite from '../../../images/ArrowWhite.svg'
-import arrowBlurple from '../../../images/ArrowBlurple.png'
-import { Container, Grid, Col } from '../../../layouts/grid'
-import '../../../layouts/css/myapps.css'
+import { addFile } from '../../../utilities/ipfs'
 import { isValidHttpsUrl } from '../../../utilities/isValidUrl'
+import { default as track, trackPage } from '../../../utilities/track'
+import '../../../layouts/css/myapps.css'
 
 class AppDetails extends Component {
   constructor (props) {
@@ -41,6 +41,15 @@ class AppDetails extends Component {
     this.handleAccentColorChange = this.handleAccentColorChange.bind(this)
     this.handleBgImageUpload = this.handleBgImageUpload.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+  componentDidMount() {
+    trackPage('App Configurator', {
+      step: 'App Details',
+      value: {
+        environment: this.props.appEnvironment.environment,
+        network: this.props.appEnvironment.network
+      }
+    })
   }
   handleAppNameChange (e) {
     this.setState({appName: e.target.value})
@@ -86,16 +95,37 @@ class AppDetails extends Component {
   handleSubmit (e) {
     e.preventDefault()
     let uportApps = this.props.uportApps || {}
-    let uportAppNames = (Object.keys(uportApps).length > 0 ? uportApps.map(app => app.name) : [])
+    let uportAppNames = (Object.keys(uportApps).length > 0
+      ? uportApps.map(app => app.name)
+      : [])
     this.setState({formSubmitted: true})
     this.state.appName === '' || uportAppNames.indexOf(this.state.appName) >= 0
-    ? this.setState({appNameValid: false, duplicateAppName: (uportAppNames.indexOf(this.state.appName) >= 0)})
-    : this.setState({appNameValid: true}, async () => {
+    ? this.setState({
+        appNameValid: false,
+        duplicateAppName: (uportAppNames.indexOf(this.state.appName) >= 0)
+      })
+    : this.setState({ appNameValid: true }, async () => {
       if (this.state.appNameValid && this.state.validUrl) {
         const {did, privateKey} = Credentials.createIdentity()
-        const credentials = new Credentials({appName: this.state.appName, did, privateKey})
-        this.setState({did: did, pk: privateKey})
-        if ((this.state.accentColor !== '' || this.state.accentColor !== '#5C50CA') && this.state.ipfsBgHash === null) { await this.handleBgImageUpload() }
+        const credentials = new Credentials({
+          appName: this.state.appName,
+          did,
+          privateKey
+        })
+        this.setState({ did, pk: privateKey })
+        if ((this.state.accentColor !== '' ||
+          this.state.accentColor !== '#5C50CA') &&
+          this.state.ipfsBgHash === null
+        ) {
+          await this.handleBgImageUpload()
+        }
+        this.track('App Configurator Submit Clicked', {
+          step: 'App Details',
+          value: {
+            appName: this.state.appName,
+            appURL: this.state.appURL
+          }
+        })
         this.props.getChildState('appDetails', {
           appName: this.state.appName,
           appURL: this.state.appURL.replace(/^https:\/\//, ''),
@@ -112,10 +142,30 @@ class AppDetails extends Component {
     })
   }
   hideCancelModal = () => {
+    this.track('App Configurator Cancel Aborted', {
+      step: 'App Details',
+      value: {
+        environment: this.props.appEnvironment.environment,
+        network: this.props.appEnvironment.network
+      }
+    })
     this.setState({ cancelModal: false })
   }
   showCancelModal = () => {
+    this.track('App Configurator Cancel Clicked', {
+      step: 'App Details',
+      value: {
+        environment: this.props.appEnvironment.environment,
+        network: this.props.appEnvironment.network
+      }
+    })
     this.setState({ cancelModal: true })
+  }
+  track = (name, properties={}) => () => {
+    track(name, {
+      source: 'App Configurator',
+      ...properties
+    })
   }
   render () {
     const { cancelModal, validUrl } = this.state;
@@ -136,7 +186,7 @@ class AppDetails extends Component {
             </Grid>
           </header>
           <div className='module'>
-            <form onSubmit={(e) => { this.handleSubmit(e) }}>
+            <form onSubmit={this.handleSubmit}>
               <Grid>
                 <Col span={12}>
                   <label htmlFor='appName'>App Name</label>
@@ -169,18 +219,12 @@ class AppDetails extends Component {
                         <Tooltip.Body>
                           <Tooltip.Header>Why we ask for URL address?</Tooltip.Header>
                             <p>
-<<<<<<< HEAD
-                              Providing a URL can help establish trust with 
-                              your application. Following registration, we include
-                              instructions for verifying ownership of your domain. 
-=======
                               This signing (private) key should be protected.
                               Do not distribute it publicly. We display the private key
                               in our demos, guides, and tutorials for an educational
                               purpose and recommend that you use your own signing key
                               and application identifier (MNID) in place of the ones we
                               provide for reference.
->>>>>>> 24668b7334dacac8344e00864442f6df3d572133
                             </p>
                         </Tooltip.Body>
                       </Tooltip.Popover>
@@ -220,8 +264,13 @@ class AppDetails extends Component {
                     <Col span={12}>
                       <div className='colorPicker'>
                         <label htmlFor='accentColor'>App Accent Color</label>
-                        <input type='text' id='accentColor' placeholder='#5C50CA' value={this.state.accentColor} onChange={(e) => { this.handleAccentColorChange(e) }} />
-                        <div className='colorPreview' style={{backgroundColor: this.state.accentColor}} />
+                        <input type='text'
+                          id='accentColor'
+                          placeholder='#5C50CA'
+                          value={this.state.accentColor}
+                          onChange={this.handleAccentColorChange} />
+                        <div className='colorPreview'
+                          style={{backgroundColor: this.state.accentColor}} />
                       </div>
                     </Col>
                     <Col span={12}>
@@ -229,9 +278,12 @@ class AppDetails extends Component {
                         <label htmlFor='appImage'>App Profile Image</label>
                         <div className='fileUpload'>
                           <span>Upload Image</span>
-                          <input type='file' className='upload' onChange={(e) => { this.handleAppImageChange(e) }} />
+                          <input type='file'
+                            className='upload'
+                            onChange={this.handleAppImageChange} />
                         </div>
-                        <div className={'imagePreview ' + (this.state.ipfsLogoHash ? 'uploaded' : 'default')} style={bgImageStyle} />
+                        <div className={`imagePreview ' ${this.state.ipfsLogoHash ? 'uploaded' : 'default'}`}
+                          style={bgImageStyle} />
                       </div>
                     </Col>
                   </Grid>
@@ -254,19 +306,21 @@ class AppDetails extends Component {
           <canvas width='100' height='100' id='canvas' style={{visibility: 'hidden'}} />
         </Container>
       </section>
-      <footer className='stepFooter'>
-        <div className={`cta-prev`}>
-          <a href='#' onClick={(e) => this.props.previousStep(e)}>
-            <img src={arrowBlurple} />
-            APP ENVIRONMENT
-            <p>{this.props.appEnvironment.environment} <span>|</span> {this.props.appEnvironment.network}</p>
-          </a>
-        </div>
-        <a className={"cta-next " + (this.state.appNameValid ? '' : 'disabled')} href='#' onClick={(e) => this.handleSubmit(e)}>
-          {(this.props.appEnvironment.environment === 'server') ? 'GENERATE SIGNING KEY' : 'COMPLETE REGISTRATION'}
-          <img src={arrowWhite} />
-        </a>
-      </footer>
+      <Footer
+        Prev={() => (<div>
+          APP ENVIRONMENT
+          <p>
+            {this.props.appEnvironment.environment}
+            <span>|</span>
+            {this.props.appEnvironment.network}
+          </p>
+        </div>)}
+        Next={() => this.props.appEnvironment.environment === 'server'
+          ? <span>GENERATE SIGNING KEY</span>
+          : <span>COMPLETE REGISTRATION</span>}
+        nextEnabled={this.state.appNameValid && validUrl}
+        onNext={this.handleSubmit}
+        onPrev={this.props.previousStep} />
       <CancelModal show={cancelModal} onClose={this.hideCancelModal} />
     </div>)
   }

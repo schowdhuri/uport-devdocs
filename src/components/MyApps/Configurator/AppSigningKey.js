@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { Credentials } from 'uport-credentials'
 import CancelModal from './CancelModal'
+import Footer from './Footer'
 import arrowWhite from '../../../images/ArrowWhite.svg'
 import arrowBlurple from '../../../images/ArrowBlurple.png'
 import { Container, Grid, Col } from '../../../layouts/grid'
+import { default as track, trackPage } from '../../../utilities/track'
 
 class AppSigningKey extends Component {
   constructor (props) {
@@ -20,6 +22,13 @@ class AppSigningKey extends Component {
     this.handlePKConfirm = this.handlePKConfirm.bind(this)
   }
   componentDidMount() {
+    trackPage('App Configurator', {
+      step: 'App Signing Key',
+      value: {
+        name: this.props.appDetails.appName,
+        appURL: this.props.appDetails.appURL
+      }
+    })
     this.props.onGenerateKey(this.state.pk)
   }
   displayPK (e) {
@@ -37,11 +46,43 @@ class AppSigningKey extends Component {
       this.setState({pkConfirmed: true})
     }
   }
+  handleSubmit = () => {
+    this.track('App Configurator Submit Clicked', {
+      step: 'App Signing Key',
+      value: {
+        name: this.props.appDetails.appName,
+        appURL: this.props.appDetails.appURL
+      }
+    })
+    this.props.getChildState('appIdentity', {
+      did: this.state.did
+    })
+  }
   hideCancelModal = () => {
+    this.track('App Configurator Cancel Aborted', {
+      step: 'App Signing Key',
+      value: {
+        name: this.props.appDetails.appName,
+        appURL: this.props.appDetails.appURL
+      }
+    })
     this.setState({ cancelModal: false })
   }
   showCancelModal = () => {
+    this.track('App Configurator Cancel Clicked', {
+      step: 'App Signing Key',
+      value: {
+        name: this.props.appDetails.appName,
+        appURL: this.props.appDetails.appURL
+      }
+    })
     this.setState({ cancelModal: true })
+  }
+  track = (name, properties={}) => () => {
+    track(name, {
+      source: 'App Configurator',
+      ...properties
+    })
   }
   render () {
     const { cancelModal } = this.state
@@ -83,19 +124,19 @@ class AppSigningKey extends Component {
         </Container>
       </section>
       <CancelModal show={cancelModal} onClose={this.hideCancelModal} />
-      <footer className='stepFooter'>
-          <div className={`cta-prev`}>
-            <a href='#' onClick={(e) => this.props.previousStep(e)}>
-              <img src={arrowBlurple} />
-              APP DETAILS
-              <p>{this.props.appDetails.appName}</p>
-            </a>
-          </div>
-          <a className={"cta-next " + (this.state.pkConfirmed ? '' : 'disabled')} href='#' onClick={() => this.props.getChildState('appIdentity', {did: this.state.did})}>
-            COMPLETE REGISTRATION
-            <img src={arrowWhite} />
-          </a>
-        </footer>
+      <Footer
+        Prev={() => (<div>
+          APP DETAILS
+          <p>
+            <span>{this.props.appDetails.appName}</span>
+          </p>
+        </div>)}
+        Next={() => this.props.appEnvironment.environment === 'server'
+          ? <span>GENERATE SIGNING KEY</span>
+          : <span>COMPLETE REGISTRATION</span>}
+        nextEnabled={this.state.pkConfirmed}
+        onNext={this.handleSubmit}
+        onPrev={this.props.previousStep} />
     </div>)
   }
 }

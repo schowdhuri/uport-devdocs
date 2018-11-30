@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-<<<<<<< HEAD
-import { uPortConnect } from '../../../utilities/uPortConnectSetup'
-=======
 
->>>>>>> 24668b7334dacac8344e00864442f6df3d572133
 import cog from '../../../images/cog.svg'
 import tick from '../../../images/greenTick.svg'
 import imageBg from '../../../images/Products-BG.svg'
@@ -13,6 +9,7 @@ import VerificationModal from './VerificationModal'
 import CopyButton from './CopyButton'
 import { Container, Grid, Col, medium } from '../../../layouts/grid'
 import copyToClipboard from '../../../helpers/copyToClipboard'
+import track, { trackPage } from '../../../utilities/track'
 
 const installCode =
 `npm init
@@ -58,61 +55,51 @@ class AppRegComplete extends Component {
       verificationModal: false
     }
   }
-<<<<<<< HEAD
-  componentDidMount () {
-    this.showPopup();
-  }
-  showPopup = () => {
-    let uportApps = this.props.profile.uportApps || {}
-    let claim = {
-      name: this.props.appDetails.appName,
-      configuration: {
-        network: this.props.appEnvironment.network,
-        accentColor: this.props.appDetails.accentColor,
-        profile: {'/': '/ipfs/' + this.props.ipfsProfileHash}
+  componentDidMount() {
+    trackPage('App Configurator', {
+      step: 'App Registration Complete',
+      value: {
+        name: this.props.appDetails.appName,
+        appURL: this.props.appDetails.appURL
       }
-    }
-    if (this.props.profile.uportApps) {
-      uportApps.push(claim)
-      claim = {'uport-apps': uportApps}
-    } else {
-      claim = {'uport-apps': [claim]}
-    }
-    try {
-      uPortConnect.sendVerification({
-        sub: this.props.profile.did,
-        claim
-      }, 'ADD-APP', {
-        notifications: true
-      })
-      uPortConnect.onResponse('ADD-APP').then(payload => {
-        Object.keys(uportApps).length > 0 ? this.props.saveApps(uportApps) : this.props.saveApps([claim])
-        this.props.setCurrentApp({
-          name: this.props.appDetailsappName,
-          configuration: {
-            network: this.props.appEnvironment.network,
-            accentColor: this.props.appDetails.accentColor,
-            profile: {
-              '/': '/ipfs/' + this.props.ipfsProfileHash
-            }
-          }
-        })
-        this.setState({ done: true })
-      })
-    } catch (e) {
-      console.log(e)
-    }
+    })
   }
-=======
->>>>>>> 24668b7334dacac8344e00864442f6df3d572133
-  handleCopy = str => () => {
+  handleCopy = (str, id) => () => {
     copyToClipboard(str);
+    this.track('App Configurator Code Copied', {
+      step: 'App Registration Complete',
+      value: {
+        name: this.props.appDetails.appName,
+        appURL: this.props.appDetails.appURL,
+        content: id
+      }
+    })
   }
   hideVerificationModal = () => {
+    this.track('App Configurator Verification Modal Closed', {
+      step: 'App Registration Complete',
+      value: {
+        name: this.props.appDetails.appName,
+        appURL: this.props.appDetails.appURL
+      }
+    })
     this.setState({ verificationModal: false })
   }
   showVerificationModal = () => {
+    this.track('App Configurator Verification Modal Opened', {
+      step: 'App Registration Complete',
+      value: {
+        name: this.props.appDetails.appName,
+        appURL: this.props.appDetails.appURL
+      }
+    })
     this.setState({ verificationModal: true })
+  }
+  track = (name, properties={}) => () => {
+    track(name, {
+      source: 'App Configurator',
+      ...properties
+    })
   }
   render () {
     const { appDetails, appEnvironment, signingKey } = this.props
@@ -138,7 +125,7 @@ class AppRegComplete extends Component {
                   <Step.Label>Install Libraries</Step.Label>
                   <Step.Content>
                     <CodeContainer>
-                      <CopyButton onCopy={this.handleCopy(installCode)}>
+                      <CopyButton onCopy={this.handleCopy(installCode, 'Install Libraries')}>
                         Copy
                       </CopyButton>
                       <Pre>
@@ -154,8 +141,14 @@ class AppRegComplete extends Component {
                     <CodeContainer>
                       <CopyButton
                         onCopy={appEnvironment.environment === 'server'
-                          ? this.handleCopy(initServerCode(appDetails, appEnvironment, signingKey))
-                          : this.handleCopy(initClientCode(appDetails, appEnvironment))}
+                          ? this.handleCopy(
+                              initServerCode(appDetails, appEnvironment, signingKey),
+                              'Initialize uPort Connect'
+                            )
+                          : this.handleCopy(
+                              initClientCode(appDetails, appEnvironment),
+                              'Initialize uPort Connect'
+                            )}
                       >
                         Copy
                       </CopyButton>
@@ -215,7 +208,7 @@ class AppRegComplete extends Component {
           </strong>
         </p>
         <CodeContainer>
-          <CopyButton onCopy={this.handleCopy(didDoc(appDetails))}>
+          <CopyButton onCopy={this.handleCopy(didDoc(appDetails), 'DID Doc')}>
             Copy
           </CopyButton>
           <Pre>

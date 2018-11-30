@@ -6,6 +6,7 @@ import lightPatternBg from '../../../images/configuratorBg.svg'
 import successImage from '../../../images/success-icon.svg'
 import errorImage from '../../../images/error-icon-circle.svg'
 import { medium } from '../../../layouts/grid'
+import { default as track, trackPage } from '../../../utilities/track'
 
 class VerificationModal extends React.Component {
   constructor() {
@@ -21,22 +22,50 @@ class VerificationModal extends React.Component {
   handleVerify = () => {
     const { appDetails } = this.props
     const { appIdentity } = appDetails
+    this.track('App Configurator Verification Initiated', {
+      step: 'App Registration Complete',
+      value: {
+        name: appDetails.appName,
+        appURL: appDetails.appURL
+      }
+    })
     this.setState({ stage: 1 })
     const publicAddress = appIdentity.did.replace('did:ethr:', '')
     registerResolver()
     resolve('did:https:' + appDetails.appURL)
       .then(doc => {
         console.log(doc.publicKey[0].ethereumAddress + ' | ' + publicAddress)
+        this.track('App Configurator Verification Success', {
+          step: 'App Registration Complete',
+          value: {
+            name: appDetails.appName,
+            appURL: appDetails.appURL
+          }
+        })
         setTimeout(() => {
           this.setState({ stage: 2 })
         }, 500)
       })
       .catch(err => {
         console.log('Verification Failed. ', err)
+        this.track('App Configurator Verification Failed', {
+          step: 'App Registration Complete',
+          error: err,
+          value: {
+            name: appDetails.appName,
+            appURL: appDetails.appURL
+          }
+        })
         setTimeout(() => {
           this.setState({ stage: -1 })
         }, 500)
       })
+  }
+  track = (name, properties={}) => () => {
+    track(name, {
+      source: 'App Configurator',
+      ...properties
+    })
   }
   render() {
     const { appDetails, children, show } = this.props
