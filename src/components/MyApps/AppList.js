@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import { connect } from 'react-redux'
+import { Container, Grid, Col } from '../../layouts/grid'
 import myAppsBg from '../../images/myapps-bg.svg'
 
 class AppList extends Component {
@@ -29,6 +31,8 @@ class AppList extends Component {
           } else {
             return {backgroundImage: `url(${myAppsBg})`}
           }
+        }).catch(ex => {
+          console.log(ex)
         })
       } else {
         bgImageArray[index] = {backgroundImage: `url(${myAppsBg})`}
@@ -42,20 +46,25 @@ class AppList extends Component {
     this.props.history.push('/myapps/detail')
   }
   render () {
-    const appItems = this.props.profile.uportApps.map((app, index) => {
-      return (<li className='appItem' key={index} onClick={(e) => { this.handleAppItemClick(e, index) }}>
-        <div className='appCover' style={{backgroundColor: app.configuration.accentColor || '#5c54c7'}}>&nbsp;</div>
-        <div className={'avatar ' + (app.configuration.profile ? 'uploaded' : 'default')} style={this.state.bgImageStyles[index]}>
-          &nbsp;
-        </div>
-        <h3>{app.name}</h3>
-        <span>{app.configuration.network}</span>
-      </li>
-      )
-    })
-    return (
-      <ul className='appList'>{appItems}</ul>
-    )
+    const { uportApps } = this.props.profile
+    return (<Wrapper>
+      <Grid>
+        {uportApps.map((app, index) => (<Col span={4}
+          className='appItem'
+          key={index}
+          onClick={(e) => { this.handleAppItemClick(e, index) }}
+        >
+          <div className='appCover'
+            style={{backgroundColor: app.configuration.accentColor || '#5c54c7'}}
+          >&nbsp;</div>
+          <div className={'avatar ' + (app.configuration.profile ? 'uploaded' : 'default')}
+            style={this.state.bgImageStyles[index]}
+          >&nbsp;</div>
+          <h3>{app.name}</h3>
+          <span>{app.configuration.network}</span>
+        </Col>))}
+      </Grid>
+    </Wrapper>)
   }
 }
 
@@ -64,6 +73,15 @@ AppList.propTypes = {
   setCurrentApp: PropTypes.func.isRequired,
   clearCurrentApp: PropTypes.func.isRequired
 }
+
+const Wrapper = styled.div`
+  .appItem {
+    float: none;
+    margin: 0;
+    width: auto;
+    min-width: auto;
+  }
+`
 
 const mapStateToProps = ({ profile, currentApp }) => {
   return { profile, currentApp }

@@ -146,36 +146,6 @@ h1 {
   line-height: 32px;
   margin-bottom: 40px
 }
-.register-button {
-  position: relative;
-  background-color: #fff;
-  border-radius: 5px;
-  padding: 14px 14px 14px 64px;
-  text-decoration: none;
-  color: #000;
-  font-weight: 700;
-  font-size: 22px;
-  box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
-}
-
-.register-button span {
-  position: absolute;
-  background-color: #8380fc;
-  border-radius: 5px;
-  width: 36px;
-  height: 36px;
-  left: 12px;
-  top: 12px;
-  text-align: center;
-}
-.register-button span strong {
-  color: #fff;
-  text-align: center;
-  font-size: 38px;
-  line-height: 32px;
-  margin-top: 5px;
-}
-
 
 /* startbuilding */
 .Grid {
@@ -263,13 +233,15 @@ form .fieldError textarea:focus {
 }
 .radioContainer {
   background-color: #fff;
-  border: solid 2px transparent;
+  border: solid 1px #D8D8D8;
   border-radius: 8px;
-  box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
+  /*box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);*/
   margin: 20px 0;
-  /*max-width: 450px;*/
-  padding: 20px 30px;
+  padding: 30px;
   position: relative;
+}
+.radioContainer.active {
+  border-color: #5C50CA;
 }
 .radioContainer span.note {
   color: #3F3D4B;
@@ -363,18 +335,19 @@ button.continue {
   margin-top: 40px;
 }
 .appItem {
-  width: 26.65%;
-  min-width: 217px;
-  height: 217px;
-  list-style-type: none;
-  float: left;
-  box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
-  text-align: center;
-  margin-right: 8%;
-  margin-bottom: 40px;
-  position: relative;
-  cursor: pointer;
   border-radius: 3px;
+  box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
+  cursor: pointer;
+  float: left;
+  /*height: 217px;*/
+  list-style-type: none;
+  margin-bottom: 40px;
+  margin-right: 8%;
+  min-width: 217px;
+  padding: 0 20px 20px;
+  position: relative;
+  text-align: center;
+  width: 26.65%;
 }
 .appItem:before {
   background-image: none;
@@ -383,13 +356,14 @@ button.continue {
 .appItem .avatar.default {
   position: absolute;
   background-image: url(../../images/myapps-bg.svg);
-  top: 15%;
+  top: 32px;
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  left: 26%;
+  left: 50%;
   background-size: 350px;
   background-position: 6% 38%;
+  transform: translateX(-50%);
 }
 
 .appItem .avatar.uploaded {
@@ -398,24 +372,25 @@ button.continue {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  left: 26%;
+  left: 50%;
   background-size: 100px;
+  transform: translateX(-50%);
 }
 
 .appItem:nth-child(3n) {
   margin-right: 0;
 }
 .appCover {
-  width: 100%;
-  height: 40%;
   background-color: #5c54c7;
-  margin-bottom: 60px;
-  border-top-right-radius: 3px;
   border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  height: 88px;
+  margin: 0 -20px 60px -20px;
 }
 .appItem h3 {
   font-size: 18px;
   margin-bottom: -2px;
+  word-break: break-word;
 }
 .appItem span {
   color: #89879f;
@@ -423,22 +398,23 @@ button.continue {
   text-transform: capitalize;
 }
 .register-button {
+  background-color: #fff;
+  border: solid 1px #5C50CA;
+  border-radius: 4px;
+  box-shadow: 0 0 4px rgba(39, 38, 42, 0.12);
   float: right;
+  font-size: 14px;
+  line-height: 1em;
   margin-top: 40px;
+  padding: 15px;
   position: relative;
-  font-size: 18px;
-  padding: 14px 14px 14px 54px;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 .register-button span {
-  width: 32px;
-  height: 32px;
-  top: 8px;
-}
-.register-button span strong {
-  color: #fff;
-  text-align: center;
-  font-size: 38px;
-  line-height: 32px;
+  display: inline-block;
+  font-size: 18px;
+  margin-right: 20px;
 }
 
 /* sample-code.js */
@@ -660,9 +636,10 @@ button.continue {
 }
 .module {
   background-color: #fff;
+  border: 0.3px solid #8986A0;
   border-radius: 2px;
-  box-shadow: 0px 0px 20px rgba(139, 139, 139, 0.5);
-  padding: 30px;
+  box-shadow: inset 0px 0px 4px rgba(134, 134, 134, 0.25);
+  padding: 50px 0 30px;
   /*clear: both;
   margin: 0 auto;
   margin-bottom: 20px;
@@ -746,16 +723,15 @@ footer.stepFooter .cta-prev button {
 
 footer.stepFooter .cta-prev p {
   color: #8986a0;
-  font-weight: 700;
+  font-weight: 400;
   margin: 0;
-  line-height: 1em;
+  line-height: 1.5em;
   text-align: left;
   text-transform: capitalize;
 }
 footer.stepFooter .cta-prev p span {
   display: inline-block;
-  font-weight: 800;
-  margin: 0 2px;
+  margin: 0 4px;
 }
 
 footer.stepFooter .cta-prev img {

@@ -17,6 +17,7 @@
     "react": "^15.6.1",
     "react-autolink-text2": "^3.2.0",
     "react-burger-menu": "^2.5.2",
+    "react-color": "^2.14.1",
     "react-disqus-comments": "^1.0.3",
     "react-dom": "^15.6.1",
     "react-helmet": "^5.1.3",

@@ -88,73 +88,83 @@ class AppEnvironment extends Component {
     return (<div>
       <section className={`${cancelModal ? 'blurred' : ''}`}>
         <Container>
-          <header>
-            <Grid>
-              <Col span={8}>
-                <h2>Select App Environment</h2>
-              </Col>
-              <Col span={4}>
-                <button className="btn-cancel" onClick={this.showCancelModal}>Cancel</button>
-              </Col>
-            </Grid>
-          </header>
-          <div className='module'>
-            <Grid>
-              <Col span={12}>
-                <label htmlFor='environment'>Environment</label>
-              </Col>
-              <Col span={6}>
-                <Option
-                  active={environment=='client'}
-                  className='radioContainer'
-                  onClick={() => this.handleEnvironmentChange('client')}
-                >
-                  <RadioButton
-                    value='client'
-                    name='environment'
-                    label='Client side'
-                    checked={environment === 'client'}
-                    onChange={this.handleEnvironmentChange} />
-                  <span className='note'>
-                    Login flow, credential consumption and ability
-                    to customize requests with your own branding.
-                  </span>
-                </Option>
-              </Col>
-              <Col span={6}>
-                <Option
-                  active={environment=='server'}
-                  className='radioContainer'
-                  onClick={() => this.handleEnvironmentChange('server')}
-                >
-                  <RadioButton
-                    value='server'
-                    name='environment'
-                    label='Server side'
-                    checked={environment === 'server'}
-                    onChange={this.handleEnvironmentChange} />
-                  <span className='note'>
-                    Login flow, credential issuance and ability
-                    to customize requests with your own branding.
-                  </span>
-                </Option>
-              </Col>
-              <Col span={12}>
-                <div className='select-network'>
-                  <label htmlFor='network'>Select a network</label>
-                  <Select
-                    className='networkDropdown'
-                    classNamePrefix='networkDropdown'
-                    value={this.state.selectedNetworkObj}
-                    onChange={this.handleNetworkChange}
-                    options={networkOptions}
-                    isSearchable={false}
-                    blurInputOnSelect
-                  />
-                </div>
-              </Col>
-            </Grid>
-          </div>
+          <Grid>
+            <Col span={1} />
+            <Col span={10}>
+              <header>
+                <Grid>
+                  <Col span={8}>
+                    <h2>Select App Environment</h2>
+                  </Col>
+                  <Col span={4}>
+                    <button className="btn-cancel" onClick={this.showCancelModal}>Cancel</button>
+                  </Col>
+                </Grid>
+              </header>
+              <div className='module'>
+                <Grid>
+                  <Col span={1} />
+                  <Col span={10}>
+                    <label htmlFor='environment'>Environment</label>
+                  </Col>
+                  <Col span={1} />
+                  <Col span={1} />
+                  <Col span={5}>
+                    <Option
+                      className={`radioContainer ${environment=='client' ? 'active' : ''}`}
+                      onClick={() => this.handleEnvironmentChange('client')}
+                    >
+                      <RadioButton
+                        value='client'
+                        name='environment'
+                        label='Client side'
+                        checked={environment === 'client'}
+                        onChange={this.handleEnvironmentChange} />
+                      <span className='note'>
+                        Login flow, credential consumption and ability
+                        to customize requests with your own branding.
+                      </span>
+                    </Option>
+                  </Col>
+                  <Col span={5}>
+                    <Option
+                      className={`radioContainer ${environment=='server' ? 'active' : ''}`}
+                      onClick={() => this.handleEnvironmentChange('server')}
+                    >
+                      <RadioButton
+                        value='server'
+                        name='environment'
+                        label='Server side'
+                        checked={environment === 'server'}
+                        onChange={this.handleEnvironmentChange} />
+                      <span className='note'>
+                        Login flow, credential issuance and ability
+                        to customize requests with your own branding.
+                      </span>
+                    </Option>
+                  </Col>
+                  <Col span={1} />
+                  <Col span={1} />
+                  <Col span={10}>
+                    <div className='select-network'>
+                      <label htmlFor='network'>Select a network</label>
+                      <Select
+                        className='networkDropdown'
+                        classNamePrefix='networkDropdown'
+                        value={this.state.selectedNetworkObj}
+                        onChange={this.handleNetworkChange}
+                        options={networkOptions}
+                        isSearchable={false}
+                        blurInputOnSelect
+                      />
+                    </div>
+                  </Col>
+                  <Col span={1} />
+                </Grid>
+              </div>
+            </Col>
+            <Col span={1} />
+          </Grid>
         </Container>
       </section>
       <CancelModal show={cancelModal} onClose={this.hideCancelModal} />
@@ -166,11 +176,6 @@ class AppEnvironment extends Component {
   }
 }
 
-const Option = styled.div`
-  ${props => props.active ? 'border: solid 2px #827cff;' : ''}
-  &:hover {
-    border: solid 2px #827cff;
-  }
-`
+const Option = styled.div``
 
 export default AppEnvironment

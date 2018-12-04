@@ -88,42 +88,54 @@ class AppSigningKey extends Component {
     return (<div>
       <section className={`${cancelModal ? 'blurred' : ''}`}>
         <Container>
-          <header>
-            <Grid>
-              <Col span={8}>
-                <h2>Download Signing Key</h2>
-              </Col>
-              <Col span={4}>
-                <button className="btn-cancel" onClick={this.showCancelModal}>Cancel</button>
-              </Col>
-            </Grid>
-          </header>
-        <div className='module'>
-          <label>Please Note</label>
-          <ul>
-            <li>This key is used to retain ownership of your app identity</li>
-            <li>It is a private key and should be protected</li>
-          </ul>
-          {this.state.pkVisible
-            ? <div className='myapps-button signing' data-do-not-track-copy={true}>
-              {this.state.pk}
-            </div>
-            : <div className='myapps-button signing hidden' onClick={this.displayPK}>
-              <a id='pk' href='#'>
-                View Your Signing Key
-              </a>
-            </div>}
-          <div className={"pk-confirmation " + (this.state.pkVisible ? '' : 'hidden')}>
-            <p>To confirm that you have recieved the signing key, enter the last four characters of your signing key below.</p>
-            <span>LAST FOUR CHARACTERS OF YOUR SIGNING KEY</span>
-            <fieldset>
-              <input type='text' id='pkConfirm0' value={this.state.pkConfirm[0]} maxLength={1} onChange={(e) => { this.handlePKConfirm(e) }} />
-              <input type='text' id='pkConfirm1' value={this.state.pkConfirm[1]} maxLength={1} onChange={(e) => { this.handlePKConfirm(e) }} />
-              <input type='text' id='pkConfirm2' value={this.state.pkConfirm[2]} maxLength={1} onChange={(e) => { this.handlePKConfirm(e) }} />
-              <input type='text' id='pkConfirm3' value={this.state.pkConfirm[3]} maxLength={1} onChange={(e) => { this.handlePKConfirm(e) }} />
-            </fieldset>
-          </div>
-        </div>
+          <Grid>
+            <Col span={1} />
+            <Col span={10}>
+              <header>
+                <Grid>
+                  <Col span={8}>
+                    <h2>Download Signing Key</h2>
+                  </Col>
+                  <Col span={4}>
+                    <button className="btn-cancel" onClick={this.showCancelModal}>Cancel</button>
+                  </Col>
+                </Grid>
+              </header>
+              <div className='module'>
+                <Grid>
+                  <Col span={1} />
+                  <Col span={10}>
+                    <label>Please Note</label>
+                    <ul>
+                      <li>This key is used to retain ownership of your app identity</li>
+                      <li>It is a private key and should be protected</li>
+                    </ul>
+                    {this.state.pkVisible
+                      ? <div className='myapps-button signing' data-do-not-track-copy={true}>
+                        {this.state.pk}
+                      </div>
+                      : <div className='myapps-button signing hidden' onClick={this.displayPK}>
+                        <a id='pk' href='#'>
+                          View Your Signing Key
+                        </a>
+                      </div>}
+                    <div className={"pk-confirmation " + (this.state.pkVisible ? '' : 'hidden')}>
+                      <p>To confirm that you have recieved the signing key, enter the last four characters of your signing key below.</p>
+                      <span>LAST FOUR CHARACTERS OF YOUR SIGNING KEY</span>
+                      <fieldset>
+                        <input type='text' id='pkConfirm0' value={this.state.pkConfirm[0]} maxLength={1} onChange={(e) => { this.handlePKConfirm(e) }} />
+                        <input type='text' id='pkConfirm1' value={this.state.pkConfirm[1]} maxLength={1} onChange={(e) => { this.handlePKConfirm(e) }} />
+                        <input type='text' id='pkConfirm2' value={this.state.pkConfirm[2]} maxLength={1} onChange={(e) => { this.handlePKConfirm(e) }} />
+                        <input type='text' id='pkConfirm3' value={this.state.pkConfirm[3]} maxLength={1} onChange={(e) => { this.handlePKConfirm(e) }} />
+                      </fieldset>
+                    </div>
+                  </Col>
+                  <Col span={1} />
+                </Grid>
+              </div>
+            </Col>
+            <Col span={1} />
+          </Grid>
         </Container>
       </section>
       <CancelModal show={cancelModal} onClose={this.hideCancelModal} />

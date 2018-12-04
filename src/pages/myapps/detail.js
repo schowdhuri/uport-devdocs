@@ -51,9 +51,6 @@ img {
   display: inline-block;
   float: none;
 }
-.detailsContainer .appItem .avatar {
-  left: 29%;
-}
 .previewContainer {
   text-align: center;
   padding-top: 20px;
@@ -126,6 +123,8 @@ class AppDetail extends React.Component {
       }).then(function (data) {
         let profileImageUrl = 'https://ipfs.io' + data.profileImage['/']
         that.setState({bgImageStyle: {backgroundImage: `url(${profileImageUrl})`}, ipfsLookupDone: true})
+      }).catch(ex => {
+        console.log(ex)
       })
     } else {
       this.setState({bgImageStyle: {backgroundImage: `url(${myAppsBg})`}, ipfsLookupDone: true})

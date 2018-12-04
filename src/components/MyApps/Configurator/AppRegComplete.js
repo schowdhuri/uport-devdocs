@@ -93,7 +93,7 @@ class AppRegComplete extends Component {
         notifications: true
       })
       uPortConnect.onResponse('ADD-APP').then(payload => {
-        Object.keys(uportApps).length > 0 ? this.props.saveApps(uportApps) : this.props.saveApps([claim])
+        Object.keys(uportApps).length > 0 ? this.props.saveApps(uportApps) : this.props.saveApps(claim['uport-apps'])
         this.props.setCurrentApp({
           name: this.props.appDetailsappName,
           configuration: {
