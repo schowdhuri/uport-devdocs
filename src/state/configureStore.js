@@ -9,35 +9,49 @@ const persistConfig = {
 
 const initialState = {
   profile: {},
-  currentApp: {name: '', configuration: {network: 'mainnet', accountType: 'keypair'}}
+  currentApp: {
+    name: '',
+    configuration: {
+      network: 'mainnet',
+      accountType: 'keypair'
+    }
+  }
 }
 
 const reducer = (state = initialState, action) => {
   if (action.type === `SAVE_PROFILE`) {
-    return Object.assign({}, state, {
+    return {
+      ...state,
       profile: action.profile
-    })
+    }
   }
   if (action.type === `SET_CURRENT_APP`) {
-    return Object.assign({}, state, {
+    return {
+      ...state,
       currentApp: action.app
-    })
+    }
   }
   if (action.type === `CLEAR_CURRENT_APP`) {
-    return Object.assign({}, state, {
+    return {
+      ...state,
       currentApp: initialState.currentApp
-    })
+    }
   }
   if (action.type === `SAVE_APPS`) {
-    return Object.assign({}, state, {
-      profile: {...state.profile, uportApps: action.uportApps}
-    })
+    return {
+      ...state,
+      profile: {
+        ...state.profile,
+        uportApps: action.uportApps
+      }
+    }
   }
   if (action.type === `LOGOUT`) {
-    return Object.assign({}, state, {
+    return {
+      ...state,
       profile: initialState.profile,
       currentApp: initialState.currentApp
-    })
+    }
   }
   return state
 }

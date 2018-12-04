@@ -161,7 +161,7 @@ class AppDetails extends Component {
     })
     this.setState({ cancelModal: true })
   }
-  track = (name, properties={}) => () => {
+  track = (name, properties={}) => {
     track(name, {
       source: 'App Configurator',
       ...properties
@@ -219,9 +219,9 @@ class AppDetails extends Component {
                         <Tooltip.Body>
                           <Tooltip.Header>Why we ask for URL address?</Tooltip.Header>
                             <p>
-                              Providing a URL can help establish trust with 
+                              Providing a URL can help establish trust with
                               your application. Following registration, we include
-                              instructions for verifying ownership of your domain. 
+                              instructions for verifying ownership of your domain.
                             </p>
                         </Tooltip.Body>
                       </Tooltip.Popover>

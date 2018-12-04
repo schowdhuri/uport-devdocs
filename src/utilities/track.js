@@ -1,5 +1,5 @@
 export const trackPage = (name, props={}) => {
-  analytics.track(name, props, {
+  analytics.page(name, props, {
     context: {
       ip: '0.0.0.0'
     }

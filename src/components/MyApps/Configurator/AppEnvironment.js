@@ -77,7 +77,7 @@ class AppEnvironment extends Component {
     })
     this.setState({ cancelModal: true })
   }
-  track = (name, properties={}) => () => {
+  track = (name, properties={}) => {
     track(name, {
       source: 'App Configurator',
       ...properties
@@ -117,7 +117,7 @@ class AppEnvironment extends Component {
                     onChange={this.handleEnvironmentChange} />
                   <span className='note'>
                     Login flow, credential consumption and ability
-                    to customize requests with your own branding. 
+                    to customize requests with your own branding.
                   </span>
                 </Option>
               </Col>

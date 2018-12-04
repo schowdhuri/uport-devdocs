@@ -97,24 +97,24 @@ class MyAppsConfigurator extends React.Component {
       <div className='index-container' style={{minHeight: '100vh'}}>
         <Helmet title={config.siteTitle} />
         <main>
-          {this.state.step == 4 
+          {this.state.step == 4
             ? <AppManagerHeadContainer>
                 <SiteHeader
                   activeCategory={''}
                   location={this.props.location}
                   categories={this.props.data.navCategories} />
               </AppManagerHeadContainer>
-            : null 
+            : null
           }
           <BodyContainer>
             <div className={'configuratorWrap'}>
-              {this.state.step !== 4 
+              {this.state.step !== 4
                 ? <span className={`brand w-nav-brand`}>
                     <Link to='/'>
                       <img src={logo} />
                     </Link>
                   </span>
-                : null 
+                : null
               }
               {(() => {
                 switch (this.state.step) {

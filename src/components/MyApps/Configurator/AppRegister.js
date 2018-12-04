@@ -110,7 +110,7 @@ class AppRegister extends Component {
       this.props.nextStep()
     }
   }
-  track = (name, properties={}) => () => {
+  track = (name, properties={}) => {
     track(name, {
       source: 'App Configurator',
       ...properties

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import track from '../../../utilities/track'
 
 class ServerLoginResources extends Component {
-  track = (name, properties={}) => () => {
+  track = (name, properties={}) => {
     track(name, {
       source: 'Server Login Landing',
       ...properties

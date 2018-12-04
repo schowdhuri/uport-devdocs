@@ -33,7 +33,7 @@ const FooterContainer = styled.section`
 `
 
 class Footer extends React.Component {
-  track = (name, properties={}) => () => {
+  track = (name, properties={}) => {
     track(name, {
       source: 'Footer',
       ...properties

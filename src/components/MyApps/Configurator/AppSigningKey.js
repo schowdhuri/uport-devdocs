@@ -34,7 +34,6 @@ class AppSigningKey extends Component {
   displayPK (e) {
     e.preventDefault()
     this.setState({pkVisible: true})
-    e.currentTarget.innerHTML = this.state.pk
   }
   handlePKConfirm(e) {
     this.setState({pkConfirmed: false})
@@ -78,7 +77,7 @@ class AppSigningKey extends Component {
     })
     this.setState({ cancelModal: true })
   }
-  track = (name, properties={}) => () => {
+  track = (name, properties={}) => {
     track(name, {
       source: 'App Configurator',
       ...properties
@@ -105,11 +104,15 @@ class AppSigningKey extends Component {
             <li>This key is used to retain ownership of your app identity</li>
             <li>It is a private key and should be protected</li>
           </ul>
-          <div className={"myapps-button signing " + (this.state.pkVisible ? '' : 'hidden')} onClick={(e) => this.displayPK(e)}>
-            <a id='pk' href='#'>
-              View Your Signing Key
-            </a>
-          </div>
+          {this.state.pkVisible
+            ? <div className='myapps-button signing' data-do-not-track-copy={true}>
+              {this.state.pk}
+            </div>
+            : <div className='myapps-button signing hidden' onClick={this.displayPK}>
+              <a id='pk' href='#'>
+                View Your Signing Key
+              </a>
+            </div>}
           <div className={"pk-confirmation " + (this.state.pkVisible ? '' : 'hidden')}>
             <p>To confirm that you have recieved the signing key, enter the last four characters of your signing key below.</p>
             <span>LAST FOUR CHARACTERS OF YOUR SIGNING KEY</span>
@@ -131,9 +134,7 @@ class AppSigningKey extends Component {
             <span>{this.props.appDetails.appName}</span>
           </p>
         </div>)}
-        Next={() => this.props.appEnvironment.environment === 'server'
-          ? <span>GENERATE SIGNING KEY</span>
-          : <span>COMPLETE REGISTRATION</span>}
+        Next={() => <span>COMPLETE REGISTRATION</span>}
         nextEnabled={this.state.pkConfirmed}
         onNext={this.handleSubmit}
         onPrev={this.props.previousStep} />

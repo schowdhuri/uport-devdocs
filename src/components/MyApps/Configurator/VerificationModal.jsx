@@ -61,7 +61,7 @@ class VerificationModal extends React.Component {
         }, 500)
       })
   }
-  track = (name, properties={}) => () => {
+  track = (name, properties={}) => {
     track(name, {
       source: 'App Configurator',
       ...properties

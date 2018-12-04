@@ -44,6 +44,7 @@
   background-color: #fff;
   border: 2px solid #715ad1;
   margin: 0 auto;
+  word-break: break-word;
 }
 .myapps-button.signing a {
   color: #715ad1;

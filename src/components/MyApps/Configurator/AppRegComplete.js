@@ -11,16 +11,20 @@ import { Container, Grid, Col, medium } from '../../../layouts/grid'
 import copyToClipboard from '../../../helpers/copyToClipboard'
 import track, { trackPage } from '../../../utilities/track'
 
-const installCode =
+const installCodeServer =
+`npm init
+npm install --save uport-credentials
+`
+const installCodeClient =
 `npm init
 npm install --save uport-connect
 `
 const initServerCode = (appDetails, appEnvironment, pk) =>
-`import { Connect, SimpleSigner } from 'uport-connect'
+`import { Credentials } from 'uport-credentials'
 
-const uport = new Connect('${appDetails.appName}', {
+const uport = new Credentials('${appDetails.appName}', {
   network: '${appEnvironment.network}'
-  signer: SimpleSigner('${pk}')
+  privateKey: '${pk}'
 })`
 
 const initClientCode = (appDetails, appEnvironment) =>
@@ -56,7 +60,6 @@ class AppRegComplete extends Component {
     }
   }
   componentDidMount() {
-    this.showPopup()
     trackPage('App Configurator', {
       step: 'App Registration Complete',
       value: {
@@ -64,8 +67,9 @@ class AppRegComplete extends Component {
         appURL: this.props.appDetails.appURL
       }
     })
+    this.showPopup()
   }
-    showPopup = () => {
+  showPopup = () => {
     let uportApps = this.props.profile.uportApps || {}
     let claim = {
       name: this.props.appDetails.appName,
@@ -137,7 +141,7 @@ class AppRegComplete extends Component {
     })
     this.setState({ verificationModal: true })
   }
-  track = (name, properties={}) => () => {
+  track = (name, properties={}) => {
     track(name, {
       source: 'App Configurator',
       ...properties
@@ -167,11 +171,18 @@ class AppRegComplete extends Component {
                   <Step.Label>Install Libraries</Step.Label>
                   <Step.Content>
                     <CodeContainer>
-                      <CopyButton onCopy={this.handleCopy(installCode, 'Install Libraries')}>
+                      <CopyButton onCopy={appEnvironment.environment === 'server'
+                        ? this.handleCopy(installCodeServer, 'Install Libraries')
+                        : this.handleCopy(installCodeClient, 'Install Libraries')}
+                      >
                         Copy
                       </CopyButton>
                       <Pre>
-                        <Code>{installCode}</Code>
+                        <Code>
+                          {appEnvironment.environment === 'server'
+                            ? installCodeServer
+                            : installCodeClient}
+                        </Code>
                       </Pre>
                     </CodeContainer>
                   </Step.Content>
@@ -195,9 +206,11 @@ class AppRegComplete extends Component {
                         Copy
                       </CopyButton>
                       <Pre>
-                        <Code>{appEnvironment.environment === 'server'
-                          ? initServerCode(appDetails, appEnvironment, signingKey)
-                          : initClientCode(appDetails, appEnvironment)}</Code>
+                        <Code data-do-not-track-copy={true}>
+                          {appEnvironment.environment === 'server'
+                            ? initServerCode(appDetails, appEnvironment, signingKey)
+                            : initClientCode(appDetails, appEnvironment)}
+                        </Code>
                       </Pre>
                     </CodeContainer>
                   </Step.Content>
