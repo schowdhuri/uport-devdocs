@@ -49,7 +49,7 @@ class MyAppsConfigurator extends React.Component {
     childStateObject[childName] = childState
     this.setState(childStateObject)
     this.nextStep()
-    if (childName === 'appDetails') {
+    if (childName === 'appDetails' && this.state.appEnvironment.environment == 'server') {
       await this.buildClaim()
     }
   }
@@ -59,6 +59,7 @@ class MyAppsConfigurator extends React.Component {
     if (this.state.appDetails.ipfsBgHash) profileClaim['bannerImage'] = {'/': `/ipfs/${this.state.appDetails.ipfsBgHash}`}
     if (this.state.appDetails.appURL) profileClaim['url'] = this.state.appDetails.appURL
     if (this.state.appDetails.appDescription) profileClaim['description'] = this.state.appDetails.appDescription
+
     return new Promise(async (resolve, reject) => {
       const ipfsClaimHash = await this.uploadClaim(profileClaim)
       resolve(ipfsClaimHash)
@@ -92,7 +93,6 @@ class MyAppsConfigurator extends React.Component {
     this.setState({ pk })
   }
   render () {
-    console.log(this.state.step)
     return (
       <div className='index-container' style={{minHeight: '100vh'}}>
         <Helmet title={config.siteTitle} />

@@ -17,7 +17,7 @@ npm install --save uport-credentials
 `
 const installCodeClient =
 `npm init
-npm install --save uport-connect
+npm install --save uport-connect@1.1.0-alpha.12
 `
 const initServerCode = (appDetails, appEnvironment, pk) =>
 `import { Credentials } from 'uport-credentials'
@@ -31,8 +31,20 @@ const initClientCode = (appDetails, appEnvironment) =>
 `import { Connect } from 'uport-connect'
 
 const uport = new Connect('${appDetails.appName}', {
-  network: '${appEnvironment.network}'
+  network: "${appEnvironment.network}",
+  url: "https://${appDetails.appURL}"
+  profileImage: {"/": "${appDetails.ipfsLogoHash}"},
+  bannerImage: {"/": "${appDetails.ipfsBgHash}"},
+  description: "${appDetails.appDescription}",
 })`
+
+/*
+network: 'rinkeby', 
+  accountType: 'keypair',
+  profileImage: {"/": "/ipfs/Qmez4bdFmxPknbAoGzHmpjpLjQFChq39h5UMPGiwUHgt8f"},
+  bannerImage: {"/": "/ipfs/QmUA7P9tTx3eQQi7k6VfGMADmDDyvG6xdn5P4yXxcMJs7a"},
+  description: "uPort demo sample description",
+*/
 
 const didDoc = (appDetails) => {
   const did = appDetails.appIdentity.did.replace('did:ethr:', '')
