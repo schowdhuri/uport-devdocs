@@ -99,13 +99,6 @@ h4 {
   margin: unset;
   margin: initial;
 }
-p {
-  color: #504F5C;
-  font-size: 24px;
-  line-height: 36px;
-  font-weight: normal;
-  font-style: normal;
-}
 `
 
 const IndexHeadContainer = styled.div`

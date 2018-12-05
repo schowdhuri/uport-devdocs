@@ -12,7 +12,6 @@ class Solutions extends Component {
           <h2 className='solutions-grid-header'>Build with uPort for different application types</h2>
           <WebThreeLanding />
           <ServerLanding />
-
         </div>
       </SolutionsWrapper>
     )

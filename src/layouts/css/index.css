@@ -172,7 +172,7 @@ p.hero-subheading {
     margin-top: -12px;
 }
 
-.hero-features p {
+.hero-feature p {
     color: #3F3D4B;
     font-family: "Nunito Sans";
     font-size: 16px;
@@ -180,7 +180,7 @@ p.hero-subheading {
     /* margin-top: -5px; */
 }
 
-.hero-features h2  {
+.hero-feature h2  {
     font-weight: 400;
     margin-top: -12px;
     color: #8986A0;
@@ -191,7 +191,7 @@ p.hero-subheading {
     margin-top: 10px;
 }
 
-.hero-features a {
+.hero-feature a {
     color: #FFFFFF;
     font-family: "Nunito Sans";
     font-size: 16px;
@@ -586,10 +586,9 @@ footer .footer-menu-wrap a {
 
 /* Media queries for index page */
   @media (max-width: 767px) {
-      section.demo,
-      .hero-img {
-          visibility: hidden;
-          display: none;
+    section.demo {
+      visibility: hidden;
+      display: none;
     }
 
     .headline-wrapper {
@@ -750,10 +749,6 @@ https://getbootstrap.com/docs/4.1/layout/overview/#responsive-breakpoints
 @media (min-width: 768px) {
   p.hero-subheading {
     max-width: 78%;
-  }
-  .hero-feature {
-    padding-bottom: 8em;
-    position: relative;
   }
   .building-blocks-wrapper {
     padding: 60px 0;

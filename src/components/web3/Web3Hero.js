@@ -3,6 +3,7 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import heroImg from '../../images/web3hero.svg'
 import track from '../../utilities/track'
+import { Container, Grid, Col, medium } from '../../layouts/grid'
 
 class Web3Hero extends React.Component {
   track = (name) => () => {
@@ -11,43 +12,42 @@ class Web3Hero extends React.Component {
     })
   }
   render () {
-    return (
-      <Hero>
-        <div className={`left`}>
-          <div className='content'>
-            <h4>Using uPort in</h4>
-            <h1 className='hero-title'>Client-Side Solutions</h1>
-            <p className='hero-subheading'>
-              Whether it's a "dApp" or a more traditional application, your users will appreciate the gift of soveriengty.
+    return (<Hero>
+      <Container>
+        <Grid>
+          <Col span={6} className='left'>
+            <div className='content'>
+              <h4>Using uPort in</h4>
+              <h1 className='hero-title'>Client-Side Solutions</h1>
+              <p className='hero-subheading'>
+                Whether it's a "dApp" or a more traditional application, your users will appreciate the gift of soveriengty.
 
-              Let them have power over what information they choose to disclose.
-            </p>
-            <div className={'hero-features'}>
-              <div className=''>
-                <a href='#web3-solutions' onClick={this.track('Web3 Solutions Clicked')}>
-                  <div className={`hero-button`}>
+                Let them have power over what information they choose to disclose.
+              </p>
+              <div className={'hero-features'}>
+                <div className=''>
+                  <a className='hero-button' href='#web3-solutions' onClick={this.track('Web3 Solutions Clicked')}>
                     GET STARTED
-                  </div>
-                </a>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div className={`right`}>
-          &nbsp;
-        </div>
-      </Hero>
-    );
+          </Col>
+          <Col span={6} className='right' />
+        </Grid>
+      </Container>
+    </Hero>);
   }
 }
 
 export default Web3Hero
 
 const Hero = styled.div`
+  margin-bottom: 100px;
   .left {
     position: relative;
     .content {
-      padding: 50px 20px;
+      padding: 50px 0;
     }
   }
   .right {
@@ -88,18 +88,19 @@ const Hero = styled.div`
     padding: 7px 0 7px 0;
   }
 
-  @media screen and (min-width: 768px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 122px;
-    height: 90vh;
+  ${medium(`
     .left .content {
-      padding: 20vh 0 0 10vw;
+      padding: 20vh 0 0;
     }
     .right {
       display: block;
+      height: 70vh;
+      position: absolute;
+      right: 0;
+      top: 63px;
+      width: 50vw;
     }
-  }
+  `)}
 `
 
 

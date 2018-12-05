@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
 import track from '../../../utilities/track'
+import { Container, Grid, Col, large } from '../../../layouts/grid'
 
 class ServerLoginResources extends Component {
   track = (name, properties={}) => () => {
@@ -12,43 +13,47 @@ class ServerLoginResources extends Component {
   render () {
     return (
       <Resources>
-        <div className='grid'>
-          <div className='header-row'>
-            <h2>Additional Resources</h2>
-            <h3>Libraries</h3>
-          </div>
-          <div>
-          </div>
-          <div/>
-          <div/>
-          <div className='block-item'>
-            <a href='/categories/transports' onClick={this.track("uPort Transports Clicked")}>
-              <h4>Transports    &#x2192;</h4>
-              <p>Setup communication channels between your app and uPort clients.</p>
-            </a>
-            <div className={'code-block'}>
-              <span>npm -i uport-transports</span>
-            </div>
-          </div>
-          <div className='block-item'>
-            <a href='/categories/ethr-did' onClick={this.track("EthrDID Clicked")}>
-              <h4>EthrDID    &#x2192;</h4>
-              <p>Create Decentralized Identifiers and manage their interactions in your app.</p>
-            </a>
-            <div className={'code-block'}>
-              <span>npm -i ethr-did</span>
-            </div>
-          </div>
-          <div className='block-item'>
-            <a href='/categories/ethr-did-registry' onClick={this.track("EthrDID Registry Clicked")}>
-              <h4>Ethr DID Registry    &#x2192;</h4>
-              <p>Smart contract to resolve and manage decentralized identifiers (DIDs)</p>
-            </a>
-            <div className={'code-block'}>
-              <span>npm -i ethr-did-registry</span>
-            </div>
-          </div>
-        </div>
+        <Container>
+          <Grid>
+            <Col span={12} className='header-row'>
+              <h2>Additional Resources</h2>
+              <h3>Libraries</h3>
+            </Col>
+            <Col span={4}>
+              <div className='block-item'>
+                <a href='/categories/transports' onClick={this.track("uPort Transports Clicked")}>
+                  <h4>Transports    &#x2192;</h4>
+                  <p>Setup communication channels between your app and uPort clients.</p>
+                </a>
+                <div className={'code-block'}>
+                  <span>npm -i uport-transports</span>
+                </div>
+              </div>
+            </Col>
+            <Col span={4}>
+              <div className='block-item'>
+                <a href='/categories/ethr-did' onClick={this.track("EthrDID Clicked")}>
+                  <h4>EthrDID    &#x2192;</h4>
+                  <p>Create Decentralized Identifiers and manage their interactions in your app.</p>
+                </a>
+                <div className={'code-block'}>
+                  <span>npm -i ethr-did</span>
+                </div>
+              </div>
+            </Col>
+            <Col span={4}>
+              <div className='block-item'>
+                <a href='/categories/ethr-did-registry' onClick={this.track("EthrDID Registry Clicked")}>
+                  <h4>Ethr DID Registry    &#x2192;</h4>
+                  <p>Smart contract to resolve and manage decentralized identifiers (DIDs)</p>
+                </a>
+                <div className={'code-block'}>
+                  <span>npm -i ethr-did-registry</span>
+                </div>
+              </div>
+            </Col>
+          </Grid>
+        </Container>
       </Resources>
     )
   }
@@ -59,29 +64,25 @@ export default ServerLoginResources
 const Resources = styled.section`
   margin-bottom: 154px;
   background-color: #fff;
-  .grid {
-    justify-content: center;
-    margin: 0 20px;
-    p {
-      font-size: unset;
-      font-size: initial;
-      font-size: 16px:
-      line-height: 22px;
-      margin-bottom: unset;
-      margin-bottom: initial;
-      padding: 11px 0 20px 20px;
-      max-width: 90%;
-    }
-    h3, h4 {
+
+  p {
+    font-size: unset;
+    font-size: initial;
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: unset;
+    margin-bottom: initial;
+    padding: 20px;
+  }
+  h3, h4 {
     color: #8986A0;
     font-size: 24px;
     line-height: 18px;
-    }
-    h4 {
-      color: #4C9EA6;
-      padding: 20px 0 0 20px;
-      margin: 0;
-    }
+  }
+  h4 {
+    color: #4C9EA6;
+    padding: 20px 0 0 20px;
+    margin: 0;
   }
   h2 {
     font-size: 32px;
@@ -113,30 +114,9 @@ const Resources = styled.section`
   .block-item {
     box-shadow: 0px 0px 4px rgba(0,0,0, 0.25);
     border-radius: 4px;
-    margin-bottom: 30px;
+    height: 100%;
+    margin: 0;
     padding-bottom: 80px;
     position: relative;
-  }
-  .header-row {
-    margin-bottom: 30px;
-  }
-  @media screen and (min-width: 768px) {
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: auto auto;
-      grid-gap: 30px;
-      max-width: 80em;
-    }
-    .header-row {
-      grid-area: 1 / 1 / 2 / 4;
-      margin: 0;
-    }
-  }
-  @media screen and (min-width: 1200px) {
-    .grid {
-      margin: 0 auto;
-      max-width: 80em;
-    }
   }
 `

@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import serverImg from '../../images/server-landing.png'
 import arrowImg from '../../images/ArrowBlack.png'
 import blueTick from '../../images/blue-tick.svg'
+import UnorderedList from '../Layout/html/UnorderedList'
+import { Container, Grid, Col, small, medium, large } from '../../layouts/grid'
 import track from '../../utilities/track'
 
 class ServerLanding extends Component {
@@ -13,21 +15,22 @@ class ServerLanding extends Component {
   }
   render() {
     return (
-      <Container>
-          <div className='grid'>
-            <div className='left'>
-              &nbsp;
-            </div>
-            <div className='right'>
+      <Wrapper>
+        <Container>
+          <Grid className='box'>
+            <Col span={6} large className='left' />
+            <Col span={6} large className='right'>
               <div className='right-wrap'>
-                <h2>Server</h2>
-                <p>
-                  Server applications can integrate with uPort easily using uport-credentials and other helpful tools for traditional and web3 solutions.
-                </p>
-                <hr />
-                <div className='subgrid'>
-                  <div className='subleft'>
-                    <ul>
+                <Grid>
+                  <Col span={12}>
+                    <h2>Server</h2>
+                    <p>
+                      Server applications can integrate with uPort easily using uport-credentials and other helpful tools for traditional and web3 solutions.
+                    </p>
+                    <hr />
+                  </Col>
+                  <Col span={6}>
+                    <UnorderedList>
                       <li className='blue-tick'>
                         <a href='/credentials/login' onClick={this.track('Create & Verify Auth Requests Clicked')}>
                           Create and verify authentication requests
@@ -36,10 +39,10 @@ class ServerLanding extends Component {
                       <li className='blue-tick'>
                         <a href='/credentials/transactions'>Ask users to sign Ethereum transactions</a>
                       </li>
-                    </ul>
-                  </div>
-                  <div className='subright'>
-                    <ul>
+                    </UnorderedList>
+                  </Col>
+                  <Col span={6}>
+                    <UnorderedList className='second'>
                       <li className='blue-tick'>
                         <a href='/credentials/createverification' onClick={this.track('Create Verified Claims Clicked')}>
                           Create verified claims
@@ -50,29 +53,32 @@ class ServerLanding extends Component {
                           Verify claims for your users
                         </a>
                       </li>
-                    </ul>
-                  </div>
-                  <a href='/server' className='link' onClick={this.track('View All Solutions Clicked')}>
-                    VIEW ALL SOLUTIONS
-                  </a>
-                </div>
+                    </UnorderedList>
+                  </Col>
+                  <Col span={12}>
+                    <a href='/server' className='link' onClick={this.track('View All Solutions Clicked')}>
+                      VIEW ALL SOLUTIONS
+                    </a>
+                  </Col>
+                </Grid>
               </div>
-            </div>
-          </div>
-      </Container>
+            </Col>
+          </Grid>
+        </Container>
+      </Wrapper>
     );
   }
 }
 
 export default ServerLanding
 
-const Container = styled.section`
-.grid {
+const Wrapper = styled.section`
+.box {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0px 0px 20px rgba(139, 139, 139, 0.25);
   overflow: hidden;
   justify-content: space-between;
-  margin: auto;
-  box-shadow: 0px 0px 20px rgba(139, 139, 139, 0.25);
-  background: #FFFFFF;
 }
 .left {
   display: none;
@@ -96,37 +102,19 @@ const Container = styled.section`
 hr {
   margin: unset;
   margin: initial;
-  border: 1px solid #E5E5E5;
+  border: 1px solid #e5e5e5;
 }
 h2 {
+  color: #3F3D4B;
   font-size: 24px;
   font-weight: 800;
   font-style: normal;
   line-height: 32px;
-  color: #3F3D4B;
-}
-ul {
-  padding: unset;
-  padding: initial;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: bold;
-  line-height: 24px;
-  list-style: none;
-  text-indent: -25px;
+  margin-top: 0;
 }
 li {
   color: #4C9EA6;
-  word-wrap: break-word;
-  margin: 0 0 20px 40px;
-}
-li::before {
-  content: unset;
-  content: initial;
-  content: "";
-  content: url(${blueTick});
-  left: 5px;
-  margin-right: 10px;
+  font-weight: 700;
 }
 p {
   font-size: 16px;
@@ -139,12 +127,12 @@ a {
   text-decoration: none;
 }
 .link {
- font-style: normal;
- font-weight: 800;
- font-size: 14px;
- line-height: 18px;
- color: #3F3D4B;
- grid-area: 2 / 1 / 3 / 3;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 18px;
+  color: #3F3D4B;
+  grid-area: 2 / 1 / 3 / 3;
 }
 .link::after {
   content: url(${arrowImg});
@@ -154,15 +142,12 @@ a {
   background-size: contain;
   background-repeat: no-repeat;
 }
-@media (min-width: 768px) {
-  .grid {
-    border-radius: 4px;
-    display: grid;
-    grid-gap: 20px;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-    max-width: 1137px;
+${small(`
+  ul.second {
+    margin-top: -30px;
   }
+`)}
+${large(`
   .left {
     display: block;
     background-image: url(${serverImg});
@@ -170,24 +155,9 @@ a {
     background-repeat: no-repeat;
   }
   .right-wrap {
-    margin: 76px 80px 0 0;
+    margin: 76px 80px 30px 20px;
   }
-  .subgrid {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: auto;
-    grid-gap: 40px
-    margin-top: 0;
-  }
-  ul {
-    margin-top: 40px;
-  }
-}
-@media (max-width: 1137px) {
-  .grid {
-    margin: 0 2rem;
-  }
-}
+`)}
 @media (min-width: 1137px) {
   .left {
     background-position: left bottom;

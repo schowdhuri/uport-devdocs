@@ -13,8 +13,10 @@ import backgroundImg from '../images/grey-background.png'
 import blueTick from '../images/blue-tick.svg'
 import AutoLinkText from 'react-autolink-text2'
 import Announcement from '../components/Announcement'
+import UnorderedList from '../components/Layout/html/UnorderedList'
 import bgPattern from '../images/bg-pattern-gray.svg'
 import track from '../utilities/track'
+import { Container, Grid, Col, small, medium, large } from '../layouts/grid'
 
 class Index extends React.Component {
   track = (name) => () => {
@@ -49,54 +51,59 @@ class Index extends React.Component {
               location={this.props.location}
               types={this.props.data.navTypes} />
             <Hero className={`home-hero`}>
-              <div className={`hero-wrapper`}>
-                <div className={'Grid Grid--gutters'}>
-                  <div className='Grid-cell hero-left'>
+              <Container className='hero-wrapper'>
+                <Grid>
+                  <Col span={7} large>
                     <h1 className='hero-title'>Build User-Centric Ethereum Apps</h1>
                     <ValueProps>
                       <h2>Give your users the sovereignty to manage details about their digital-selves.</h2>
                     </ValueProps>
-                  </div>
-                  <div className='Grid-cell hero-img-wrap'>
+                  </Col>
+                  <Col span={5} large>
                     <div className={`hero-img`}>
                       <img src={heroImg} />
                     </div>
-                  </div>
-                </div>
-                <div className={'Grid Grid--gutters hero-features'}>
-                  <div className='Grid-cell'>
+                  </Col>
+                  <Col span={6}>
                     <div className='hero-feature'>
-                      <h2>Connect Users to Your web3 dApp</h2>
-                      <p>Add full support for uPort by adding a single line of code to your web3 dApp.</p>
-                      <ul>
-                        <li>Onboard new users within minutes</li>
-                        <li>Instantly create a privacy-preserving Ethereum account</li>
-                        <li>Build for both desktop and mobile browsers</li>
-                      </ul>
-                      <div className={`home-hero-button`}>
-                        <a href='/guides/gettingstarted' onClick={this.track('Connect With Users Clicked')}>
-                          Connect With Your Users
-                        </a>
+                      <div className='hero-feature-content'>
+                        <h2>Connect Users to Your web3 dApp</h2>
+                        <p>Add full support for uPort by adding a single line of code to your web3 dApp.</p>
+                        <UnorderedList>
+                          <li>Onboard new users within minutes</li>
+                          <li>Instantly create a privacy-preserving Ethereum account</li>
+                          <li>Build for both desktop and mobile browsers</li>
+                        </UnorderedList>
                       </div>
+                      <a className='home-hero-button'
+                        href='/guides/gettingstarted'
+                        onClick={this.track('Connect With Users Clicked')}
+                      >
+                        Connect With Your Users
+                      </a>
                     </div>
-                  </div>
-                  <div className='Grid-cell'>
+                  </Col>
+                  <Col span={6} >
                     <div className='hero-feature'>
-                      <h2>Issue & Request Verified Credentials</h2>
-                      <p>Help your users build their digital identity by issuing Verified Credentials about them or the things they do in your app.</p>
-                      <ul>
-                        <li>Request Ethereum transaction signing with web3</li>
-                        <li>Issue and Request Verified Credentials about your users</li>
-                      </ul>
-                      <div className={`home-hero-button`}>
-                        <a href='/uport-credentials/index' onClick={this.track('Issue Credentials Clicked')}>
-                          Issue Verified Credentials
-                        </a>
+                      <div className='hero-feature-content'>
+                        <h2>Issue & Request Verified Credentials</h2>
+                        <p>Help your users build their digital identity by issuing Verified Credentials about them or the things they do in your app.</p>
+                        <UnorderedList>
+                          <li>Request Ethereum transaction signing with web3</li>
+                          <li>Issue and Request Verified Credentials about your users</li>
+                        </UnorderedList>
                       </div>
+                      <a
+                        className='home-hero-button'
+                        href='/uport-credentials/index'
+                        onClick={this.track('Issue Credentials Clicked')}
+                      >
+                        Issue Verified Credentials
+                      </a>
                     </div>
-                  </div>
-                </div>
-              </div>
+                  </Col>
+                </Grid>
+              </Container>
               <Announcement>{messages}</Announcement>
             </Hero>
           </IndexHeadContainer>
@@ -135,56 +142,40 @@ const ValueProps = styled.div`
      color: #8986a0;
   }
 `
-
 const Hero = styled.div`
+  background-color: #fff;
   h2 {
     font-size 24px;
+    margin-top: 0;
   }
-  ul {
-     margin-top: 1em;
-     font-size: 16px;
-     list-style: none;
-  }
-  ul li::before {
-    content: '';
-    color: #62B482;
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    margin-right: 15px;
-    vertical-align: middle;
-    text-align: center;
-    position: relative;
-    bottom: 2px;
-    direction: rtl;
-    background-image: url(${blueTick});
-    background-size: contain;
-    background-repeat: no-repeat;
-  }
-  background-color: #fff;
   .hero-wrapper {
-    width: 90vw;
-    margin: 0 auto;
     padding: 60px 0;
   }
-  .hero-img-wrap {
-    flex: 0 0 42%;
-    align-self: center;
+  .hero-img {
+    text-align: center;
+    ${small('display: none;')}
   }
   .home-hero-button {
+    border: 2px solid #5c50ca;
     border-radius: 4px;
     background: linear-gradient(180deg, #7958D8 0%, #5C50CA 100%);
     box-shadow: 0 2px 10px 0 rgba(63,61,75,0.2);
-    text-decoration: none;
-    font-weight: 400;
-    border: 2px solid #5c50ca;
+    display: block;
+    padding: 20px;
+    font-weight: 700;
     text-align: center;
-    a {
-      display: block;
-      padding: 20px 20px 20px 20px;
+    text-decoration: none;
+  }
+  .hero-feature {
+    display: grid;
+    grid-template-rows: 1fr minmax(60px, auto);
+
+    ul {
+      margin: 20px 0 0;
+      ${large('margin: 20px 0 0 40px;')}
     }
   }
-  @media screen and (max-width: 600px) {
+  ${small(`
     h1 {
       font-size: 34px;
       line-height: 40px;
@@ -197,15 +188,7 @@ const Hero = styled.div`
         margin-top: 20px;
       }
     }
-  }
-  @media (min-width: 768px) {
-    .home-hero-button {
-      position: absolute;
-      bottom: 2em;
-      left: 2em;
-      right: 2em;
-    }
-  }
+  `)}
 `
 
 const BodyContainer = styled.div`
