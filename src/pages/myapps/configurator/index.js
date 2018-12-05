@@ -69,7 +69,7 @@ class MyAppsConfigurator extends React.Component {
       return new Promise(async (resolve, reject) => {
         const ipfsClaimHash = await this.uploadClaim(jwt)
         resolve(ipfsClaimHash)
-      })   
+      })
     })
   }
   async uploadClaim (profileClaim) {

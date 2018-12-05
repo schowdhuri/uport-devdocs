@@ -23,7 +23,7 @@ class AppConfigFooter extends Component {
       </div>
       <div className='cta-next'>
         {Next
-          ? <button className={nextEnabled ? '' : 'disabled'} onClick={onNext}>
+          ? <button disabled={!nextEnabled} className={nextEnabled ? '' : 'disabled'} onClick={onNext}>
               <Next />
               <img src={arrowWhite} />
           </button>

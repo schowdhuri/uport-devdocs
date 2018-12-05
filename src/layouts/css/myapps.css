@@ -40,17 +40,16 @@
   text-align: center;
 }
 .myapps-button.signing {
-  width: 80%;
   background-color: #fff;
   border: 2px solid #715ad1;
-  margin: 0 auto;
-  word-break: break-word;
-}
-.myapps-button.signing a {
   color: #715ad1;
+  display: block;
   font-size: 16px;
   font-weight: 700;
+  margin: 30px auto;
   text-transform: uppercase;
+  word-break: break-word;
+  width: 80%;
 }
 .myapps-button a {
   color: #fff;
@@ -643,7 +642,7 @@ button.continue {
   border: 0.3px solid #8986A0;
   border-radius: 2px;
   box-shadow: inset 0px 0px 4px rgba(134, 134, 134, 0.25);
-  padding: 50px 0 30px;
+  padding: 50px 20px 30px;
   /*clear: both;
   margin: 0 auto;
   margin-bottom: 20px;
@@ -769,6 +768,9 @@ footer.stepFooter .cta-next img {
 }
 
 @media all and (min-width: 768px) {
+  .module {
+    padding: 50px 0 30px;
+  }
   footer.stepFooter {
     display: grid;
     grid-template-columns: 1fr 1fr;

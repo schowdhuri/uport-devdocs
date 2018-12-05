@@ -5,7 +5,9 @@ import Footer from './Footer'
 import arrowWhite from '../../../images/ArrowWhite.svg'
 import arrowBlurple from '../../../images/ArrowBlurple.png'
 import { Container, Grid, Col } from '../../../layouts/grid'
+import UnorderedList from '../../../components/Layout/html/UnorderedList'
 import { default as track, trackPage } from '../../../utilities/track'
+import download from '../../../utilities/download'
 
 class AppSigningKey extends Component {
   constructor (props) {
@@ -18,7 +20,6 @@ class AppSigningKey extends Component {
       pkConfirmed: false,
       pkConfirm: []
     }
-    this.displayPK = this.displayPK.bind(this)
     this.handlePKConfirm = this.handlePKConfirm.bind(this)
   }
   componentDidMount() {
@@ -31,9 +32,11 @@ class AppSigningKey extends Component {
     })
     this.props.onGenerateKey(this.state.pk)
   }
-  displayPK (e) {
-    e.preventDefault()
-    this.setState({pkVisible: true})
+  downloadPK = () => {
+    this.track('App Configurator PK Downloaded', {
+      step: 'App Signing Key'
+    })
+    download(`${this.props.appDetails.appName}-private-key.txt`, this.state.pk)
   }
   handlePKConfirm(e) {
     this.setState({pkConfirmed: false})
@@ -106,20 +109,14 @@ class AppSigningKey extends Component {
                   <Col span={1} />
                   <Col span={10}>
                     <label>Please Note</label>
-                    <ul>
+                    <UnorderedList>
                       <li>This key is used to retain ownership of your app identity</li>
                       <li>It is a private key and should be protected</li>
-                    </ul>
-                    {this.state.pkVisible
-                      ? <div className='myapps-button signing' data-do-not-track-copy={true}>
-                        {this.state.pk}
-                      </div>
-                      : <div className='myapps-button signing hidden' onClick={this.displayPK}>
-                        <a id='pk' href='#'>
-                          View Your Signing Key
-                        </a>
-                      </div>}
-                    <div className={"pk-confirmation " + (this.state.pkVisible ? '' : 'hidden')}>
+                    </UnorderedList>
+                    <button className='myapps-button signing' onClick={this.downloadPK}>
+                        Download Your Signing Key
+                    </button>
+                    <div className='pk-confirmation'>
                       <p>To confirm that you have recieved the signing key, enter the last four characters of your signing key below.</p>
                       <span>LAST FOUR CHARACTERS OF YOUR SIGNING KEY</span>
                       <fieldset>

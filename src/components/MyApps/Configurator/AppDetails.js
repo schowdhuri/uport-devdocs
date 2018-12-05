@@ -443,7 +443,7 @@ ColorPicker.PopOver = styled.div`
   position: absolute;
   right: 0;
   top: 50px;
-  transform: translateX(-60%);
+  transform: translateX(-40%);
   z-index: 2;
 `
 ColorPicker.Cover = styled.div`
