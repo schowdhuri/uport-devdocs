@@ -223,9 +223,13 @@ form textarea {
   width: 100%;
 }
 form input[type=text]:focus,
-textarea:focus {
+form textarea:focus {
   border: solid 1px #827CFF;
   outline: none;
+}
+form input[type='text']::placeholder,
+form textarea::placeholder {
+  color: #b2b1c2;
 }
 form .fieldError input[type=text]:focus,
 form .fieldError textarea:focus {
@@ -716,6 +720,7 @@ footer.stepFooter .cta-prev {
 }
 
 footer.stepFooter .cta-prev button {
+  background-color: transparent;
   display: flex;
   font-weight: 800;
   text-decoration: none;
@@ -735,9 +740,10 @@ footer.stepFooter .cta-prev p span {
 }
 
 footer.stepFooter .cta-prev img {
-  transform: scaleX(-1);
   filter: FlipH;
+  height: 16px;
   margin: 15px 20px 0 0;
+  transform: scaleX(-1);
 }
 footer.stepFooter .cta-next {
   justify-self: center;
