@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import { connect } from 'react-redux'
 import { addFile } from '../../../utilities/ipfs'
-
+import { Credentials } from 'uport-credentials'
 import SiteHeader from '../../../components/Layout/Header'
 import config from '../../../../data/SiteConfig'
 import logo from '../../../images/logo-mark-purple.svg'
@@ -60,14 +60,20 @@ class MyAppsConfigurator extends React.Component {
     if (this.state.appDetails.appURL) profileClaim['url'] = this.state.appDetails.appURL
     if (this.state.appDetails.appDescription) profileClaim['description'] = this.state.appDetails.appDescription
 
-    return new Promise(async (resolve, reject) => {
-      const ipfsClaimHash = await this.uploadClaim(profileClaim)
-      resolve(ipfsClaimHash)
+    const credentials = new Credentials({
+      appName: this.state.appDetails.appName,
+      did: this.state.appDetails.appIdentity.did,
+      privateKey: this.state.appDetails.appIdentity.pk
+    })
+    credentials.createVerification({sub: this.state.appDetails.appIdentity.did, claim: profileClaim}).then(jwt => {
+      return new Promise(async (resolve, reject) => {
+        const ipfsClaimHash = await this.uploadClaim(jwt)
+        resolve(ipfsClaimHash)
+      })   
     })
   }
   async uploadClaim (profileClaim) {
-    let dataStr = JSON.stringify(profileClaim)
-    const result = await addFile(dataStr)
+    const result = await addFile(profileClaim)
     this.setState({ipfsProfileHash: result.Hash})
     console.log(`Uploaded profile claim: https://ipfs.io/ipfs/${result.Hash}`)
     return result.Hash
