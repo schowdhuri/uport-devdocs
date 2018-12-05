@@ -629,6 +629,7 @@ button.continue {
 }
 .configuratorWrap section header h2 {
   font-weight: 800;
+  text-align: center;
 }
 .configuratorWrap section header a.cancel {
   font-weight: 700;
@@ -768,6 +769,9 @@ footer.stepFooter .cta-next img {
 }
 
 @media all and (min-width: 768px) {
+  .configuratorWrap section header h2 {
+    text-align: left;
+  }
   .module {
     padding: 50px 0 30px;
   }

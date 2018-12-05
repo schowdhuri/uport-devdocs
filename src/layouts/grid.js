@@ -30,6 +30,7 @@ export const Grid = styled.div`
   display: grid;
   grid-gap: 30px 20px;
   grid-template-columns: repeat(4, 1fr);
+  ${small('width: 100%;')}
   ${medium(`
     grid-gap: 30px;
     grid-template-columns: repeat(12, 1fr);
@@ -42,13 +43,12 @@ export const Col = styled.div`
     if(props.large) {
       return `
         grid-column: span 12;
+        ${small('grid-column: span 4;')}
         ${large(`grid-column: span ${props.span || 1};`)}
       `
     }
     return `
-      grid-column: span 12;
       ${medium(`grid-column: span ${props.span || 1};`)}
     `
   }}
-
 `
