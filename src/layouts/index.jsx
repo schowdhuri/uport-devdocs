@@ -16,7 +16,10 @@ export default class MainLayout extends React.Component {
     this.trackTextSelection()
   }
   trackTextSelection = () => {
-    const trackSelectedText = () => {
+    const trackSelectedText = ev => {
+      if(ev && ev.target && ev.target.getAttribute('data-do-not-track-copy')) {
+        return
+      }
       const selectedText = getSelectedText()
       if(selectedText) {
         track('Text Selected', {

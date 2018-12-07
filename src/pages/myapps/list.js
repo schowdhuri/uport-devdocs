@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import SiteHeader from '../../components/Layout/Header'
 import AppList from '../../components/MyApps/AppList'
+import { Container, Grid, Col, Spacer } from '../../layouts/grid'
 import config from '../../../data/SiteConfig'
 import '../../layouts/css/myapps.css'
 
@@ -31,23 +32,31 @@ class MyAppsAppListPage extends React.Component {
               location={this.props.location}
               categories={this.props.data.navCategories} />
           </AppManagerHeadContainer>
-          <BodyContainer className='myAppsBody'>
-            <div className={'Grid Grid--gutters'}>
-              <div className='Grid-cell myapps'>
-                <a href='/myapps/startbuilding' className='register-button'>
-                  <span><strong>+</strong></span>
+          <Container>
+            <Grid>
+              <Spacer span={1} />
+              <Col span={5}>
+                <h1>My Apps</h1>
+              </Col>
+              <Col span={5}>
+                <a href='/myapps/configurator' className='register-button'>
+                  <span>+</span>
                   Register an App
                 </a>
-                <h1>My Apps</h1>
+              </Col>
+              <Spacer span={1} />
+              <Spacer span={1} />
+              <Col span={10}>
                 <div className='appList'>
                   {this.props.profile.uportApps
                   ? <AppList history={this.props.history} />
                   : null
                   }
                 </div>
-              </div>
-            </div>
-          </BodyContainer>
+              </Col>
+              <Spacer span={1} />
+            </Grid>
+          </Container>
         </main>
       </div>
     )

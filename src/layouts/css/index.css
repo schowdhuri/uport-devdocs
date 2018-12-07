@@ -508,6 +508,7 @@ footer .footer-menu-wrap a {
   text-align: left;
   min-width: 180px;
   list-style-type: none;
+  z-index: 2;
 }
 .loginStatus li.logout {
   border-bottom: none;
@@ -767,10 +768,17 @@ https://getbootstrap.com/docs/4.1/layout/overview/#responsive-breakpoints
   }
 }
 
+/* Server flow */
+
+
+
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   section.demo, .building-blocks-wrapper {
     max-width: 70vw;
+  }
+  .blurred {
+    filter: blur(8px);
   }
 }
 

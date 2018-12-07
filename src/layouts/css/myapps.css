@@ -7,11 +7,11 @@
 }
 .title {
   font-family: "Nunito Sans";
-  font-size: 42px;
-  font-weight: 700;
-  line-height: 54px;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 48px;
   margin-bottom: 25px;
-  color: #5c54c7;
+  color: #3F3D4B;
 }
 .banner-link {
   color: #fff;
@@ -21,7 +21,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 25px !important;
+  padding: 20px 20px 20px 40px !important;
+  background-color: #F9F9FA;
 }
 .myapps-start-left-wrap p {
   color: #89879f;
@@ -31,16 +32,30 @@
   margin-bottom: 40px
 }
 .myapps-button {
-  margin-top: 50px;
-}
-.myapps-button a {
+  margin-top: 30px;
+  width: 70%;
   background-color: #715ad1;
   border-radius: 3px;
+  padding: 20px;
+  text-align: center;
+}
+.myapps-button.signing {
+  background-color: #fff;
+  border: 2px solid #715ad1;
+  color: #715ad1;
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 30px auto;
+  text-transform: uppercase;
+  word-break: break-word;
+  width: 80%;
+}
+.myapps-button a {
   color: #fff;
-  padding: 16px;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 22px;
+  font-weight: 800;
+  font-size: 20px;
 }
 .connectModal {
   position: absolute;
@@ -85,8 +100,8 @@
 }
 .modal-footer {
   background-color: #e0dfe6;
-  border-bottom-left-radius: 5px; 
-  border-bottom-right-radius: 5px;  
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   padding: 20px 0;
 }
 .modal-footer p {
@@ -130,36 +145,6 @@ h1 {
   line-height: 32px;
   margin-bottom: 40px
 }
-.register-button {
-  position: relative;
-  background-color: #fff;
-  border-radius: 5px;
-  padding: 14px 14px 14px 64px;
-  text-decoration: none;
-  color: #000;
-  font-weight: 700;
-  font-size: 22px;
-  box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
-}
-
-.register-button span {
-  position: absolute;
-  background-color: #8380fc;
-  border-radius: 5px;
-  width: 36px;
-  height: 36px;
-  left: 12px;
-  top: 12px;
-  text-align: center;
-}
-.register-button span strong {
-  color: #fff;
-  text-align: center;
-  font-size: 38px;
-  line-height: 32px;
-  margin-top: 5px;
-}
-
 
 /* startbuilding */
 .Grid {
@@ -224,86 +209,64 @@ label {
   text-transform: uppercase;
   padding-bottom: 5px;
 }
-form input[type=text] {
-  width: 80%;
-  max-width: 450px;
-  padding: 12px 16px;
-  border: none;
-  box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
-  border-radius: 3px;
+form input[type=text],
+form textarea {
+  border: 1px solid #8986A0;
+  border-radius: 4px;
+  box-shadow: inset 0px 0px 4px rgba(134, 134, 134, 0.25);
   font-size: 16px;
   margin-left: -2px;
   margin-bottom: 20px;
+  padding: 12px 16px;
+  width: 100%;
+}
+form input[type=text]:focus,
+form textarea:focus {
+  border: solid 1px #827CFF;
+  outline: none;
+}
+form input[type='text']::placeholder,
+form textarea::placeholder {
+  color: #b2b1c2;
+}
+form .fieldError input[type=text]:focus,
+form .fieldError textarea:focus {
+  border: none;
 }
 span.note {
   color: #89879f;
 }
 .radioContainer {
-  position: relative;
   background-color: #fff;
-  box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
-  width: 80%;
-  max-width: 450px;
-  padding: 20px;
-  margin: 20px 0;
+  border: solid 1px #D8D8D8;
+  border-radius: 8px;
+  height: 100%;
+  margin: 0;
+  padding: 30px;
+  position: relative;
+}
+.radioContainer.active {
+  border-color: #5C50CA;
 }
 .radioContainer span.note {
+  color: #3F3D4B;
   display: block;
-  margin-left: 32px;
   padding: 0 0 5px;
 }
-.radioContainer input {
-  position: absolute;
-  opacity: 0;
-}
-.radioContainer label {
-  padding-bottom: 0;
-  cursor: pointer;
-}
-.radioContainer span.checkmark {
-  position: absolute;
-  top: 19px;
-  left: 12px;
-  height: 25px;
-  width: 25px;
-  background-color: #f9f9fa;
-  border-radius: 50%;
-  border: 2px solid #e0dfe6;
-}
-.radioContainer .checkmark:after {
-  top: 2px;
-  left: 2px;
-  width: 17px;
-  height: 17px;
-  border-radius: 50%;
-  background: #5c54c7;
-}
-.radioContainer input:checked ~ .checkmark {
-    background-color: #fff;
+.radioContainer input:checked ~ p {
+    color: #5c54c7;
 }
 .radioContainer p {
   display: block;
   text-transform: none;
   font-size: 18px;
-  font-weight: 200;
-  margin: -5px 0 0 32px;
+  font-weight: 700;
+  /*margin: -5px 0 0 32px;*/
   padding: 0;
 }
-.radioContainer input:checked ~ p {
-    font-weight: 700;
-    color: #5c54c7;
-}
-.radioContainer .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-.radioContainer input:checked ~ .checkmark:after {
-    display: block;
-}
 .networkDropdown {
-  width: 80%;
-  max-width: 450px;
+  /*width: 80%;*/
+  /*max-width: 450px;*/
   border: none;
   box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
   border-radius: 3px;
@@ -329,10 +292,8 @@ span.note {
   display: none;
 }
 .networkDropdown__input {
-} 
+}
 .fieldError {
-  width: 80%;
-  max-width: 450px;
   border: 1px solid #c6475b;
   margin-bottom: 20px;
   border-radius: 3px;
@@ -355,12 +316,6 @@ form .fieldError input[type="text"] {
   margin-right: 15px;
   margin-top: -5px;
 }
-.startBuilding footer {
-  border-top: 2px solid #e0dfe6; 
-  width: 80%;
-  padding: 20px 20px 100px;
-  margin: 20px auto 0;
-}
 button.continue {
   background-color: #735ad2;
   color: #fff;
@@ -369,7 +324,6 @@ button.continue {
   text-decoration: none;
   float: right;
 }
-
 
 /* myapps.js */
 .myAppsBody {
@@ -386,18 +340,19 @@ button.continue {
   margin-top: 40px;
 }
 .appItem {
-  width: 26.65%;
-  min-width: 217px;
-  height: 217px;
-  list-style-type: none;
-  float: left;
-  box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
-  text-align: center;
-  margin-right: 8%;
-  margin-bottom: 40px;
-  position: relative;
-  cursor: pointer;
   border-radius: 3px;
+  box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
+  cursor: pointer;
+  float: left;
+  /*height: 217px;*/
+  list-style-type: none;
+  margin-bottom: 40px;
+  margin-right: 8%;
+  min-width: 217px;
+  padding: 0 20px 20px;
+  position: relative;
+  text-align: center;
+  width: 26.65%;
 }
 .appItem:before {
   background-image: none;
@@ -406,13 +361,14 @@ button.continue {
 .appItem .avatar.default {
   position: absolute;
   background-image: url(../../images/myapps-bg.svg);
-  top: 15%;
+  top: 32px;
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  left: 26%;
+  left: 50%;
   background-size: 350px;
   background-position: 6% 38%;
+  transform: translateX(-50%);
 }
 
 .appItem .avatar.uploaded {
@@ -421,24 +377,25 @@ button.continue {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  left: 26%;
+  left: 50%;
   background-size: 100px;
+  transform: translateX(-50%);
 }
 
 .appItem:nth-child(3n) {
   margin-right: 0;
 }
 .appCover {
-  width: 100%;
-  height: 40%;
   background-color: #5c54c7;
-  margin-bottom: 60px;
-  border-top-right-radius: 3px;
   border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  height: 88px;
+  margin: 0 -20px 60px -20px;
 }
 .appItem h3 {
   font-size: 18px;
   margin-bottom: -2px;
+  word-break: break-word;
 }
 .appItem span {
   color: #89879f;
@@ -446,22 +403,23 @@ button.continue {
   text-transform: capitalize;
 }
 .register-button {
+  background-color: #fff;
+  border: solid 1px #5C50CA;
+  border-radius: 4px;
+  box-shadow: 0 0 4px rgba(39, 38, 42, 0.12);
   float: right;
+  font-size: 14px;
+  line-height: 1em;
   margin-top: 40px;
+  padding: 15px;
   position: relative;
-  font-size: 18px;
-  padding: 14px 14px 14px 54px;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 .register-button span {
-  width: 32px;
-  height: 32px;
-  top: 8px;
-}
-.register-button span strong {
-  color: #fff;
-  text-align: center;
-  font-size: 38px;
-  line-height: 32px;
+  display: inline-block;
+  font-size: 18px;
+  margin-right: 20px;
 }
 
 /* sample-code.js */
@@ -513,9 +471,6 @@ button.continue {
 }
 
 /* App Branding Styles */
-.startBuilding .appBranding {
-  max-width: 80%;
-}
 .startBuilding .brandingPreview {
   margin-top: 50px;
 }
@@ -593,12 +548,22 @@ button.continue {
   background-position: 0% 0%;
 }
 
+.btn-cancel {
+  border: none;
+  background: none;
+  box-shadow: none;
+  color: #8986a0;
+  margin-top: 32px;
+  float: right;
+  text-transform: uppercase;
+}
 /* AppDetail */
 .appDetailHeaderWrap {
   background-color: #fff;
+  box-shadow: 0px 0px 20px rgba(139, 139, 139, 0.5);
   min-height: 140px;
   padding: 30px;
-  box-shadow: 0px 0px 20px rgba(139, 139, 139, 0.5)
+  position: relative;
 }
 .appDetailHeader .avatar.default {
   background-image: url(../../images/myapps-bg.svg);
@@ -626,4 +591,203 @@ button.continue {
 .sampleInstructions li:before {
   background-image: none;
   bottom: auto;
+}
+
+/* Server Flow */
+.headsUp {
+  margin-top: 30px;
+  background-color: #fff;
+  position: relative;
+  height: 60px;
+  border-radius: 5px;
+  padding: 20px 0 20px 20px;
+  width: 70%;
+}
+.headsUp p {
+  font-size: 14px;
+  line-height: 19px;
+  padding-left: 50px;
+}
+.headsUp p:before {
+  content: url(../../images/headsUp.svg);
+  position: absolute;
+  top: 13px;
+  left: 20px;
+}
+
+.configuratorWrap {
+  background-image: url(../../images/configuratorBg.svg);
+  background-size: cover;
+}
+
+.configuratorWrap section {
+  min-height: calc(100vh - 100px);
+  padding-bottom: 30px;
+}
+
+.configuratorWrap section header {
+  /*width: 70vw;*/
+  padding: 15vh 0 0 0;
+  /*margin: 0 auto;*/
+}
+.configuratorWrap section header h2 {
+  font-weight: 800;
+  text-align: center;
+}
+.configuratorWrap section header a.cancel {
+  font-weight: 700;
+  float: right;
+  text-decoration: none;
+  color: #8986A0;
+  padding: 30px 30px 0 0;
+}
+.module {
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0px 0px 20px rgba(139, 139, 139, 0.5);
+  padding: 50px 20px 30px;
+  /*clear: both;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 30px;
+  /*width: 70vw;*/
+}
+
+.module h4 {
+  display: inline;
+  font-size: 16px;
+}
+.module span.step {
+  background-color: #62B482;
+  border-radius: 50%;
+  text-align: center;
+  padding: 5px 10px;
+  height: 20px;
+  width: 20px;
+  margin-right: 20px;
+  color: #fff;
+  font-weight: 800;
+}
+
+.module .storeBadge {
+  margin: 0 0 0 20px;
+  float: right;
+  margin-top: -8px;
+}
+
+.pk-confirmation {
+  background-color: #fcf2e5;
+  margin-top: 30px;
+  width: 80%;
+  padding: 30px;
+  margin: 30px auto;
+  border-radius: 3px;
+}
+
+.pk-confirmation span {
+  color: #3F3D4B;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.pk-confirmation input {
+  height: 60px;
+  width: 60px;
+  margin-right: 20px;
+  border-radius: 3px;
+  border: 1px solid #d9d8df;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.pk-confirmation.hidden {
+  display: none;
+}
+
+footer.stepFooter {
+  align-items: center;
+  background: #fff;
+  box-shadow: 0px 0px 12px 2px rgba(100,100,100,0.12);
+  display: grid;
+  grid-gap: 20px;
+  overflow: auto;
+  padding: 10px 40px;
+}
+
+footer.stepFooter .cta-prev {
+  justify-self: center;
+}
+
+footer.stepFooter .cta-prev button {
+  background-color: transparent;
+  display: flex;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+footer.stepFooter .cta-prev p {
+  color: #8986a0;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.5em;
+  text-align: left;
+  text-transform: capitalize;
+}
+footer.stepFooter .cta-prev p span {
+  display: inline-block;
+  margin: 0 4px;
+}
+
+footer.stepFooter .cta-prev img {
+  filter: FlipH;
+  height: 16px;
+  margin: 15px 20px 0 0;
+  transform: scaleX(-1);
+}
+footer.stepFooter .cta-next {
+  justify-self: center;
+}
+footer.stepFooter .cta-next button {
+  background-color: #5C50CA;
+  color: #fff;
+  padding: 20px;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;
+  font-weight: 800;
+  font-size: 16px;
+}
+
+footer.stepFooter .cta-next button.disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+footer.stepFooter .cta-next img {
+  margin: -3px 0 0 10px;
+}
+
+@media all and (min-width: 768px) {
+  .configuratorWrap section header h2 {
+    text-align: left;
+  }
+  .module {
+    padding: 50px 0 30px;
+  }
+  footer.stepFooter {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
+  footer.stepFooter .cta-prev {
+    justify-self: start;
+  }
+  footer.stepFooter .cta-next {
+    justify-self: end;
+  }
+}
+
+#uport__modal-content {
+  min-width: 200px;
+  width: 30vw;
 }

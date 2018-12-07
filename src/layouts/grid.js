@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 /**
   Media Query Helpers to be used with styled-components
-
   const Box = styled.div`
     margin: 20px;
     padding: 20px;
@@ -36,12 +35,11 @@ export const small = styles => `
 
 /**
   Use the Container to set a uniform content width and margin
-
   <Container>
     // content goes here
   </Container>
-
   */
+
 export const Container = styled.div`
   margin: 0 30px;
   max-width: 1200px;
@@ -49,23 +47,23 @@ export const Container = styled.div`
 `
 
 /**
-
   12-column Grid; breaks to 4-column on small screens
-
   */
+
 export const Grid = styled.div`
   display: grid;
   grid-gap: 30px 20px;
   grid-template-columns: repeat(4, 1fr);
+  ${small('width: 100%;')}
   ${medium(`
     grid-gap: 30px;
     grid-template-columns: repeat(12, 1fr);
   `)}
 `
+
 /**
   Use Col to define columns inside a Grid
   Grids can be nested inside Cols
-
   <Grid>
     <Col span={8}>
       <Grid>
@@ -84,10 +82,8 @@ export const Grid = styled.div`
       Content B
     </Col>
   </Grid>
-
   Breaks on medium, by default(ie, cols get flattened out into rows)
   To break on the large breakpoint, pass `large` as a prop:
-
   <Grid>
     <Col span={6} large>
       ...
@@ -96,7 +92,6 @@ export const Grid = styled.div`
       ...
     </Col>
   </Grid>
-
   */
 
 export const Col = styled.div`
@@ -113,5 +108,12 @@ export const Col = styled.div`
       ${medium(`grid-column: span ${props.span || 1};`)}
     `
   }}
+`
 
+export const Spacer = styled.div`
+  ${small(`display: none;`)}
+  ${props => medium(`
+    display: block;
+    grid-column: span ${props.span || 1};
+  `)}
 `

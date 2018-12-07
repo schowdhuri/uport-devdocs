@@ -1,49 +1,14 @@
-import { createStore } from 'redux'
-import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+import { persistStore } from 'redux-persist'
+import createMiddleware from 'redux-saga'
 
-const persistConfig = {
-  key: 'profile',
-  storage
-}
+import createStore from './createStore'
+import rootSaga from './sagas'
+import { persistedReducer } from './reducers'
 
-const initialState = {
-  profile: {},
-  currentApp: {name: '', configuration: {network: 'mainnet', accountType: 'keypair'}}
-}
-
-const reducer = (state = initialState, action) => {
-  if (action.type === `SAVE_PROFILE`) {
-    return Object.assign({}, state, {
-      profile: action.profile
-    })
-  }
-  if (action.type === `SET_CURRENT_APP`) {
-    return Object.assign({}, state, {
-      currentApp: action.app
-    })
-  }
-  if (action.type === `CLEAR_CURRENT_APP`) {
-    return Object.assign({}, state, {
-      currentApp: initialState.currentApp
-    })
-  }
-  if (action.type === `SAVE_APPS`) {
-    return Object.assign({}, state, {
-      profile: {...state.profile, uportApps: action.uportApps}
-    })
-  }
-  if (action.type === `LOGOUT`) {
-    return Object.assign({}, state, {
-      profile: initialState.profile,
-      currentApp: initialState.currentApp
-    })
-  }
-  return state
-}
-const persistedReducer = persistReducer(persistConfig, reducer)
 export default () => {
-  let store = createStore(persistedReducer)
+  const sagaMiddleware = createMiddleware()
+  let store = createStore(persistedReducer, sagaMiddleware);
   let persistor = persistStore(store)
+  sagaMiddleware.run(rootSaga)
   return { store, persistor }
 }

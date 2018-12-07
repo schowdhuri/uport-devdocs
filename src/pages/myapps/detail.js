@@ -4,136 +4,30 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import SiteHeader from '../../components/Layout/Header'
+import { Container, Grid, Col, Spacer, small } from '../../layouts/grid'
+import AppCode from '../../components/MyApps/AppList.Code'
+import Details from '../../components/MyApps/AppList.Details'
 import myAppsBg from '../../images/myapps-bg.svg'
 import config from '../../../data/SiteConfig'
 import '../../layouts/css/myapps.css'
-
-const BodyContainer = styled.div`
-background-color: #f9f9fa;
-margin-top: 20px !important;
-padding-bottom: 60px;
-height: 100%;
-img {
-  max-width: 240px;
-  margin-top: 30px;
-}
-.detailsContainer {
-  box-shadow: 0px 0px 4px rgba(0,0,0, 0.25);
-  border-radius: 4px;
-  margin: 40px 0;
-  background-color: #fff;
-  padding: 40px;
-  clear: both;
-}
-.field {
-  border-bottom: 0.5px solid #dadada;
-  margin-bottom: 20px;
-}
-.field h4 {
-  text-transform: uppercase;
-  color: #8986A0;
-  font-size: 14px;
-  line-height: 19px;
-}
-.field p {
-  color: #3F3D4B;
-  font-size: 18px
-  line-height: 32px;
-  margin-bottom: 10px;
-  font-weight: 400;
-  text-transform: capitalize;
-}
-.detailsContainer .appItem {
-  width: 45%;
-  min-width: 250px;
-  height: 250px;
-  margin: 0 auto;
-  display: inline-block;
-  float: none;
-}
-.detailsContainer .appItem .avatar {
-  left: 29%;
-}
-.previewContainer {
-  text-align: center;
-  padding-top: 20px;
-}
-.previewContainer p {
-  text-align: left;
-  margin: 0 auto;
-  font-size: 16px;
-  line-height: 20px;
-  display: inline-block;
-  margin-top: 30px;
-  width: 45%;
-  min-width: 250px;
-}
-.returnLink {
-  float: right;
-  color: #8986A0;
-  margin: 20px 0;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 32px;
-  padding-right: 5px;
-}
-.appDetailHeaderWrap .appDetailHeader {
-  width: 80%;
-  margin: 0 auto;
-  max-width: 800px;
-}
-@media screen and (max-width: 600px) {
-    .appDetailHeaderWrap {
-      margin-top: 60px;
-    }
-    .detailsContainer .Grid {
-      display: block;
-    }
-    .detailsContainer .Grid-cell {
-      width: 100%;
-      min-width: 100%;
-    }
-    .previewContainer .appItem, .previewContainer p {
-      width: 45%;
-      min-width: 190px;
-    }
-    .detailsContainer .appItem .avatar {
-      left: 24%;
-    }
-    .returnLink {
-      float:left;
-    }
-  }
-`
 
 class AppDetail extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      bgImageStyle: {},
-      ipfsLookupDone: false
+      tab: "details"
     }
   }
-  getProfileImage (app) {
-    if (app.configuration.profile) {
-      let profileClaim = 'https://ipfs.io' + app.configuration.profile['/']
-      let that = this
-      fetch(profileClaim).then(function (response) {
-        if (response.status >= 400) { console.log('Bad response from IPFS') }
-        return response.json()
-      }).then(function (data) {
-        let profileImageUrl = 'https://ipfs.io' + data.profileImage['/']
-        that.setState({bgImageStyle: {backgroundImage: `url(${profileImageUrl})`}, ipfsLookupDone: true})
-      })
-    } else {
-      this.setState({bgImageStyle: {backgroundImage: `url(${myAppsBg})`}, ipfsLookupDone: true})
-    }
+  changeTab = tabId => () => {
+    if(this.state.tab != tabId)
+      this.setState({ tab: tabId })
   }
   render () {
-    if (!this.state.ipfsLookupDone) this.getProfileImage(this.props.currentApp)
-    console.log(this.props.currentApp)
+    const { tab } = this.state
+    const bgImageStyle = (this.props.currentApp.configuration.profileImage 
+      ? {backgroundImage: `url(https://ipfs.io${this.props.currentApp.configuration.profileImage})`}
+      : {backgroundImage: `url(${myAppsBg})`})
+    console.log(bgImageStyle)
     return (
       Object.keys(this.props.profile).length
       ? <div className='index-container myAppsWrap getStarted'>
@@ -147,39 +41,39 @@ class AppDetail extends React.Component {
           </AppManagerHeadContainer>
           <div className='appDetailHeaderWrap'>
             <div className='appDetailHeader'>
-              <div className={'avatar ' + (this.props.currentApp.configuration.profile ? 'uploaded' : 'default')} style={this.state.bgImageStyle}>&nbsp;</div>
+              <div className={'avatar ' + (this.props.currentApp.configuration.profileImage ? 'uploaded' : 'default')} style={bgImageStyle}>&nbsp;</div>
               <h3>{this.props.currentApp.name}</h3>
             </div>
+            <Tabbar>
+              <Container>
+                <Grid>
+                  <Spacer span={1} />
+                  <Col span={10}>
+                    <Tab active={tab=='details'} onClick={this.changeTab('details')}>App Details</Tab>
+                    <Tab active={tab=='code'} onClick={this.changeTab('code')}>App Code</Tab>
+                  </Col>
+                  <Spacer span={1} />
+                </Grid>
+              </Container>
+            </Tabbar>
           </div>
-          <BodyContainer className='myAppsBody'>
-            <a href='/myapps/list' className='returnLink'>Return to My Apps</a>
-            <div className='detailsContainer'>
-              <div className={'Grid Grid--gutters'}>
-                <div className='Grid-cell'>
-                  <div className='field'>
-                    <h4 className='label'>App Name</h4>
-                    <p>{this.props.currentApp.name}</p>
-                  </div>
-                  <div className='field'>
-                    <h4 className='label'>Network</h4>
-                    <p>{this.props.currentApp.configuration.network}</p>
-                  </div>
-                  <div className='field'>
-                    <h4 className='label'>Account Type</h4>
-                    <p>{this.props.currentApp.configuration.accountType}</p>
-                  </div>
-                </div>
-                <div className='Grid-cell previewContainer'>
-                  <div className='appItem'>
-                    <div className='appCover' style={{backgroundColor: this.props.currentApp.configuration.accentColor || '#5c54c7'}}>&nbsp;</div>
-                    <div className={'avatar ' + (this.props.currentApp.configuration.profile ? 'uploaded' : 'default')} style={this.state.bgImageStyle}>&nbsp;</div>
-                    <h3>{this.props.currentApp.name}</h3>
-                    <span>{this.props.currentApp.configuration.network}</span>
-                  </div>
-                  <p>This is how users see your app in their uPort mobile app.</p>
-                </div>
-              </div>
-            </div>
+          <BodyContainer>
+            <Grid>
+              <Spacer span={1} />
+              <Col span={10}>
+                <a href='/myapps/list' className='returnLink'>Return to My Apps</a>
+              </Col>
+              <Spacer span={1} />
+              <Spacer span={1} />
+              <Col span={10}>
+                {tab == 'details'
+                  ? <Details
+                      currentApp={this.props.currentApp}
+                      bgImageStyle={bgImageStyle} />
+                  : <AppCode currentApp={this.props.currentApp} />}
+              </Col>
+              <Spacer span={1} />
+            </Grid>
           </BodyContainer>
         </main>
       </div>
@@ -188,8 +82,110 @@ class AppDetail extends React.Component {
   }
 }
 
+const BodyContainer = styled(Container)`
+  background-color: #f9f9fa;
+  margin-top: 20px !important;
+  padding-bottom: 60px;
+  img {
+    max-width: 240px;
+    margin-top: 30px;
+  }
+  .detailsContainer {
+    box-shadow: 0px 0px 4px rgba(0,0,0, 0.25);
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 40px;
+  }
+  .field {
+    border-bottom: 0.5px solid #dadada;
+    margin-bottom: 20px;
+  }
+  .field h4 {
+    text-transform: uppercase;
+    color: #8986A0;
+    font-size: 14px;
+    line-height: 19px;
+  }
+  .field p {
+    color: #3F3D4B;
+    font-size: 18px
+    line-height: 32px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    text-transform: capitalize;
+  }
+  .detailsContainer .appItem {
+    width: 45%;
+    // min-width: 250px;
+    height: 250px;
+    margin: 0 auto;
+    display: inline-block;
+    float: none;
+  }
+  .previewContainer {
+    text-align: center;
+    padding-top: 20px;
+  }
+  .previewContainer p {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 20px;
+    display: block;
+    margin-top: 30px;
+    width: 45%;
+  }
+  .returnLink {
+    float: right;
+    color: #8986A0;
+    margin: 20px 0 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 32px;
+    padding-right: 5px;
+  }
+  .appDetailHeaderWrap .appDetailHeader {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 800px;
+  }
+  ${small(`
+    .detailsContainer {
+      padding: 20px;
+    }
+  `)}
+`
 const AppManagerHeadContainer = styled.div`
   background: ${props => props.theme.brand}
+`
+const Tabbar = styled.div`
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+`
+const Tab = styled.button`
+  background: none
+  border: none;
+  color: #8986A0;
+  margin-right: 10px;
+  outline-width: 0.5px;
+  padding: 5px;
+  text-transform: uppercase;
+  ${props => props.active
+    ? `
+      color: #5C50CA;
+      &::after {
+        background: #5C50CA;
+        bottom: -5px;
+        content: "";
+        display: block;
+        height: 3px;
+        position: relative;
+      }
+    ` : ''}
 `
 
 export const pageQuery = graphql`

@@ -4,7 +4,7 @@ import track from '../../../utilities/track'
 import { Container, Grid, Col, large } from '../../../layouts/grid'
 
 class ServerLoginResources extends Component {
-  track = (name, properties={}) => () => {
+  track = (name, properties={}) => {
     track(name, {
       source: 'Server Login Landing',
       ...properties

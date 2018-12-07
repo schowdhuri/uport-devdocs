@@ -11,7 +11,7 @@ import AutoLinkText from 'react-autolink-text2'
 import track from '../../../utilities/track'
 
 class ServerLogin extends React.Component {
-  track = (name, properties={}) => () => {
+  track = (name, properties={}) => {
     track(name, {
       source: 'Server Login Landing',
       ...properties
