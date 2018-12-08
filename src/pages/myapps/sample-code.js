@@ -3,6 +3,7 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import Link from 'gatsby-link'
 import SiteHeader from '../../components/Layout/Header'
 import config from '../../../data/SiteConfig'
 import '../../layouts/css/myapps.css'
@@ -47,14 +48,14 @@ class MyAppsSampleCodePage extends React.Component {
               <div className='Grid-cell sidebar'>
                 <h4>Register an app</h4>
                 <ul>
-                  <li><a href='/myapps/startbuilding'>App Details</a></li>
+                  <li><Link to='/myapps/startbuilding'>App Details</Link></li>
                   <li className='active'><a href='#'>App Code</a></li>
                 </ul>
               </div>
               <div className='Grid-cell'>
                 <div className={'Grid Grid--gutters'}>
                   <div className='Grid-cell sampleInstructions'>
-                    <a href='/myapps/list' className='returnLink'>Go to My Apps</a>
+                    <Link to='/myapps/list' className='returnLink'>Go to My Apps</Link>
                     <h1>App Code</h1>
                     <ul>
                       <li>

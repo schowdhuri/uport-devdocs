@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import _ from 'lodash'
 import { cleanDoubleByteChars } from '../../../helpers/cleanDoubleByteChars'
+import Link from 'gatsby-link'
 
 class SecondaryTitle extends Component {
   render () {
@@ -22,9 +23,9 @@ class SecondaryTitle extends Component {
     const id = cleanDoubleByteChars(_.kebabCase(h2Text))
     return (
       <h2 id={id}>
-        <a href={`#${id}`} aria-hidden='true' className='anchor'>
+        <Link to={`#${id}`} aria-hidden='true' className='anchor'>
           {svgAnchor}
-        </a>
+        </Link>
         {h2Text}
       </h2>
     )

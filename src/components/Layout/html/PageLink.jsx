@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 export default props => (<div>
-  <Link href={props.url}>
+  <Link to={props.url}>
     <Prefix>{props.prefix}</Prefix>
     <Title>{props.title}</Title>
   </Link>

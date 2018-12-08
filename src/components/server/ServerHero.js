@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import heroImg from '../../images/server_hero.svg'
 import track from '../../utilities/track'
 import { Container, Grid, Col, medium } from '../../layouts/grid'
+import Link from 'gatsby-link'
 
 class ServerHero extends React.Component {
   track = (name) => () => {
@@ -24,11 +25,9 @@ class ServerHero extends React.Component {
               </p>
               <div className={'hero-features'}>
                 <div className=''>
-                  <a href='/server#server-solutions' onClick={this.track('Server Solutions Clicked')}>
-                    <div className={`hero-button`}>
-                      GET STARTED
-                    </div>
-                  </a>
+                  <Link to='/server#server-solutions' className='hero-button' onClick={this.track('Server Solutions Clicked')}>
+                    GET STARTED
+                  </Link>
                 </div>
               </div>
             </div>

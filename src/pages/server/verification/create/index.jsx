@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
+import Link from 'gatsby-link'
 import SEO from '../../../../components/SEO/SEO'
 import SiteHeader from '../../../../components/Layout/Header'
 import SiteFooter from '../../../../components/Layout/Footer'
@@ -30,11 +31,11 @@ class ServerVerification extends React.Component {
               <p>
                 A simple Credential Verification Solution for Your Server-side dApp
               </p>
-              <a href='/credentials/verification'>
+              <Link to='/credentials/verification'>
                 <div className='cta-button'>
                   GET STARTED
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
           <BodyContainer className={`body-container`}>

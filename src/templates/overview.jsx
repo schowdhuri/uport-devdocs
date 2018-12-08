@@ -23,7 +23,8 @@ export default class OverviewTemplate extends React.Component {
       components: {
         h2: SecondaryTitle,
         ul: UnorderedList,
-        ol: OrderedList
+        ol: OrderedList,
+        a: props => <Link to={props.href} {...props} />
       }
     }).Compiler
     const { slug } = this.props.pathContext

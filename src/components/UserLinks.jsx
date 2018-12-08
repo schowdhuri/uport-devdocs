@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {FaGithubAlt, FaTwitter} from 'react-icons/lib/fa'
 import {MdMessage, MdEmail} from 'react-icons/lib/md'
+import Link from 'gatsby-link'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -9,18 +10,15 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     max-width: 100%;
-    
 `
 
-const UserIcon = styled.a`
+const UserIcon = styled(Link)`
   margin-left: 25px;
   color: white;
   &:hover {
     color: rgba(0, 0, 0, .2);
     border-bottom: none;
   }
-  
-  
 `
 
 const iconStyle = {
@@ -32,13 +30,13 @@ class UserLinks extends Component {
   render() {
     return (
       <Container className="user-links">
-        <UserIcon href='https://github.com/uport-project'>
+        <UserIcon to='https://github.com/uport-project'>
           <FaGithubAlt style={iconStyle} />
         </UserIcon>
-        <UserIcon href='https://twitter.com/uport_me?lang=en'>
+        <UserIcon to='https://twitter.com/uport_me?lang=en'>
           <FaTwitter style={iconStyle} />
         </UserIcon>
-        <UserIcon href="mailto:developer@uport.me">
+        <UserIcon to="mailto:developer@uport.me">
           <MdEmail style={iconStyle} />
         </UserIcon>
       </Container>

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
+import Link from 'gatsby-link'
 import { Container, Grid, Col } from '../../layouts/grid'
 import track from '../../utilities/track'
 
@@ -20,10 +21,10 @@ class ServerResources extends Component {
             </Col>
             <Col span={4}>
               <div className='block-item'>
-                <a href='/categories/uport-transports' onClick={this.track('uPort Transports Clicked')}>
+                <Link to='/categories/uport-transports' onClick={this.track('uPort Transports Clicked')}>
                   <h4>Transports    &#x2192;</h4>
                   <p>Setup communication channels between your app and uPort clients.</p>
-                </a>
+                </Link>
                 <div className={'code-block'}>
                   <span>npm -i uport-transports</span>
                 </div>
@@ -31,10 +32,10 @@ class ServerResources extends Component {
             </Col>
             <Col span={4}>
               <div className='block-item'>
-                <a href='/categories/ethr-did' onClick={this.track('EthrDID Clicked')}>
+                <Link to='/categories/ethr-did' onClick={this.track('EthrDID Clicked')}>
                   <h4>EthrDID    &#x2192;</h4>
                   <p>Create Decentralized Identifiers and manage their interactions in your app.</p>
-                </a>
+                </Link>
                 <div className={'code-block'}>
                   <span>npm -i ethr-did</span>
                 </div>
@@ -42,10 +43,10 @@ class ServerResources extends Component {
             </Col>
             <Col span={4}>
               <div className='block-item'>
-                <a href='/categories/ethr-did-registry' onClick={this.track('EthrDID Registry Clicked')}>
+                <Link to='/categories/ethr-did-registry' onClick={this.track('EthrDID Registry Clicked')}>
                   <h4>Ethr DID Registry    &#x2192;</h4>
                   <p>Smart contract to resolve and manage decentralized identifiers (DIDs)</p>
-                </a>
+                </Link>
                 <div className={'code-block'}>
                   <span>npm -i ethr-did-registry</span>
                 </div>

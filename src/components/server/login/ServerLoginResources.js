@@ -2,9 +2,10 @@ import React, {Component} from 'react'
 import styled from 'styled-components'
 import track from '../../../utilities/track'
 import { Container, Grid, Col, large } from '../../../layouts/grid'
+import Link from 'gatsby-link'
 
 class ServerLoginResources extends Component {
-  track = (name, properties={}) => {
+  track = (name, properties={}) => () => {
     track(name, {
       source: 'Server Login Landing',
       ...properties
@@ -21,10 +22,10 @@ class ServerLoginResources extends Component {
             </Col>
             <Col span={4}>
               <div className='block-item'>
-                <a href='/categories/transports' onClick={this.track("uPort Transports Clicked")}>
+                <Link to='/categories/transports' onClick={this.track("uPort Transports Clicked")}>
                   <h4>Transports    &#x2192;</h4>
                   <p>Setup communication channels between your app and uPort clients.</p>
-                </a>
+                </Link>
                 <div className={'code-block'}>
                   <span>npm -i uport-transports</span>
                 </div>
@@ -32,10 +33,10 @@ class ServerLoginResources extends Component {
             </Col>
             <Col span={4}>
               <div className='block-item'>
-                <a href='/categories/ethr-did' onClick={this.track("EthrDID Clicked")}>
+                <Link to='/categories/ethr-did' onClick={this.track("EthrDID Clicked")}>
                   <h4>EthrDID    &#x2192;</h4>
                   <p>Create Decentralized Identifiers and manage their interactions in your app.</p>
-                </a>
+                </Link>
                 <div className={'code-block'}>
                   <span>npm -i ethr-did</span>
                 </div>
@@ -43,10 +44,10 @@ class ServerLoginResources extends Component {
             </Col>
             <Col span={4}>
               <div className='block-item'>
-                <a href='/categories/ethr-did-registry' onClick={this.track("EthrDID Registry Clicked")}>
+                <Link to='/categories/ethr-did-registry' onClick={this.track("EthrDID Registry Clicked")}>
                   <h4>Ethr DID Registry    &#x2192;</h4>
                   <p>Smart contract to resolve and manage decentralized identifiers (DIDs)</p>
-                </a>
+                </Link>
                 <div className={'code-block'}>
                   <span>npm -i ethr-did-registry</span>
                 </div>

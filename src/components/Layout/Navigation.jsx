@@ -7,7 +7,7 @@ import Search from '../Search'
 import track from '../../utilities/track'
 
 class Navigation extends React.Component {
-  track = (name, properties={}) => {
+  track = (name, properties={}) => () => {
     track(name, {
       source: 'Header',
       ...properties

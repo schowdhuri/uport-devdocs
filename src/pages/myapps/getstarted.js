@@ -3,6 +3,7 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import Link from 'gatsby-link'
 import SEO from '../../components/SEO/SEO'
 import SiteHeader from '../../components/Layout/Header'
 import config from '../../../data/SiteConfig'
@@ -39,10 +40,10 @@ class MyAppsGetStartedPage extends React.Component {
               <div className='Grid-cell'>
                 <h1>Get started building.</h1>
                 <p>Register your first app in less than 5 minutes.</p>
-                <a href='/myapps/startbuilding' className='register-button'>
+                <Link to='/myapps/startbuilding' className='register-button'>
                   <span><strong>+</strong></span>
                   Register an App
-                </a>
+                </Link>
               </div>
             </div>
           </BodyContainer>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
 import {Connect, SimpleSigner} from 'uport-connect'
+import Link from 'gatsby-link'
 import "../layouts/css/demo.css"
 
 const QRCode = require('qrcode.react');
@@ -187,7 +188,7 @@ ${JSON.stringify(this.state.profile, null, 2)}
           {(this.state.showImage && this.state.showResult === false) && (
              <div className={`demo-qr-container`}>
                <h4>Scan to provide credentials</h4>
-               <a href={this.state.uri}>
+               <Link to={this.state.uri}>
                  <QRCode
                  className={`demo-qr`}
                  value={this.state.uri}
@@ -195,7 +196,7 @@ ${JSON.stringify(this.state.profile, null, 2)}
                  bgColor={`#f9f9fa`}
                  fgColor={`#5c50ca`}
                  />
-               </a>
+               </Link>
                <div className={`demo-button`}>
                  <a href='' onClick={(e) => {this.resetDemo(e)}}>
                    Reset

@@ -14,6 +14,7 @@ import SecondaryTitle from '../components/Layout/html/SecondaryTitle'
 import CtaButton from '../components/CtaButton'
 import Announcement from '../components/Announcement'
 import getHeadings from "../utilities/getHeadings"
+import Link from 'gatsby-link'
 
 export default class CategoryTemplate extends React.Component {
   getContentWindow = () => this.contentWindow
@@ -25,7 +26,8 @@ export default class CategoryTemplate extends React.Component {
     const renderAst = new RehypeReact({
       createElement: React.createElement,
       components: {
-        'h2': SecondaryTitle
+        'h2': SecondaryTitle,
+        a: props => <Link to={props.href} {...props} />
       }
     }).Compiler
 

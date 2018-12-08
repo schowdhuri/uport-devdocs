@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import track from '../../utilities/track'
+import Link from 'gatsby-link'
 
 const FooterContainer = styled.section`
   display: flex;
@@ -33,7 +34,7 @@ const FooterContainer = styled.section`
 `
 
 class Footer extends React.Component {
-  track = (name, properties={}) => {
+  track = (name, properties={}) => () => {
     track(name, {
       source: 'Footer',
       ...properties
@@ -74,8 +75,8 @@ class Footer extends React.Component {
           <div className='footer-menu Grid-cell'>
             <h4>Platform</h4>
             <ul>
-              <li><a href='/overview/index' onClick={this.track('Overview Clicked')}>Overview</a></li>
-              <li><a href='/categories/specs' onClick={this.track('Specs Clicked')}>Protocols</a></li>
+              <li><Link to='/overview/index' onClick={this.track('Overview Clicked')}>Overview</Link></li>
+              <li><Link to='/categories/specs' onClick={this.track('Specs Clicked')}>Protocols</Link></li>
             </ul>
           </div>
           {/* <div className='footer-menu Grid-cell'> */}
@@ -92,9 +93,9 @@ class Footer extends React.Component {
             <ul>
               {/* <li><a href='#'>Build a hybrid dapp</a></li> */}
               {/* <li><a href='#'>Authenticate Wallet</a></li> */}
-              <li><a href='/uport-connect/guides/usage' onClick={this.track('Connect Guide Clicked')}>Connect</a></li>
-              <li><a href='/uport-credentials/guides/tutorial' onClick={this.track('Credentials Guide Clicked')}>Credentials</a></li>
-              <li><a href='/uport-transports/guides/modules' onClick={this.track('Transports Guide Clicked')}>Transports</a></li>
+              <li><Link to='/uport-connect/guides/usage' onClick={this.track('Connect Guide Clicked')}>Connect</Link></li>
+              <li><Link to='/uport-credentials/guides/tutorial' onClick={this.track('Credentials Guide Clicked')}>Credentials</Link></li>
+              <li><Link to='/uport-transports/guides/modules' onClick={this.track('Transports Guide Clicked')}>Transports</Link></li>
             </ul>
           </div>
           <div className='footer-menu Grid-cell'>

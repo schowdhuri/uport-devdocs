@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Link from 'gatsby-link'
 import { medium } from '../../../layouts/grid'
 
 class CancelModal extends React.Component {
@@ -15,7 +16,7 @@ class CancelModal extends React.Component {
         <p>Changes you’ve made will not be saved.</p>
         <ButtonBar>
           <StayButton onClick={this.handleStay}>No, Take me Back</StayButton>
-          <LeaveButton href='/'>Yes, Cancel</LeaveButton>
+          <LeaveButton to='/'>Yes, Cancel</LeaveButton>
         </ButtonBar>
       </Body>
     </Modal>)
@@ -91,7 +92,7 @@ const StayButton = styled.button`
     width: 266px;
   `)}
 `
-const LeaveButton = styled.a`
+const LeaveButton = styled(Link)`
   border: solid 2px #5c50ca;
   border-radius: 4px;
   display: block;

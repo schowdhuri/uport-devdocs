@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
+import Link from 'gatsby-link'
 import serverImg from '../../images/server-landing.png'
 import arrowImg from '../../images/ArrowBlack.png'
 import blueTick from '../../images/blue-tick.svg'
@@ -32,33 +33,33 @@ class ServerLanding extends Component {
                   <Col span={6}>
                     <UnorderedList>
                       <li className='blue-tick'>
-                        <a href='/credentials/login' onClick={this.track('Create & Verify Auth Requests Clicked')}>
+                        <Link to='/credentials/login' onClick={this.track('Create & Verify Auth Requests Clicked')}>
                           Create and verify authentication requests
-                        </a>
+                        </Link>
                       </li>
                       <li className='blue-tick'>
-                        <a href='/credentials/transactions'>Ask users to sign Ethereum transactions</a>
+                        <Link to='/credentials/transactions'>Ask users to sign Ethereum transactions</Link>
                       </li>
                     </UnorderedList>
                   </Col>
                   <Col span={6}>
                     <UnorderedList className='second'>
                       <li className='blue-tick'>
-                        <a href='/credentials/createverification' onClick={this.track('Create Verified Claims Clicked')}>
+                        <Link to='/credentials/createverification' onClick={this.track('Create Verified Claims Clicked')}>
                           Create verified claims
-                        </a>
+                        </Link>
                       </li>
                       <li className='blue-tick'>
-                        <a href='/credentials/requestverification' onClick={this.track('Verify Claims For Users Clicked')}>
+                        <Link to='/credentials/requestverification' onClick={this.track('Verify Claims For Users Clicked')}>
                           Verify claims for your users
-                        </a>
+                        </Link>
                       </li>
                     </UnorderedList>
                   </Col>
                   <Col span={12}>
-                    <a href='/server' className='link' onClick={this.track('View All Solutions Clicked')}>
+                    <Link to='/server' className='link' onClick={this.track('View All Solutions Clicked')}>
                       VIEW ALL SOLUTIONS
-                    </a>
+                    </Link>
                   </Col>
                 </Grid>
               </div>

@@ -3,6 +3,7 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import Link from 'gatsby-link'
 import SiteHeader from '../../components/Layout/Header'
 import AppList from '../../components/MyApps/AppList'
 import { Container, Grid, Col, Spacer } from '../../layouts/grid'
@@ -39,10 +40,10 @@ class MyAppsAppListPage extends React.Component {
                 <h1>My Apps</h1>
               </Col>
               <Col span={5}>
-                <a href='/myapps/configurator' className='register-button'>
+                <Link to='/myapps/configurator' className='register-button'>
                   <span>+</span>
                   Register an App
-                </a>
+                </Link>
               </Col>
               <Spacer span={1} />
               <Spacer span={1} />

@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
+import Link from 'gatsby-link'
 import heroImg from '../../images/web3hero.svg'
 import track from '../../utilities/track'
 import { Container, Grid, Col, medium } from '../../layouts/grid'
@@ -26,9 +27,9 @@ class Web3Hero extends React.Component {
               </p>
               <div className={'hero-features'}>
                 <div className=''>
-                  <a className='hero-button' href='#web3-solutions' onClick={this.track('Web3 Solutions Clicked')}>
+                  <Link to='#web3-solutions' className='hero-button' onClick={this.track('Web3 Solutions Clicked')}>
                     GET STARTED
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

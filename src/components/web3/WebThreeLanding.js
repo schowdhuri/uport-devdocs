@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
+import Link from 'gatsby-link'
 import web3Img from '../../images/web3monitor.png'
 import arrowImg from '../../images/ArrowBlack.png'
 import orangeTick from '../../images/orange-tick.svg'
@@ -29,7 +30,7 @@ class WebThreeLanding extends Component {
                 <Col span={6}>
                   <UnorderedList>
                     <li className='blue-tick'>
-                      <a href='/connect/login'>Create and verify authentication requests</a>
+                      <Link to='/connect/login'>Create and verify authentication requests</Link>
                     </li>
                     {/* <li className='blue-tick'> */}
                     {/*   <a href='#'>Ask users to sign Ethereum transactions</a> */}
@@ -39,17 +40,17 @@ class WebThreeLanding extends Component {
                 <Col span={6}>
                   <UnorderedList className='second'>
                     <li className='blue-tick'>
-                      <a href='/connect/sendverification'>Create and Send verified claims</a>
+                      <Link to='/connect/sendverification'>Create and Send verified claims</Link>
                     </li>
                     <li className='blue-tick'>
-                      <a href='/connect/requestverification'>Request verified claims from your users</a>
+                      <Link to='/connect/requestverification'>Request verified claims from your users</Link>
                     </li>
                   </UnorderedList>
                 </Col>
                 <Col span={12}>
-                  <a href='/web3' className='link'>
+                  <Link to='/web3' className='link'>
                     VIEW ALL SOLUTIONS
-                  </a>
+                  </Link>
                 </Col>
               </Grid>
             </Col>

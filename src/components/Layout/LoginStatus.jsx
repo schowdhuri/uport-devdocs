@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { uPortConnect } from '../../utilities/uPortConnectSetup'
+import Link from 'gatsby-link'
 import onClickOutside from 'react-onclickoutside'
 
 class LoginStatus extends Component {
@@ -40,7 +41,7 @@ class LoginStatus extends Component {
     let appItems
     if (this.props.profile.uportApps) {
       appItems = this.props.profile.uportApps.map((app, index) =>
-        <li key={index} onClick={() => { this.props.setCurrentApp(this.props.profile.uportApps[index]) }}><a href='/myapps/detail'>{app.name}</a></li>
+        <li key={index} onClick={() => { this.props.setCurrentApp(this.props.profile.uportApps[index]) }}><Link to='/myapps/detail'>{app.name}</Link></li>
       )
     }
     return (
@@ -48,13 +49,13 @@ class LoginStatus extends Component {
         { Object.keys(this.props.profile).length === 0
         ? <div>
           <a href='#' className={`nav-link w-nav-link`} onClick={(e) => { this.loginRequest(e) }}>Log In</a>
-          <a href='/myapps' className={`nav-link w-nav-link register-app`}>Register Your App</a>
+          <Link to='/myapps' className={`nav-link w-nav-link register-app`}>Register Your App</Link>
         </div>
         : <div>
           <a href='#' className={`nav-link w-nav-link myapps-nav`} onClick={(e) => { this.toggleMenu(e) }}>MyApps</a>
           {this.state.visible &&
             <ul className='myAppsDropdown'>
-              <li className=''><a href='/myapps/configurator'>Register Your App</a></li>
+              <li className=''><Link href='/myapps/configurator'>Register Your App</Link></li>
               {this.props.profile.uportApps ? appItems : null}
               <li className='logout' onClick={() => { this.handleLogout() }}><a href='#'>Logout</a></li>
             </ul>

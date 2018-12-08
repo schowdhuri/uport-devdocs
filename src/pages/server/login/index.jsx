@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
+import Link from 'gatsby-link'
 import SEO from '../../../components/SEO/SEO'
 import SiteHeader from '../../../components/Layout/Header'
 import SiteFooter from '../../../components/Layout/Footer'
@@ -37,11 +38,11 @@ class ServerLogin extends React.Component {
               <p>
                 The Login Solution for Your Server-side dApp
               </p>
-              <a href='/credentials/login' onClick={this.track("Get Started Clicked")}>
+              <Link to='/credentials/login' onClick={this.track("Get Started Clicked")}>
                 <div className='cta-button'>
                   GET STARTED
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
           <BodyContainer className={`body-container`}>

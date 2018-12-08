@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
+import Link from 'gatsby-link'
 import SEO from '../components/SEO/SEO'
 import SiteHeader from '../components/Layout/Header'
 import SiteFooter from '../components/Layout/Footer'
@@ -75,12 +76,12 @@ class Index extends React.Component {
                           <li>Build for both desktop and mobile browsers</li>
                         </UnorderedList>
                       </div>
-                      <a className='home-hero-button'
-                        href='/guides/gettingstarted'
+                      <Link className='home-hero-button'
+                        to='/guides/gettingstarted'
                         onClick={this.track('Connect With Users Clicked')}
                       >
                         Connect With Your Users
-                      </a>
+                      </Link>
                     </div>
                   </Col>
                   <Col span={6} >
@@ -93,13 +94,12 @@ class Index extends React.Component {
                           <li>Issue and Request Verified Credentials about your users</li>
                         </UnorderedList>
                       </div>
-                      <a
+                      <Link to='/uport-credentials/index'
                         className='home-hero-button'
-                        href='/uport-credentials/index'
                         onClick={this.track('Issue Credentials Clicked')}
                       >
                         Issue Verified Credentials
-                      </a>
+                      </Link>
                     </div>
                   </Col>
                 </Grid>

@@ -3,6 +3,7 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import Link from 'gatsby-link'
 import SiteHeader from '../../components/Layout/Header'
 import { Container, Grid, Col, Spacer, small } from '../../layouts/grid'
 import AppCode from '../../components/MyApps/AppList.Code'
@@ -24,7 +25,7 @@ class AppDetail extends React.Component {
   }
   render () {
     const { tab } = this.state
-    const bgImageStyle = (this.props.currentApp.configuration.profileImage 
+    const bgImageStyle = (this.props.currentApp.configuration.profileImage
       ? {backgroundImage: `url(https://ipfs.io${this.props.currentApp.configuration.profileImage})`}
       : {backgroundImage: `url(${myAppsBg})`})
     console.log(bgImageStyle)
@@ -61,7 +62,7 @@ class AppDetail extends React.Component {
             <Grid>
               <Spacer span={1} />
               <Col span={10}>
-                <a href='/myapps/list' className='returnLink'>Return to My Apps</a>
+                <Link to='/myapps/list' className='returnLink'>Return to My Apps</Link>
               </Col>
               <Spacer span={1} />
               <Spacer span={1} />

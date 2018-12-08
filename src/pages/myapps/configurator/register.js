@@ -37,7 +37,7 @@ class MyAppsRegister extends React.Component {
       callbackUrl: chasquiCallback
     }).then(requestToken => {
       const uri = message.util.paramsToQueryString(message.util.messageToURI(requestToken), {callback_type: 'post'})
-      this.setState({qrImageURI: transport.ui.getImageDataURI(uri)})  
+      this.setState({qrImageURI: transport.ui.getImageDataURI(uri)})
       // Poll Chasqui?
       transport.messageServer.poll(chasquiCallback).then(response => {
         console.log(response)
@@ -69,7 +69,7 @@ class MyAppsRegister extends React.Component {
               <section>
                 <header>
                   <h2>First things, first...</h2>
-                  <a href='/' className='cancel'>CANCEL</a>
+                  <Link to='/' className='cancel'>CANCEL</Link>
                 </header>
                 <div className='module'>
                   <span className='step'>1</span>

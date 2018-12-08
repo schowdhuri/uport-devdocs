@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
+import Link from 'gatsby-link'
 import blob from '../../images/Blob.svg'
 import track from '../../utilities/track'
 import { Container, Grid, Col, medium } from '../../layouts/grid'
@@ -21,7 +22,7 @@ class ServerSolutions extends Component {
               </a>
             </Col>
             <Col span={6}>
-              <a href='/server/login' onClick={this.track('Server Login Clicked')}>
+              <Link to='/server/login' onClick={this.track('Server Login Clicked')}>
                 <div className='left block-item'>
                   <div className='block-content'>
                     <h4>Login</h4>
@@ -29,10 +30,10 @@ class ServerSolutions extends Component {
                   </div>
                   <h3>LEARN MORE</h3>
                 </div>
-              </a>
+              </Link>
             </Col>
             <Col span={6}>
-              <a href='/credentials/createverification' onClick={this.track('Verifications Part 1 Clicked')}>
+              <Link to='/credentials/createverification' onClick={this.track('Verifications Part 1 Clicked')}>
                 <div className='right block-item'>
 
                   <div className='block-content'>
@@ -42,10 +43,10 @@ class ServerSolutions extends Component {
                   </div>
                   <h3>LEARN MORE</h3>
                 </div>
-              </a>
+              </Link>
             </Col>
             <Col span={6}>
-              <a href='/credentials/requestverification' onClick={this.track('Verifications Part 2 Clicked')}>
+              <Link to='/credentials/requestverification' onClick={this.track('Verifications Part 2 Clicked')}>
                 <div className='left block-item'>
                   <div className='block-content'>
                     <h4>Verifications</h4>
@@ -54,7 +55,7 @@ class ServerSolutions extends Component {
                   </div>
                   <h3>LEARN MORE</h3>
                 </div>
-              </a>
+              </Link>
             </Col>
           </Grid>
         </Container>

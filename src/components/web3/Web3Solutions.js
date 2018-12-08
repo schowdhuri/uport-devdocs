@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
+import Link from 'gatsby-link'
 import blob from '../../images/orange-blob.svg'
 import track from '../../utilities/track'
 import { Container, Grid, Col, medium } from '../../layouts/grid'
@@ -16,12 +17,12 @@ class Web3Solutions extends Component {
         <Container>
           <Grid>
             <Col span={12}>
-              <a name='web3-solutions'>
+              <a id='web3-solutions'>
                 <h2>Solutions for Client-Side Applications</h2>
               </a>
             </Col>
             <Col span={6}>
-              <a href='/connect/login' onClick={this.track('Web3 Login Clicked')}>
+              <Link to='/connect/login' onClick={this.track('Web3 Login Clicked')}>
                 <div className='left block-item'>
                   <div className='block-content'>
                     <h4>Login</h4>
@@ -29,12 +30,11 @@ class Web3Solutions extends Component {
                   </div>
                   <h3>LEARN MORE</h3>
                 </div>
-              </a>
+              </Link>
             </Col>
             <Col span={6}>
-              <a href='/connect/sendverification' onClick={this.track('Verifications Part 1 Clicked')}>
+              <Link to='/connect/sendverification' onClick={this.track('Verifications Part 1 Clicked')}>
                 <div className='right block-item'>
-
                   <div className='block-content'>
                     <h4>Verifications</h4>
                     <h5>Part 1</h5>
@@ -42,10 +42,10 @@ class Web3Solutions extends Component {
                   </div>
                   <h3>LEARN MORE</h3>
                 </div>
-              </a>
+              </Link>
             </Col>
             <Col span={6}>
-              <a href='/connect/requestverification' onClick={this.track('Verifications Part 2 Clicked')}>
+              <Link to='/connect/requestverification' onClick={this.track('Verifications Part 2 Clicked')}>
                 <div className='left block-item'>
                   <div className='block-content'>
                     <h4>Verifications</h4>
@@ -54,7 +54,7 @@ class Web3Solutions extends Component {
                   </div>
                   <h3>LEARN MORE</h3>
                 </div>
-              </a>
+              </Link>
             </Col>
           </Grid>
         </Container>

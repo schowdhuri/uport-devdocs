@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
+import Link from 'gatsby-link'
 
 class ServerVerificationResources extends Component {
   render () {
@@ -13,28 +14,28 @@ class ServerVerificationResources extends Component {
           <div/>
           <div/>
           <div className='block-item'>
-            <a href='/categories/transports'>
+            <Link to='/categories/transports'>
               <h4>Transports    &#x2192;</h4>
               <p>Setup communication channels between your app and uPort clients.</p>
-            </a>
+            </Link>
             <div className={'code-block'}>
               <span>npm -i uport-transports</span>
             </div>
           </div>
           <div className='block-item'>
-            <a href='/categories/ethr-did'>
+            <Link to='/categories/ethr-did'>
               <h4>EthrDID    &#x2192;</h4>
               <p>Create Decentralized Identifiers and manage their interactions in your app.</p>
-            </a>
+            </Link>
             <div className={'code-block'}>
               <span>npm -i ethr-did</span>
             </div>
           </div>
           <div className='block-item'>
-            <a href='/categories/ethr-did-registry'>
+            <Link to='/categories/ethr-did-registry'>
               <h4>Ethr DID Registry    &#x2192;</h4>
               <p>Smart contract to resolve and manage decentralized identifiers (DIDs)</p>
-            </a>
+            </Link>
             <div className={'code-block'}>
               <span>npm -i ethr-did-registry</span>
             </div>
