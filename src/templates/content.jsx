@@ -26,7 +26,9 @@ export default class ContentTemplate extends React.Component {
       createElement: React.createElement,
       components: {
         h2: SecondaryTitle,
-        a: props => <Link to={props.href} {...props} />
+        a: props => props.href.match(/^https?:\/\//)
+          ? <a href {...props} />
+          : <Link to={props.href} {...props} />
       }
     }).Compiler
 
