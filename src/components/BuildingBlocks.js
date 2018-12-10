@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
-import { Container, Grid, Col, medium } from '../layouts/grid'
+import { Container, Grid, Col, Spacer, medium } from '../layouts/grid'
 import track from '../utilities/track'
 import Link from 'gatsby-link'
 
@@ -19,7 +19,8 @@ class BuildingBlocks extends Component {
             <Col span={12}>
               <h2>Identity Building Blocks</h2>
             </Col>
-            <Col span={6} medium>
+            <Spacer span={2} large />
+            <Col span={4} span-md={6}>
               <Grid>
                 <Col span={12}>
                   <h3>Libraries</h3>
@@ -53,7 +54,7 @@ class BuildingBlocks extends Component {
                 </Col>
               </Grid>
             </Col>
-            <Col span={6} medium>
+            <Col span={4} span-md={6}>
               <Grid>
                 <Col span={12}>
                   <h3>Tools</h3>
@@ -78,6 +79,7 @@ class BuildingBlocks extends Component {
                 </Col>
               </Grid>
             </Col>
+            <Spacer span={2} large />
           </Grid>
         </Container>
       </Wrapper>
@@ -87,25 +89,25 @@ class BuildingBlocks extends Component {
 
 const Wrapper = styled.section`
   background-color: #fff;
-  padding: 250px 0 50px;
+  padding: 150px 0 50px;
 
   h2 {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: bold;
     line-height: 40px;
     margin: 0;
-    text-align: left;
+    text-align: center;
   }
   h3 {
     color: #8986A0;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 32px;
     margin: 0;
     padding: 0;
   }
   h4 {
     color: #5C50CA;
-    font-size: 24px;
+    font-size: 18px;
     line-height: 32px;
     margin: 0;
     padding: 0 0 20px;

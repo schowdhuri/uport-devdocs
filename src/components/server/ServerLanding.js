@@ -17,7 +17,7 @@ class ServerLanding extends Component {
   render() {
     return (
       <Wrapper>
-        <Container>
+        <Content>
           <Grid className='box'>
             <Col span={6} large className='left' />
             <Col span={6} large className='right'>
@@ -65,7 +65,8 @@ class ServerLanding extends Component {
               </div>
             </Col>
           </Grid>
-        </Container>
+        </Content>
+        <Background />
       </Wrapper>
     );
   }
@@ -73,7 +74,13 @@ class ServerLanding extends Component {
 
 export default ServerLanding
 
+
+const Content = styled(Container)`
+  position: relative;
+  z-index: 4;
+`
 const Wrapper = styled.section`
+position: relative;
 .box {
   background: #fff;
   border-radius: 4px;
@@ -164,4 +171,13 @@ ${large(`
     background-position: left bottom;
   }
 }
+`
+const Background = styled.div`
+  background-color: #fff;
+  bottom: -20px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: -20px;
+  z-index: 2;
 `

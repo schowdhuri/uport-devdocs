@@ -21,18 +21,22 @@ class Solutions extends Component {
 export default Solutions
 
 const SolutionsWrapper = styled.div`
-.solutions-grid {
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto;
-  grid-gap: 50px;
-  padding-top: 100px;
-  padding-top: 150px;
-  margin-bottom: -150px;
-}
-.solutions-grid-header {
-  padding: 0 20px;
-  text-align: center;
-}
+  overflow: hidden;
+  position: relative;
 
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-gap: 50px;
+    padding-top: 100px;
+    padding-top: 45vh;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 4;
+  }
+  .solutions-grid-header {
+    padding: 0 20px;
+    text-align: center;
+  }
 `

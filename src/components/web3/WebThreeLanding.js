@@ -11,7 +11,7 @@ class WebThreeLanding extends Component {
   render() {
     return (
       <Wrapper>
-        <Container>
+        <Content>
           <Grid className='box'>
             <Col span={6} large className='left' />
             <Col span={6} large className='right'>
@@ -55,7 +55,12 @@ class WebThreeLanding extends Component {
               </Grid>
             </Col>
           </Grid>
-        </Container>
+        </Content>
+        <Background>
+          <Triangle viewBox="0 0 200 100">
+            <polygon points="0,100 0,75 200,45 200,100" class="triangle" />
+          </Triangle>
+        </Background>
       </Wrapper>
     );
   }
@@ -63,99 +68,114 @@ class WebThreeLanding extends Component {
 
 export default WebThreeLanding
 
+const Content = styled(Container)`
+  position: relative;
+  z-index: 4;
+`
 const Wrapper = styled.section`
-.box {
-  background: #fff;
-  border-radius: 4px;
-  box-shadow: 0px 0px 20px rgba(139, 139, 139, 0.25);
-  overflow: hidden;
-  justify-content: space-between;
-}
-.left {
-  display: none;
-}
-.right {
-
-}
-.right-wrap {
-  margin: 2em;
-}
-.subgrid {
-  justify-content: center;
-  margin: 40px 0;
-}
-.subleft {
-
-}
-.subright {
-
-}
-hr {
-  margin: unset;
-  margin: initial;
-  border: 1px solid #e5e5e5;
-}
-h2 {
-  color: #3F3D4B;
-  font-size: 24px;
-  font-weight: 800;
-  font-style: normal;
-  line-height: 32px;
-  margin-top: 0;
-}
-li {
-  color: #E77E55;
-  font-weight: 700;
-}
-li::before {
-  background-image: url(${orangeTick});
-}
-p {
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: normal;
-  font-style: normal;
-  color: #3F3D4B;
-}
-a {
-  color: #E77E55;
-  text-decoration: none;
-}
-.link {
-  font-style: normal;
-  font-weight: 800;
-  font-size: 14px;
-  line-height: 18px;
-  color: #3F3D4B;
-  grid-area: 2 / 1 / 3 / 3;
-}
-.link::after {
-  content: url(${arrowImg});
-  margin-left: 20px;
-  vertical-align: middle;
-  text-align: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-${small(`
-  ul.second {
-    margin-top: -30px;
+  position: relative;
+  .box {
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0px 0px 20px rgba(139, 139, 139, 0.25);
+    overflow: hidden;
+    justify-content: space-between;
   }
-`)}
-${large(`
   .left {
-    display: block;
-    background-image: url(${web3Img});
-    background-position: right bottom;
-    background-repeat: no-repeat;
+    display: none;
+  }
+  .right {
+
   }
   .right-wrap {
-    margin: 76px 80px 30px 20px;
+    margin: 2em;
   }
-`)}
-@media (min-width: 1137px) {
-  .left {
-    background-position: left bottom;
+  .subgrid {
+    justify-content: center;
+    margin: 40px 0;
   }
-}
+  .subleft {
+
+  }
+  .subright {
+
+  }
+  hr {
+    margin: unset;
+    margin: initial;
+    border: 1px solid #e5e5e5;
+  }
+  h2 {
+    color: #3F3D4B;
+    font-size: 24px;
+    font-weight: 800;
+    font-style: normal;
+    line-height: 32px;
+    margin-top: 0;
+  }
+  li {
+    color: #E77E55;
+    font-weight: 700;
+  }
+  li::before {
+    background-image: url(${orangeTick});
+  }
+  p {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: normal;
+    font-style: normal;
+    color: #3F3D4B;
+  }
+  a {
+    color: #E77E55;
+    text-decoration: none;
+  }
+  .link {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 18px;
+    color: #3F3D4B;
+    grid-area: 2 / 1 / 3 / 3;
+  }
+  .link::after {
+    content: url(${arrowImg});
+    margin-left: 20px;
+    vertical-align: middle;
+    text-align: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  ${small(`
+    ul.second {
+      margin-top: -30px;
+    }
+  `)}
+  ${large(`
+    .left {
+      display: block;
+      background-image: url(${web3Img});
+      background-position: right bottom;
+      background-repeat: no-repeat;
+    }
+    .right-wrap {
+      margin: 76px 80px 30px 20px;
+    }
+  `)}
+  @media (min-width: 1137px) {
+    .left {
+      background-position: left bottom;
+    }
+  }
+`
+const Background = styled.div`
+  bottom: -40px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: 2;
+`
+const Triangle = styled.svg`
+  fill: #fff;
 `
