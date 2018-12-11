@@ -49,13 +49,13 @@ class LoginStatus extends Component {
         { Object.keys(this.props.profile).length === 0
         ? <div>
           <a href='#' className={`nav-link w-nav-link`} onClick={(e) => { this.loginRequest(e) }}>Log In</a>
-          <Link to='/myapps' className={`nav-link w-nav-link register-app`}>Register Your App</Link>
+          <Link to='/myapps/configurator' className={`nav-link w-nav-link register-app`}>Register Your App</Link>
         </div>
         : <div>
           <a href='#' className={`nav-link w-nav-link myapps-nav`} onClick={(e) => { this.toggleMenu(e) }}>MyApps</a>
           {this.state.visible &&
             <ul className='myAppsDropdown'>
-              <li className=''><Link href='/myapps/configurator'>Register Your App</Link></li>
+              <li className=''><Link to='/myapps/configurator'>Register Your App</Link></li>
               {this.props.profile.uportApps ? appItems : null}
               <li className='logout' onClick={() => { this.handleLogout() }}><a href='#'>Logout</a></li>
             </ul>

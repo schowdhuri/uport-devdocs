@@ -22,10 +22,20 @@ npm install --save uport-connect@1.1.0-alpha.12
 const initServerCode = (appDetails, appEnvironment, pk) =>
 `import { Credentials } from "uport-credentials"
 
-const uport = new Credentials('${appDetails.appName}', {
-  network: "${appEnvironment.network}",
+const uport = new Credentials({
+  did: "${appDetails.appIdentity.did}",
   privateKey: "${pk}"
-})`.replace(/ +network: "none",\n/g, '')
+})`
+
+const disclosureServerCode = (ipfsProfileHash) =>
+`uport.createDisclosureRequest({
+  notifications: true,
+  callbackUrl: endpoint + '/callback',
+  vc: ['/ipfs/${ipfsProfileHash}']
+  }).then(requestToken => {
+    ...
+  })
+})`
 
 const initClientCode = (appDetails, appEnvironment) =>
 `import { Connect } from "uport-connect"
@@ -171,7 +181,7 @@ class AppRegComplete extends Component {
     })
   }
   render () {
-    const { appDetails, appEnvironment, signingKey } = this.props
+    const { appDetails, appEnvironment, signingKey, ipfsProfileHash } = this.props
     const { verificationModal } = this.state;
     return (<div>
       <Section className={verificationModal ? 'blurred' : ''}>
@@ -184,8 +194,8 @@ class AppRegComplete extends Component {
             at our tutorials and docs.
           </p>
         </Success>
-        <Body>
-          <Container className='card-container'>
+        <Body fullWidth={appEnvironment.environment === 'client'}>
+          <Container className={'card-container ' + (appEnvironment.environment ? 'card-container-full' : null)}>
             <h3>Start Building with Your App Code</h3>
             <Card>
               <Card.Content>
@@ -212,7 +222,7 @@ class AppRegComplete extends Component {
                 </Step>
                 <Step>
                   <Step.Number>2</Step.Number>
-                  <Step.Label>Initialize uPort Connect</Step.Label>
+                  <Step.Label>Initalize uPort {appEnvironment.environment === 'server' ? 'Credentials' : 'Connect'}</Step.Label>
                   <Step.Content>
                     <CodeContainer>
                       <CopyButton
@@ -238,38 +248,62 @@ class AppRegComplete extends Component {
                     </CodeContainer>
                   </Step.Content>
                 </Step>
+                {appEnvironment.environment === 'server' 
+                ? <Step>
+                    <Step.Number>3</Step.Number>
+                    <Step.Label>Create a disclosure request</Step.Label>
+                    <Step.Content>
+                      <CodeContainer>
+                        <CopyButton
+                          onCopy={this.handleCopy(
+                                disclosureServerCode(ipfsProfileHash),
+                                'Initialize uPort Connect'
+                              )}
+                        >
+                          Copy
+                        </CopyButton>
+                        <Pre>
+                          <Code data-do-not-track-copy={true}>
+                              {disclosureServerCode(ipfsProfileHash)}
+                          </Code>
+                        </Pre>
+                      </CodeContainer>
+                    </Step.Content>
+                  </Step>
+                : null }
               </Card.Content>
               <Card.Footer>
                 {/* <CTAButton>View Full App Code</CTAButton> */}
               </Card.Footer>
             </Card>
-
-            <Card>
-              {appDetails.appURL
-                ? <Card.Content>
-                  <h4>Get uPort Verification Badge</h4>
-                  <p>Verify your URL domain in 2 easy steps</p>
-                  <Icon src={cog} />
-                  <UnorderedList>
-                    <li>Make your user feel safe while using your app</li>
-                    <li>Protect your user against phishing </li>
-                    <li>Join the community of verified uPort users</li>
-                  </UnorderedList>
-                </Card.Content>
-                : <Card.Content>
-                  <h4>Get uPort Verification Badge</h4>
-                  <Icon src={cog} />
-                  <p>
-                    If you want to build trust and verify your domain,
-                    please re-register and add your project’s url
-                  </p>
-                </Card.Content>}
-              <Card.Footer>
-                {!appDetails.appURL || <CTAButton onClick={this.showVerificationModal}>
-                  Learn How to Get the Badge
-                </CTAButton>}
-              </Card.Footer>
-            </Card>
+            {appEnvironment.environment === 'server'
+              ? <Card>
+                {appDetails.appURL
+                  ? <Card.Content>
+                    <h4>Get uPort Verification Badge</h4>
+                    <p>Verify your URL domain in 2 easy steps</p>
+                    <Icon src={cog} />
+                    <UnorderedList>
+                      <li>Make your user feel safe while using your app</li>
+                      <li>Protect your user against phishing </li>
+                      <li>Join the community of verified uPort users</li>
+                    </UnorderedList>
+                  </Card.Content>
+                  : <Card.Content>
+                    <h4>Get uPort Verification Badge</h4>
+                    <Icon src={cog} />
+                    <p>
+                      If you want to build trust and verify your domain,
+                      please re-register and add your project’s url
+                    </p>
+                  </Card.Content>}
+                <Card.Footer>
+                  {!appDetails.appURL || <CTAButton onClick={this.showVerificationModal}>
+                    Learn How to Get the Badge
+                  </CTAButton>}
+                </Card.Footer>
+              </Card>
+            : null}
           </Container>
         </Body>
       </Section>
@@ -343,7 +377,10 @@ const Body = styled.div`
       text-align: center;
     }
     ${medium(`
-      display: grid;
+      ${props => props.fullWidth
+        ? ''
+        : 'display: grid;'
+      }
       grid-template-columns: 2fr minmax(320px, 1fr);
       grid-template-rows: auto auto;
       grid-gap: 1vw 2vw;
