@@ -14,6 +14,7 @@ import UnorderedList from '../components/Layout/html/UnorderedList'
 import CtaButton from '../components/CtaButton'
 import Announcement from '../components/Announcement'
 import getHeadings from "../utilities/getHeadings"
+import Link from 'gatsby-link'
 
 export default class OverviewTemplate extends React.Component {
   getContentWindow = () => this.contentWindow
@@ -24,7 +25,9 @@ export default class OverviewTemplate extends React.Component {
         h2: SecondaryTitle,
         ul: UnorderedList,
         ol: OrderedList,
-        a: props => <Link to={props.href} {...props} />
+        a: props => props.href.match(/^https?:\/\//)
+          ? <a href {...props} />
+          : <Link to={props.href} {...props} />
       }
     }).Compiler
     const { slug } = this.props.pathContext

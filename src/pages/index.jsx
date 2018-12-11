@@ -131,10 +131,6 @@ const AnnouncementContainer = styled.div`
 `
 const IndexHeadContainer = styled.div`
   background: ${props => props.theme.brand};
-  header {
-    width: 90vw;
-    margin: 0 auto;
-  }
 `
 
 const ValueProps = styled.div`
@@ -144,6 +140,8 @@ const ValueProps = styled.div`
 `
 const Hero = styled.div`
   background-color: #fff;
+  margin-bottom: -20vh;
+
   h2 {
     font-size 24px;
     margin-top: 0;
@@ -167,8 +165,15 @@ const Hero = styled.div`
     text-decoration: none;
   }
   .hero-feature {
+    background-color: #fff;
     display: grid;
     grid-template-rows: 1fr minmax(60px, auto);
+    padding: 20px;
+    ${medium(`
+      padding: 40px;
+      position: relative;
+      top: 20vh;
+    `)}
 
     ul {
       margin: 20px 0 0;

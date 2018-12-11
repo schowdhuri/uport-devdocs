@@ -27,6 +27,11 @@ export const medium = styles => `
     ${styles}
   }
 `
+export const mediumOnly = styles => `
+  @media all and (min-width: 768px) and (max-width: 1023px) {
+    ${styles}
+  }
+`
 export const small = styles => `
   @media all and (max-width: 767px) {
     ${styles}
@@ -106,14 +111,22 @@ export const Col = styled.div`
     }
     return `
       ${medium(`grid-column: span ${props.span || 1};`)}
+      ${props['span-md']
+        ? `${mediumOnly(`grid-column: span ${props['span-md']};`)}`
+        : ''}
     `
   }}
 `
 
 export const Spacer = styled.div`
   ${small(`display: none;`)}
-  ${props => medium(`
-    display: block;
+  ${props => `
     grid-column: span ${props.span || 1};
-  `)}
+    ${props.large
+      ? `
+        display: none;
+        ${large('display: block')}
+      `
+      : medium('display: block')}
+  `}
 `

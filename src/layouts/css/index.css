@@ -113,9 +113,9 @@ h6 {
 }
 p {
     margin-top: 0;
-    margin-bottom: 10px;
-    line-height: 1.9;
-    font-size: 16px;
+    margin-bottom: 18px;
+    line-height: 1.4;
+    font-size: 18px;
 }
 a {
     color: #5c50ca;
@@ -205,7 +205,6 @@ p.hero-subheading {
   box-sizing: border-box;
   box-shadow: 0px 0px 20px rgba(139, 139, 139, 0.25);
   height: 100%;
-  padding: 2em;
 }
 
 .hero-button {

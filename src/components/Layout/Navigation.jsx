@@ -5,6 +5,7 @@ import Menu from 'react-burger-menu/lib/menus/slide'
 import LoginStatus from './LoginStatus'
 import Search from '../Search'
 import track from '../../utilities/track'
+import { medium, small } from '../../layouts/grid'
 
 class Navigation extends React.Component {
   track = (name, properties={}) => () => {
@@ -135,22 +136,22 @@ const NavContainer = styled.nav`
     text-transform: none;
   }
 
-  @media screen and (max-width: 1068px) {
+  ${small(`
     display: flex;
     flex-direction: column;
 
     #topNav {
       display: none;
     }
-  }
-  @media screen and (min-width: 1068px) {
+  `)}
+  ${medium(`
     #responsiveNavContainer {
       display: none;
     }
     #topNav {
       display: flex;
     }
-  }
+  `)}
 `
 const StyledLink = styled(Link)`
   &.active {

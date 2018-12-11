@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
+import bgPatternWhite from '../../images/bg-pattern-white.svg'
 import heroImg from '../../images/server_hero.svg'
 import track from '../../utilities/track'
 import { Container, Grid, Col, medium } from '../../layouts/grid'
@@ -42,6 +43,8 @@ class ServerHero extends React.Component {
 export default ServerHero
 
 const Hero = styled.div`
+  background: url(${bgPatternWhite});
+  background-size: 60%;
   margin-bottom: 100px;
   .left {
     position: relative;
