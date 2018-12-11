@@ -23,15 +23,16 @@ class CopyButton extends React.Component {
 }
 
 const Button = styled.button`
-  background: none;
+  background: #f5f5fa;
+  border-radius: 0 0 0 4px;
   color: #979797;
   display: flex;
   font-size: 10px;
-  padding: 0;
+  padding: 10px 10px 0;
   position: absolute;
-  right: 0;
+  right: 1px;
   text-transform: uppercase;
-  top: 10px;
+  top: 1px;
   ${props => props.copied ? 'color: #5c50ca;' : ''}
   &:after {
     content: "";

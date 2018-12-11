@@ -248,7 +248,7 @@ class AppRegComplete extends Component {
                     </CodeContainer>
                   </Step.Content>
                 </Step>
-                {appEnvironment.environment === 'server' 
+                {appEnvironment.environment === 'server'
                 ? <Step>
                     <Step.Number>3</Step.Number>
                     <Step.Label>Create a disclosure request</Step.Label>
@@ -462,7 +462,10 @@ Step.Content = styled.div`
 `
 const Code = styled.code``
 const Pre = styled.pre`
-  background: rgba(223, 222, 237, 0.18);
+  background: #f5f5fa;
+  border: solid 1px #e3e3e4;
+  border-radius: 4px;
+  box-shadow: 0 0 4px 0 inset #e3e3e4;
   margin: 0;
   padding: 40px 20px 20px;
 `

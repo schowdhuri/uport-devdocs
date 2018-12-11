@@ -26,9 +26,7 @@ const initClientCode = (appName, network) =>
 `import { Connect } from "uport-connect"
 
 const uport = new Connect('${appName}', {
-  clientid: "<client ID>",
-  network: "${network}",
-  signer: SimpleSigner("<private key>")
+  network: "${network}"
 })`.replace(/ +network: "none",\n/g, '')
 
 const requestCredentials =
@@ -127,17 +125,19 @@ class AppCode extends React.Component {
               <Step.Number>1</Step.Number>
               <Step.Label>Install Libraries</Step.Label>
               <Step.Content>
-                <CodeContainer>
-                  <CopyButton
-                    onCopy={this.handleCopy(installCodeClient)}>
-                    Copy
-                  </CopyButton>
-                  <Pre>
-                    <Code>
-                      {installCodeClient}
-                    </Code>
-                  </Pre>
-                </CodeContainer>
+                <CopyButton
+                  onCopy={this.handleCopy(installCodeClient)}>
+                  Copy
+                </CopyButton>
+                <Scrollable>
+                  <CodeContainer>
+                    <Pre>
+                      <Code>
+                        {installCodeClient}
+                      </Code>
+                    </Pre>
+                  </CodeContainer>
+                </Scrollable>
               </Step.Content>
             </Step>
           </div>
@@ -146,23 +146,25 @@ class AppCode extends React.Component {
               <Step.Number>2</Step.Number>
               <Step.Label>Initialize uPort Connect</Step.Label>
               <Step.Content>
-                <CodeContainer>
-                  <CopyButton
-                    onCopy={this.handleCopy(initClientCode(
-                      currentApp.name,
-                      currentApp.configuration.network
-                    ))}>
-                    Copy
-                  </CopyButton>
-                  <Pre>
-                    <Code>
-                      {initClientCode(
-                        currentApp.name,
-                        currentApp.configuration.network
-                      )}
-                    </Code>
-                  </Pre>
-                </CodeContainer>
+                <CopyButton
+                  onCopy={this.handleCopy(initClientCode(
+                    currentApp.name,
+                    currentApp.configuration.network
+                  ))}>
+                  Copy
+                </CopyButton>
+                <Scrollable>
+                  <CodeContainer>
+                    <Pre>
+                      <Code>
+                        {initClientCode(
+                          currentApp.name,
+                          currentApp.configuration.network
+                        )}
+                      </Code>
+                    </Pre>
+                  </CodeContainer>
+                </Scrollable>
               </Step.Content>
             </Step>
           </div>
@@ -171,17 +173,19 @@ class AppCode extends React.Component {
               <Step.Number>3</Step.Number>
               <Step.Label>Request Credentials</Step.Label>
               <Step.Content>
-                <CodeContainer>
-                  <CopyButton
-                    onCopy={this.handleCopy(requestCredentials)}>
-                    Copy
-                  </CopyButton>
-                  <Pre>
-                    <Code>
-                      {requestCredentials}
-                    </Code>
-                  </Pre>
-                </CodeContainer>
+                <CopyButton
+                  onCopy={this.handleCopy(requestCredentials)}>
+                  Copy
+                </CopyButton>
+                <Scrollable>
+                  <CodeContainer>
+                    <Pre>
+                      <Code>
+                        {requestCredentials}
+                      </Code>
+                    </Pre>
+                  </CodeContainer>
+                </Scrollable>
               </Step.Content>
             </Step>
           </div>
@@ -190,17 +194,19 @@ class AppCode extends React.Component {
               <Step.Number>4</Step.Number>
               <Step.Label>Attest Credentials</Step.Label>
               <Step.Content>
-                <CodeContainer>
-                  <CopyButton
-                    onCopy={this.handleCopy(attestCredentials)}>
-                    Copy
-                  </CopyButton>
-                  <Pre>
-                    <Code>
-                      {attestCredentials}
-                    </Code>
-                  </Pre>
-                </CodeContainer>
+                <CopyButton
+                  onCopy={this.handleCopy(attestCredentials)}>
+                  Copy
+                </CopyButton>
+                <Scrollable>
+                  <CodeContainer>
+                    <Pre>
+                      <Code>
+                        {attestCredentials}
+                      </Code>
+                    </Pre>
+                  </CodeContainer>
+                </Scrollable>
               </Step.Content>
             </Step>
           </div>
@@ -212,17 +218,19 @@ class AppCode extends React.Component {
               <Step.Number>1</Step.Number>
               <Step.Label>Install Libraries</Step.Label>
               <Step.Content>
-                <CodeContainer>
-                  <CopyButton
-                    onCopy={this.handleCopy(installCodeServer)}>
-                    Copy
-                  </CopyButton>
-                  <Pre>
-                    <Code>
-                      {installCodeServer}
-                    </Code>
-                  </Pre>
-                </CodeContainer>
+                <CopyButton
+                  onCopy={this.handleCopy(installCodeServer)}>
+                  Copy
+                </CopyButton>
+                <Scrollable>
+                  <CodeContainer>
+                    <Pre>
+                      <Code>
+                        {installCodeServer}
+                      </Code>
+                    </Pre>
+                  </CodeContainer>
+                </Scrollable>
               </Step.Content>
             </Step>
           </div>
@@ -231,23 +239,25 @@ class AppCode extends React.Component {
               <Step.Number>2</Step.Number>
               <Step.Label>Initialize Credentials</Step.Label>
               <Step.Content>
-                <CodeContainer>
-                  <CopyButton
-                    onCopy={this.handleCopy(initServerCode(
-                      currentApp.name,
-                      currentApp.configuration.network
-                    ))}>
-                    Copy
-                  </CopyButton>
-                  <Pre>
-                    <Code>
-                      {initServerCode(
-                        currentApp.name,
-                        currentApp.configuration.network
-                      )}
-                    </Code>
-                  </Pre>
-                </CodeContainer>
+                <CopyButton
+                  onCopy={this.handleCopy(initServerCode(
+                    currentApp.name,
+                    currentApp.configuration.network
+                  ))}>
+                  Copy
+                </CopyButton>
+                <Scrollable>
+                  <CodeContainer>
+                    <Pre>
+                      <Code>
+                        {initServerCode(
+                          currentApp.name,
+                          currentApp.configuration.network
+                        )}
+                      </Code>
+                    </Pre>
+                  </CodeContainer>
+                </Scrollable>
               </Step.Content>
             </Step>
           </div>
@@ -256,17 +266,19 @@ class AppCode extends React.Component {
               <Step.Number>3</Step.Number>
               <Step.Label>Create Disclosure Request</Step.Label>
               <Step.Content>
-                <CodeContainer>
-                  <CopyButton
-                    onCopy={this.handleCopy(createDisclosureRequest)}>
-                    Copy
-                  </CopyButton>
-                  <Pre>
-                    <Code>
-                      {createDisclosureRequest}
-                    </Code>
-                  </Pre>
-                </CodeContainer>
+                <CopyButton
+                  onCopy={this.handleCopy(createDisclosureRequest)}>
+                  Copy
+                </CopyButton>
+                <Scrollable>
+                  <CodeContainer>
+                    <Pre>
+                      <Code>
+                        {createDisclosureRequest}
+                      </Code>
+                    </Pre>
+                  </CodeContainer>
+                </Scrollable>
               </Step.Content>
             </Step>
           </div>
@@ -275,17 +287,19 @@ class AppCode extends React.Component {
               <Step.Number>4</Step.Number>
               <Step.Label>Issue Attestation</Step.Label>
               <Step.Content>
-                <CodeContainer>
-                  <CopyButton
-                    onCopy={this.handleCopy(issueAttestation)}>
-                    Copy
-                  </CopyButton>
-                  <Pre>
-                    <Code>
-                      {issueAttestation}
-                    </Code>
-                  </Pre>
-                </CodeContainer>
+                <CopyButton
+                  onCopy={this.handleCopy(issueAttestation)}>
+                  Copy
+                </CopyButton>
+                <Scrollable>
+                  <CodeContainer>
+                    <Pre>
+                      <Code>
+                        {issueAttestation}
+                      </Code>
+                    </Pre>
+                  </CodeContainer>
+                </Scrollable>
               </Step.Content>
             </Step>
           </div>
@@ -333,17 +347,26 @@ Step.Content = styled.div`
   overflow: auto;
   position: relative;
 `
-const Code = styled.code``
-const Pre = styled.pre`
-  margin: 0;
-  padding: 40px 20px 20px;
-`
-const CodeContainer = styled.div`
-  background: rgba(223, 222, 237, 0.18);
+const Scrollable = styled.div`
+  background: #f5f5fa;
+  border: solid 1px #e3e3e4;
+  border-radius: 4px;
+  box-shadow: 0 0 4px 0 inset #e3e3e4;
   overflow: auto;
   ${medium(`
     height: 200px;
   `)}
+`
+const Code = styled.code``
+const Pre = styled.pre`
+  color: #606061;
+  margin: 0;
+  overflow: visible;
+  padding: 40px 20px 20px;
+`
+const CodeContainer = styled.div`
+  border-radius: 4px;
+  overflow: visible;
 `
 
 export default AppCode
