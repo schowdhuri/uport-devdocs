@@ -56,7 +56,6 @@ class MyAppsConfigurator extends React.Component {
     if (this.state.appDetails.appDescription) profileClaim['description'] = this.state.appDetails.appDescription
 
     const credentials = new Credentials({
-      appName: this.state.appDetails.appName,
       did: this.state.appDetails.appIdentity.did,
       privateKey: this.state.appDetails.appIdentity.pk
     })
