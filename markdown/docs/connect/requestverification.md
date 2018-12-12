@@ -71,6 +71,10 @@ Create a file named `index.html` and add the following markup/code as the conten
       Give the module a second to load...
     </div>
     <script type="text/javascript">
+     //////////////////////////////
+     //  Configure connect object
+     /////////////////////////////
+
      const Connect = window.uportconnect
      const uport = new Connect('MyDApp')
 

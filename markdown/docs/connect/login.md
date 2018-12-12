@@ -69,10 +69,15 @@ Now for the fun part!  Let's create our simple dApp with login capabilities usin
     <div id="msg">
       Give the module a second to load...
     </div>
-    <script type="text/javascript">Setup a connect object
+    <script type="text/javascript">
+     //////////////////////////////
+     //  Configure connect object
+     /////////////////////////////
+
      const Connect = window.uportconnect
      const uport = new Connect('MyDApp')
-     //Ask the user for their address information by using default disclosure behavior.
+     //Ask the user for their address information
+     //by using default disclosure behavior.
      uport.requestDisclosure()
 
      uport.onResponse('disclosureReq').then(res => {
@@ -81,7 +86,7 @@ Now for the fun part!  Let's create our simple dApp with login capabilities usin
        console.log(json)
        document.querySelector('#msg').innerHTML = "Congratulations you are now <b>logged in</b>`.  Here is your DID identifier:  " + json
      })
-     
+    
     </script>
   </body>
 </html>
