@@ -58,7 +58,7 @@ class WebThreeLanding extends Component {
         </Content>
         <Background>
           <Triangle viewBox="0 0 200 100">
-            <polygon points="0,100 0,75 200,45 200,100" class="triangle" />
+            <polygon points="0,100 0,75 200,45 200,100" className="triangle" />
           </Triangle>
         </Background>
       </Wrapper>

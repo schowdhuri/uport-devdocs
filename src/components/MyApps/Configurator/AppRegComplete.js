@@ -194,8 +194,8 @@ class AppRegComplete extends Component {
             at our tutorials and docs.
           </p>
         </Success>
-        <Body fullWidth={appEnvironment.environment === 'client'}>
-          <Container className={'card-container ' + (appEnvironment.environment ? 'card-container-full' : null)}>
+        <Body>
+          <Container className={'card-container ' + (appEnvironment.environment === 'client' ? 'card-container-full' : null)}>
             <h3>Start Building with Your App Code</h3>
             <Card>
               <Card.Content>
@@ -248,7 +248,7 @@ class AppRegComplete extends Component {
                     </CodeContainer>
                   </Step.Content>
                 </Step>
-                {appEnvironment.environment === 'server'
+                {appEnvironment.environment === 'server' 
                 ? <Step>
                     <Step.Number>3</Step.Number>
                     <Step.Label>Create a disclosure request</Step.Label>
@@ -377,10 +377,7 @@ const Body = styled.div`
       text-align: center;
     }
     ${medium(`
-      ${props => props.fullWidth
-        ? ''
-        : 'display: grid;'
-      }
+      display: grid;
       grid-template-columns: 2fr minmax(320px, 1fr);
       grid-template-rows: auto auto;
       grid-gap: 1vw 2vw;
@@ -392,6 +389,9 @@ const Body = styled.div`
         text-align: left;
       }
     `)}
+  }
+  .card-container-full {
+    display: block
   }
 `
 const Card = styled.div`
@@ -462,10 +462,7 @@ Step.Content = styled.div`
 `
 const Code = styled.code``
 const Pre = styled.pre`
-  background: #f5f5fa;
-  border: solid 1px #e3e3e4;
-  border-radius: 4px;
-  box-shadow: 0 0 4px 0 inset #e3e3e4;
+  background: rgba(223, 222, 237, 0.18);
   margin: 0;
   padding: 40px 20px 20px;
 `
