@@ -4,56 +4,14 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { uPortConnect } from '../../utilities/uPortConnectSetup'
 import { connect } from 'react-redux'
+import Link from 'gatsby-link'
 
 import config from '../../../data/SiteConfig'
 import myAppsBg from '../../images/myapps-bg.svg'
 import greenTick from '../../images/greenTick.svg'
+import logo from '../../images/Horizontal-Logo-purple.svg'
+import { medium } from '../../layouts/grid'
 import '../../layouts/css/myapps.css'
-
-const BodyContainer = styled.div`
-  padding: 0;
-  overflow: hidden;
-  ul {
-     margin-top: 1em;
-     list-style: none;
-     padding-left: 20px;
-  }
-  ul li {
-    line-height: 32px;
-    font-size: 20px;
-  }
-  ul li::before {
-    content: '';
-    color: #62B482;
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    margin-right: 15px;
-    vertical-align: middle;
-    text-align: center;
-    position: relative;
-    bottom: 2px;
-    direction: rtl;
-    background-image: url(${greenTick});
-    background-size: contain;
-    background-repeat: no-repeat;
-  }
-  .myapps-start-right {
-    height: 100vh;
-    background-image: url(${myAppsBg});
-    padding: 0;
-    overflow: hidden;
-    @media all and (max-width: 768px) {
-      display: none;
-    }
-  }
-  .skewed-bg {
-    background: #f9f9fa;
-    height: 100vh;
-    width: 100px;
-    transform: skew(5deg) translateX(-50%);
-  }
-`
 
 class MyApps extends React.Component {
   constructor (props) {
@@ -89,6 +47,9 @@ class MyApps extends React.Component {
             <div className={'Grid Grid--gutters'}>
               <div className='Grid-cell myapps-start-left-wrap'>
                 <div className='myapps-start-left'>
+                  <Link to='/'>
+                    <Logo src={logo} />
+                  </Link>
                   <h1 className='title'>Decentralized Identity for Decentralized Applications</h1>
                   <ul>
                     <li>Seamless login.</li>
@@ -115,6 +76,62 @@ class MyApps extends React.Component {
     )
   }
 }
+
+const BodyContainer = styled.div`
+  padding: 0;
+  overflow: hidden;
+  ul {
+     margin-top: 1em;
+     list-style: none;
+     padding-left: 20px;
+  }
+  ul li {
+    line-height: 32px;
+    font-size: 20px;
+  }
+  ul li::before {
+    content: '';
+    color: #62B482;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-right: 15px;
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
+    bottom: 2px;
+    direction: rtl;
+    background-image: url(${greenTick});
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .myapps-start-left {
+    padding: 0;
+    ${medium('padding: 0 60px;')}
+  }
+  .myapps-start-right {
+    display: none;
+    height: 100vh;
+    background-image: url(${myAppsBg});
+    padding: 0;
+    overflow: hidden;
+    ${medium('display: block;')}
+  }
+  .skewed-bg {
+    background: #f9f9fa;
+    height: 100vh;
+    width: 100px;
+    transform: skew(5deg) translateX(-50%);
+  }
+`
+const Logo = styled.img`
+  margin-bottom: 20px;
+  ${medium(`
+    position: absolute;
+    top: 30px;
+  `)}
+  width: 120px;
+`
 
 export const pageQuery = graphql`
 query MyAppsQuery {

@@ -29,7 +29,7 @@ class AppDetails extends Component {
       ipfsLogoHash: null,
       ipfsBgHash: null,
       accentColor: '#5C50CA',
-      appNameValid: false,
+      appNameValid: true,
       formSubmitted: false,
       duplicateAppName: false,
       did: null,
@@ -52,6 +52,14 @@ class AppDetails extends Component {
         network: this.props.appEnvironment.network
       }
     })
+  }
+  componentDidUpdate(prevProps, prevState) {
+    const { appNameValid, validUrl } = this.state
+    if(!appNameValid && prevState.appNameValid) {
+      this.txtAppName.focus();
+    } else if(!validUrl && prevState.validUrl) {
+      this.txtAppURL.focus();
+    }
   }
   handleAppNameChange (e) {
     this.setState({appName: e.target.value})
@@ -208,7 +216,8 @@ class AppDetails extends Component {
                           id='appName'
                           placeholder='Give your app a name'
                           value={this.state.appName}
-                          onChange={this.handleAppNameChange} />
+                          onChange={this.handleAppNameChange}
+                          ref={r => this.txtAppName=r} />
                         {(!this.state.appNameValid && this.state.formSubmitted) &&
                           <span className='error'>
                             <img src={errorIcon} />
@@ -247,7 +256,8 @@ class AppDetails extends Component {
                           id='appURL'
                           placeholder='https://yourapphomepage.com'
                           value={this.state.appURL}
-                          onChange={this.handleAppURLChange} />
+                          onChange={this.handleAppURLChange}
+                          ref={r => this.txtAppURL=r} />
                         {validUrl ||
                           <span className='error'>
                             <img src={errorIcon} />
