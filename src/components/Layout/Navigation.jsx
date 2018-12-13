@@ -1,4 +1,5 @@
-import React from "react"
+import React from 'react'
+import { connect } from 'react-redux'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
 import Menu from 'react-burger-menu/lib/menus/slide'
@@ -15,7 +16,7 @@ class Navigation extends React.Component {
     })
   }
   render () {
-    const { activeCategory } = this.props
+    const { activeCategory, showSearch } = this.props
     return (
       <NavContainer>
         <section id='topNav'>
@@ -41,9 +42,9 @@ class Navigation extends React.Component {
             target='_blank'
             onClick={this.track('Blog Opened')}
           > Blog </a>
-          <div>
+          {!showSearch || <div>
             <Search />
-          </div>
+          </div>}
           <LoginStatus />
         </section>
         <div id='responsiveNavContainer'>
@@ -160,4 +161,8 @@ const StyledLink = styled(Link)`
   }
 `
 
-export default Navigation
+const mapStateToProps = state => ({
+  showSearch: Boolean(state.featureFlags.headerSearch)
+})
+
+export default connect(mapStateToProps)(Navigation)
