@@ -1,19 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
+import getEnv from '../utilities/getEnv'
 
 const PUBLIC_URL = 'https://s3-us-west-2.amazonaws.com/uport-devx-config/featureFlags.json'
-
-const getEnv = () => {
-  const envPatterns = [
-    [ /^https?:\/\/developer\.uport\.me/, 'production' ],
-    [ /^https?:\/\/developer\.uport\.space/, 'stage' ],
-    [ /^http:\/\/localhost/, 'development' ],
-  ]
-  let env = envPatterns.find(url =>
-    url[0].test(window.location.href))
-  if(!env)
-    env = envPatterns.find(url => url[1] === 'production')
-  return env[1]
-}
 
 const fetchFlags = async () => {
   const response = await fetch(PUBLIC_URL, {

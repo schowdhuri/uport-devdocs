@@ -2,7 +2,10 @@ import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import { combineReducers } from 'react-redux'
 
+import getEnv from '../utilities/getEnv'
 import featureFlags from '../../data/featureFlags.json'
+
+const environment = getEnv()
 
 const initialState = {
   profile: {},
@@ -14,7 +17,7 @@ const initialState = {
     }
   },
   featureFlags: {
-    ...featureFlags.production,
+    ...featureFlags[environment],
     _resolved: false
   }
 }
@@ -67,7 +70,7 @@ export const reducer = (state = initialState, action) => {
     return {
       ...state,
       featureFlags: {
-        ...featureFlags.production,
+        ...featureFlags[environment],
         _resolved: true
       }
     }
