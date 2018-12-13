@@ -1,5 +1,8 @@
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import { combineReducers } from 'react-redux'
+
+import featureFlags from '../../data/featureFlags.json'
 
 const initialState = {
   profile: {},
@@ -9,6 +12,10 @@ const initialState = {
       network: 'mainnet',
       accountType: 'keypair'
     }
+  },
+  featureFlags: {
+    ...featureFlags.production,
+    _resolved: false
   }
 }
 
@@ -47,11 +54,30 @@ export const reducer = (state = initialState, action) => {
       currentApp: initialState.currentApp
     }
   }
+  if (action.type === 'GET_FEATURE_FLAGS_OK') {
+    return {
+      ...state,
+      featureFlags: {
+        ...action.value,
+        _resolved: true
+      }
+    }
+  }
+  if (action.type === 'GET_FEATURE_FLAGS_ERR') {
+    return {
+      ...state,
+      featureFlags: {
+        ...featureFlags.production,
+        _resolved: true
+      }
+    }
+  }
   return state
 }
 
 const persistConfig = {
   key: 'profile',
+  blacklist: ['featureFlags'],
   storage
 }
 

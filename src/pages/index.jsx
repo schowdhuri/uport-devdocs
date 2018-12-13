@@ -33,7 +33,7 @@ class Index extends React.Component {
     if (this.props.data.announcement) {
       this.props.data.announcement.edges.forEach(announcement => {
         messages.push(
-          <h4>
+          <h4 key={announcement.node.frontmatter.announcement}>
             <AutoLinkText text={`${announcement.node.frontmatter.announcement}`}
               linkProps={{target: '_blank'}} />
           </h4>

@@ -1,0 +1,11 @@
+{
+  "production": {
+    "headerSearch": true
+  },
+  "stage": {
+    "headerSearch": true
+  },
+  "development": {
+    "headerSearch": false
+  }
+}
