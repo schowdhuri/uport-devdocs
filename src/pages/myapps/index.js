@@ -62,7 +62,8 @@ class MyApps extends React.Component {
                     </a>
                   </div>
                   <div className='headsUp'>
-                    <p><strong>Heads up! </strong>Have your mobile phone handy.</p>
+                    <p><strong>Heads up!</strong>
+                    Have your mobile phone handy.</p>
                   </div>
                 </div>
               </div>

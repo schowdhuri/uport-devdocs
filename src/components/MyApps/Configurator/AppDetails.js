@@ -34,8 +34,8 @@ class AppDetails extends Component {
       duplicateAppName: false,
       did: null,
       pk: null,
-      validUrl: !appURL ||
-        isValidHttpsUrl(appURL)
+      validUrl: !appURL || isValidHttpsUrl(appURL),
+      isUploading: false
     }
     this.handleAppNameChange = this.handleAppNameChange.bind(this)
     this.handleAppURLChange = this.handleAppURLChange.bind(this)
@@ -67,20 +67,26 @@ class AppDetails extends Component {
   }
   handleAppURLChange (e) {
     this.setState({
-      appURL: e.target.value,
-      validUrl: !e.target.value || isValidHttpsUrl(e.target.value)
+      appURL: e.target.value
     })
+  }
+  validateAppURL = () => {
+    const { appURL } = this.state
+    this.setState({ validUrl: !appURL || isValidHttpsUrl(appURL) })
   }
   handleAppDescriptionChange (e) {
     this.setState({appDescription: e.target.value})
   }
   handleAppImageChange (e) {
     const photo = e.target.files[0]
+    this.setState({ isUploading: true })
     const result = addFile(photo).then(result => {
       this.setState({ipfsLogoHash: result.Hash})
+      this.setState({ isUploading: false })
       console.log(`Uploaded profileImage: https://ipfs.io/ipfs/${result.Hash}`)
     }).catch(err => {
       console.log('Upload failed')
+      this.setState({ isUploading: false })
     })
   }
   handleAccentColorChange (accentColor) {
@@ -104,6 +110,7 @@ class AppDetails extends Component {
   }
   handleSubmit (e) {
     e.preventDefault()
+    this.validateAppURL()
     let uportApps = this.props.uportApps || {}
     let uportAppNames = (Object.keys(uportApps).length > 0
       ? uportApps.map(app => app.name)
@@ -184,7 +191,7 @@ class AppDetails extends Component {
     })
   }
   render () {
-    const { cancelModal, validUrl } = this.state;
+    const { cancelModal, isUploading, validUrl } = this.state;
     const bgImageStyle = {backgroundImage: this.state.ipfsLogoHash
       ? `url(https://ipfs.io/ipfs/${this.state.ipfsLogoHash})`
       : `url(${myAppsBg})`}
@@ -257,6 +264,7 @@ class AppDetails extends Component {
                           placeholder='https://yourapphomepage.com'
                           value={this.state.appURL}
                           onChange={this.handleAppURLChange}
+                          onBlur={this.validateAppURL}
                           ref={r => this.txtAppURL=r} />
                         {validUrl ||
                           <span className='error'>
@@ -312,12 +320,14 @@ class AppDetails extends Component {
                         <Col span={12}>
                           <div className='appImage'>
                             <label htmlFor='appImage'>App Profile Image</label>
-                            <div className='fileUpload'>
-                              <span>Upload Image</span>
-                              <input type='file'
-                                className='upload'
-                                onChange={this.handleAppImageChange} />
-                            </div>
+                            {isUploading
+                              ? <UploadProgress>Uploading Photo ...</UploadProgress>
+                              : <div className='fileUpload'>
+                                <span>Upload Image</span>
+                                <input type='file'
+                                  className='upload'
+                                  onChange={this.handleAppImageChange} />
+                              </div>}
                             {/*<div className={`imagePreview ' ${this.state.ipfsLogoHash ? 'uploaded' : 'default'}`}
                               style={bgImageStyle} />*/}
                           </div>
@@ -462,6 +472,11 @@ ColorPicker.Cover = styled.div`
   position: fixed;
   right: 0;
   top: 0;
+`
+const UploadProgress = styled.div`
+  font-weight: 600;
+  padding: 20px 10px;
+  text-align: center;
 `
 
 export default AppDetails

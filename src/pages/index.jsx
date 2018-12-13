@@ -169,10 +169,12 @@ const Hero = styled.div`
     display: grid;
     grid-template-rows: 1fr minmax(60px, auto);
     padding: 20px;
+    position: relative;
+    z-index: 5;
     ${medium(`
       padding: 40px;
       position: relative;
-      top: 20vh;
+      top: 100px;
     `)}
 
     ul {

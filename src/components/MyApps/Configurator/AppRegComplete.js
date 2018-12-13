@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import Link from 'gatsby-link'
 import { uPortConnect } from '../../../utilities/uPortConnectSetup'
 import cog from '../../../images/cog.svg'
 import tick from '../../../images/greenTick.svg'
@@ -273,7 +274,7 @@ class AppRegComplete extends Component {
                 : null }
               </Card.Content>
               <Card.Footer>
-                {/* <CTAButton>View Full App Code</CTAButton> */}
+                <CTALink to='/myapps/detail?tab=code'>View Full App Code</CTALink>
               </Card.Footer>
             </Card>
             {appEnvironment.environment === 'server'
@@ -429,6 +430,20 @@ const CTAButton = styled.button`
   font-size: 16px;
   line-height: 24px;
   padding: 20px;
+  text-align: center;
+  width: 100%;
+`
+const CTALink = styled(Link)`
+  background: linear-gradient(44.17deg, #5c50ca 0%, #7958d8 100%);
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
   width: 100%;
 `
 const Step = styled.div`

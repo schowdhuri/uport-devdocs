@@ -595,24 +595,32 @@ button.continue {
 
 /* Server Flow */
 .headsUp {
+  align-items: center;
+  display: flex;
+  justify-content: center;
   margin-top: 30px;
   background-color: #fff;
   position: relative;
   height: 60px;
   border-radius: 5px;
-  padding: 20px 0 20px 20px;
+  padding: 20px;
+  text-align: center;
   width: 70%;
 }
 .headsUp p {
+  align-items: center;
+  display: flex;
   font-size: 14px;
-  line-height: 19px;
-  padding-left: 50px;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+}
+.headsUp strong {
+  margin-right: 5px;
 }
 .headsUp p:before {
   content: url(../../images/headsUp.svg);
-  position: absolute;
-  top: 13px;
-  left: 20px;
+  margin-right: 10px;
 }
 
 .configuratorWrap {
@@ -723,6 +731,7 @@ footer.stepFooter .cta-prev button {
   background-color: transparent;
   display: flex;
   font-weight: 800;
+  text-align: left;
   text-decoration: none;
 }
 

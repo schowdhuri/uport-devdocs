@@ -26,7 +26,7 @@ class MyAppsAppListPage extends React.Component {
     return (
       <div className='index-container myAppsWrap appListPage'>
         <Helmet title={config.siteTitle} />
-        <main>
+        <Main>
           <AppManagerHeadContainer>
             <SiteHeader
               activeCategory={''}
@@ -58,7 +58,7 @@ class MyAppsAppListPage extends React.Component {
               <Spacer span={1} />
             </Grid>
           </Container>
-        </main>
+        </Main>
       </div>
     )
   }
@@ -66,6 +66,10 @@ class MyAppsAppListPage extends React.Component {
 
 const AppManagerHeadContainer = styled.div`
   background: ${props => props.theme.brand}
+`
+const Main = styled.main`
+  min-height: 100vh;
+  padding-bottom: 50px;
 `
 
 export const pageQuery = graphql`

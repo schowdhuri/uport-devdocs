@@ -521,7 +521,7 @@ footer .footer-menu-wrap a {
 .loginStatus ul li {
   padding: 0;
   border-bottom: 1px solid #efefef;
-  padding: 8px 0 12px 10px;
+  padding: 8px 10px 12px 10px;
   cursor: pointer;
 }
 .loginStatus ul li:before {
@@ -531,9 +531,13 @@ footer .footer-menu-wrap a {
 }
 .loginStatus ul li a {
   color: #5C50CA;
+  display: block;
   font-size: 14px;
   font-weight: 700;
+  max-width: 12em;
+  overflow: hidden;
   text-decoration: none;
+  text-overflow: ellipsis;
 }
 
 /* Grid Classes */

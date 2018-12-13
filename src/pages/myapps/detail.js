@@ -19,6 +19,10 @@ class AppDetail extends React.Component {
       tab: "details"
     }
   }
+  componentDidMount() {
+    if(window.location.search.match(/tab=code/g))
+      this.setState({ tab: 'code' })
+  }
   changeTab = tabId => () => {
     if(this.state.tab != tabId)
       this.setState({ tab: tabId })

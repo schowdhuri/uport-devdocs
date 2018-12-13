@@ -20,6 +20,7 @@ class AppSigningKey extends Component {
       pkConfirmed: false,
       pkConfirm: []
     }
+    this.pkConfirmFields = []
     this.handlePKConfirm = this.handlePKConfirm.bind(this)
   }
   componentDidMount() {
@@ -39,13 +40,17 @@ class AppSigningKey extends Component {
     download(`${this.props.appDetails.appName}-private-key.txt`, this.state.pk)
   }
   handlePKConfirm(e) {
-    this.setState({pkConfirmed: false})
+    this.setState({ pkConfirmed: false })
     let index = e.target.id.slice(-1);
     let pkConfirmCopy = this.state.pkConfirm
     pkConfirmCopy[index] = e.target.value
-    this.setState({pkConfirm: pkConfirmCopy})
+    this.setState({ pkConfirm: pkConfirmCopy })
     if (this.state.pk.slice(-4) === this.state.pkConfirm.join("")) {
       this.setState({pkConfirmed: true})
+    }
+    index = parseInt(index, 10)
+    if(e.target.value !== '' && index < this.pkConfirmFields.length - 1) {
+      this.pkConfirmFields[index + 1].focus()
     }
   }
   handleSubmit = () => {
@@ -120,10 +125,30 @@ class AppSigningKey extends Component {
                       <p>To confirm that you have recieved the signing key, enter the last four characters of your signing key below.</p>
                       <span>LAST FOUR CHARACTERS OF YOUR SIGNING KEY</span>
                       <fieldset>
-                        <input type='text' id='pkConfirm0' value={this.state.pkConfirm[0]} maxLength={1} onChange={(e) => { this.handlePKConfirm(e) }} />
-                        <input type='text' id='pkConfirm1' value={this.state.pkConfirm[1]} maxLength={1} onChange={(e) => { this.handlePKConfirm(e) }} />
-                        <input type='text' id='pkConfirm2' value={this.state.pkConfirm[2]} maxLength={1} onChange={(e) => { this.handlePKConfirm(e) }} />
-                        <input type='text' id='pkConfirm3' value={this.state.pkConfirm[3]} maxLength={1} onChange={(e) => { this.handlePKConfirm(e) }} />
+                        <input type='text'
+                          id='pkConfirm0'
+                          value={this.state.pkConfirm[0]}
+                          maxLength={1}
+                          ref={r => this.pkConfirmFields[0] = r}
+                          onChange={this.handlePKConfirm} />
+                        <input type='text'
+                          id='pkConfirm1'
+                          value={this.state.pkConfirm[1]}
+                          maxLength={1}
+                          ref={r => this.pkConfirmFields[1] = r}
+                          onChange={this.handlePKConfirm} />
+                        <input type='text'
+                          id='pkConfirm2'
+                          value={this.state.pkConfirm[2]}
+                          maxLength={1}
+                          ref={r => this.pkConfirmFields[2] = r}
+                          onChange={this.handlePKConfirm} />
+                        <input type='text'
+                          id='pkConfirm3'
+                          value={this.state.pkConfirm[3]}
+                          maxLength={1}
+                          ref={r => this.pkConfirmFields[3] = r}
+                          onChange={this.handlePKConfirm} />
                       </fieldset>
                     </div>
                   </Col>
