@@ -1,10 +1,10 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
 import Menu from 'react-burger-menu/lib/menus/slide'
 import LoginStatus from './LoginStatus'
 import Search from '../Search'
+import Flagged from './Flagged'
 import track from '../../utilities/track'
 import { medium, small } from '../../layouts/grid'
 
@@ -42,9 +42,11 @@ class Navigation extends React.Component {
             target='_blank'
             onClick={this.track('Blog Opened')}
           > Blog </a>
-          {!showSearch || <div>
-            <Search />
-          </div>}
+          <Flagged name='headerSearch'>
+            <div>
+              <Search />
+            </div>
+          </Flagged>
           <LoginStatus />
         </section>
         <div id='responsiveNavContainer'>
@@ -161,8 +163,4 @@ const StyledLink = styled(Link)`
   }
 `
 
-const mapStateToProps = state => ({
-  showSearch: Boolean(state.featureFlags.headerSearch)
-})
-
-export default connect(mapStateToProps)(Navigation)
+export default Navigation
