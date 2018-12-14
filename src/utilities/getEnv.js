@@ -1,4 +1,6 @@
 const getEnv = () => {
+  if(typeof(window) === 'undefined')
+    return 'development'
   const envPatterns = [
     [ /^https?:\/\/developer\.uport\.me/, 'production' ],
     [ /^https?:\/\/developer\.uport\.space/, 'stage' ],
