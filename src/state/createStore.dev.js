@@ -2,6 +2,6 @@ import { createStore, applyMiddleware, compose } from 'redux'
 
 export default (reducer, sagaMiddleware) => createStore(
   reducer,
-  window.devToolsExtension
-    ? compose(applyMiddleware(sagaMiddleware),  window.devToolsExtension())
+  window.__REDUX_DEVTOOLS_EXTENSION__
+    ? compose(applyMiddleware(sagaMiddleware), window.__REDUX_DEVTOOLS_EXTENSION__())
     : applyMiddleware(sagaMiddleware))

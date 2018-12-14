@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from 'react-redux'
 import Helmet from "react-helmet";
 import styled, {ThemeProvider} from "styled-components"
 import config from "../../data/SiteConfig";
@@ -11,8 +12,9 @@ import theme from './theme'
 import getSelectedText from '../utilities/getSelectedText'
 import track from '../utilities/track'
 
-export default class MainLayout extends React.Component {
+class MainLayout extends React.Component {
   componentDidMount() {
+    this.props.getFlags()
     this.trackTextSelection()
   }
   trackTextSelection = () => {
@@ -75,3 +77,13 @@ export default class MainLayout extends React.Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  getFlags() {
+    dispatch({
+      type: 'GET_FEATURE_FLAGS'
+    })
+  }
+})
+
+export default connect(undefined, mapDispatchToProps)(MainLayout)
