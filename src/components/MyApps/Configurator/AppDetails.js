@@ -5,19 +5,21 @@ import { ChromePicker } from 'react-color'
 import CancelModal from './CancelModal'
 import Footer from './Footer'
 import { Container, Grid, Col, Spacer } from '../../../layouts/grid'
-import errorIcon from '../../../images/error-icon.svg'
-import myAppsBg from '../../../images/myapps-bg.svg'
 import { addFile } from '../../../utilities/ipfs'
 import { isValidHttpsUrl } from '../../../utilities/isValidUrl'
 import { default as track, trackPage } from '../../../utilities/track'
+import spin from '../../../utilities/spinanim'
+import errorIcon from '../../../images/error-icon.svg'
+import loadingIcon from '../../../images/loading.svg'
+import myAppsBg from '../../../images/myapps-bg.svg'
 import '../../../layouts/css/myapps.css'
 
 class AppDetails extends Component {
   constructor (props) {
     super(props)
-    const appURL = props.appDetails.appURL
+    let appURL = props.appDetails.appURL
       ? `https://${props.appDetails.appURL}`
-      : ''
+      : 'https://'
     this.state = {
       appName: props.appDetails.appName,
       appURL,
@@ -34,8 +36,9 @@ class AppDetails extends Component {
       duplicateAppName: false,
       did: null,
       pk: null,
-      validUrl: !appURL || isValidHttpsUrl(appURL),
-      isUploading: false
+      validUrl: appURL === "https://" || isValidHttpsUrl(appURL),
+      isUploading: false,
+      bgImageUploading: false
     }
     this.handleAppNameChange = this.handleAppNameChange.bind(this)
     this.handleAppURLChange = this.handleAppURLChange.bind(this)
@@ -71,7 +74,9 @@ class AppDetails extends Component {
     })
   }
   validateAppURL = () => {
-    const { appURL } = this.state
+    const { appURL='' } = this.state
+    if(appURL === 'https://')
+      return true
     this.setState({ validUrl: !appURL || isValidHttpsUrl(appURL) })
   }
   handleAppDescriptionChange (e) {
@@ -129,7 +134,7 @@ class AppDetails extends Component {
           did,
           privateKey
         })
-        this.setState({ did, pk: privateKey })
+        this.setState({ did, pk: privateKey, bgImageUploading: true })
         if ((this.state.accentColor !== '' ||
           this.state.accentColor !== '#5C50CA') &&
           this.state.ipfsBgHash === null
@@ -191,7 +196,7 @@ class AppDetails extends Component {
     })
   }
   render () {
-    const { cancelModal, isUploading, validUrl } = this.state;
+    const { cancelModal, isUploading, validUrl, bgImageUploading } = this.state;
     const bgImageStyle = {backgroundImage: this.state.ipfsLogoHash
       ? `url(https://ipfs.io/ipfs/${this.state.ipfsLogoHash})`
       : `url(${myAppsBg})`}
@@ -373,9 +378,15 @@ class AppDetails extends Component {
           </p>
         </div>)}
         Next={() => this.props.appEnvironment.environment === 'server'
-          ? <span>GENERATE SIGNING KEY</span>
-          : <span>COMPLETE REGISTRATION</span>}
-        nextEnabled={this.state.appNameValid && validUrl}
+          ? <span>
+            GENERATE SIGNING KEY
+            {bgImageUploading ? <Loading src={loadingIcon} /> : null}
+          </span>
+          : <span>
+            COMPLETE REGISTRATION
+            {bgImageUploading ? <Loading src={loadingIcon} /> : null}
+          </span>}
+        nextEnabled={!bgImageUploading && this.state.appNameValid && validUrl}
         onNext={this.handleSubmit}
         onPrev={this.props.previousStep} />
       <CancelModal show={cancelModal} onClose={this.hideCancelModal} />
@@ -478,5 +489,9 @@ const UploadProgress = styled.div`
   padding: 20px 10px;
   text-align: center;
 `
-
+const Loading = styled.img`
+  animation: ${spin};
+  margin: 10px 0;
+  width: 24px;
+`
 export default AppDetails
