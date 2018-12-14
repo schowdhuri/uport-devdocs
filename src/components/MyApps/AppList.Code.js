@@ -116,10 +116,11 @@ class AppCode extends React.Component {
   }
   render() {
     const { currentApp } = this.props
+    const { environment } = currentApp.configuration;
     return (<Wrapper>
-      <Grid>
-        <Col span={6}>
-          <h3>Client Apps</h3>
+      {environment !== "server"
+        ? <div>
+          {!environment && <h3>Client Apps</h3>}
           <div className='detailsContainer'>
             <Step>
               <Step.Number>1</Step.Number>
@@ -210,9 +211,11 @@ class AppCode extends React.Component {
               </Step.Content>
             </Step>
           </div>
-        </Col>
-        <Col span={6}>
-          <h3>Server Apps</h3>
+        </div>
+        : null}
+      {environment !== "client"
+        ? <div>
+          {!environment && <h3>Server Apps</h3>}
           <div className='detailsContainer'>
             <Step>
               <Step.Number>1</Step.Number>
@@ -303,8 +306,8 @@ class AppCode extends React.Component {
               </Step.Content>
             </Step>
           </div>
-        </Col>
-      </Grid>
+        </div>
+        : null}
     </Wrapper>)
   }
 }
