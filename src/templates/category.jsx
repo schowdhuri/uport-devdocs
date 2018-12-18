@@ -26,8 +26,8 @@ export default class CategoryTemplate extends React.Component {
       createElement: React.createElement,
       components: {
         'h2': SecondaryTitle,
-        a: props => props.href.match(/^https?:\/\//)
-          ? <a href {...props} />
+        a: props => !props.href || props.href.match(/^https?:\/\//)
+          ? <a {...props} />
           : <Link to={props.href} {...props} />
       }
     }).Compiler
@@ -57,7 +57,6 @@ export default class CategoryTemplate extends React.Component {
     if (!post.id) {
       post.category_id = config.postDefaultCategoryID
     }
-
     return (
     <div>
         <Helmet>

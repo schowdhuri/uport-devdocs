@@ -25,8 +25,8 @@ export default class OverviewTemplate extends React.Component {
         h2: SecondaryTitle,
         ul: UnorderedList,
         ol: OrderedList,
-        a: props => props.href.match(/^https?:\/\//)
-          ? <a href {...props} />
+        a: props => !props.href || props.href.match(/^https?:\/\//)
+          ? <a {...props} />
           : <Link to={props.href} {...props} />
       }
     }).Compiler
