@@ -8,6 +8,7 @@ import SiteHeader from '../../components/Layout/Header'
 import { Container, Grid, Col, Spacer, small } from '../../layouts/grid'
 import AppCode from '../../components/MyApps/AppList.Code'
 import Details from '../../components/MyApps/AppList.Details'
+import EditModal from '../../components/MyApps/EditModal'
 import myAppsBg from '../../images/myapps-bg.svg'
 import config from '../../../data/SiteConfig'
 import '../../layouts/css/myapps.css'
@@ -16,7 +17,8 @@ class AppDetail extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      tab: "details"
+      tab: "details",
+      editModal: false
     }
   }
   componentDidMount() {
@@ -27,15 +29,21 @@ class AppDetail extends React.Component {
     if(this.state.tab != tabId)
       this.setState({ tab: tabId })
   }
+  hideEditModal = () => {
+    this.setState({ editModal: false })
+  }
+  showEditModal = () => {
+    this.setState({ editModal: true })
+  }
   render () {
     const { tab } = this.state
     const bgImageStyle = (this.props.currentApp.configuration.profileImage
       ? {backgroundImage: `url(https://ipfs.io${this.props.currentApp.configuration.profileImage})`}
       : {backgroundImage: `url(${myAppsBg})`})
-    console.log(bgImageStyle)
+    const { editModal } = this.state;
     return (
       Object.keys(this.props.profile).length
-      ? <div className='index-container myAppsWrap getStarted'>
+      ? <div className='index-container myAppsWrap startBuilding'>
         <Helmet title={config.siteTitle} />
         <main>
           <AppManagerHeadContainer>
@@ -66,7 +74,7 @@ class AppDetail extends React.Component {
             <Grid>
               <Spacer span={1} />
               <Col span={10}>
-                <Link to='/myapps/list' className='returnLink'>Return to My Apps</Link>
+                <div className='returnLink' onClick={this.showEditModal}>Edit App Details</div>
               </Col>
               <Spacer span={1} />
               <Spacer span={1} />
@@ -81,6 +89,16 @@ class AppDetail extends React.Component {
             </Grid>
           </BodyContainer>
         </main>
+        <EditModal
+          app={this.props.currentApp}
+          profile={this.props.profile}
+          uportApps={this.props.profile.uportApps}
+          appIndex={this.props.appIndex}
+          setCurrentApp={this.props.setCurrentApp}
+          saveApps={this.props.saveApps}
+          show={editModal}
+          onClose={this.hideEditModal}
+        />
       </div>
       : this.props.history.push('/myapps')
     )
@@ -117,7 +135,6 @@ const BodyContainer = styled(Container)`
     line-height: 32px;
     margin-bottom: 10px;
     font-weight: 400;
-    text-transform: capitalize;
   }
   .detailsContainer .appItem {
     width: 45%;
@@ -150,6 +167,7 @@ const BodyContainer = styled(Container)`
     font-size: 14px;
     line-height: 32px;
     padding-right: 5px;
+    cursor: pointer;
   }
   .appDetailHeaderWrap .appDetailHeader {
     width: 80%;
@@ -240,8 +258,15 @@ AppDetail.propTypes = {
   currentApp: PropTypes.object.isRequired
 }
 
-const mapStateToProps = ({ profile, currentApp }) => {
-  return { profile, currentApp }
+const mapStateToProps = ({ profile, currentApp, appIndex }) => {
+  return { profile, currentApp, appIndex }
 }
 
-export default connect(mapStateToProps)(AppDetail)
+const mapDispatchToProps = dispatch => {
+  return {
+    setCurrentApp: (app, index) => dispatch({ type: `SET_CURRENT_APP`, app: app, index: index }),
+    saveApps: (apps) => dispatch({ type: `SAVE_APPS`, uportApps: apps })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppDetail)

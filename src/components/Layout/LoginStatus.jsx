@@ -41,7 +41,7 @@ class LoginStatus extends Component {
     let appItems
     if (this.props.profile.uportApps) {
       appItems = this.props.profile.uportApps.map((app, index) =>
-        <li key={index} onClick={() => { this.props.setCurrentApp(this.props.profile.uportApps[index]) }}><Link to='/myapps/detail'>{app.name}</Link></li>
+        <li key={index} onClick={() => { this.props.setCurrentApp(this.props.profile.uportApps[index], index) }}><Link to='/myapps/detail'>{app.name}</Link></li>
       )
     }
     return (
@@ -81,7 +81,7 @@ const mapStateToProps = ({ profile }) => {
 const mapDispatchToProps = dispatch => {
   return {
     saveProfile: (profile) => dispatch({ type: `SAVE_PROFILE`, profile: profile }),
-    setCurrentApp: (app) => dispatch({ type: `SET_CURRENT_APP`, app: app }),
+    setCurrentApp: (app, index) => dispatch({ type: `SET_CURRENT_APP`, app: app, index: index }),
     logout: () => dispatch({ type: 'LOGOUT' })
   }
 }
